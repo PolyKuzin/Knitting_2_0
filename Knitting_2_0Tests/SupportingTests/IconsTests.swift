@@ -22,4 +22,5 @@ class IconsTests: XCTestCase {
     func testIconsStructureHasLogoIcon() {
         XCTAssertEqual(Icons.logoIcon, UIImage(named: "logoIcon"))
     }
+    
 }

@@ -11,16 +11,24 @@ import XCTest
 
 class Knitting_2_0Tests: XCTestCase {
 
+    var sut : EntryVM!
+    
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        super.setUp()
+        sut = EntryVM()
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        
+        super.tearDown()
     }
 
-    func test() {
-        
+    func testEntryVMContainsLogoIconView() {
+        XCTAssertNotNil(sut.logoIconView)
+    }
+    
+    func testlogoIconViewImageIsLogoIcon() {
+        XCTAssertEqual(sut.logoIconView.image, UIImage(named: "logoIcon"))
     }
 
 }

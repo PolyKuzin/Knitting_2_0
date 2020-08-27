@@ -10,5 +10,10 @@ import UIKit
 
 class EntryVM {
     
-    
+    var logoIconView : UIImageView = {
+        let image = Icons.logoIcon
+        let imageView = UIImageView(image: image)
+        
+        return imageView
+    }()
 }

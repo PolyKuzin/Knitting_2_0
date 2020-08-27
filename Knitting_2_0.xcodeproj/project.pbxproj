@@ -72,6 +72,7 @@
 				99AFBA4424F80D9E00E71FD6 /* Products */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 1;
 		};
 		99AFBA4424F80D9E00E71FD6 /* Products */ = {
 			isa = PBXGroup;
