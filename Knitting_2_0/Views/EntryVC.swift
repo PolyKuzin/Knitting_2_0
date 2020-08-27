@@ -9,10 +9,18 @@
 import UIKit
 
 class EntryVC: UIViewController {
+	
+	var logoIcon = UIImageView()
 
+	var viewModel : EntryVM! {
+		didSet {
+			self.logoIcon = viewModel.logoIconView
+		}
+	}
+	
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
+		viewModel = EntryVM()
+	}
 }
 

@@ -10,13 +10,14 @@
 		99AFBA4724F80D9E00E71FD6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AFBA4624F80D9E00E71FD6 /* AppDelegate.swift */; };
 		99AFBA4924F80D9E00E71FD6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AFBA4824F80D9E00E71FD6 /* SceneDelegate.swift */; };
 		99AFBA4B24F80D9E00E71FD6 /* EntryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AFBA4A24F80D9E00E71FD6 /* EntryVC.swift */; };
-		99AFBA4E24F80D9E00E71FD6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99AFBA4C24F80D9E00E71FD6 /* Main.storyboard */; };
+		99AFBA4E24F80D9E00E71FD6 /* Entry.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99AFBA4C24F80D9E00E71FD6 /* Entry.storyboard */; };
 		99AFBA5024F80DA000E71FD6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99AFBA4F24F80DA000E71FD6 /* Assets.xcassets */; };
 		99AFBA5324F80DA000E71FD6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99AFBA5124F80DA000E71FD6 /* LaunchScreen.storyboard */; };
 		99AFBA5E24F80DA000E71FD6 /* EntryVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AFBA5D24F80DA000E71FD6 /* EntryVMTests.swift */; };
 		99AFBA7024F8121D00E71FD6 /* EntryVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AFBA6F24F8121D00E71FD6 /* EntryVM.swift */; };
 		99AFBA7324F8125A00E71FD6 /* IconsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AFBA7224F8125A00E71FD6 /* IconsTests.swift */; };
 		99AFBA7524F8138000E71FD6 /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AFBA7424F8138000E71FD6 /* Icons.swift */; };
+		99AFBA7824F819A100E71FD6 /* EntryVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AFBA7724F819A100E71FD6 /* EntryVCTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,7 +35,7 @@
 		99AFBA4624F80D9E00E71FD6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		99AFBA4824F80D9E00E71FD6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		99AFBA4A24F80D9E00E71FD6 /* EntryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryVC.swift; sourceTree = "<group>"; };
-		99AFBA4D24F80D9E00E71FD6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		99AFBA4D24F80D9E00E71FD6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Entry.storyboard; sourceTree = "<group>"; };
 		99AFBA4F24F80DA000E71FD6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		99AFBA5224F80DA000E71FD6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		99AFBA5424F80DA000E71FD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -44,6 +45,7 @@
 		99AFBA6F24F8121D00E71FD6 /* EntryVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryVM.swift; sourceTree = "<group>"; };
 		99AFBA7224F8125A00E71FD6 /* IconsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconsTests.swift; sourceTree = "<group>"; };
 		99AFBA7424F8138000E71FD6 /* Icons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
+		99AFBA7724F819A100E71FD6 /* EntryVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryVCTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 		99AFBA5C24F80DA000E71FD6 /* Knitting_2_0Tests */ = {
 			isa = PBXGroup;
 			children = (
+				99AFBA7624F8198900E71FD6 /* ViewTests */,
 				99AFBA7124F8123E00E71FD6 /* SupportingTests */,
 				99AFBA6E24F8120700E71FD6 /* ViewModelTests */,
 				99AFBA5F24F80DA000E71FD6 /* Info.plist */,
@@ -120,7 +123,7 @@
 			children = (
 				99AFBA4A24F80D9E00E71FD6 /* EntryVC.swift */,
 				99AFBA5124F80DA000E71FD6 /* LaunchScreen.storyboard */,
-				99AFBA4C24F80D9E00E71FD6 /* Main.storyboard */,
+				99AFBA4C24F80D9E00E71FD6 /* Entry.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -171,6 +174,14 @@
 				99AFBA7224F8125A00E71FD6 /* IconsTests.swift */,
 			);
 			path = SupportingTests;
+			sourceTree = "<group>";
+		};
+		99AFBA7624F8198900E71FD6 /* ViewTests */ = {
+			isa = PBXGroup;
+			children = (
+				99AFBA7724F819A100E71FD6 /* EntryVCTests.swift */,
+			);
+			path = ViewTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,7 +267,7 @@
 			files = (
 				99AFBA5324F80DA000E71FD6 /* LaunchScreen.storyboard in Resources */,
 				99AFBA5024F80DA000E71FD6 /* Assets.xcassets in Resources */,
-				99AFBA4E24F80D9E00E71FD6 /* Main.storyboard in Resources */,
+				99AFBA4E24F80D9E00E71FD6 /* Entry.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +298,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				99AFBA7324F8125A00E71FD6 /* IconsTests.swift in Sources */,
+				99AFBA7824F819A100E71FD6 /* EntryVCTests.swift in Sources */,
 				99AFBA5E24F80DA000E71FD6 /* EntryVMTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -302,12 +314,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		99AFBA4C24F80D9E00E71FD6 /* Main.storyboard */ = {
+		99AFBA4C24F80D9E00E71FD6 /* Entry.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				99AFBA4D24F80D9E00E71FD6 /* Base */,
 			);
-			name = Main.storyboard;
+			name = Entry.storyboard;
 			sourceTree = "<group>";
 		};
 		99AFBA5124F80DA000E71FD6 /* LaunchScreen.storyboard */ = {
