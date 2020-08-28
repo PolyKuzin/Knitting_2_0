@@ -12,10 +12,10 @@ class EntryVM {
     
     var logoIconView : UIImageView = {
         let image		= Icons.logoIcon
-        let imageView	= UIImageView(frame: CGRect(x: 100.92,
-													y: 205.25,
-													width: 190.17,
-													height: 227.65))
+        let imageView	= UIImageView(frame: CGRect(x: 135.33,
+													y: 116.79,
+													width: 129.39,
+													height: 154.89))
 		imageView.image = image
 		
         return imageView

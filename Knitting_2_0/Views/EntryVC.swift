@@ -10,8 +10,11 @@ import UIKit
 
 class EntryVC: UIViewController {
 	
-	var logoIcon = UIImageView()
-
+	var logoIcon			= UIImageView()
+	var nicknameTextField	= UITextField()
+	var emailTextField		= UITextField()
+	var passwordTextField	= UITextField()
+	
 	var viewModel : EntryVM! {
 		didSet {
 			self.logoIcon = viewModel.logoIconView
@@ -21,11 +24,11 @@ class EntryVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		
+		viewModel = EntryVM()
 		screenConfigure()
 	}
 	
 	func screenConfigure() {
-		viewModel = EntryVM()
 		view.addSubview(logoIcon)
 	}
 }
