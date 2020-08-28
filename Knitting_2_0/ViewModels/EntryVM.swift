@@ -20,4 +20,22 @@ class EntryVM {
 		
         return imageView
     }()
+	
+	var nicknameTextField : UITextField = {
+		let textField = UITextField()
+		
+		return textField
+	}()
+	
+	var emailTextField : UITextField = {
+		let textField = UITextField()
+		
+		return textField
+	}()
+	
+	var passwordTextField : UITextField = {
+		let textField = UITextField()
+		
+		return textField
+	}()
 }

@@ -35,4 +35,16 @@ class Knitting_2_0Tests: XCTestCase {
 		XCTAssertEqual(sut.logoIconView.frame.width, 129.39)
 		XCTAssertEqual(sut.logoIconView.frame.height, 154.89)
 	}
+	
+	func testEntryVMContainsNickNameTextField() {
+        XCTAssertNotNil(sut.nicknameTextField)
+	}
+	
+	func testEntryVMContainsEmailTextField() {
+        XCTAssertNotNil(sut.emailTextField)
+	}
+
+	func testEntryVMContainsPasswordTextField() {
+        XCTAssertNotNil(sut.passwordTextField)
+	}
 }
