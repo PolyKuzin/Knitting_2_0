@@ -22,20 +22,27 @@ class EntryVM {
     }()
 	
 	var nicknameTextField : UITextField = {
-		let textField = UITextField()
+		let textField = UITextField(frame: CGRect(x: 16,
+												  y: 366,
+												  width: UIScreen.main.bounds.width - 32,
+												  height: 62))
 		
 		return textField
 	}()
 	
 	var emailTextField : UITextField = {
-		let textField = UITextField()
-		
+		let textField = UITextField(frame: CGRect(x: 16,
+												  y: 448,
+												  width: UIScreen.main.bounds.width - 32,
+												  height: 62))
 		return textField
 	}()
 	
 	var passwordTextField : UITextField = {
-		let textField = UITextField()
-		
+		let textField = UITextField(frame: CGRect(x: 16,
+												  y: 530,
+												  width: UIScreen.main.bounds.width - 32,
+												  height: 62))
 		return textField
 	}()
 }

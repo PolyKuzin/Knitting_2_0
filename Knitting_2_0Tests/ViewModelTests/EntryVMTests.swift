@@ -40,11 +40,26 @@ class Knitting_2_0Tests: XCTestCase {
         XCTAssertNotNil(sut.nicknameTextField)
 	}
 	
+	func testNicknameTextFieldFrameIsCorrect() {
+		XCTAssertEqual(sut.nicknameTextField.frame.width, 382)
+		XCTAssertEqual(sut.nicknameTextField.frame.height, 62)
+	}
+	
 	func testEntryVMContainsEmailTextField() {
         XCTAssertNotNil(sut.emailTextField)
 	}
-
+	
+	func testEmailTextFieldFrameIsCorrect() {
+		XCTAssertEqual(sut.emailTextField.frame.width, 382)
+		XCTAssertEqual(sut.emailTextField.frame.height, 62)
+	}
+	
 	func testEntryVMContainsPasswordTextField() {
         XCTAssertNotNil(sut.passwordTextField)
+	}
+	
+	func testPasswordTextFieldFrameIsCorrect() {
+		XCTAssertEqual(sut.passwordTextField.frame.width, 382)
+		XCTAssertEqual(sut.passwordTextField.frame.height, 62)
 	}
 }
