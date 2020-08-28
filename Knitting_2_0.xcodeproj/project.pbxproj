@@ -104,8 +104,8 @@
 			isa = PBXGroup;
 			children = (
 				99AFBA7624F8198900E71FD6 /* ViewTests */,
-				99AFBA7124F8123E00E71FD6 /* SupportingTests */,
 				99AFBA6E24F8120700E71FD6 /* ViewModelTests */,
+				99AFBA7124F8123E00E71FD6 /* SupportingTests */,
 				99AFBA5F24F80DA000E71FD6 /* Info.plist */,
 			);
 			path = Knitting_2_0Tests;

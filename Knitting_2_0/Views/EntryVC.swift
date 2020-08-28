@@ -20,7 +20,13 @@ class EntryVC: UIViewController {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+		
+		screenConfigure()
+	}
+	
+	func screenConfigure() {
 		viewModel = EntryVM()
+		view.addSubview(logoIcon)
 	}
 }
 

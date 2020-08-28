@@ -27,8 +27,16 @@ class Knitting_2_0Tests: XCTestCase {
         XCTAssertNotNil(sut.logoIconView)
     }
     
-    func testlogoIconViewImageIsLogoIcon() {
-        XCTAssertEqual(sut.logoIconView.image, UIImage(named: "logoIcon"))
+    func testLogoIconViewImageIsLogoIcon() {
+        XCTAssertTrue(sut.logoIconView.image === Icons.logoIcon)
     }
 
+	func testLogoIconViewFrameIsCorrect() {
+		XCTAssertEqual(sut.logoIconView.frame.width, 190.17)
+		XCTAssertEqual(sut.logoIconView.frame.height, 227.65)
+	}
+	
+	func testlogoIconImageViewTraingConstraint() {
+		
+	}
 }

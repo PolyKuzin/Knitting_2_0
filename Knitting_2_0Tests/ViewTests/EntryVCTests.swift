@@ -27,7 +27,11 @@ class EntryVCTests: XCTestCase {
 		super.tearDown()
 	}
 
-	func testEntryVCContainsViewModel() {
+	func testWhenViewIsLoadedLogoIconNotNil() {
 		XCTAssertNotNil(sut.logoIcon)
+	}
+	
+	func testHasLogoIconImageView() {
+		XCTAssertTrue((sut.logoIcon.isDescendant(of: sut.view)))
 	}
 }

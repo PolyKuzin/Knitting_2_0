@@ -11,9 +11,13 @@ import UIKit
 class EntryVM {
     
     var logoIconView : UIImageView = {
-        let image = Icons.logoIcon
-        let imageView = UIImageView(image: image)
-        
+        let image		= Icons.logoIcon
+        let imageView	= UIImageView(frame: CGRect(x: 100.92,
+													y: 205.25,
+													width: 190.17,
+													height: 227.65))
+		imageView.image = image
+		
         return imageView
     }()
 }
