@@ -10,14 +10,17 @@ import UIKit
 
 class EntryVC: UIViewController {
 	
-	var logoIcon			= UIImageView()
-	var nicknameTextField	= UITextField()
-	var emailTextField		= UITextField()
-	var passwordTextField	= UITextField()
+	var logoIcon					= UIImageView()
+	var nicknameTextField			= UITextField()
+	var emailTextField				= UITextField()
+	var passwordTextField			= UITextField()
 	
 	var viewModel : EntryVM! {
 		didSet {
-			self.logoIcon = viewModel.logoIconView
+			self.logoIcon			= viewModel.logoIconView
+			self.nicknameTextField	= viewModel.nicknameTextField
+			self.emailTextField		= viewModel.emailTextField
+			self.passwordTextField	= viewModel.passwordTextField
 		}
 	}
 	
@@ -30,6 +33,9 @@ class EntryVC: UIViewController {
 	
 	func screenConfigure() {
 		view.addSubview(logoIcon)
+		view.addSubview(nicknameTextField)
+		view.addSubview(emailTextField)
+		view.addSubview(passwordTextField)
 	}
 }
 

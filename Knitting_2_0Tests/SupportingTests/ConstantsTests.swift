@@ -9,7 +9,7 @@
 import XCTest
 @testable import Knitting_2_0
 
-class IconsTests: XCTestCase {
+class ConstantsTests: XCTestCase {
     
     override func setUpWithError() throws {
         super.setUp()
@@ -22,5 +22,16 @@ class IconsTests: XCTestCase {
     func testIconsStructureHasLogoIcon() {
         XCTAssertEqual(Icons.logoIcon, UIImage(named: "logoIcon"))
     }
-    
+	
+	func testPlaceholdersForNicknameRegistrationHasCorrectString() {
+		XCTAssertEqual(Placeholder.nicknameRegistration, "Enter your nickname")
+	}
+	
+	func testPlaceholdersForEmailRegistrationHasCorrectString() {
+		XCTAssertEqual(Placeholder.emailRegistration, "Enter your e-mail")
+	}
+	
+	func testPlaceholdersForPasswordRegistrationHasCorrectString() {
+		XCTAssertEqual(Placeholder.passwordRegistration, "Enter your password")
+	}
 }

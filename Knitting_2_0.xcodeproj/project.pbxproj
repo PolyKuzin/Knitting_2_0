@@ -16,7 +16,7 @@
 		99AFBA5324F80DA000E71FD6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99AFBA5124F80DA000E71FD6 /* LaunchScreen.storyboard */; };
 		99AFBA5E24F80DA000E71FD6 /* EntryVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AFBA5D24F80DA000E71FD6 /* EntryVMTests.swift */; };
 		99AFBA7024F8121D00E71FD6 /* EntryVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AFBA6F24F8121D00E71FD6 /* EntryVM.swift */; };
-		99AFBA7324F8125A00E71FD6 /* IconsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AFBA7224F8125A00E71FD6 /* IconsTests.swift */; };
+		99AFBA7324F8125A00E71FD6 /* ConstantsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AFBA7224F8125A00E71FD6 /* ConstantsTests.swift */; };
 		99AFBA7524F8138000E71FD6 /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AFBA7424F8138000E71FD6 /* Icons.swift */; };
 		99AFBA7824F819A100E71FD6 /* EntryVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AFBA7724F819A100E71FD6 /* EntryVCTests.swift */; };
 		99AFBA7A24F9667F00E71FD6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AFBA7924F9667F00E71FD6 /* Constants.swift */; };
@@ -49,7 +49,7 @@
 		99AFBA5D24F80DA000E71FD6 /* EntryVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryVMTests.swift; sourceTree = "<group>"; };
 		99AFBA5F24F80DA000E71FD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		99AFBA6F24F8121D00E71FD6 /* EntryVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryVM.swift; sourceTree = "<group>"; };
-		99AFBA7224F8125A00E71FD6 /* IconsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconsTests.swift; sourceTree = "<group>"; };
+		99AFBA7224F8125A00E71FD6 /* ConstantsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantsTests.swift; sourceTree = "<group>"; };
 		99AFBA7424F8138000E71FD6 /* Icons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
 		99AFBA7724F819A100E71FD6 /* EntryVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryVCTests.swift; sourceTree = "<group>"; };
 		99AFBA7924F9667F00E71FD6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -195,7 +195,7 @@
 		99AFBA7124F8123E00E71FD6 /* SupportingTests */ = {
 			isa = PBXGroup;
 			children = (
-				99AFBA7224F8125A00E71FD6 /* IconsTests.swift */,
+				99AFBA7224F8125A00E71FD6 /* ConstantsTests.swift */,
 			);
 			path = SupportingTests;
 			sourceTree = "<group>";
@@ -216,7 +216,6 @@
 				E1676BB02479D45F64F22B54 /* Pods-Knitting_2_0Tests.debug.xcconfig */,
 				B63AB392BD94FD626BC5C223 /* Pods-Knitting_2_0Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -383,7 +382,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				99AFBA7324F8125A00E71FD6 /* IconsTests.swift in Sources */,
+				99AFBA7324F8125A00E71FD6 /* ConstantsTests.swift in Sources */,
 				99AFBA7824F819A100E71FD6 /* EntryVCTests.swift in Sources */,
 				99AFBA5E24F80DA000E71FD6 /* EntryVMTests.swift in Sources */,
 			);

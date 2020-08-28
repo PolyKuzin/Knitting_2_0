@@ -7,3 +7,15 @@
 //
 
 import Foundation
+
+struct Icons {
+    
+    static let logoIcon = UIImage(named: "logoIcon")
+}
+
+struct Placeholder {
+	
+	static let nicknameRegistration = "Enter your nickname"
+	static let emailRegistration	= "Enter your e-mail"
+	static let passwordRegistration = "Enter your password"
+}

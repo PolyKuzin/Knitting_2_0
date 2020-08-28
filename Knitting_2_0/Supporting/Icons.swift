@@ -8,7 +8,4 @@
 
 import UIKit
 
-struct Icons {
-    
-    static let logoIcon = UIImage(named: "logoIcon")
-}
+
