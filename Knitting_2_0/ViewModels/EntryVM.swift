@@ -19,7 +19,7 @@ class EntryVM {
 		imageView.image = image
 		
         return imageView
-    }()
+	}()
 	
 	var nicknameTextField : UITextField = {
 		let textField = UITextField(frame: CGRect(x: 16,
@@ -33,6 +33,8 @@ class EntryVM {
 		textField.font					= Fonts.placeHolders
 		textField.layer.borderWidth		= 0.5
 		textField.layer.borderColor		= Colors.normalTextFieldBorder.cgColor
+		textField.leftView				= UIView(frame: CGRect(x: 0, y: 0, width: 16, height: 62))
+		textField.leftViewMode 			= .always
 		
 		//functionality
 		textField.autocorrectionType	= UITextAutocorrectionType.no

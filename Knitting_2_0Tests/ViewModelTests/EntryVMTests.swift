@@ -83,6 +83,14 @@ class Knitting_2_0Tests: XCTestCase {
 		XCTAssertTrue(sut.nicknameTextField.clearButtonMode == .whileEditing )
 	}
 	
+	func testNicknameTextFieldLeftViewIsCorrect() {
+		XCTAssertEqual(sut.nicknameTextField.leftViewRect(forBounds: CGRect(x: 0, y: 0, width: 16, height: 62)), CGRect(x: 0, y: 0, width: 16, height: 62))
+	}
+	
+	func testNicknameTextFieldLeftViewModeIsAlways() {
+		XCTAssertEqual(sut.nicknameTextField.leftViewMode, .always)
+	}
+	
 //MARK: Email TextField Tests
 	func testEntryVMContainsEmailTextField() {
         XCTAssertNotNil(sut.emailTextField)
@@ -129,6 +137,14 @@ class Knitting_2_0Tests: XCTestCase {
 		XCTAssertTrue(sut.emailTextField.clearButtonMode == .whileEditing )
 	}
 	
+	func testEmailTextFieldLeftViewIsCorrect() {
+		XCTAssertEqual(sut.emailTextField.leftViewRect(forBounds: CGRect(x: 0, y: 0, width: 16, height: 62)), CGRect(x: 0, y: 0, width: 16, height: 62))
+	}
+	
+	func testEmailTextFieldLeftViewModeIsAlways() {
+		XCTAssertEqual(sut.emailTextField.leftViewMode, .always)
+	}
+	
 //MARK: Password TextField Tests
 	func testEntryVMContainsPasswordTextField() {
         XCTAssertNotNil(sut.passwordTextField)
@@ -173,5 +189,13 @@ class Knitting_2_0Tests: XCTestCase {
 	
 	func testPasswordTextFieldClearButtonModeIsWhileEditing() {
 		XCTAssertTrue(sut.passwordTextField.clearButtonMode == .whileEditing )
+	}
+	
+	func testPasswordTextFieldLeftViewIsCorrect() {
+		XCTAssertEqual(sut.passwordTextField.leftViewRect(forBounds: CGRect(x: 0, y: 0, width: 16, height: 62)), CGRect(x: 0, y: 0, width: 16, height: 62))
+	}
+	
+	func testPasswordTextFieldLeftViewModeIsAlways() {
+		XCTAssertEqual(sut.passwordTextField.leftViewMode, .always)
 	}
 }
