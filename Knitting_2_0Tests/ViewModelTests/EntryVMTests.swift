@@ -45,6 +45,10 @@ class Knitting_2_0Tests: XCTestCase {
 		XCTAssertEqual(sut.nicknameTextField.frame.height, 62)
 	}
 	
+	func testFontInNicknameTextFieldHasCorrectFont() {
+		XCTAssertEqual(sut.nicknameTextField.font, UIFont(name: "SFProDisplay-Medium", size: 20))
+	}
+	
 	func testEntryVMContainsEmailTextField() {
         XCTAssertNotNil(sut.emailTextField)
 	}
@@ -54,6 +58,10 @@ class Knitting_2_0Tests: XCTestCase {
 		XCTAssertEqual(sut.emailTextField.frame.height, 62)
 	}
 	
+	func testFontInEmailTextFieldHasCorrectFont() {
+		XCTAssertEqual(sut.emailTextField.font, UIFont(name: "SFProDisplay-Medium", size: 20))
+	}
+	
 	func testEntryVMContainsPasswordTextField() {
         XCTAssertNotNil(sut.passwordTextField)
 	}
@@ -61,5 +69,9 @@ class Knitting_2_0Tests: XCTestCase {
 	func testPasswordTextFieldFrameIsCorrect() {
 		XCTAssertEqual(sut.passwordTextField.frame.width, 382)
 		XCTAssertEqual(sut.passwordTextField.frame.height, 62)
+	}
+	
+	func testFontInPasswordTextFieldHasCorrectFont() {
+		XCTAssertEqual(sut.passwordTextField.font, UIFont(name: "SFProDisplay-Medium", size: 20))
 	}
 }

@@ -11,13 +11,13 @@ import XCTest
 
 class EntryVCTests: XCTestCase {
 	
-	var sut : EntryVC!
+	var sut : RegistrationVC!
 
     override func setUpWithError() throws {
 		super.setUp()
 		let storyboard	= UIStoryboard(name: "Entry", bundle: nil)
-        let vc			= storyboard.instantiateViewController(withIdentifier: String(describing: EntryVC.self))
-        sut				= vc as? EntryVC
+        let vc			= storyboard.instantiateViewController(withIdentifier: String(describing: RegistrationVC.self))
+        sut				= vc as? RegistrationVC
         
         sut.loadViewIfNeeded()
 	}

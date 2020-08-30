@@ -34,4 +34,8 @@ class ConstantsTests: XCTestCase {
 	func testPlaceholdersForPasswordRegistrationHasCorrectString() {
 		XCTAssertEqual(Placeholder.passwordRegistration, "Enter your password")
 	}
+	
+	func testFontsStructureHasCorrectFontsName() {
+		XCTAssertEqual(Fonts.placeHolders, UIFont(name: "SFProDisplay-Medium", size: 20))
+	}
 }

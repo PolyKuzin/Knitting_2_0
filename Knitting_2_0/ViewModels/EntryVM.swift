@@ -26,7 +26,8 @@ class EntryVM {
 												  y: 366,
 												  width: UIScreen.main.bounds.width - 32,
 												  height: 62))
-		textField.placeholder = Placeholder.nicknameRegistration
+		textField.placeholder	= Placeholder.nicknameRegistration
+		textField.font			= Fonts.placeHolders
 		
 		return textField
 	}()
@@ -36,7 +37,8 @@ class EntryVM {
 												  y: 448,
 												  width: UIScreen.main.bounds.width - 32,
 												  height: 62))
-		textField.placeholder = Placeholder.emailRegistration
+		textField.placeholder	= Placeholder.emailRegistration
+		textField.font			= Fonts.placeHolders
 		
 		return textField
 	}()
@@ -46,7 +48,8 @@ class EntryVM {
 												  y: 530,
 												  width: UIScreen.main.bounds.width - 32,
 												  height: 62))
-		textField.placeholder = Placeholder.passwordRegistration
+		textField.placeholder	= Placeholder.passwordRegistration
+		textField.font			= Fonts.placeHolders
 		
 		return textField
 	}()
