@@ -13,6 +13,11 @@ struct Icons {
     static let logoIcon = UIImage(named: "logoIcon")
 }
 
+struct Colors {
+	
+	static let normalTextField = UIColor(red: 0.949, green: 0.949, blue: 0.969, alpha: 1)
+}
+
 struct Placeholder {
 	
 	static let nicknameRegistration = "Enter your nickname"

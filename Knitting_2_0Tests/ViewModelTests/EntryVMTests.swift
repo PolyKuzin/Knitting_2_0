@@ -45,12 +45,24 @@ class Knitting_2_0Tests: XCTestCase {
 		XCTAssertEqual(sut.nicknameTextField.frame.height, 62)
 	}
 	
+	func testNicknameTextFieldBackGroundHasCorrectColor() {
+		XCTAssertEqual(sut.nicknameTextField.backgroundColor, UIColor(red: 0.949, green: 0.949, blue: 0.969, alpha: 1))
+	}
+	
 	func testFontInNicknameTextFieldHasCorrectFont() {
 		XCTAssertEqual(sut.nicknameTextField.font, UIFont(name: "SFProDisplay-Medium", size: 20))
 	}
 	
+	func testNicknameTextFieldHasCorrectCornerRadius() {
+		XCTAssertEqual(sut.nicknameTextField.layer.cornerRadius, 14)
+	}
+	
 	func testEntryVMContainsEmailTextField() {
         XCTAssertNotNil(sut.emailTextField)
+	}
+	
+	func testEmailTextFieldBackGroundHasCorrectColor() {
+		XCTAssertEqual(sut.emailTextField.backgroundColor, UIColor(red: 0.949, green: 0.949, blue: 0.969, alpha: 1))
 	}
 	
 	func testEmailTextFieldFrameIsCorrect() {
@@ -62,8 +74,16 @@ class Knitting_2_0Tests: XCTestCase {
 		XCTAssertEqual(sut.emailTextField.font, UIFont(name: "SFProDisplay-Medium", size: 20))
 	}
 	
+	func testEmailTextFieldHasCorrectCornerRadius() {
+		XCTAssertEqual(sut.emailTextField.layer.cornerRadius, 14)
+	}
+	
 	func testEntryVMContainsPasswordTextField() {
         XCTAssertNotNil(sut.passwordTextField)
+	}
+	
+	func testPasswordTextFieldBackGroundHasCorrectColor() {
+		XCTAssertEqual(sut.passwordTextField.backgroundColor, UIColor(red: 0.949, green: 0.949, blue: 0.969, alpha: 1))
 	}
 	
 	func testPasswordTextFieldFrameIsCorrect() {
@@ -73,5 +93,9 @@ class Knitting_2_0Tests: XCTestCase {
 	
 	func testFontInPasswordTextFieldHasCorrectFont() {
 		XCTAssertEqual(sut.passwordTextField.font, UIFont(name: "SFProDisplay-Medium", size: 20))
+	}
+	
+	func testPasswordTextFieldHasCorrectCornerRadius() {
+		XCTAssertEqual(sut.passwordTextField.layer.cornerRadius, 14)
 	}
 }

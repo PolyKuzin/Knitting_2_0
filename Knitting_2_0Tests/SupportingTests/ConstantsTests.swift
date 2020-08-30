@@ -16,7 +16,8 @@ class ConstantsTests: XCTestCase {
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        
+		super.tearDown()
     }
 
     func testIconsStructureHasLogoIcon() {
@@ -37,5 +38,9 @@ class ConstantsTests: XCTestCase {
 	
 	func testFontsStructureHasCorrectFontsName() {
 		XCTAssertEqual(Fonts.placeHolders, UIFont(name: "SFProDisplay-Medium", size: 20))
+	}
+	
+	func testNormalTextFieldColorIsCorrect() {
+		XCTAssertEqual(Colors.normalTextField, UIColor(red: 0.949, green: 0.949, blue: 0.969, alpha: 1))
 	}
 }

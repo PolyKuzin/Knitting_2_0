@@ -26,8 +26,10 @@ class EntryVM {
 												  y: 366,
 												  width: UIScreen.main.bounds.width - 32,
 												  height: 62))
-		textField.placeholder	= Placeholder.nicknameRegistration
-		textField.font			= Fonts.placeHolders
+		textField.placeholder			= Placeholder.nicknameRegistration
+		textField.layer.cornerRadius	= 14
+		textField.backgroundColor		= Colors.normalTextField
+		textField.font					= Fonts.placeHolders
 		
 		return textField
 	}()
@@ -37,8 +39,10 @@ class EntryVM {
 												  y: 448,
 												  width: UIScreen.main.bounds.width - 32,
 												  height: 62))
-		textField.placeholder	= Placeholder.emailRegistration
-		textField.font			= Fonts.placeHolders
+		textField.placeholder			= Placeholder.emailRegistration
+		textField.layer.cornerRadius	= 14
+		textField.backgroundColor		= Colors.normalTextField
+		textField.font					= Fonts.placeHolders
 		
 		return textField
 	}()
@@ -48,8 +52,10 @@ class EntryVM {
 												  y: 530,
 												  width: UIScreen.main.bounds.width - 32,
 												  height: 62))
-		textField.placeholder	= Placeholder.passwordRegistration
-		textField.font			= Fonts.placeHolders
+		textField.placeholder			= Placeholder.passwordRegistration
+		textField.layer.cornerRadius	= 14
+		textField.backgroundColor		= Colors.normalTextField
+		textField.font					= Fonts.placeHolders
 		
 		return textField
 	}()
