@@ -38,4 +38,3 @@ class RegistrationVC: UIViewController {
 		view.addSubview(passwordTextField)
 	}
 }
-

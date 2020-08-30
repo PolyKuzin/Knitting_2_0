@@ -43,4 +43,8 @@ class ConstantsTests: XCTestCase {
 	func testNormalTextFieldColorIsCorrect() {
 		XCTAssertEqual(Colors.normalTextField, UIColor(red: 0.949, green: 0.949, blue: 0.969, alpha: 1))
 	}
+	
+	func testNormalTextFieldBorderColorIsCorrect() {
+		XCTAssertEqual(Colors.normalTextFieldBorder, UIColor(red: 0.82, green: 0.82, blue: 0.839, alpha: 1))
+	}
 }

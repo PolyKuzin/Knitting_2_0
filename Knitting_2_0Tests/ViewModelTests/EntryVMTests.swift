@@ -23,6 +23,7 @@ class Knitting_2_0Tests: XCTestCase {
         super.tearDown()
     }
 
+//MARK: Logo Icon Tests
     func testEntryVMContainsLogoIconView() {
         XCTAssertNotNil(sut.logoIconView)
     }
@@ -36,6 +37,7 @@ class Knitting_2_0Tests: XCTestCase {
 		XCTAssertEqual(sut.logoIconView.frame.height, 154.89)
 	}
 	
+//MARK: Nickname TextField Tests
 	func testEntryVMContainsNickNameTextField() {
         XCTAssertNotNil(sut.nicknameTextField)
 	}
@@ -43,6 +45,10 @@ class Knitting_2_0Tests: XCTestCase {
 	func testNicknameTextFieldFrameIsCorrect() {
 		XCTAssertEqual(sut.nicknameTextField.frame.width, 382)
 		XCTAssertEqual(sut.nicknameTextField.frame.height, 62)
+	}
+	
+	func testNicknameTextFieldHasCorrectCornerRadius() {
+		XCTAssertEqual(sut.nicknameTextField.layer.cornerRadius, 14)
 	}
 	
 	func testNicknameTextFieldBackGroundHasCorrectColor() {
@@ -53,10 +59,31 @@ class Knitting_2_0Tests: XCTestCase {
 		XCTAssertEqual(sut.nicknameTextField.font, UIFont(name: "SFProDisplay-Medium", size: 20))
 	}
 	
-	func testNicknameTextFieldHasCorrectCornerRadius() {
-		XCTAssertEqual(sut.nicknameTextField.layer.cornerRadius, 14)
+	func testNicknameTextFieldBorderWidthIsCorrect() {
+		XCTAssertEqual(sut.nicknameTextField.layer.borderWidth, 0.5)
 	}
 	
+	func testNicknameTextFieldBorderColorIsCorrect() {
+		XCTAssertEqual(sut.nicknameTextField.layer.borderColor, UIColor(red: 0.82, green: 0.82, blue: 0.839, alpha: 1).cgColor)
+	}
+	
+	func testNicknameTextFieldAutoCorrectionTypeIsNo() {
+		XCTAssertTrue(sut.nicknameTextField.autocorrectionType == .no)
+	}
+	
+	func testNicknameTextFieldKeyboardTypeIsDefault() {
+		XCTAssertTrue(sut.nicknameTextField.returnKeyType == .done)
+	}
+	
+	func testNicknameTextFieldReturnKeyTypeIsDone() {
+		XCTAssertTrue(sut.nicknameTextField.returnKeyType == .done)
+	}
+	
+	func testNicknameTextFieldClearButtonModeIsWhileEditing() {
+		XCTAssertTrue(sut.nicknameTextField.clearButtonMode == .whileEditing )
+	}
+	
+//MARK: Email TextField Tests
 	func testEntryVMContainsEmailTextField() {
         XCTAssertNotNil(sut.emailTextField)
 	}
@@ -78,6 +105,31 @@ class Knitting_2_0Tests: XCTestCase {
 		XCTAssertEqual(sut.emailTextField.layer.cornerRadius, 14)
 	}
 	
+	func testEmailTextFieldBorderWidthIsCorrect() {
+		XCTAssertEqual(sut.emailTextField.layer.borderWidth, 0.5)
+	}
+	
+	func testEmailTextFieldBorderColorIsCorrect() {
+		XCTAssertEqual(sut.emailTextField.layer.borderColor, UIColor(red: 0.82, green: 0.82, blue: 0.839, alpha: 1).cgColor)
+	}
+	
+	func testEmailTextFieldAutoCorrectionTypeIsNo() {
+		XCTAssertTrue(sut.emailTextField.autocorrectionType == .no)
+	}
+	
+	func testEmailTextFieldKeyboardTypeIsDefault() {
+		XCTAssertTrue(sut.emailTextField.returnKeyType == .done)
+	}
+	
+	func testEmailTextFieldReturnKeyTypeIsDone() {
+		XCTAssertTrue(sut.emailTextField.returnKeyType == .done)
+	}
+	
+	func testEmailTextFieldClearButtonModeIsWhileEditing() {
+		XCTAssertTrue(sut.emailTextField.clearButtonMode == .whileEditing )
+	}
+	
+//MARK: Password TextField Tests
 	func testEntryVMContainsPasswordTextField() {
         XCTAssertNotNil(sut.passwordTextField)
 	}
@@ -97,5 +149,29 @@ class Knitting_2_0Tests: XCTestCase {
 	
 	func testPasswordTextFieldHasCorrectCornerRadius() {
 		XCTAssertEqual(sut.passwordTextField.layer.cornerRadius, 14)
+	}
+	
+	func testPasswordTextFieldBorderWidthIsCorrect() {
+		XCTAssertEqual(sut.passwordTextField.layer.borderWidth, 0.5)
+	}
+	
+	func testPasswordTextFieldBorderColorIsCorrect() {
+		XCTAssertEqual(sut.passwordTextField.layer.borderColor, UIColor(red: 0.82, green: 0.82, blue: 0.839, alpha: 1).cgColor)
+	}
+	
+	func testPasswordTextFieldAutoCorrectionTypeIsNo() {
+		XCTAssertTrue(sut.passwordTextField.autocorrectionType == .no)
+	}
+	
+	func testPasswordTextFieldKeyboardTypeIsDefault() {
+		XCTAssertTrue(sut.passwordTextField.returnKeyType == .done)
+	}
+	
+	func testPasswordTextFieldReturnKeyTypeIsDone() {
+		XCTAssertTrue(sut.passwordTextField.returnKeyType == .done)
+	}
+	
+	func testPasswordTextFieldClearButtonModeIsWhileEditing() {
+		XCTAssertTrue(sut.passwordTextField.clearButtonMode == .whileEditing )
 	}
 }
