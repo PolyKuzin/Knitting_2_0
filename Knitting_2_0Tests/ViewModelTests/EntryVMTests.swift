@@ -11,11 +11,11 @@ import XCTest
 
 class Knitting_2_0Tests: XCTestCase {
 
-    var sut : EntryVM!
+    var sut : RegistrationVM!
     
     override func setUpWithError() throws {
         super.setUp()
-        sut = EntryVM()
+        sut = RegistrationVM()
     }
 
     override func tearDownWithError() throws {
@@ -29,173 +29,96 @@ class Knitting_2_0Tests: XCTestCase {
     }
     
     func testLogoIconViewImageIsLogoIcon() {
-        XCTAssertTrue(sut.logoIconView.image === Icons.logoIcon)
+        XCTAssertTrue(sut.logoIconView.image 				=== Icons.logoIcon)
     }
 
 	func testLogoIconViewFrameIsCorrect() {
-		XCTAssertEqual(sut.logoIconView.frame.width, 129.39)
-		XCTAssertEqual(sut.logoIconView.frame.height, 154.89)
+		XCTAssertEqual(sut.logoIconView.frame.width,		129.39)
+		XCTAssertEqual(sut.logoIconView.frame.height,		154.89)
 	}
 	
 //MARK: Nickname TextField Tests
 	func testEntryVMContainsNickNameTextField() {
         XCTAssertNotNil(sut.nicknameTextField)
-	}
-	
-	func testNicknameTextFieldFrameIsCorrect() {
-		XCTAssertEqual(sut.nicknameTextField.frame.width, 382)
-		XCTAssertEqual(sut.nicknameTextField.frame.height, 62)
-	}
-	
-	func testNicknameTextFieldHasCorrectCornerRadius() {
-		XCTAssertEqual(sut.nicknameTextField.layer.cornerRadius, 14)
-	}
-	
-	func testNicknameTextFieldBackGroundHasCorrectColor() {
-		XCTAssertEqual(sut.nicknameTextField.backgroundColor, UIColor(red: 0.949, green: 0.949, blue: 0.969, alpha: 1))
-	}
-	
-	func testFontInNicknameTextFieldHasCorrectFont() {
-		XCTAssertEqual(sut.nicknameTextField.font, UIFont(name: "SFProDisplay-Medium", size: 20))
-	}
-	
-	func testNicknameTextFieldBorderWidthIsCorrect() {
-		XCTAssertEqual(sut.nicknameTextField.layer.borderWidth, 0.5)
-	}
-	
-	func testNicknameTextFieldBorderColorIsCorrect() {
-		XCTAssertEqual(sut.nicknameTextField.layer.borderColor, UIColor(red: 0.82, green: 0.82, blue: 0.839, alpha: 1).cgColor)
-	}
-	
-	func testNicknameTextFieldAutoCorrectionTypeIsNo() {
-		XCTAssertTrue(sut.nicknameTextField.autocorrectionType == .no)
-	}
-	
-	func testNicknameTextFieldKeyboardTypeIsDefault() {
-		XCTAssertTrue(sut.nicknameTextField.returnKeyType == .done)
-	}
-	
-	func testNicknameTextFieldReturnKeyTypeIsDone() {
-		XCTAssertTrue(sut.nicknameTextField.returnKeyType == .done)
-	}
-	
-	func testNicknameTextFieldClearButtonModeIsWhileEditing() {
-		XCTAssertTrue(sut.nicknameTextField.clearButtonMode == .whileEditing )
-	}
-	
-	func testNicknameTextFieldLeftViewIsCorrect() {
-		XCTAssertEqual(sut.nicknameTextField.leftViewRect(forBounds: CGRect(x: 0, y: 0, width: 16, height: 62)), CGRect(x: 0, y: 0, width: 16, height: 62))
-	}
-	
-	func testNicknameTextFieldLeftViewModeIsAlways() {
-		XCTAssertEqual(sut.nicknameTextField.leftViewMode, .always)
-	}
-	
-//MARK: Email TextField Tests
-	func testEntryVMContainsEmailTextField() {
         XCTAssertNotNil(sut.emailTextField)
-	}
-	
-	func testEmailTextFieldBackGroundHasCorrectColor() {
-		XCTAssertEqual(sut.emailTextField.backgroundColor, UIColor(red: 0.949, green: 0.949, blue: 0.969, alpha: 1))
-	}
-	
-	func testEmailTextFieldFrameIsCorrect() {
-		XCTAssertEqual(sut.emailTextField.frame.width, 382)
-		XCTAssertEqual(sut.emailTextField.frame.height, 62)
-	}
-	
-	func testFontInEmailTextFieldHasCorrectFont() {
-		XCTAssertEqual(sut.emailTextField.font, UIFont(name: "SFProDisplay-Medium", size: 20))
-	}
-	
-	func testEmailTextFieldHasCorrectCornerRadius() {
-		XCTAssertEqual(sut.emailTextField.layer.cornerRadius, 14)
-	}
-	
-	func testEmailTextFieldBorderWidthIsCorrect() {
-		XCTAssertEqual(sut.emailTextField.layer.borderWidth, 0.5)
-	}
-	
-	func testEmailTextFieldBorderColorIsCorrect() {
-		XCTAssertEqual(sut.emailTextField.layer.borderColor, UIColor(red: 0.82, green: 0.82, blue: 0.839, alpha: 1).cgColor)
-	}
-	
-	func testEmailTextFieldAutoCorrectionTypeIsNo() {
-		XCTAssertTrue(sut.emailTextField.autocorrectionType == .no)
-	}
-	
-	func testEmailTextFieldKeyboardTypeIsDefault() {
-		XCTAssertTrue(sut.emailTextField.returnKeyType == .done)
-	}
-	
-	func testEmailTextFieldReturnKeyTypeIsDone() {
-		XCTAssertTrue(sut.emailTextField.returnKeyType == .done)
-	}
-	
-	func testEmailTextFieldClearButtonModeIsWhileEditing() {
-		XCTAssertTrue(sut.emailTextField.clearButtonMode == .whileEditing )
-	}
-	
-	func testEmailTextFieldLeftViewIsCorrect() {
-		XCTAssertEqual(sut.emailTextField.leftViewRect(forBounds: CGRect(x: 0, y: 0, width: 16, height: 62)), CGRect(x: 0, y: 0, width: 16, height: 62))
-	}
-	
-	func testEmailTextFieldLeftViewModeIsAlways() {
-		XCTAssertEqual(sut.emailTextField.leftViewMode, .always)
-	}
-	
-//MARK: Password TextField Tests
-	func testEntryVMContainsPasswordTextField() {
         XCTAssertNotNil(sut.passwordTextField)
 	}
 	
-	func testPasswordTextFieldBackGroundHasCorrectColor() {
-		XCTAssertEqual(sut.passwordTextField.backgroundColor, UIColor(red: 0.949, green: 0.949, blue: 0.969, alpha: 1))
+	func testNicknameTextFieldFrameIsCorrect() {
+		XCTAssertEqual(sut.nicknameTextField.frame.width,	382)
+		XCTAssertEqual(sut.nicknameTextField.frame.height,	62)
+		
+		XCTAssertEqual(sut.emailTextField.frame.width,		382)
+		XCTAssertEqual(sut.emailTextField.frame.height,		62)
+		
+		XCTAssertEqual(sut.passwordTextField.frame.width,	382)
+		XCTAssertEqual(sut.passwordTextField.frame.height,	62)
 	}
 	
-	func testPasswordTextFieldFrameIsCorrect() {
-		XCTAssertEqual(sut.passwordTextField.frame.width, 382)
-		XCTAssertEqual(sut.passwordTextField.frame.height, 62)
+	func testNicknameTextFieldHasCorrectCornerRadius() {
+		XCTAssertEqual(sut.nicknameTextField.layer.cornerRadius,	14)
+		XCTAssertEqual(sut.emailTextField.layer.cornerRadius,		14)
+		XCTAssertEqual(sut.passwordTextField.layer.cornerRadius,	14)
 	}
 	
-	func testFontInPasswordTextFieldHasCorrectFont() {
-		XCTAssertEqual(sut.passwordTextField.font, UIFont(name: "SFProDisplay-Medium", size: 20))
+	func testNicknameTextFieldBackGroundHasCorrectColor() {
+		XCTAssertEqual(sut.nicknameTextField.backgroundColor,	UIColor(red: 0.949, green: 0.949, blue: 0.969, alpha: 1))
+		XCTAssertEqual(sut.emailTextField.backgroundColor,		UIColor(red: 0.949, green: 0.949, blue: 0.969, alpha: 1))
+		XCTAssertEqual(sut.passwordTextField.backgroundColor,	UIColor(red: 0.949, green: 0.949, blue: 0.969, alpha: 1))
 	}
 	
-	func testPasswordTextFieldHasCorrectCornerRadius() {
-		XCTAssertEqual(sut.passwordTextField.layer.cornerRadius, 14)
+	func testFontInNicknameTextFieldHasCorrectFont() {
+		XCTAssertEqual(sut.nicknameTextField.font,	UIFont(name: "SFProDisplay-Medium",	size: 20))
+		XCTAssertEqual(sut.emailTextField.font,		UIFont(name: "SFProDisplay-Medium",	size: 20))
+		XCTAssertEqual(sut.passwordTextField.font,	UIFont(name: "SFProDisplay-Medium",	size: 20))
 	}
 	
-	func testPasswordTextFieldBorderWidthIsCorrect() {
-		XCTAssertEqual(sut.passwordTextField.layer.borderWidth, 0.5)
+	func testNicknameTextFieldBorderWidthIsCorrect() {
+		XCTAssertEqual(sut.nicknameTextField.layer.borderWidth,	0.5)
+		XCTAssertEqual(sut.emailTextField.layer.borderWidth,	0.5)
+		XCTAssertEqual(sut.passwordTextField.layer.borderWidth,	0.5)
 	}
 	
-	func testPasswordTextFieldBorderColorIsCorrect() {
-		XCTAssertEqual(sut.passwordTextField.layer.borderColor, UIColor(red: 0.82, green: 0.82, blue: 0.839, alpha: 1).cgColor)
+	func testNicknameTextFieldBorderColorIsCorrect() {
+		XCTAssertEqual(sut.nicknameTextField.layer.borderColor,	UIColor(red: 0.82, green: 0.82, blue: 0.839, alpha: 1).cgColor)
+		XCTAssertEqual(sut.emailTextField.layer.borderColor,	UIColor(red: 0.82, green: 0.82, blue: 0.839, alpha: 1).cgColor)
+		XCTAssertEqual(sut.passwordTextField.layer.borderColor,	UIColor(red: 0.82, green: 0.82, blue: 0.839, alpha: 1).cgColor)
 	}
 	
-	func testPasswordTextFieldAutoCorrectionTypeIsNo() {
-		XCTAssertTrue(sut.passwordTextField.autocorrectionType == .no)
+	func testNicknameTextFieldAutoCorrectionTypeIsNo() {
+		XCTAssertTrue(sut.nicknameTextField.autocorrectionType	== .no)
+		XCTAssertTrue(sut.emailTextField.autocorrectionType		== .no)
+		XCTAssertTrue(sut.passwordTextField.autocorrectionType	== .no)
 	}
 	
-	func testPasswordTextFieldKeyboardTypeIsDefault() {
-		XCTAssertTrue(sut.passwordTextField.returnKeyType == .done)
+	func testNicknameTextFieldKeyboardTypeIsDefault() {
+		XCTAssertTrue(sut.nicknameTextField.returnKeyType		== .done)
+		XCTAssertTrue(sut.emailTextField.returnKeyType			== .done)
+		XCTAssertTrue(sut.passwordTextField.returnKeyType		== .done)
 	}
 	
-	func testPasswordTextFieldReturnKeyTypeIsDone() {
-		XCTAssertTrue(sut.passwordTextField.returnKeyType == .done)
+	func testNicknameTextFieldReturnKeyTypeIsDone() {
+		XCTAssertTrue(sut.nicknameTextField.returnKeyType		== .done)
+		XCTAssertTrue(sut.emailTextField.returnKeyType			== .done)
+		XCTAssertTrue(sut.passwordTextField.returnKeyType		== .done)
 	}
 	
-	func testPasswordTextFieldClearButtonModeIsWhileEditing() {
-		XCTAssertTrue(sut.passwordTextField.clearButtonMode == .whileEditing )
+	func testNicknameTextFieldClearButtonModeIsWhileEditing() {
+		XCTAssertTrue(sut.nicknameTextField.clearButtonMode		== .whileEditing)
+		XCTAssertTrue(sut.emailTextField.clearButtonMode		== .whileEditing)
+		XCTAssertTrue(sut.passwordTextField.clearButtonMode		== .whileEditing)
+
 	}
 	
-	func testPasswordTextFieldLeftViewIsCorrect() {
-		XCTAssertEqual(sut.passwordTextField.leftViewRect(forBounds: CGRect(x: 0, y: 0, width: 16, height: 62)), CGRect(x: 0, y: 0, width: 16, height: 62))
+	func testNicknameTextFieldLeftViewIsCorrect() {
+		XCTAssertEqual(sut.nicknameTextField.leftViewRect(		forBounds: CGRect(x: 0, y: 0, width: 16, height: 62)),	CGRect(x: 0, y: 0, width: 16, height: 62))
+		XCTAssertEqual(sut.emailTextField.leftViewRect(			forBounds: CGRect(x: 0, y: 0, width: 16, height: 62)),	CGRect(x: 0, y: 0, width: 16, height: 62))
+		XCTAssertEqual(sut.passwordTextField.leftViewRect(		forBounds: CGRect(x: 0, y: 0, width: 16, height: 62)),	CGRect(x: 0, y: 0, width: 16, height: 62))
 	}
 	
-	func testPasswordTextFieldLeftViewModeIsAlways() {
-		XCTAssertEqual(sut.passwordTextField.leftViewMode, .always)
+	func testNicknameTextFieldLeftViewModeIsAlways() {
+		XCTAssertEqual(sut.nicknameTextField.leftViewMode,		.always)
+		XCTAssertEqual(sut.emailTextField.leftViewMode,			.always)
+		XCTAssertEqual(sut.passwordTextField.leftViewMode,		.always)
 	}
 }

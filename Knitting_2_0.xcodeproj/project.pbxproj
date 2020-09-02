@@ -15,11 +15,13 @@
 		99AFBA5024F80DA000E71FD6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99AFBA4F24F80DA000E71FD6 /* Assets.xcassets */; };
 		99AFBA5324F80DA000E71FD6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99AFBA5124F80DA000E71FD6 /* LaunchScreen.storyboard */; };
 		99AFBA5E24F80DA000E71FD6 /* EntryVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AFBA5D24F80DA000E71FD6 /* EntryVMTests.swift */; };
-		99AFBA7024F8121D00E71FD6 /* EntryVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AFBA6F24F8121D00E71FD6 /* EntryVM.swift */; };
+		99AFBA7024F8121D00E71FD6 /* RegistrationVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AFBA6F24F8121D00E71FD6 /* RegistrationVM.swift */; };
 		99AFBA7324F8125A00E71FD6 /* ConstantsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AFBA7224F8125A00E71FD6 /* ConstantsTests.swift */; };
 		99AFBA7824F819A100E71FD6 /* EntryVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AFBA7724F819A100E71FD6 /* EntryVCTests.swift */; };
 		99AFBA7A24F9667F00E71FD6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AFBA7924F9667F00E71FD6 /* Constants.swift */; };
 		99AFBA7D24FC298E00E71FD6 /* SF-Pro-Display-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 99AFBA7C24FC298E00E71FD6 /* SF-Pro-Display-Medium.otf */; };
+		99B509BC24FDB1D60046A2B1 /* UIViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B509BB24FDB1D60046A2B1 /* UIViewExt.swift */; };
+		99B509BF24FDB2780046A2B1 /* UIViewExtentionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B509BE24FDB2780046A2B1 /* UIViewExtentionsTests.swift */; };
 		F923C35C687FA08E942E54EC /* Pods_Knitting_2_0.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9AB0322FBAB47D7907630EB /* Pods_Knitting_2_0.framework */; };
 /* End PBXBuildFile section */
 
@@ -48,11 +50,13 @@
 		99AFBA5924F80DA000E71FD6 /* Knitting_2_0Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Knitting_2_0Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		99AFBA5D24F80DA000E71FD6 /* EntryVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryVMTests.swift; sourceTree = "<group>"; };
 		99AFBA5F24F80DA000E71FD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		99AFBA6F24F8121D00E71FD6 /* EntryVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryVM.swift; sourceTree = "<group>"; };
+		99AFBA6F24F8121D00E71FD6 /* RegistrationVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationVM.swift; sourceTree = "<group>"; };
 		99AFBA7224F8125A00E71FD6 /* ConstantsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantsTests.swift; sourceTree = "<group>"; };
 		99AFBA7724F819A100E71FD6 /* EntryVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryVCTests.swift; sourceTree = "<group>"; };
 		99AFBA7924F9667F00E71FD6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		99AFBA7C24FC298E00E71FD6 /* SF-Pro-Display-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Medium.otf"; sourceTree = "<group>"; };
+		99B509BB24FDB1D60046A2B1 /* UIViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExt.swift; sourceTree = "<group>"; };
+		99B509BE24FDB2780046A2B1 /* UIViewExtentionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtentionsTests.swift; sourceTree = "<group>"; };
 		A9AB0322FBAB47D7907630EB /* Pods_Knitting_2_0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Knitting_2_0.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B63AB392BD94FD626BC5C223 /* Pods-Knitting_2_0Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Knitting_2_0Tests.release.xcconfig"; path = "Target Support Files/Pods-Knitting_2_0Tests/Pods-Knitting_2_0Tests.release.xcconfig"; sourceTree = "<group>"; };
 		E1676BB02479D45F64F22B54 /* Pods-Knitting_2_0Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Knitting_2_0Tests.debug.xcconfig"; path = "Target Support Files/Pods-Knitting_2_0Tests/Pods-Knitting_2_0Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -126,6 +130,7 @@
 		99AFBA5C24F80DA000E71FD6 /* Knitting_2_0Tests */ = {
 			isa = PBXGroup;
 			children = (
+				99B509BD24FDB1F90046A2B1 /* ExtensionsTests */,
 				99AFBA7624F8198900E71FD6 /* ViewTests */,
 				99AFBA6E24F8120700E71FD6 /* ViewModelTests */,
 				99AFBA7124F8123E00E71FD6 /* SupportingTests */,
@@ -154,7 +159,7 @@
 		99AFBA6A24F8103600E71FD6 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				99AFBA6F24F8121D00E71FD6 /* EntryVM.swift */,
+				99AFBA6F24F8121D00E71FD6 /* RegistrationVM.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -180,6 +185,7 @@
 		99AFBA6D24F8111500E71FD6 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				99B509BB24FDB1D60046A2B1 /* UIViewExt.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -214,6 +220,14 @@
 				99AFBA7C24FC298E00E71FD6 /* SF-Pro-Display-Medium.otf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		99B509BD24FDB1F90046A2B1 /* ExtensionsTests */ = {
+			isa = PBXGroup;
+			children = (
+				99B509BE24FDB2780046A2B1 /* UIViewExtentionsTests.swift */,
+			);
+			path = ExtensionsTests;
 			sourceTree = "<group>";
 		};
 		D41AB12B2FDCE20E3F502767 /* Pods */ = {
@@ -378,8 +392,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99B509BC24FDB1D60046A2B1 /* UIViewExt.swift in Sources */,
 				99AFBA4B24F80D9E00E71FD6 /* RegistrationVC.swift in Sources */,
-				99AFBA7024F8121D00E71FD6 /* EntryVM.swift in Sources */,
+				99AFBA7024F8121D00E71FD6 /* RegistrationVM.swift in Sources */,
 				99AFBA4724F80D9E00E71FD6 /* AppDelegate.swift in Sources */,
 				99AFBA4924F80D9E00E71FD6 /* SceneDelegate.swift in Sources */,
 				99AFBA7A24F9667F00E71FD6 /* Constants.swift in Sources */,
@@ -393,6 +408,7 @@
 				99AFBA7324F8125A00E71FD6 /* ConstantsTests.swift in Sources */,
 				99AFBA7824F819A100E71FD6 /* EntryVCTests.swift in Sources */,
 				99AFBA5E24F80DA000E71FD6 /* EntryVMTests.swift in Sources */,
+				99B509BF24FDB2780046A2B1 /* UIViewExtentionsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

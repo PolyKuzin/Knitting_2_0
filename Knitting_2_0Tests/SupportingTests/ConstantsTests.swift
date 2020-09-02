@@ -21,30 +21,30 @@ class ConstantsTests: XCTestCase {
     }
 
     func testIconsStructureHasLogoIcon() {
-        XCTAssertEqual(Icons.logoIcon, UIImage(named: "logoIcon"))
+        XCTAssertEqual(Icons.logoIcon,	UIImage(named: "logoIcon"))
     }
 	
 	func testPlaceholdersForNicknameRegistrationHasCorrectString() {
-		XCTAssertEqual(Placeholder.nicknameRegistration, "Enter your nickname")
+		XCTAssertEqual(Placeholder.nicknameRegistration,	"Enter your nickname")
 	}
 	
 	func testPlaceholdersForEmailRegistrationHasCorrectString() {
-		XCTAssertEqual(Placeholder.emailRegistration, "Enter your e-mail")
+		XCTAssertEqual(Placeholder.emailRegistration,		"Enter your e-mail")
 	}
 	
 	func testPlaceholdersForPasswordRegistrationHasCorrectString() {
-		XCTAssertEqual(Placeholder.passwordRegistration, "Enter your password")
+		XCTAssertEqual(Placeholder.passwordRegistration,	"Enter your password")
 	}
 	
 	func testFontsStructureHasCorrectFontsName() {
-		XCTAssertEqual(Fonts.placeHolders, UIFont(name: "SFProDisplay-Medium", size: 20))
+		XCTAssertEqual(Fonts.placeHolders,				UIFont(name: "SFProDisplay-Medium", size: 20))
 	}
 	
 	func testNormalTextFieldColorIsCorrect() {
-		XCTAssertEqual(Colors.normalTextField, UIColor(red: 0.949, green: 0.949, blue: 0.969, alpha: 1))
+		XCTAssertEqual(Colors.normalTextField,			UIColor(red: 0.949, green: 0.949, blue: 0.969, alpha: 1))
 	}
 	
 	func testNormalTextFieldBorderColorIsCorrect() {
-		XCTAssertEqual(Colors.normalTextFieldBorder, UIColor(red: 0.82, green: 0.82, blue: 0.839, alpha: 1))
+		XCTAssertEqual(Colors.normalTextFieldBorder,	UIColor(red: 0.82, green: 0.82, blue: 0.839, alpha: 1))
 	}
 }
