@@ -27,22 +27,22 @@ class EntryVCTests: XCTestCase {
 		super.tearDown()
 	}
 
-//	func testWhenViewIsLoadedLogoIconNotNil() {
-//		XCTAssertNotNil(sut.)
-//	}
-//	
+	func testWhenViewIsLoadedLogoIconNotNil() {
+		
+	}
+
 //	func testWhenViewIsLoadedNickNameTextFieldNotNil() {
 //		XCTAssertNotNil(sut.nicknameTextField)
 //	}
-//	
+//
 //	func testWhenViewIsLoadedEmailTextFieldNotNil() {
 //		XCTAssertNotNil(sut.emailTextField)
 //	}
-//	
+//
 //	func testWhenViewIsLoadedPasswordTextFieldNotNil() {
 //		XCTAssertNotNil(sut.passwordTextField)
 //	}
-//	
+//
 //	func testHasLogoIconImageView() {
 //		XCTAssertTrue((sut.logoIcon.isDescendant(of: sut.view)))
 //	}

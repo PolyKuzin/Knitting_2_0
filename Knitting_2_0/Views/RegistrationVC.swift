@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RegistrationVC: UIViewController {
+class RegistrationVC	: UIViewController {
 	
 	private var logoIcon			= UIImageView()
 	private var nicknameTextField	= UITextField()
@@ -22,14 +22,14 @@ class RegistrationVC: UIViewController {
 			self.nicknameTextField	= viewModel.nickname()
 			self.emailTextField		= viewModel.email()
 			self.passwordTextField	= viewModel.password()
-			self.registrationButton = viewModel.registration()
+			self.registrationButton = viewModel.signUp()
 		}
 	}
 	
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-		viewModel = RegistrationVM()
+		viewModel 					= RegistrationVM()
 		viewModel.setUpLayout(toView: view)
 	}
 }

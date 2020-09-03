@@ -10,9 +10,8 @@ import UIKit
 
 class RegistrationVM {
     
-    private var logoIconView		: UIImageView = {
+    private lazy var logoIconView		: UIImageView = {
         let image						= Icons.logoIcon
-		//change the frame of the ImageView
         let imageView					= UIImageView(frame: CGRect(x: 135.33,
 																	y: 116.79,
 																	width: 129.39,
@@ -24,7 +23,7 @@ class RegistrationVM {
         return imageView
 	}()
 	
-	private var nicknameTextField	: UITextField = {
+	private lazy var nicknameTextField	: UITextField = {
 		//change the frame of the TextFfield
 		let textField = UITextField(frame: CGRect(x: 16,
 												  y: 366,
@@ -32,11 +31,11 @@ class RegistrationVM {
 												  height: 62))
 		//design
 		textField.placeholder			= Placeholder.nicknameRegistration
-		textField.layer.cornerRadius	= 14
+		textField.layer.cornerRadius	= CornerRadius.forTextField
 		textField.backgroundColor		= Colors.normalTextField
 		textField.font					= Fonts.placeHolders
-		textField.layer.borderWidth		= 0.5
-		textField.layer.borderColor		= Colors.normalTextFieldBorder.cgColor
+		textField.layer.borderWidth		= BorderWidth.forTextField
+		textField.layer.borderColor		= Colors.normalBorderTextField.cgColor
 		textField.leftView				= UIView(frame: CGRect(x: 0, y: 0, width: 16, height: 62))
 		textField.leftViewMode 			= .always
 		
@@ -49,7 +48,7 @@ class RegistrationVM {
 		return textField
 	}()
 	
-	private var emailTextField		: UITextField = {
+	private lazy var emailTextField		: UITextField = {
 		//change the frame of the TextFfield
 		let textField = UITextField(frame: CGRect(x: 16,
 												  y: 448,
@@ -57,11 +56,11 @@ class RegistrationVM {
 												  height: 62))
 		//design
 		textField.placeholder			= Placeholder.emailRegistration
-		textField.layer.cornerRadius	= 14
+		textField.layer.cornerRadius	= CornerRadius.forTextField
 		textField.backgroundColor		= Colors.normalTextField
 		textField.font					= Fonts.placeHolders
-		textField.layer.borderWidth		= 0.5
-		textField.layer.borderColor		= Colors.normalTextFieldBorder.cgColor
+		textField.layer.borderWidth		= BorderWidth.forTextField
+		textField.layer.borderColor		= Colors.normalBorderTextField.cgColor
 		textField.leftView				= UIView(frame: CGRect(x: 0, y: 0, width: 16, height: 62))
 		textField.leftViewMode 			= .always
 		
@@ -74,7 +73,7 @@ class RegistrationVM {
 		return textField
 	}()
 	
-	private var passwordTextField	: UITextField = {
+	private lazy var passwordTextField	: UITextField = {
 		//change the frame of the TextFfield
 		let textField 					= UITextField(frame: CGRect(x: 16,
 																	y: 530,
@@ -82,11 +81,11 @@ class RegistrationVM {
 																	height: 62))
 		//design
 		textField.placeholder			= Placeholder.passwordRegistration
-		textField.layer.cornerRadius	= 14
+		textField.layer.cornerRadius	= CornerRadius.forTextField
 		textField.backgroundColor		= Colors.normalTextField
 		textField.font					= Fonts.placeHolders
-		textField.layer.borderWidth		= 0.5
-		textField.layer.borderColor		= Colors.normalTextFieldBorder.cgColor
+		textField.layer.borderWidth		= BorderWidth.forTextField
+		textField.layer.borderColor		= Colors.normalBorderTextField.cgColor
 		textField.leftView				= UIView(frame: CGRect(x: 0, y: 0, width: 16, height: 62))
 		textField.leftViewMode 			= .always
 		
@@ -99,15 +98,43 @@ class RegistrationVM {
 		return textField
 	}()
 	
-	private var signUpButton		: UIButton = {
+	private lazy var signUpButton		: UIButton = {
 		let button						= UIButton(type: .system)
-        button.setTitle("   Продолжить   ", for: .normal)
+		button.frame 					= CGRect(x: 0, y: 0, width: 265, height: 50)
         button.titleLabel?.font			= UIFont(name: "SFProRounded-Regular", size: 24)
-        button.setTitleColor(UIColor(red: 0.265, green: 0.102, blue: 0.613, alpha: 1), for: .normal)
-        button.layer.borderWidth		= 1
-        button.layer.borderColor		= UIColor(red: 0.265, green: 0.102, blue: 0.613, alpha: 1).cgColor
-        button.layer.cornerRadius		= 18
+		button.layer.borderWidth		= BorderWidth.forButton
+		button.layer.borderColor		= Colors.borderButton.cgColor
+		button.layer.cornerRadius		= CornerRadius.forButton
+        button.layer.masksToBounds		= true
+		button.setTitle(Placeholder.titleForSingUp, for: .normal)
+		button.setGradientBackground(colorOne: Colors.backgroundUpButton,
+									 colorTwo: Colors.backgroundDownButton)
+
+        button.isHidden = true
         
+        return button
+	}()
+	
+	private lazy var questionLabel		: UILabel = {
+		let label 						= UILabel(frame: CGRect(x: 0,
+																y: 0,
+																width: 180,
+																height: 20))
+		label.text						= Placeholder.titleForSingUp
+		
+		return label
+	}()
+	
+	private lazy var questionButton		: UIButton = {
+		let button						= UIButton(type: .system)
+		button.frame 					= CGRect(x: 0, y: 0, width: 265, height: 50)
+        button.titleLabel?.font			= UIFont(name: "SFProRounded-Regular", size: 24)
+		button.layer.borderWidth		= BorderWidth.forButton
+		button.layer.borderColor		= Colors.borderButton.cgColor
+		button.layer.cornerRadius		= CornerRadius.forButton
+        button.layer.masksToBounds		= true
+		button.setTitle(Placeholder.titleForSingUp, for: .normal)
+
         button.isHidden = true
         
         return button
@@ -157,6 +184,22 @@ class RegistrationVM {
 		passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive				= true
 		passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive					= true
 		passwordTextField.heightAnchor.constraint(equalToConstant: 62).isActive 										= true
+		
+		//A place for registration buttom
+		view.addSubview(signUpButton)
+		passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive				= true
+		passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive					= true
+		
+		//A place for question Label And Question Button
+		let bottomLicensSV			= UIStackView(arrangedSubviews: [questionLabel, questionButton])
+        bottomLicensSV.distribution 	= .fillEqually
+
+        view.addSubview(bottomLicensSV)
+        bottomLicensSV.translatesAutoresizingMaskIntoConstraints														= false
+		bottomLicensSV.bottomAnchor.constraint	(equalTo: view.bottomAnchor, constant: 40).isActive						= true
+		bottomLicensSV.centerXAnchor.constraint	(equalTo: view.centerXAnchor).isActive									= true
+		bottomLicensSV.trailingAnchor.constraint(greaterThanOrEqualTo: view.trailingAnchor, constant: 16).isActive		= true
+		bottomLicensSV.heightAnchor.constraint	(equalToConstant: 50).isActive											= true
 	}
 	
 	func logoIcon()		-> UIImageView {
@@ -175,7 +218,7 @@ class RegistrationVM {
 		return passwordTextField
 	}
 	
-	func registration() -> UIButton {
+	func signUp() -> UIButton {
 		return signUpButton
 	}
 }

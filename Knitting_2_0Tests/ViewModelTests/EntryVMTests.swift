@@ -11,11 +11,13 @@ import XCTest
 
 class Knitting_2_0Tests: XCTestCase {
 
-    var sut : RegistrationVM!
+    var sut		: RegistrationVM!
+	var view	: UIView!
     
     override func setUpWithError() throws {
         super.setUp()
-        sut = RegistrationVM()
+        sut		= RegistrationVM()
+		view	= UIView()
     }
 
     override func tearDownWithError() throws {
@@ -39,9 +41,10 @@ class Knitting_2_0Tests: XCTestCase {
 	
 //MARK: Nickname TextField Tests
 	func testEntryVMContainsNickNameTextField() {
-        XCTAssertNotNil(sut.nickname)
-		XCTAssertNotNil(sut.email)
-        XCTAssertNotNil(sut.password)
+        XCTAssertNotNil(sut.nickname())
+		XCTAssertNotNil(sut.email())
+        XCTAssertNotNil(sut.password())
+		XCTAssertNotNil(sut.signUp())
 	}
 	
 	func testNicknameTextFieldFrameIsCorrect() {
@@ -49,22 +52,27 @@ class Knitting_2_0Tests: XCTestCase {
 		XCTAssertEqual(sut.nickname().frame.height,	62)
 		
 		XCTAssertEqual(sut.email().frame.width,		382)
-		XCTAssertEqual(sut.email().frame.height,		62)
+		XCTAssertEqual(sut.email().frame.height,	62)
 		
 		XCTAssertEqual(sut.password().frame.width,	382)
 		XCTAssertEqual(sut.password().frame.height,	62)
+		
+		XCTAssertEqual(sut.signUp().frame.width, 265)
+		XCTAssertEqual(sut.signUp().frame.height, 50)
 	}
 	
 	func testNicknameTextFieldHasCorrectCornerRadius() {
 		XCTAssertEqual(sut.nickname().layer.cornerRadius,	14)
 		XCTAssertEqual(sut.email().layer.cornerRadius,		14)
 		XCTAssertEqual(sut.password().layer.cornerRadius,	14)
+		XCTAssertEqual(sut.signUp().layer.cornerRadius, 	18)
 	}
 	
 	func testNicknameTextFieldBackGroundHasCorrectColor() {
 		XCTAssertEqual(sut.nickname().backgroundColor,	UIColor(red: 0.949, green: 0.949, blue: 0.969, alpha: 1))
 		XCTAssertEqual(sut.email().backgroundColor,		UIColor(red: 0.949, green: 0.949, blue: 0.969, alpha: 1))
 		XCTAssertEqual(sut.password().backgroundColor,	UIColor(red: 0.949, green: 0.949, blue: 0.969, alpha: 1))
+//		XCTAssertEqual(sut.signUp().layer, setGradientBackground(colorOne: Colors.backgroundUpButton, colorTwo: Colors.backgroundDownButton)	)
 	}
 	
 	func testFontInNicknameTextFieldHasCorrectFont() {
