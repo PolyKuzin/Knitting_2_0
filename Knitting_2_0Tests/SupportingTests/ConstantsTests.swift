@@ -22,7 +22,7 @@ class ConstantsTests: XCTestCase {
 
 	//Icons structure Tests
     func testIconsStructureHasCorrectValues() {
-        XCTAssertEqual(Icons.logoIcon,	UIImage(named: "logoIcon"))
+        XCTAssertEqual(Icons.logoIcon,					UIImage(named: "logoIcon"))
     }
 	
 	//BorderWidth structure tests
