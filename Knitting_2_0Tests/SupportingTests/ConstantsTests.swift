@@ -25,14 +25,6 @@ class ConstantsTests: XCTestCase {
         XCTAssertEqual(Icons.logoIcon,	UIImage(named: "logoIcon"))
     }
 	
-	//PlaceHolders structure Tests
-	func testPlaceholdersnHasCorrectString() {
-		XCTAssertEqual(Placeholder.nicknameRegistration,	"Enter your nickname")
-		XCTAssertEqual(Placeholder.emailRegistration,		"Enter your e-mail")
-		XCTAssertEqual(Placeholder.passwordRegistration,	"Enter your password")
-		XCTAssertEqual(Placeholder.titleForSingUp,			"Sing up")
-	}
-	
 	//BorderWidth structure tests
 	func testBorderWidthHasCorrectValues() {
 		XCTAssertEqual(BorderWidth.forButton,			CGFloat(1))
@@ -41,13 +33,8 @@ class ConstantsTests: XCTestCase {
 	
 	//CornerRadius structure tests
 	func testCornerRadiusStructHasCorrectValue() {
-		
-	}
-	
-	//Fonts structure tests
-	func testFontsStructHasCorrectValues() {
-		XCTAssertEqual(Fonts.placeHolders,				UIFont(name: "SFProDisplay-Medium",  size: 20))
-		XCTAssertEqual(Fonts.titleButton,				UIFont(name: "SFProRounded-Regular", size: 24))
+		XCTAssertEqual(CornerRadius.forTextField,		CGFloat(14))
+		XCTAssertEqual(CornerRadius.forButton,			CGFloat(18))
 	}
 	
 	//Colors structure tests
@@ -58,5 +45,19 @@ class ConstantsTests: XCTestCase {
 		XCTAssertEqual(Colors.backgroundUpButton,		UIColor(red: 0.584, green: 0.475, blue: 0.820, alpha: 1))
 		XCTAssertEqual(Colors.backgroundDownButton,		UIColor(red: 0.745, green: 0.616, blue: 0.875, alpha: 1))
 		XCTAssertEqual(Colors.borderButton,				UIColor(red: 0.265, green: 0.102, blue: 0.613, alpha: 1))
+	}
+	
+	//PlaceHolders structure Tests
+	func testPlaceholdersnHasCorrectString() {
+		XCTAssertEqual(Placeholder.nicknameRegistration,"Enter your nickname")
+		XCTAssertEqual(Placeholder.emailRegistration,	"Enter your e-mail")
+		XCTAssertEqual(Placeholder.passwordRegistration,"Enter your password")
+		XCTAssertEqual(Placeholder.titleForSingUp,		"Sing up")
+	}
+	
+	//Fonts structure tests
+	func testFontsStructHasCorrectValues() {
+		XCTAssertEqual(Fonts.placeHolders,				UIFont(name: "SFProDisplay-Medium",  size: 20))
+		XCTAssertEqual(Fonts.titleButton,				UIFont(name: "SFProRounded-Regular", size: 24))
 	}
 }

@@ -9,7 +9,7 @@
 import XCTest
 @testable import Knitting_2_0
 
-class Knitting_2_0Tests: XCTestCase {
+class RegistrationVMTests: XCTestCase {
 
     var sut		: RegistrationVM!
 	var view	: UIView!

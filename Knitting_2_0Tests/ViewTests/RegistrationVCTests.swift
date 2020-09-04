@@ -9,7 +9,7 @@
 import XCTest
 @testable import Knitting_2_0
 
-class EntryVCTests: XCTestCase {
+class RegistrationVCTests: XCTestCase {
 	
 	var sut : RegistrationVC!
 
