@@ -100,17 +100,16 @@ class RegistrationVM {
 	
 	private lazy var signUpButton		: UIButton = {
 		let button						= UIButton(type: .system)
-		button.frame 					= CGRect(x: 0, y: 0, width: 265, height: 50)
-        button.titleLabel?.font			= UIFont(name: "SFProRounded-Regular", size: 24)
-		button.layer.borderWidth		= BorderWidth.forButton
-		button.layer.borderColor		= Colors.borderButton.cgColor
+		button.frame 					= CGRect(x: 0, y: 0, width: 500, height: 50)
+		button.titleLabel?.font			= Fonts.titleButton
+//		button.layer.borderWidth		= BorderWidth.forButton
+//		button.layer.borderColor		= Colors.borderButton.cgColor
 		button.layer.cornerRadius		= CornerRadius.forButton
         button.layer.masksToBounds		= true
-		button.setTitle(Placeholder.titleForSingUp, for: .normal)
-		button.setGradientBackground(colorOne: Colors.backgroundUpButton,
-									 colorTwo: Colors.backgroundDownButton)
-
-        button.isHidden = true
+		button.setTitle					(Placeholder.titleForSingUp, for: .normal)
+		button.setTitleColor			(Colors.titleForButton, for: .normal)
+		button.setGradientBackground	(colorOne: Colors.backgroundUpButton,
+										 colorTwo: Colors.backgroundDownButton)
         
         return button
 	}()
@@ -120,29 +119,27 @@ class RegistrationVM {
 																y: 0,
 																width: 180,
 																height: 20))
-		label.text						= Placeholder.titleForSingUp
+		label.font						= Fonts.question
+		label.text						= Placeholder.questionToLogInLbl
+		label.textAlignment				= .right
 		
 		return label
 	}()
 	
 	private lazy var questionButton		: UIButton = {
 		let button						= UIButton(type: .system)
-		button.frame 					= CGRect(x: 0, y: 0, width: 265, height: 50)
-        button.titleLabel?.font			= UIFont(name: "SFProRounded-Regular", size: 24)
-		button.layer.borderWidth		= BorderWidth.forButton
-		button.layer.borderColor		= Colors.borderButton.cgColor
-		button.layer.cornerRadius		= CornerRadius.forButton
-        button.layer.masksToBounds		= true
-		button.setTitle(Placeholder.titleForSingUp, for: .normal)
+		button.frame 					= CGRect(x: 0, y: 0, width: 40, height: 20)
+		button.titleLabel?.font			= Fonts.question
 
-        button.isHidden = true
-        
+		button.setTitle					(Placeholder.questionToLogInBtn,	for: .normal)
+		button.setTitleColor			(Colors.questionToLogIn, 			for: .normal)
+		button.contentHorizontalAlignment = .left
         return button
 	}()
 	
 	func setUpLayout(toView view: UIView) {
         //A place of view, where the image is
-		let topImageConteinerView = UIView(); topImageConteinerView.backgroundColor = .purple
+		let topImageConteinerView = UIView()
 		view.addSubview(topImageConteinerView)
 		topImageConteinerView.translatesAutoresizingMaskIntoConstraints													= false
 		topImageConteinerView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive							= true
@@ -185,40 +182,58 @@ class RegistrationVM {
 		passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive					= true
 		passwordTextField.heightAnchor.constraint(equalToConstant: 62).isActive 										= true
 		
-		//A place for registration buttom
-		view.addSubview(signUpButton)
-		passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive				= true
-		passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive					= true
-		
 		//A place for question Label And Question Button
 		let bottomLicensSV			= UIStackView(arrangedSubviews: [questionLabel, questionButton])
-        bottomLicensSV.distribution 	= .fillEqually
+		bottomLicensSV.distribution = .fill
 
         view.addSubview(bottomLicensSV)
         bottomLicensSV.translatesAutoresizingMaskIntoConstraints														= false
-		bottomLicensSV.bottomAnchor.constraint	(equalTo: view.bottomAnchor, constant: 40).isActive						= true
-		bottomLicensSV.centerXAnchor.constraint	(equalTo: view.centerXAnchor).isActive									= true
-		bottomLicensSV.trailingAnchor.constraint(greaterThanOrEqualTo: view.trailingAnchor, constant: 16).isActive		= true
-		bottomLicensSV.heightAnchor.constraint	(equalToConstant: 50).isActive											= true
+		bottomLicensSV.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40).isActive						= true
+		bottomLicensSV.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive									= true
+		bottomLicensSV.trailingAnchor.constraint(greaterThanOrEqualTo: view.trailingAnchor, constant: -16).isActive		= true
+		bottomLicensSV.heightAnchor.constraint(equalToConstant: 50).isActive											= true
+		
+		//A place for registration buttom
+		view.addSubview(signUpButton)
+		signUpButton.translatesAutoresizingMaskIntoConstraints															= false
+		signUpButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive										= true
+		signUpButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive					= true
+		signUpButton.bottomAnchor.constraint(equalTo: bottomLicensSV.topAnchor, constant: -20).isActive					= true
+		signUpButton.heightAnchor.constraint(equalToConstant: 50).isActive												= true
+		
+		//Button alignment
+		questionButton.translatesAutoresizingMaskIntoConstraints														= false
+		questionButton.widthAnchor.constraint(lessThanOrEqualToConstant: 120).isActive									= true
+		
+		//Label alignment
+		questionLabel.translatesAutoresizingMaskIntoConstraints															= false
+		questionLabel.trailingAnchor.constraint(equalTo: questionButton.leadingAnchor, constant: -5).isActive			= true
 	}
 	
-	func logoIcon()		-> UIImageView {
+	func logoIcon()			-> UIImageView {
 		return logoIconView
 	}
 	
-	func nickname() 	-> UITextField {
+	func nickname() 		-> UITextField {
 		return nicknameTextField
 	}
 	
-	func email() 		-> UITextField {
+	func email() 			-> UITextField {
 		return emailTextField
 	}
 	
-	func password() 	-> UITextField {
+	func password() 		-> UITextField {
 		return passwordTextField
 	}
 	
-	func signUp() -> UIButton {
+	func signUp()			-> UIButton {
 		return signUpButton
+	}
+	
+	func questionLbl()		-> UILabel {
+		return questionLabel
+	}
+	func questionBtn()		-> UIButton {
+		return questionButton
 	}
 }

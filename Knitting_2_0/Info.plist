@@ -63,6 +63,8 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>SF-Pro-Display-Medium.otf</string>
+		<string>SF-Pro-Text-Semibold.otf</string>
+		<string>SF-Pro-Text-Regular.otf</string>
 	</array>
 </dict>
 </plist>

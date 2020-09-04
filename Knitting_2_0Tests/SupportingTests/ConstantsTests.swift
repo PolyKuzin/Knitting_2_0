@@ -40,11 +40,12 @@ class ConstantsTests: XCTestCase {
 	//Colors structure tests
 	func testColorsStructHasCorrectValues() {
 		XCTAssertEqual(Colors.normalTextField,			UIColor(red: 0.949, green: 0.949, blue: 0.969, alpha: 1))
-		XCTAssertEqual(Colors.normalBorderTextField,	UIColor(red: 0.82, green: 0.82, blue: 0.839, alpha: 1))
-		XCTAssertEqual(Colors.titleButton,				UIColor(red: 0.265, green: 0.102, blue: 0.613, alpha: 1))
+		XCTAssertEqual(Colors.normalBorderTextField,	UIColor(red: 0.820, green: 0.820, blue: 0.839, alpha: 1))
 		XCTAssertEqual(Colors.backgroundUpButton,		UIColor(red: 0.584, green: 0.475, blue: 0.820, alpha: 1))
 		XCTAssertEqual(Colors.backgroundDownButton,		UIColor(red: 0.745, green: 0.616, blue: 0.875, alpha: 1))
 		XCTAssertEqual(Colors.borderButton,				UIColor(red: 0.265, green: 0.102, blue: 0.613, alpha: 1))
+		XCTAssertEqual(Colors.titleForButton, 			UIColor.white)
+		XCTAssertEqual(Colors.questionToLogIn, 			UIColor.black)
 	}
 	
 	//PlaceHolders structure Tests
@@ -53,11 +54,14 @@ class ConstantsTests: XCTestCase {
 		XCTAssertEqual(Placeholder.emailRegistration,	"Enter your e-mail")
 		XCTAssertEqual(Placeholder.passwordRegistration,"Enter your password")
 		XCTAssertEqual(Placeholder.titleForSingUp,		"Sing up")
+		XCTAssertEqual(Placeholder.questionToLogIn, 	"Log in")
+
 	}
 	
 	//Fonts structure tests
 	func testFontsStructHasCorrectValues() {
-		XCTAssertEqual(Fonts.placeHolders,				UIFont(name: "SFProDisplay-Medium",  size: 20))
-		XCTAssertEqual(Fonts.titleButton,				UIFont(name: "SFProRounded-Regular", size: 24))
+		XCTAssertEqual(Fonts.placeHolders,				UIFont(name: "SFProDisplay-Medium",	size: 20))
+		XCTAssertEqual(Fonts.titleButton,				UIFont(name: "SFProText-Semibold",	size: 24))
+		XCTAssertEqual(Fonts.question,			UIFont(name: "SFProText-Regular",	size: 17))
 	}
 }

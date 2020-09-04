@@ -10,26 +10,30 @@ import UIKit
 
 class RegistrationVC	: UIViewController {
 	
-	private var logoIcon			= UIImageView()
-	private var nicknameTextField	= UITextField()
-	private var emailTextField		= UITextField()
-	private var passwordTextField	= UITextField()
-	private var registrationButton	= UIButton()
+	private var logoIcon				= UIImageView()
+	private var nicknameTextField		= UITextField()
+	private var emailTextField			= UITextField()
+	private var passwordTextField		= UITextField()
+	private var registrationButton		= UIButton()
+	private var questionToLogInButton	= UIButton()
+	private var questionToLogInLabel	= UILabel()
 	
 	private var viewModel : RegistrationVM! {
 		didSet {
-			self.logoIcon			= viewModel.logoIcon()
-			self.nicknameTextField	= viewModel.nickname()
-			self.emailTextField		= viewModel.email()
-			self.passwordTextField	= viewModel.password()
-			self.registrationButton = viewModel.signUp()
+			self.logoIcon				= viewModel.logoIcon()
+			self.nicknameTextField		= viewModel.nickname()
+			self.emailTextField			= viewModel.email()
+			self.passwordTextField		= viewModel.password()
+			self.registrationButton 	= viewModel.signUp()
+			self.questionToLogInButton	= viewModel.questionBtn()
+			self.questionToLogInLabel	= viewModel.questionLbl()
 		}
 	}
 	
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-		viewModel 					= RegistrationVM()
+		viewModel 						= RegistrationVM()
 		viewModel.setUpLayout(toView: view)
 	}
 }
