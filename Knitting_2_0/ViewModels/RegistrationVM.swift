@@ -206,6 +206,7 @@ class RegistrationVM {
 		//Button alignment
 		questionButton.translatesAutoresizingMaskIntoConstraints														= false
 		questionButton.widthAnchor.constraint(lessThanOrEqualToConstant: 120).isActive									= true
+		questionButton.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: 50).isActive		= true
 		
 		//Label alignment
 		questionLabel.translatesAutoresizingMaskIntoConstraints															= false

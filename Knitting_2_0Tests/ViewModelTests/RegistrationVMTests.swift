@@ -163,8 +163,29 @@ class RegistrationVMTests: XCTestCase {
 		XCTAssertNotNil(sut.signUp().layer)
 	}
 	
-//MARK: Label Tests
-	func test() {
-		
+//MARK: Label Tests	
+	func testRegistrationVMContainsCorrectLabels() {
+		XCTAssertNotNil(sut.questionLbl())
+	}
+	
+	func testLabelsFramesHasCorrectValues() {
+		XCTAssertEqual(sut.questionLbl().frame.width,				180)
+		XCTAssertEqual(sut.questionLbl().frame.height,				20)
+	}
+	
+	func testLabelsTextHasCorrectValues() {
+		XCTAssertEqual(sut.questionLbl().text,						Placeholder.questionToLogInLbl)
+	}
+	
+	func testLabelsFontsHasCorrectValues() {
+		XCTAssertEqual(sut.questionLbl().font,						Fonts.question)
+	}
+	
+	func testLabelColorsHasCorrectValues() {
+		XCTAssertEqual(sut.questionLbl().textColor,					Colors.questionText)
+	}
+	
+	func testLabelTextAlignmentHasCorrectValues() {
+		XCTAssertEqual(sut.questionLbl().textAlignment,				.right)
 	}
 }
