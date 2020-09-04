@@ -121,6 +121,7 @@ class RegistrationVM {
 																height: 20))
 		label.font						= Fonts.question
 		label.text						= Placeholder.questionToLogInLbl
+		label.textColor					= Colors.questionText
 		label.textAlignment				= .right
 		
 		return label
@@ -130,10 +131,11 @@ class RegistrationVM {
 		let button						= UIButton(type: .system)
 		button.frame 					= CGRect(x: 0, y: 0, width: 40, height: 20)
 		button.titleLabel?.font			= Fonts.question
-
+		button.layer.masksToBounds		= true
 		button.setTitle					(Placeholder.questionToLogInBtn,	for: .normal)
 		button.setTitleColor			(Colors.questionToLogIn, 			for: .normal)
 		button.contentHorizontalAlignment = .left
+		
         return button
 	}()
 	

@@ -32,7 +32,7 @@ struct Colors {
 	static let backgroundUpButton		= UIColor(red: 0.584, green: 0.475, blue: 0.820, alpha: 1)
 	static let backgroundDownButton		= UIColor(red: 0.745, green: 0.616, blue: 0.875, alpha: 1)
 	static let borderButton				= UIColor(red: 0.265, green: 0.102, blue: 0.613, alpha: 1)
-	
+	static let questionText				= UIColor(red: 0.621, green: 0.621, blue: 0.621, alpha: 1)
 	static let titleForButton			= UIColor.white
 	static let questionToLogIn			= UIColor.black
 }
@@ -51,5 +51,5 @@ struct Fonts {
 	
 	static let placeHolders				= UIFont(name: "SFProDisplay-Medium",	size: 20)
 	static let titleButton				= UIFont(name: "SFProText-Semibold",	size: 17)
-	static let question			= UIFont(name: "SFProText-Regular", 	size: 17)
+	static let question					= UIFont(name: "SFProText-Regular", 	size: 17)
 }
