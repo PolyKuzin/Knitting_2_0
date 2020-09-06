@@ -55,7 +55,7 @@ class RegistrationVM {
 												  width: UIScreen.main.bounds.width - 32,
 												  height: 62))
 		//design
-		textField.placeholder			= Placeholder.emailRegistration
+		textField.placeholder			= Placeholder.emailPlaceHolder
 		textField.layer.cornerRadius	= CornerRadius.forTextField
 		textField.backgroundColor		= Colors.normalTextField
 		textField.font					= Fonts.placeHolders
@@ -102,8 +102,6 @@ class RegistrationVM {
 		let button						= UIButton(type: .system)
 		button.frame 					= CGRect(x: 0, y: 0, width: 500, height: 50)
 		button.titleLabel?.font			= Fonts.titleButton
-//		button.layer.borderWidth		= BorderWidth.forButton
-//		button.layer.borderColor		= Colors.borderButton.cgColor
 		button.layer.cornerRadius		= CornerRadius.forButton
         button.layer.masksToBounds		= true
 		button.setTitle					(Placeholder.titleForSingUp, for: .normal)
@@ -133,7 +131,7 @@ class RegistrationVM {
 		button.titleLabel?.font			= Fonts.question
 		button.layer.masksToBounds		= true
 		button.setTitle					(Placeholder.questionToLogInBtn,	for: .normal)
-		button.setTitleColor			(Colors.questionToLogIn, 			for: .normal)
+		button.setTitleColor			(Colors.questionButton, 			for: .normal)
 		button.contentHorizontalAlignment = .left
 		
         return button

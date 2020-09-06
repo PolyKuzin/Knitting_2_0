@@ -46,18 +46,21 @@ class ConstantsTests: XCTestCase {
 		XCTAssertEqual(Colors.borderButton,				UIColor(red: 0.265, green: 0.102, blue: 0.613, alpha: 1))
 		XCTAssertEqual(Colors.questionText,				UIColor(red: 0.621, green: 0.621, blue: 0.621, alpha: 1))
 		XCTAssertEqual(Colors.titleForButton, 			UIColor.white)
-		XCTAssertEqual(Colors.questionToLogIn, 			UIColor.black)
+		XCTAssertEqual(Colors.questionButton, 			UIColor.black)
 	}
 	
 	//PlaceHolders structure Tests
 	func testPlaceholdersnHasCorrectString() {
-		XCTAssertEqual(Placeholder.nicknameRegistration,"Enter your nickname")
-		XCTAssertEqual(Placeholder.emailRegistration,	"Enter your e-mail")
-		XCTAssertEqual(Placeholder.passwordRegistration,"Enter your password")
+		XCTAssertEqual(Placeholder.nicknameRegistration,"Create a nickname")
+		XCTAssertEqual(Placeholder.emailPlaceHolder,	"Enter your e-mail")
+		XCTAssertEqual(Placeholder.passwordRegistration,"Create a password")
+		XCTAssertEqual(Placeholder.passwordLogIn, 		"Enter your password")
 		XCTAssertEqual(Placeholder.titleForSingUp,		"Sing up")
+		XCTAssertEqual(Placeholder.titleForLogIn,		"Log in")
 		XCTAssertEqual(Placeholder.questionToLogInLbl,	"Already have an account?")
 		XCTAssertEqual(Placeholder.questionToLogInBtn, 	"Log in")
-
+		XCTAssertEqual(Placeholder.questionToRegistrLbl,"You don't have an account?")
+		XCTAssertEqual(Placeholder.questionToRegistrBtn,"Sign up")
 	}
 	
 	//Fonts structure tests

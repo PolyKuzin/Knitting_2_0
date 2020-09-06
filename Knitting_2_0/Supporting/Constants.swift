@@ -34,17 +34,21 @@ struct Colors {
 	static let borderButton				= UIColor(red: 0.265, green: 0.102, blue: 0.613, alpha: 1)
 	static let questionText				= UIColor(red: 0.621, green: 0.621, blue: 0.621, alpha: 1)
 	static let titleForButton			= UIColor.white
-	static let questionToLogIn			= UIColor.black
+	static let questionButton			= UIColor.black
 }
 
 struct Placeholder {
 	
-	static let nicknameRegistration 	= "Enter your nickname"
-	static let emailRegistration		= "Enter your e-mail"
-	static let passwordRegistration 	= "Enter your password"
+	static let nicknameRegistration 	= "Create a nickname"
+	static let emailPlaceHolder			= "Enter your e-mail"
+	static let passwordRegistration 	= "Create a password"
+	static let passwordLogIn			= "Enter your password"
 	static let titleForSingUp			= "Sing up"
+	static let titleForLogIn			= "Log in"
 	static let questionToLogInLbl		= "Already have an account?"
 	static let questionToLogInBtn		= "Log in"
+	static let questionToRegistrLbl		= "You don't have an account?"
+	static let questionToRegistrBtn		= "Sign up"
 }
 
 struct Fonts {
