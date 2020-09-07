@@ -234,6 +234,7 @@ class RegistrationVM {
 	func questionLbl()		-> UILabel {
 		return questionLabel
 	}
+	
 	func questionBtn()		-> UIButton {
 		return questionButton
 	}
