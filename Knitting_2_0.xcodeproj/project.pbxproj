@@ -10,6 +10,9 @@
 		1310C4F491031D53BD835BDE /* Pods_Knitting_2_0Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3557FE70DD594785E40DB604 /* Pods_Knitting_2_0Tests.framework */; };
 		9905ABE225024F5A0055B138 /* SF-Pro-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9905ABE125024F5A0055B138 /* SF-Pro-Text-Semibold.otf */; };
 		9905ABE4250254B80055B138 /* SF-Pro-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9905ABE3250254B80055B138 /* SF-Pro-Text-Regular.otf */; };
+		996FAF2C2508245D00209228 /* EntryVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996FAF2B2508245D00209228 /* EntryVM.swift */; };
+		996FAF2E2508249400209228 /* EntryVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996FAF2D2508249400209228 /* EntryVCTests.swift */; };
+		996FAF30250824A300209228 /* EntryVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996FAF2F250824A300209228 /* EntryVMTests.swift */; };
 		99AFBA4724F80D9E00E71FD6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AFBA4624F80D9E00E71FD6 /* AppDelegate.swift */; };
 		99AFBA4924F80D9E00E71FD6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AFBA4824F80D9E00E71FD6 /* SceneDelegate.swift */; };
 		99AFBA4B24F80D9E00E71FD6 /* RegistrationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AFBA4A24F80D9E00E71FD6 /* RegistrationVC.swift */; };
@@ -47,6 +50,9 @@
 		8257CCB6BAEED5BDB6953A6E /* Pods-Knitting_2_0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Knitting_2_0.release.xcconfig"; path = "Target Support Files/Pods-Knitting_2_0/Pods-Knitting_2_0.release.xcconfig"; sourceTree = "<group>"; };
 		9905ABE125024F5A0055B138 /* SF-Pro-Text-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Semibold.otf"; sourceTree = "<group>"; };
 		9905ABE3250254B80055B138 /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
+		996FAF2B2508245D00209228 /* EntryVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryVM.swift; sourceTree = "<group>"; };
+		996FAF2D2508249400209228 /* EntryVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryVCTests.swift; sourceTree = "<group>"; };
+		996FAF2F250824A300209228 /* EntryVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryVMTests.swift; sourceTree = "<group>"; };
 		99AFBA4324F80D9E00E71FD6 /* Knitting_2_0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Knitting_2_0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99AFBA4624F80D9E00E71FD6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		99AFBA4824F80D9E00E71FD6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -174,6 +180,7 @@
 			children = (
 				99AFBA6F24F8121D00E71FD6 /* RegistrationVM.swift */,
 				99B206732504DDF700FA6C50 /* LogInVM.swift */,
+				996FAF2B2508245D00209228 /* EntryVM.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -209,6 +216,7 @@
 			children = (
 				99AFBA5D24F80DA000E71FD6 /* RegistrationVMTests.swift */,
 				99B206772504DF5700FA6C50 /* LogInVMTests.swift */,
+				996FAF2F250824A300209228 /* EntryVMTests.swift */,
 			);
 			path = ViewModelTests;
 			sourceTree = "<group>";
@@ -226,6 +234,7 @@
 			children = (
 				99B206752504DF3800FA6C50 /* LogInVCTests.swift */,
 				99AFBA7724F819A100E71FD6 /* RegistrationVCTests.swift */,
+				996FAF2D2508249400209228 /* EntryVCTests.swift */,
 			);
 			path = ViewTests;
 			sourceTree = "<group>";
@@ -418,6 +427,7 @@
 				99B206722504DD8B00FA6C50 /* LogInVC.swift in Sources */,
 				99B206742504DDF700FA6C50 /* LogInVM.swift in Sources */,
 				99AFBA4724F80D9E00E71FD6 /* AppDelegate.swift in Sources */,
+				996FAF2C2508245D00209228 /* EntryVM.swift in Sources */,
 				99AFBA4924F80D9E00E71FD6 /* SceneDelegate.swift in Sources */,
 				99AFBA7A24F9667F00E71FD6 /* Constants.swift in Sources */,
 			);
@@ -429,8 +439,10 @@
 			files = (
 				99AFBA7324F8125A00E71FD6 /* ConstantsTests.swift in Sources */,
 				99AFBA7824F819A100E71FD6 /* RegistrationVCTests.swift in Sources */,
+				996FAF2E2508249400209228 /* EntryVCTests.swift in Sources */,
 				99AFBA5E24F80DA000E71FD6 /* RegistrationVMTests.swift in Sources */,
 				99B509BF24FDB2780046A2B1 /* UIViewExtentionsTests.swift in Sources */,
+				996FAF30250824A300209228 /* EntryVMTests.swift in Sources */,
 				99B206782504DF5700FA6C50 /* LogInVMTests.swift in Sources */,
 				99B206762504DF3800FA6C50 /* LogInVCTests.swift in Sources */,
 			);
