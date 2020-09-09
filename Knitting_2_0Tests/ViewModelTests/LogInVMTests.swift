@@ -119,12 +119,12 @@ class LogInVMTests: XCTestCase {
 	}
 	
 	func testButtonFontsHasCorrectValues() {
-		XCTAssertEqual(sut.logIn().titleLabel?.font, 				Fonts.titleButton)
-		XCTAssertEqual(sut.questionBtn().titleLabel?.font,			Fonts.question)
+		XCTAssertEqual(sut.logIn().titleLabel?.font, 				Fonts.textSemibold17)
+		XCTAssertEqual(sut.questionBtn().titleLabel?.font,			Fonts.textRegular17)
 	}
 	
 	func testButtonsCornerRadiusHasCorrectValues() {
-		XCTAssertEqual(sut.logIn().layer.cornerRadius, 			CornerRadius.forButton)
+		XCTAssertEqual(sut.logIn().layer.cornerRadius, 				CornerRadius.forButton)
 		XCTAssertEqual(sut.questionBtn().layer.cornerRadius,		0)
 	}
 	
@@ -162,7 +162,7 @@ class LogInVMTests: XCTestCase {
 	}
 	
 	func testLabelsFontsHasCorrectValues() {
-		XCTAssertEqual(sut.questionLbl().font,						Fonts.question)
+		XCTAssertEqual(sut.questionLbl().font,						Fonts.textRegular17)
 	}
 	
 	func testLabelColorsHasCorrectValues() {

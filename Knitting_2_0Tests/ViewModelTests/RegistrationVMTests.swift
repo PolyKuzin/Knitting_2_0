@@ -134,8 +134,8 @@ class RegistrationVMTests: XCTestCase {
 	}
 	
 	func testButtonFontsHasCorrectValues() {
-		XCTAssertEqual(sut.signUp().titleLabel?.font, 				Fonts.titleButton)
-		XCTAssertEqual(sut.questionBtn().titleLabel?.font,			Fonts.question)
+		XCTAssertEqual(sut.signUp().titleLabel?.font, 				Fonts.textSemibold17)
+		XCTAssertEqual(sut.questionBtn().titleLabel?.font,			Fonts.textRegular17)
 	}
 	
 	func testButtonsCornerRadiusHasCorrectValues() {
@@ -177,7 +177,7 @@ class RegistrationVMTests: XCTestCase {
 	}
 	
 	func testLabelsFontsHasCorrectValues() {
-		XCTAssertEqual(sut.questionLbl().font,						Fonts.question)
+		XCTAssertEqual(sut.questionLbl().font,						Fonts.textRegular17)
 	}
 	
 	func testLabelColorsHasCorrectValues() {

@@ -35,6 +35,7 @@ class ConstantsTests: XCTestCase {
 	func testCornerRadiusStructHasCorrectValue() {
 		XCTAssertEqual(CornerRadius.forTextField,		CGFloat(14))
 		XCTAssertEqual(CornerRadius.forButton,			CGFloat(25))
+		XCTAssertEqual(CornerRadius.forEntryBtn,		CGFloat(32))
 	}
 	
 	//Colors structure tests
@@ -57,16 +58,19 @@ class ConstantsTests: XCTestCase {
 		XCTAssertEqual(Placeholder.passwordLogIn, 		"Enter your password")
 		XCTAssertEqual(Placeholder.titleForSingUp,		"Sing up")
 		XCTAssertEqual(Placeholder.titleForLogIn,		"Log in")
-		XCTAssertEqual(Placeholder.questionToLogInLbl,	"Already have an account?")
-		XCTAssertEqual(Placeholder.questionToLogInBtn, 	"Log in")
-		XCTAssertEqual(Placeholder.questionToRegistrLbl,"You don't have an account?")
-		XCTAssertEqual(Placeholder.questionToRegistrBtn,"Sign up")
+		XCTAssertEqual(Placeholder.questionToLogInLbl,	"Already have an account? ")
+		XCTAssertEqual(Placeholder.questionToLogInBtn, 	" Log in")
+		XCTAssertEqual(Placeholder.questionToRegistrLbl,"You don't have an account? ")
+		XCTAssertEqual(Placeholder.questionToRegistrBtn," Sign up")
+		XCTAssertEqual(Placeholder.createNewAccount, 	"Create a new account")
 	}
 	
 	//Fonts structure tests
 	func testFontsStructHasCorrectValues() {
-		XCTAssertEqual(Fonts.placeHolders,				UIFont(name: "SFProDisplay-Medium",	size: 20))
-		XCTAssertEqual(Fonts.titleButton,				UIFont(name: "SFProText-Semibold",	size: 17))
-		XCTAssertEqual(Fonts.question,					UIFont(name: "SFProText-Regular",	size: 17))
+		XCTAssertEqual(Fonts.displayMedium20,			UIFont(name: "SFProDisplay-Medium",		size: 20))
+		XCTAssertEqual(Fonts.displayMedium22,			UIFont(name: "SFProDisplay-Medium",		size: 22))
+		XCTAssertEqual(Fonts.displaySemibold22,			UIFont(name: "SFProDisplay-Semibold",	size: 22))
+		XCTAssertEqual(Fonts.textSemibold17,			UIFont(name: "SFProText-Semibold",		size: 17))
+		XCTAssertEqual(Fonts.textRegular17,				UIFont(name: "SFProText-Regular",		size: 17))
 	}
 }

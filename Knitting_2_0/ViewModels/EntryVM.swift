@@ -39,7 +39,7 @@ class EntryVM {
 	private lazy var logInButton		: UIButton = {
 		let button						= UIButton(type: .system)
 		button.frame 					= CGRect(x: 0, y: 0, width: 500, height: 50)
-		button.titleLabel?.font			= Fonts.displaySemiBold22
+		button.titleLabel?.font			= Fonts.displaySemibold22
 		button.layer.cornerRadius		= CornerRadius.forButton
 		button.layer.masksToBounds		= true
 		button.setTitle					(Placeholder.titleForLogIn, for: .normal)

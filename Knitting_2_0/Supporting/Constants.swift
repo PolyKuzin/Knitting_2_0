@@ -51,16 +51,14 @@ struct Placeholder {
 	static let questionToLogInBtn		= " Log in"
 	static let questionToRegistrLbl		= "You don't have an account? "
 	static let questionToRegistrBtn		= " Sign up"
-	
 	static let createNewAccount			= "Create a new account"
 }
 
 struct Fonts {
 	
-	static let placeHolders				= UIFont(name: "SFProDisplay-Medium",	size: 20)
-	static let titleButton				= UIFont(name: "SFProText-Semibold",	size: 17)
-	static let question					= UIFont(name: "SFProText-Regular", 	size: 17)
-	
-	static let displaySemiBold22		= UIFont(name: "SFProDisplay-Semibold", size: 22)
+	static let displayMedium20			= UIFont(name: "SFProDisplay-Medium",	size: 20)
 	static let displayMedium22			= UIFont(name: "SFProDisplay-Medium",	size: 22)
+	static let displaySemibold22		= UIFont(name: "SFProDisplay-Semibold", size: 22)
+	static let textRegular17			= UIFont(name: "SFProText-Regular", 	size: 17)
+	static let textSemibold17			= UIFont(name: "SFProText-Semibold",	size: 17)
 }

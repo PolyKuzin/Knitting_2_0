@@ -33,7 +33,7 @@ class LogInVM {
 		textField.placeholder			= Placeholder.emailPlaceHolder
 		textField.layer.cornerRadius	= CornerRadius.forTextField
 		textField.backgroundColor		= Colors.normalTextField
-		textField.font					= Fonts.placeHolders
+		textField.font					= Fonts.displayMedium20
 		textField.layer.borderWidth		= BorderWidth.forTextField
 		textField.layer.borderColor		= Colors.normalBorderTextField.cgColor
 		textField.leftView				= UIView(frame: CGRect(x: 0, y: 0, width: 16, height: 62))
@@ -58,7 +58,7 @@ class LogInVM {
 		textField.placeholder			= Placeholder.passwordRegistration
 		textField.layer.cornerRadius	= CornerRadius.forTextField
 		textField.backgroundColor		= Colors.normalTextField
-		textField.font					= Fonts.placeHolders
+		textField.font					= Fonts.displayMedium20
 		textField.layer.borderWidth		= BorderWidth.forTextField
 		textField.layer.borderColor		= Colors.normalBorderTextField.cgColor
 		textField.leftView				= UIView(frame: CGRect(x: 0, y: 0, width: 16, height: 62))
@@ -76,7 +76,7 @@ class LogInVM {
 	private lazy var logInButton		: UIButton = {
 		let button						= UIButton(type: .system)
 		button.frame 					= CGRect(x: 0, y: 0, width: 500, height: 50)
-		button.titleLabel?.font			= Fonts.titleButton
+		button.titleLabel?.font			= Fonts.textSemibold17
 		button.layer.cornerRadius		= CornerRadius.forButton
 		button.layer.masksToBounds		= true
 		button.setTitle					(Placeholder.titleForLogIn, for: .normal)
@@ -92,7 +92,7 @@ class LogInVM {
 																y: 0,
 																width: 180,
 																height: 20))
-		label.font						= Fonts.question
+		label.font						= Fonts.textRegular17
 		label.text						= Placeholder.questionToRegistrLbl
 		label.textColor					= Colors.questionText
 		label.textAlignment				= .right
@@ -103,7 +103,7 @@ class LogInVM {
 	private lazy var questionButton		: UIButton = {
 		let button						= UIButton(type: .system)
 		button.frame 					= CGRect(x: 0, y: 0, width: 40, height: 20)
-		button.titleLabel?.font			= Fonts.question
+		button.titleLabel?.font			= Fonts.textRegular17
 		button.layer.masksToBounds		= true
 		button.setTitle					(Placeholder.questionToRegistrBtn,	for: .normal)
 		button.setTitleColor			(Colors.questionButton, 			for: .normal)
