@@ -13,6 +13,7 @@ class LogInVC: UIViewController {
 	private var logoIcon				= UIImageView()
 	private var emailTextField			= UITextField()
 	private var passwordTextField		= UITextField()
+	private var forgotPass				= UIButton()
 	private var logInButton				= UIButton()
 	private var questionToRegButton		= UIButton()
 	private var questionToRegLabel		= UILabel()
@@ -22,6 +23,7 @@ class LogInVC: UIViewController {
 			self.logoIcon				= viewModel.logoIcon()
 			self.emailTextField			= viewModel.email()
 			self.passwordTextField		= viewModel.password()
+			self.forgotPass				= viewModel.forgotPassword()
 			self.logInButton		 	= viewModel.logIn()
 			self.questionToRegButton	= viewModel.questionBtn()
 			self.questionToRegLabel		= viewModel.questionLbl()
@@ -32,10 +34,8 @@ class LogInVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		view.backgroundColor			= .white
-		
 		let tap : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyBoard))
 		view.addGestureRecognizer(tap)
-		
 		viewModel 						= LogInVM()
 		setUpLayout()
     }
@@ -96,6 +96,14 @@ extension LogInVC {
 		passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive			= true
 		passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive				= true
 		passwordTextField.heightAnchor.constraint(equalToConstant: 62).isActive 									= true
+		
+		//A palce for "forgot your password" button
+		view.addSubview(forgotPass)
+		forgotPass.translatesAutoresizingMaskIntoConstraints														= false
+		forgotPass.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 16).isActive					= true
+		forgotPass.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 8).isActive				= true
+		forgotPass.heightAnchor.constraint(equalToConstant: 17).isActive											= true
+		forgotPass.leadingAnchor.constraint(lessThanOrEqualTo: view.centerXAnchor).isActive							= true
 		
 		//A place for question Label And Question Button
 		let bottomLicensSV			= UIStackView(arrangedSubviews: [questionToRegLabel, questionToRegButton])

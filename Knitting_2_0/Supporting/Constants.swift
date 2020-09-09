@@ -45,6 +45,9 @@ struct Placeholder {
 	static let emailPlaceHolder			= "Enter your e-mail"
 	static let passwordRegistration 	= "Create a password"
 	static let passwordLogIn			= "Enter your password"
+	
+	static let forgotPass				= "Forgot your password?"
+	
 	static let titleForSingUp			= "Sing up"
 	static let titleForLogIn			= "Log in"
 	static let questionToLogInLbl		= "Already have an account? "
@@ -61,4 +64,7 @@ struct Fonts {
 	static let displaySemibold22		= UIFont(name: "SFProDisplay-Semibold", size: 22)
 	static let textRegular17			= UIFont(name: "SFProText-Regular", 	size: 17)
 	static let textSemibold17			= UIFont(name: "SFProText-Semibold",	size: 17)
+	
+	static let textSemibold14			= UIFont(name: "SFProText-Semibold",	size: 14)
+
 }

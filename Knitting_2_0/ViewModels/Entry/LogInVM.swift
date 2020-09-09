@@ -8,7 +8,17 @@
 
 import UIKit
 
-class LogInVM {
+protocol LogInComposition {
+	func logoIcon()			-> UIImageView
+	func email() 			-> UITextField
+	func password() 		-> UITextField
+	func forgotPassword()	-> UIButton
+	func logIn()			-> UIButton
+	func questionLbl()		-> UILabel
+	func questionBtn()		-> UIButton
+}
+
+class LogInVM	: LogInComposition {
 	
     private lazy var logoIconView		: UIImageView = {
         let image						= Icons.logoIcon
@@ -72,15 +82,26 @@ class LogInVM {
 		
 		return textField
 		}()
-		
+
+	private lazy var forgotPassButton	: UIButton = {
+		let button						= UIButton(type: .system)
+		button.frame 					= CGRect(x: 0, y: 0, width: 500, height: 50)
+		button.titleLabel?.font			= Fonts.textSemibold14
+		button.layer.masksToBounds		= true
+		button.setTitle					(Placeholder.forgotPass,	for: .normal)
+		button.setTitleColor			(Colors.questionText, 		for: .normal)
+			
+			return button
+		}()
+	
 	private lazy var logInButton		: UIButton = {
 		let button						= UIButton(type: .system)
 		button.frame 					= CGRect(x: 0, y: 0, width: 500, height: 50)
 		button.titleLabel?.font			= Fonts.textSemibold17
 		button.layer.cornerRadius		= CornerRadius.forButton
 		button.layer.masksToBounds		= true
-		button.setTitle					(Placeholder.titleForLogIn, for: .normal)
-		button.setTitleColor			(Colors.titleForButton, for: .normal)
+		button.setTitle					(Placeholder.titleForLogIn,	for: .normal)
+		button.setTitleColor			(Colors.titleForButton,		for: .normal)
 		button.setGradientBackground	(colorOne: Colors.backgroundUpButton,
 										 colorTwo: Colors.backgroundDownButton)
 			
@@ -124,6 +145,10 @@ class LogInVM {
 		return passwordTextField
 	}
 	
+	func forgotPassword() -> UIButton {
+		return forgotPassButton
+	}
+	
 	func logIn()			-> UIButton {
 		return logInButton
 	}
@@ -134,4 +159,12 @@ class LogInVM {
 	func questionBtn()		-> UIButton {
 		return questionButton
 	}
+	
+//    func authitication() {
+//        Auth.auth().addStateDidChangeListener { (auth, user) in
+//            if user != nil {
+//                self.performSegue(withIdentifier: "LogInSegue", sender: nil)
+//            }
+//        }
+//    }
 }
