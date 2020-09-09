@@ -179,8 +179,8 @@
 			isa = PBXGroup;
 			children = (
 				996FAF2B2508245D00209228 /* EntryVM.swift */,
-				99AFBA6F24F8121D00E71FD6 /* RegistrationVM.swift */,
 				99B206732504DDF700FA6C50 /* LogInVM.swift */,
+				99AFBA6F24F8121D00E71FD6 /* RegistrationVM.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";

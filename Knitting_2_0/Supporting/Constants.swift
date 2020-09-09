@@ -47,10 +47,10 @@ struct Placeholder {
 	static let passwordLogIn			= "Enter your password"
 	static let titleForSingUp			= "Sing up"
 	static let titleForLogIn			= "Log in"
-	static let questionToLogInLbl		= "Already have an account?"
-	static let questionToLogInBtn		= "Log in"
-	static let questionToRegistrLbl		= "You don't have an account?"
-	static let questionToRegistrBtn		= "Sign up"
+	static let questionToLogInLbl		= "Already have an account? "
+	static let questionToLogInBtn		= " Log in"
+	static let questionToRegistrLbl		= "You don't have an account? "
+	static let questionToRegistrBtn		= " Sign up"
 	
 	static let createNewAccount			= "Create a new account"
 }

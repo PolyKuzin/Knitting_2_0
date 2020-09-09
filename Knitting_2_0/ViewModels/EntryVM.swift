@@ -18,7 +18,6 @@ class EntryVM {
 																	height: 154.89))
 		imageView.image					= image
         imageView.contentMode			= .scaleAspectFit
-
 		
         return imageView
 	}()
@@ -45,8 +44,6 @@ class EntryVM {
 		button.layer.masksToBounds		= true
 		button.setTitle					(Placeholder.titleForLogIn, for: .normal)
 		button.setTitleColor			(Colors.questionButton, 	for: .normal)
-//		button.setGradientBackground	(colorOne: Colors.backgroundUpButton,
-//										 colorTwo: Colors.backgroundDownButton)
 			
 		return button
 	}()
@@ -61,42 +58,5 @@ class EntryVM {
 	
 	func logIn()			-> UIButton {
 		return logInButton
-	}
-	
-	func setUpLayout(toView view: UIView) {
-		//A place of view, where the image is
-		let topImageConteinerView = UIView()
-		view.addSubview(topImageConteinerView)
-		topImageConteinerView.translatesAutoresizingMaskIntoConstraints													= false
-		topImageConteinerView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive							= true
-		topImageConteinerView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive							= true
-		topImageConteinerView.topAnchor.constraint(equalTo: view.topAnchor).isActive									= true
-		topImageConteinerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5).isActive				= true
-		
-		//Image or Gif constraints in a cell
-		topImageConteinerView.addSubview(logoIconView)
-		logoIconView.translatesAutoresizingMaskIntoConstraints															= false
-		logoIconView.topAnchor.constraint(equalTo: topImageConteinerView.topAnchor, constant: 50).isActive				= true
-		logoIconView.centerXAnchor.constraint(equalTo: topImageConteinerView.centerXAnchor, constant: -10).isActive		= true
-		logoIconView.centerYAnchor.constraint(equalTo: topImageConteinerView.centerYAnchor).isActive					= true
-		logoIconView.heightAnchor.constraint(equalTo: topImageConteinerView.heightAnchor, multiplier: 0.75).isActive	= true
-		logoIconView.heightAnchor.constraint(lessThanOrEqualToConstant: 227.65).isActive								= true
-		logoIconView.widthAnchor.constraint(lessThanOrEqualToConstant: 190.17).isActive									= true
-		
-		//A place for registration buttom
-		view.addSubview(signUpButton)
-		signUpButton.translatesAutoresizingMaskIntoConstraints															= false
-		signUpButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive										= true
-		signUpButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -44).isActive					= true
-		signUpButton.topAnchor.constraint(equalTo: topImageConteinerView.bottomAnchor, constant: 20).isActive			= true
-		signUpButton.heightAnchor.constraint(equalToConstant: 64).isActive												= true
-
-		//A place for registration buttom
-		view.addSubview(logInButton)
-		logInButton.translatesAutoresizingMaskIntoConstraints															= false
-		logInButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive										= true
-		logInButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -135).isActive					= true
-		logInButton.topAnchor.constraint(equalTo: signUpButton.bottomAnchor, constant: 20).isActive						= true
-		logInButton.heightAnchor.constraint(equalToConstant: 50).isActive												= true
 	}
 }
