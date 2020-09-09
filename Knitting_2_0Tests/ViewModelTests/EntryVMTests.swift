@@ -7,27 +7,74 @@
 //
 
 import XCTest
+@testable import Knitting_2_0
 
 class EntryVMTests: XCTestCase {
 
+    var sut		: EntryVM!
+	var view	: UIView!
+	
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+		super.setUp()
+        sut		= EntryVM()
+		view	= UIView()
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+		
+		super.tearDown()
+    }
+	
+	//MARK: Logo Icon Tests
+    func testEntryVMContainsLogoIconView() {
+        XCTAssertNotNil(sut.logoIcon)
+    }
+    
+    func testLogoIconViewImageIsLogoIcon() {
+        XCTAssertTrue(sut.logoIcon().image 							=== Icons.logoIcon)
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
+	func testLogoIconViewFrameIsCorrect() {
+		XCTAssertEqual(sut.logoIcon().frame.width,					129.39)
+		XCTAssertEqual(sut.logoIcon().frame.height,					154.89)
+	}
+	
+	//MARK: Buttons Tests
+	func testRegistrationVMContainsCorrectButtons() {
+		XCTAssertNotNil(sut.signUp())
+		XCTAssertNotNil(sut.logIn())
+	}
+	
+	func testButtonsTypeIsCorrect() {
+		XCTAssertEqual(sut.signUp().buttonType, 					.system)
+		XCTAssertEqual(sut.logIn().buttonType,						.system)
+	}
+	
+	func testButtonFontsHasCorrectValues() {
+		XCTAssertEqual(sut.signUp().titleLabel?.font,				Fonts.displayMedium22)
+		XCTAssertEqual(sut.logIn().titleLabel?.font, 				Fonts.displaySemibold22)
+	}
+	
+	func testButtonsCornerRadiusHasCorrectValues() {
+		XCTAssertEqual(sut.signUp().layer.cornerRadius, 			CornerRadius.forEntryBtn)
+	}
+	
+	func testButtonsLayeerMaskToBoundsEquealTrue() {
+		XCTAssertTrue(sut.logIn().layer.masksToBounds)
+		XCTAssertTrue(sut.signUp().layer.masksToBounds)
+	}
+	
+	func testButtonsTitlesHasCorrectValues() {
+		XCTAssertEqual(sut.signUp().titleLabel?.text,				Placeholder.createNewAccount)
+		XCTAssertEqual(sut.logIn().titleLabel?.text, 				Placeholder.titleForLogIn)
+	}
+	
+	func testButtonsTitlesColorHasCorrectValues() {
+		XCTAssertEqual(sut.signUp().titleColor(for: .normal),		Colors.titleForButton)
+		XCTAssertEqual(sut.logIn().titleColor(for: .normal),		Colors.questionButton)
+	}
+	
+	func testButtonsBackGroundColorsHasCorrectValues() {
+		XCTAssertNotNil(sut.logIn().layer)
+	}
 }
