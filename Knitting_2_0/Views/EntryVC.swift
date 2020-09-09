@@ -9,10 +9,23 @@
 import UIKit
 
 class EntryVC: UIViewController {
+	
+	private var logoIcon				= UIImageView()
+	private var signUpButton			= UIButton()
+	private var logInButton				= UIButton()
 
+	private var viewModel : EntryVM! {
+		didSet {
+			self.logoIcon				= viewModel.logoIcon()
+			self.signUpButton			= viewModel.signUp()
+			self.logInButton		 	= viewModel.logIn()
+		}
+	}
+	
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+		view.backgroundColor			= .white
+		viewModel 						= EntryVM()
+		viewModel.setUpLayout(toView: view)
     }
 }

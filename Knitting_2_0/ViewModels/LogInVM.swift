@@ -189,7 +189,7 @@ class LogInVM {
 		return passwordTextField
 	}
 	
-	func signUp()			-> UIButton {
+	func logIn()			-> UIButton {
 		return logInButton
 	}
 	

@@ -178,9 +178,9 @@
 		99AFBA6A24F8103600E71FD6 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				996FAF2B2508245D00209228 /* EntryVM.swift */,
 				99AFBA6F24F8121D00E71FD6 /* RegistrationVM.swift */,
 				99B206732504DDF700FA6C50 /* LogInVM.swift */,
-				996FAF2B2508245D00209228 /* EntryVM.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -232,9 +232,9 @@
 		99AFBA7624F8198900E71FD6 /* ViewTests */ = {
 			isa = PBXGroup;
 			children = (
+				996FAF2D2508249400209228 /* EntryVCTests.swift */,
 				99B206752504DF3800FA6C50 /* LogInVCTests.swift */,
 				99AFBA7724F819A100E71FD6 /* RegistrationVCTests.swift */,
-				996FAF2D2508249400209228 /* EntryVCTests.swift */,
 			);
 			path = ViewTests;
 			sourceTree = "<group>";

@@ -110,41 +110,41 @@ class LogInVMTests: XCTestCase {
 		
 	//MARK: Buttons Tests
 	func testRegistrationVMContainsCorrectButtons() {
-		XCTAssertNotNil(sut.signUp())
+		XCTAssertNotNil(sut.logIn())
 	}
 	
 	func testButtonsTypeIsCorrect() {
-		XCTAssertEqual(sut.signUp().buttonType,						.system)
+		XCTAssertEqual(sut.logIn().buttonType,						.system)
 		XCTAssertEqual(sut.questionBtn().buttonType, 				.system)
 	}
 	
 	func testButtonFontsHasCorrectValues() {
-		XCTAssertEqual(sut.signUp().titleLabel?.font, 				Fonts.titleButton)
+		XCTAssertEqual(sut.logIn().titleLabel?.font, 				Fonts.titleButton)
 		XCTAssertEqual(sut.questionBtn().titleLabel?.font,			Fonts.question)
 	}
 	
 	func testButtonsCornerRadiusHasCorrectValues() {
-		XCTAssertEqual(sut.signUp().layer.cornerRadius, 			CornerRadius.forButton)
+		XCTAssertEqual(sut.logIn().layer.cornerRadius, 			CornerRadius.forButton)
 		XCTAssertEqual(sut.questionBtn().layer.cornerRadius,		0)
 	}
 	
 	func testButtonsLayeerMaskToBoundsEquealTrue() {
-		XCTAssertTrue(sut.signUp().layer.masksToBounds)
+		XCTAssertTrue(sut.logIn().layer.masksToBounds)
 		XCTAssertTrue(sut.questionBtn().layer.masksToBounds)
 	}
 	
 	func testButtonsTitlesHasCorrectValues() {
-		XCTAssertEqual(sut.signUp().titleLabel?.text, 				Placeholder.titleForLogIn)
+		XCTAssertEqual(sut.logIn().titleLabel?.text, 				Placeholder.titleForLogIn)
 		XCTAssertEqual(sut.questionBtn().titleLabel?.text,			Placeholder.questionToRegistrBtn)
 	}
 	
 	func testButtonsTitlesColorHasCorrectValues() {
-		XCTAssertEqual(sut.signUp().titleColor(for: .normal),		Colors.titleForButton)
+		XCTAssertEqual(sut.logIn().titleColor(for: .normal),		Colors.titleForButton)
 		XCTAssertEqual(sut.questionBtn().titleColor(for: .normal),	Colors.questionButton)
 	}
 	
 	func testButtonsBackGroundColorsHasCorrectValues() {
-		XCTAssertNotNil(sut.signUp().layer)
+		XCTAssertNotNil(sut.logIn().layer)
 	}
 		
 	//MARK: Label Tests

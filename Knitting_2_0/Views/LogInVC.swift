@@ -22,7 +22,7 @@ class LogInVC: UIViewController {
 			self.logoIcon				= viewModel.logoIcon()
 			self.emailTextField			= viewModel.email()
 			self.passwordTextField		= viewModel.password()
-			self.logInButton		 	= viewModel.signUp()
+			self.logInButton		 	= viewModel.logIn()
 			self.questionToRegButton	= viewModel.questionBtn()
 			self.questionToRegLabel		= viewModel.questionLbl()
 		}
