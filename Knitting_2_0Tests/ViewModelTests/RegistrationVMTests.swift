@@ -25,7 +25,7 @@ class RegistrationVMTests: XCTestCase {
 		super.tearDown()
     }
 
-//MARK: Logo Icon Tests
+//MARK: Logo Icon TESTS
     func testEntryVMContainsLogoIconView() {
         XCTAssertNotNil(sut.logoIcon)
     }
@@ -39,7 +39,7 @@ class RegistrationVMTests: XCTestCase {
 		XCTAssertEqual(sut.logoIcon().frame.height,				154.89)
 	}
 	
-//MARK: TextFields Tests
+//MARK: TextFields TESTS
 	func testRegistrtionVMContainsCorrectTextFields() {
         XCTAssertNotNil(sut.nickname())
 		XCTAssertNotNil(sut.email())
@@ -123,7 +123,7 @@ class RegistrationVMTests: XCTestCase {
 		XCTAssertEqual(sut.password().leftViewMode,					.always)
 	}
 	
-//MARK: Buttons Tests
+//MARK: Buttons TESTS
 	func testRegistrationVMContainsCorrectButtons() {
 		XCTAssertNotNil(sut.signUp())
 	}
@@ -162,7 +162,7 @@ class RegistrationVMTests: XCTestCase {
 		XCTAssertNotNil(sut.signUp().layer)
 	}
 	
-//MARK: Label Tests	
+//MARK: Label TESTS
 	func testRegistrationVMContainsCorrectLabels() {
 		XCTAssertNotNil(sut.questionLbl())
 	}

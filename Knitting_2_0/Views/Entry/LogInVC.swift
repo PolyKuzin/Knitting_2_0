@@ -32,8 +32,21 @@ class LogInVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		view.backgroundColor			= .white
+		
+		let tap : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyBoard))
+		view.addGestureRecognizer(tap)
+		
 		viewModel 						= LogInVM()
 		setUpLayout()
+    }
+}
+
+//MARK: Dismiss KeyBoard
+extension LogInVC {
+		
+    @objc
+    private func dismissKeyBoard() {
+        view.endEditing(true)
     }
 }
 

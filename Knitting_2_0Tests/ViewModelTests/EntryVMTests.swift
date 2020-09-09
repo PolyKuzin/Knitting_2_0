@@ -25,7 +25,7 @@ class EntryVMTests: XCTestCase {
 		super.tearDown()
     }
 	
-	//MARK: Logo Icon Tests
+	//MARK: Logo Icon TESTS
     func testEntryVMContainsLogoIconView() {
         XCTAssertNotNil(sut.logoIcon)
     }
@@ -39,7 +39,7 @@ class EntryVMTests: XCTestCase {
 		XCTAssertEqual(sut.logoIcon().frame.height,					154.89)
 	}
 	
-	//MARK: Buttons Tests
+	//MARK: Buttons TESTS
 	func testRegistrationVMContainsCorrectButtons() {
 		XCTAssertNotNil(sut.signUp())
 		XCTAssertNotNil(sut.logIn())

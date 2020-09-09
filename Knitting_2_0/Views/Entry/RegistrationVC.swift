@@ -36,7 +36,19 @@ class RegistrationVC	: UIViewController {
 		view.backgroundColor			= .white
 		viewModel 						= RegistrationVM()
 		setUpLayout()
+		
+		let tap : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyBoard))
+		view.addGestureRecognizer(tap)
 	}
+}
+
+//MARK: Dismiss KeyBoard
+extension RegistrationVC {
+		
+    @objc
+    private func dismissKeyBoard() {
+        view.endEditing(true)
+    }
 }
 
 //MARK: Navigation
@@ -67,7 +79,7 @@ extension RegistrationVC {
         topImageConteinerView.addSubview(logoIcon)
         logoIcon.translatesAutoresizingMaskIntoConstraints															= false
         logoIcon.centerXAnchor.constraint(equalTo: topImageConteinerView.centerXAnchor, constant: -10).isActive		= true
-        logoIcon.centerYAnchor.constraint(equalTo: topImageConteinerView.centerYAnchor).isActive					= true
+        logoIcon.centerYAnchor.constraint(equalTo: topImageConteinerView.centerYAnchor, constant: 10).isActive		= true
 		logoIcon.heightAnchor.constraint(lessThanOrEqualToConstant: 154.89).isActive								= true
 		logoIcon.widthAnchor.constraint(lessThanOrEqualToConstant: 129.39).isActive									= true
 

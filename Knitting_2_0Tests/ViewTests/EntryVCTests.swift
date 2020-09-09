@@ -7,27 +7,70 @@
 //
 
 import XCTest
+@testable import Knitting_2_0
 
 class EntryVCTests: XCTestCase {
+	
+	var sut : EntryVC!
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
+        sut				= EntryVC()
+        
+        sut.loadViewIfNeeded()
+	}
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
+		super.tearDown()
+	}
+	//MARK: Background Color Is white
+	func testBackGroundColorIsWhite(){
+        sut.loadViewIfNeeded()
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
+		XCTAssertEqual(sut.view.backgroundColor, .white)
+	}
+	
+//	//MARK: Constraints TESTS
+//	func test() {
+//
+//	}
+//
+//	//MARK: Navigation TESTS
+//	func testNextViewButton_WhenTapped_SecondViewControllerIsPushed2() throws {
+//		let keyWindow = UIApplication.shared.connectedScenes
+//        .filter({$0.activationState == .foregroundActive})
+//        .map({$0 as? UIWindowScene})
+//        .compactMap({$0})
+//        .first?.windows
+//        .filter({$0.isKeyWindow}).first
+//
+//		let mockNavigationCotroller		= MockNavigationController(rootViewController: sut)
+//		keyWindow?.rootViewController	= mockNavigationCotroller
+//
+//		sut.loadViewIfNeeded()
+//
+//		guard let signUpVC = mockNavigationCotroller.pushedViewController as? RegistrationVC else {
+//			XCTFail()
+//			return
+//		}
+//
+//		sut.signUpButton.sendActions(for: .touchUpInside)
+//
+//		signUpVC.loadViewIfNeeded()
+//
+//		XCTAssertNotNil(signUpVC.logoIcon)
+//		XCTAssertEqual(signUpVC.logoIcon.image, Icons.logoIcon)
+//	}
 }
+//
+//extension EntryVCTests {
+//	
+//	class MockNavigationController	: UINavigationController {
+//		var pushedViewController	: UIViewController?
+//		
+//		override func pushViewController(_ viewController: UIViewController, animated: Bool) {
+//			pushedViewController = viewController
+//			super.pushViewController(viewController, animated: animated)
+//		}
+//	}
+//}

@@ -14,9 +14,7 @@ class LogInVCTests: XCTestCase {
 	var sut : LogInVC!
 
     override func setUpWithError() throws {
-		let storyboard	= UIStoryboard(name: "Entry", bundle: nil)
-        let vc			= storyboard.instantiateViewController(withIdentifier: String(describing: RegistrationVC.self))
-        sut				= vc as? LogInVC
+        sut				= LogInVC()
         
         sut.loadViewIfNeeded()    }
 
@@ -24,4 +22,6 @@ class LogInVCTests: XCTestCase {
 
 		super.tearDown()
 	}
+	
+
 }
