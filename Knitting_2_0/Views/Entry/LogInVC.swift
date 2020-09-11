@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class LogInVC: UIViewController {
 
@@ -14,6 +15,7 @@ class LogInVC: UIViewController {
 	private var emailTextField			= UITextField()
 	private var passwordTextField		= UITextField()
 	private var forgotPass				= UIButton()
+	private var warning					= UILabel()
 	private var logInButton				= UIButton()
 	private var questionToRegButton		= UIButton()
 	private var questionToRegLabel		= UILabel()
@@ -24,9 +26,11 @@ class LogInVC: UIViewController {
 			self.emailTextField			= viewModel.email()
 			self.passwordTextField		= viewModel.password()
 			self.forgotPass				= viewModel.forgotPassword()
+			self.warning				= viewModel.warnig()
 			self.logInButton		 	= viewModel.logIn()
 			self.questionToRegButton	= viewModel.questionBtn()
 			self.questionToRegLabel		= viewModel.questionLbl()
+			logInButton.addTarget(self, action: #selector(logInTapped), for: .touchUpInside)
 			questionToRegButton.addTarget(self, action: #selector(pushSignUpVC), for: .touchUpInside)
 		}
 	}
@@ -41,6 +45,78 @@ class LogInVC: UIViewController {
     }
 }
 
+//MARK: Lon In Tapped
+extension LogInVC {
+	
+	@objc
+	func logInTapped() {
+		let error = validateFields()
+				
+		if error != nil { showError(error!) }
+		else {
+			let email		= emailTextField.text!.trimmingCharacters	(in: .whitespacesAndNewlines)
+			let password	= passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+			Auth.auth().signIn(withEmail: email, password: password) { (user, err) in
+				
+				if let error = err as NSError? {
+					
+				  switch AuthErrorCode(rawValue: error.code) {
+				  case .operationNotAllowed:
+					self.setErrorDesign("E-mail and password accounts are not enabled.")
+				  case .userDisabled:
+					self.setErrorDesign("The user account has been disabled by an administrator.")
+				  case .wrongPassword:
+					self.setErrorDesign("The password is invalid or the user does not have a password.")
+				  case .invalidEmail:
+					self.setErrorDesign("The email address is malformed.")
+				  default:
+					self.setErrorDesign(error.localizedDescription)
+				  }
+				} else {
+					self.pushMainVC()
+
+				}
+			}
+		}
+		dismissKeyBoard()
+	}
+}
+
+//MARK: Error handling
+extension LogInVC {
+	
+    func validateFields() -> String? {
+        if emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)	== "" ||
+        passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
+            return "Please fill in all the fields"
+        }
+        return nil
+    }
+	
+    func showError(_ message: String) {
+        warning.isHidden		= false
+        warning.text			= message
+        warning.alpha			= 1
+    }
+	
+	func setErrorDesign(_ description: String) {
+		passwordTextField.backgroundColor      = Colors.errorTextField
+		passwordTextField.layer.borderColor    = Colors.errorTextFieldBorder.cgColor
+		passwordTextField.textColor            = Colors.errorTextFieldBorder
+		emailTextField.backgroundColor         = Colors.errorTextField
+		emailTextField.layer.borderColor       = Colors.errorTextFieldBorder.cgColor
+		emailTextField.textColor               = Colors.errorTextFieldBorder
+							
+//TODO: ErrorHandling; + methods to specify the errors in the UI
+		showError(description)
+		
+		emailTextField.shakeAnimation()
+		passwordTextField.shakeAnimation()
+		forgotPass.shakeAnimation()
+		logInButton.shakeAnimation()
+	}
+}
+
 //MARK: Dismiss KeyBoard
 extension LogInVC {
 		
@@ -52,11 +128,17 @@ extension LogInVC {
 
 //MARK: Navigation
 extension LogInVC {
+	
 	@objc
 	func pushSignUpVC() {
 		let vc = RegistrationVC()
 		guard let navigationController = navigationController else { return }
 		navigationController.pushViewController(vc, animated: true)
+	}
+	
+	func pushMainVC() {
+		let vc = MainVC()
+		self.navigationController?.pushViewController(vc, animated: true)
 	}
 }
 
@@ -104,6 +186,15 @@ extension LogInVC {
 		forgotPass.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 8).isActive				= true
 		forgotPass.heightAnchor.constraint(equalToConstant: 17).isActive											= true
 		forgotPass.leadingAnchor.constraint(lessThanOrEqualTo: view.centerXAnchor).isActive							= true
+		
+		//A palce for warning label
+		view.addSubview(warning)
+		warning.isHidden																							= true
+		warning.translatesAutoresizingMaskIntoConstraints															= false
+		warning.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive						= true
+		warning.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 8).isActive					= true
+		warning.heightAnchor.constraint(greaterThanOrEqualToConstant: 17).isActive									= true
+		warning.trailingAnchor.constraint(lessThanOrEqualTo: view.centerXAnchor).isActive							= true
 		
 		//A place for question Label And Question Button
 		let bottomLicensSV			= UIStackView(arrangedSubviews: [questionToRegLabel, questionToRegButton])

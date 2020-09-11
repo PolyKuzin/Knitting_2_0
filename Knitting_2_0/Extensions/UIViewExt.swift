@@ -8,6 +8,7 @@
 
 import UIKit
 
+//Gradient backGround color
 extension UIView {
     
     func setGradientBackground(colorOne: UIColor, colorTwo: UIColor) {
@@ -19,6 +20,24 @@ extension UIView {
         gradientLayer.colors		= [colorOne.cgColor, colorTwo.cgColor]
         layer.insertSublayer(gradientLayer, at: 0)
     }
+}
+
+//Animation For Errors
+extension UIView {
+	
+	func shakeAnimation(){
+		let shake		= CABasicAnimation(keyPath: "position")
+		let fromPoint	= CGPoint(x: center.x - 5, y: center.y)
+		let fromValue	= NSValue(cgPoint: fromPoint)
+		let toPoint		= CGPoint(x: center.x + 5, y: center.y)
+		let toValue		= NSValue(cgPoint: toPoint)
+		shake.duration	= 0.1
+		shake.repeatCount = 2
+		shake.autoreverses = true
+		shake.fromValue = fromValue
+		shake.toValue = toValue
+		layer.add(shake, forKey: "position")
+	}
 }
 
 //extension UIView {	

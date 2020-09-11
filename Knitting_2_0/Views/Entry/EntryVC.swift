@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class EntryVC: UIViewController {
 	
@@ -30,6 +31,13 @@ class EntryVC: UIViewController {
 		viewModel 						= EntryVM()
 		setUpLayout()
     }
+	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		Auth.auth().addStateDidChangeListener { (auth, user) in
+//			if user != nil { self.pushMainVC() }
+		}
+	}
 }
 
 //MARK: Navigation
@@ -47,6 +55,11 @@ extension EntryVC {
 		let vc = RegistrationVC()
 		guard let navigationController = navigationController else { return }
 		navigationController.pushViewController(vc, animated: true)
+	}
+	
+	func pushMainVC() {
+		let vc = MainVC()
+		self.navigationController?.pushViewController(vc, animated: true)
 	}
 }
 

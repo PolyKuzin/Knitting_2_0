@@ -7,13 +7,21 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
+import FirebaseDatabase
+import FirebaseFirestore
 
 class RegistrationVC	: UIViewController {
+	
+	private var ref: DatabaseReference!
+
 	
 	private var logoIcon				= UIImageView()
 	private var nicknameTextField		= UITextField()
 	private var emailTextField			= UITextField()
 	private var passwordTextField		= UITextField()
+	private var warning					= UILabel()
 	private var signUpButton			= UIButton()
 	private var questionToLogInButton	= UIButton()
 	private var questionToLogInLabel	= UILabel()
@@ -24,10 +32,12 @@ class RegistrationVC	: UIViewController {
 			self.nicknameTextField		= viewModel.nickname()
 			self.emailTextField			= viewModel.email()
 			self.passwordTextField		= viewModel.password()
+			self.warning				= viewModel.warning()
 			self.signUpButton 			= viewModel.signUp()
 			self.questionToLogInButton	= viewModel.questionBtn()
 			self.questionToLogInLabel	= viewModel.questionLbl()
-			questionToLogInButton.addTarget(self, action: #selector(pushLogInVC), for: .touchUpInside)
+			signUpButton.addTarget			(self, action: #selector(signUpTapped), for: .touchUpInside)
+			questionToLogInButton.addTarget	(self, action: #selector(pushLogInVC), for: .touchUpInside)
 		}
 	}
 	
@@ -36,10 +46,86 @@ class RegistrationVC	: UIViewController {
 		view.backgroundColor			= .white
 		viewModel 						= RegistrationVM()
 		setUpLayout()
-		
+        ref = Database.database().reference(withPath: "users")
 		let tap : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyBoard))
 		view.addGestureRecognizer(tap)
 	}
+}
+
+extension RegistrationVC {
+	
+	@objc
+	func signUpTapped() {
+		let error = validateFields()
+		if error != nil {  } else {
+			//Create cleaned versions of the data
+			guard let nickname	= nicknameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
+			guard let email		= emailTextField.text?.trimmingCharacters	(in: .whitespacesAndNewlines) else { return }
+			guard let password	= passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
+
+			let db = Firestore.firestore()
+			db.collection("users").addDocument(data: ["nickname"	: nickname,
+													  "email"		: email]) { (error) in
+				if error != nil { self.showError("Error saving user data") }
+			}
+				Auth.auth().createUser(withEmail: email, password: password) {[weak self] (user, err) in
+					if let error = err as NSError? {
+					  switch AuthErrorCode(rawValue: error.code) {
+					  case .operationNotAllowed:
+						self?.showError("The operation is disabled right now. Try again later")
+					  case .emailAlreadyInUse:
+						self?.showError("The email address is already in use by another account.")
+					  case .invalidEmail:
+						self?.showError("The email address is badly formatted")
+					  case .weakPassword:
+						self?.showError("The password must be 6 characters long or more")
+					  default:
+						self?.showError(error.localizedDescription)
+					  }
+					} else {
+						print("User signs up successfully")
+						guard let userRef = self?.ref.child((user?.user.uid)!) else { return }
+						userRef.setValue(["email":user!.user.email])
+						self?.pushMainVC()
+					}
+				}
+			}
+		dismissKeyBoard()
+	}
+	
+    func validateFields() -> String? {
+        
+        //check that fields are filled in
+        if nicknameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)     == "" ||
+        emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)            == "" ||
+        passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)         == "" {
+            return "Please fill in all fields"
+        }
+		return nil
+	}
+		
+	func showError(_ message: String) {
+			
+		signUpButton.shakeAnimation		()
+		nicknameTextField.shakeAnimation()
+		emailTextField.shakeAnimation	()
+		passwordTextField.shakeAnimation()
+		signUpButton.shakeAnimation		()
+		warning.text		= message
+		warning.alpha		= 1
+		warning.isHidden	= false
+	}
+}
+
+//MARK: AUTH
+extension RegistrationVC {
+    func authitication() {
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            if user != nil {
+                self.performSegue(withIdentifier: "LogInSegue", sender: nil)
+            }
+        }
+    }
 }
 
 //MARK: Dismiss KeyBoard
@@ -59,6 +145,11 @@ extension RegistrationVC {
 		let vc = LogInVC()
 		guard let navigationController = navigationController else { return }
 		navigationController.pushViewController(vc, animated: true)
+	}
+	
+	func pushMainVC() {
+		let vc = MainVC()
+		self.navigationController?.pushViewController(vc, animated: true)
 	}
 }
 
@@ -108,24 +199,33 @@ extension RegistrationVC {
 		passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive				= true
 		passwordTextField.heightAnchor.constraint(equalToConstant: 62).isActive 									= true
 		
+		//A palce for warning label
+		view.addSubview(warning)
+		warning.isHidden																							= true
+		warning.translatesAutoresizingMaskIntoConstraints															= false
+		warning.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive						= true
+		warning.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 8).isActive					= true
+		warning.heightAnchor.constraint(greaterThanOrEqualToConstant: 17).isActive									= true
+		warning.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -16).isActive			= true
+		
 		//A place for question Label And Question Button
 		let bottomLicensSV			= UIStackView(arrangedSubviews: [questionToLogInLabel, questionToLogInButton])
 		bottomLicensSV.distribution = .fill
 
         view.addSubview(bottomLicensSV)
-        bottomLicensSV.translatesAutoresizingMaskIntoConstraints														= false
-		bottomLicensSV.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40).isActive						= true
-		bottomLicensSV.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive									= true
-		bottomLicensSV.trailingAnchor.constraint(greaterThanOrEqualTo: view.trailingAnchor, constant: -16).isActive		= true
-		bottomLicensSV.heightAnchor.constraint(equalToConstant: 50).isActive											= true
+        bottomLicensSV.translatesAutoresizingMaskIntoConstraints													= false
+		bottomLicensSV.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40).isActive					= true
+		bottomLicensSV.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive								= true
+		bottomLicensSV.trailingAnchor.constraint(greaterThanOrEqualTo: view.trailingAnchor, constant: -16).isActive	= true
+		bottomLicensSV.heightAnchor.constraint(equalToConstant: 50).isActive										= true
 		
 		//A place for registration buttom
 		view.addSubview(signUpButton)
-		signUpButton.translatesAutoresizingMaskIntoConstraints															= false
-		signUpButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive										= true
-		signUpButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive					= true
-		signUpButton.bottomAnchor.constraint(equalTo: bottomLicensSV.topAnchor, constant: -20).isActive					= true
-		signUpButton.heightAnchor.constraint(equalToConstant: 50).isActive												= true
+		signUpButton.translatesAutoresizingMaskIntoConstraints														= false
+		signUpButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive									= true
+		signUpButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive				= true
+		signUpButton.bottomAnchor.constraint(equalTo: bottomLicensSV.topAnchor, constant: -20).isActive				= true
+		signUpButton.heightAnchor.constraint(equalToConstant: 50).isActive											= true
 		
 		//Button alignment
 		questionToLogInButton.translatesAutoresizingMaskIntoConstraints													= false

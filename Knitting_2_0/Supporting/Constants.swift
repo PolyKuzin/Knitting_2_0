@@ -29,14 +29,21 @@ struct CornerRadius {
 
 struct Colors {
 	
+	//Normal
 	static let normalTextField			= UIColor(red: 0.949, green: 0.949, blue: 0.969, alpha: 1)
 	static let normalBorderTextField	= UIColor(red: 0.82,  green: 0.82,  blue: 0.839, alpha: 1)
 	static let backgroundUpButton		= UIColor(red: 0.584, green: 0.475, blue: 0.820, alpha: 1)
 	static let backgroundDownButton		= UIColor(red: 0.745, green: 0.616, blue: 0.875, alpha: 1)
 	static let borderButton				= UIColor(red: 0.265, green: 0.102, blue: 0.613, alpha: 1)
 	static let questionText				= UIColor(red: 0.621, green: 0.621, blue: 0.621, alpha: 1)
+    static let someErrorHappend			= UIColor(red: 0.962, green: 0.188, blue: 0.467, alpha: 1)
+
 	static let titleForButton			= UIColor.white
 	static let questionButton			= UIColor.black
+	
+	//Errors
+    static let errorTextField			= UIColor(red: 1,	  green: 0.954, blue: 0.976, alpha: 1)
+    static let errorTextFieldBorder		= UIColor(red: 0.962, green: 0.188, blue: 0.467, alpha: 1)
 }
 
 struct Placeholder {
@@ -46,7 +53,9 @@ struct Placeholder {
 	static let passwordRegistration 	= "Create a password"
 	static let passwordLogIn			= "Enter your password"
 	
-	static let forgotPass				= "Forgot your password?"
+	static let forgotPass				= "Forgot your password?" // to test
+	static let fillInTheFields			= "Please fill in all fields" // to test
+
 	
 	static let titleForSingUp			= "Sing up"
 	static let titleForLogIn			= "Log in"
@@ -63,8 +72,11 @@ struct Fonts {
 	static let displayMedium22			= UIFont(name: "SFProDisplay-Medium",	size: 22)
 	static let displaySemibold22		= UIFont(name: "SFProDisplay-Semibold", size: 22)
 	static let textRegular17			= UIFont(name: "SFProText-Regular", 	size: 17)
+	
+	static let textRegular14			= UIFont(name: "SFProText-Regular", 	size: 14) // to test
+
 	static let textSemibold17			= UIFont(name: "SFProText-Semibold",	size: 17)
 	
-	static let textSemibold14			= UIFont(name: "SFProText-Semibold",	size: 14)
+	static let textSemibold14			= UIFont(name: "SFProText-Semibold",	size: 14) // to test
 
 }

@@ -13,6 +13,7 @@ protocol LogInComposition {
 	func email() 			-> UITextField
 	func password() 		-> UITextField
 	func forgotPassword()	-> UIButton
+	func warnig()			-> UILabel
 	func logIn()			-> UIButton
 	func questionLbl()		-> UILabel
 	func questionBtn()		-> UIButton
@@ -94,6 +95,19 @@ class LogInVM	: LogInComposition {
 			return button
 		}()
 	
+	private lazy var warningLabel		: UILabel = {
+		let label 						= UILabel(frame: CGRect(x: 0,
+																y: 0,
+																width: 180,
+																height: 20))
+		label.font						= Fonts.textRegular14
+		label.textColor					= Colors.someErrorHappend
+		label.numberOfLines				= 0
+		label.textAlignment				= .right
+		
+		return label
+	}()
+	
 	private lazy var logInButton		: UIButton = {
 		let button						= UIButton(type: .system)
 		button.frame 					= CGRect(x: 0, y: 0, width: 500, height: 50)
@@ -158,6 +172,10 @@ class LogInVM	: LogInComposition {
 	}
 	func questionBtn()		-> UIButton {
 		return questionButton
+	}
+	
+	func warnig() -> UILabel {
+		return warningLabel
 	}
 	
 //    func authitication() {

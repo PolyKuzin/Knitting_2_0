@@ -98,6 +98,19 @@ class RegistrationVM {
 		return textField
 	}()
 	
+	private lazy var warningLabel		: UILabel = {
+		let label 						= UILabel(frame: CGRect(x: 0,
+																y: 0,
+																width: 180,
+																height: 20))
+		label.font						= Fonts.textRegular14
+		label.textColor					= Colors.someErrorHappend
+		label.numberOfLines				= 0
+		label.textAlignment				= .right
+		
+		return label
+	}()
+	
 	private lazy var signUpButton		: UIButton = {
 		let button						= UIButton(type: .system)
 		button.frame 					= CGRect(x: 0, y: 0, width: 500, height: 50)
@@ -137,31 +150,35 @@ class RegistrationVM {
         return button
 	}()
 	
-	func logoIcon()			-> UIImageView {
+	func logoIcon()			-> UIImageView	{
 		return logoIconView
 	}
 	
-	func nickname() 		-> UITextField {
+	func nickname() 		-> UITextField	{
 		return nicknameTextField
 	}
 	
-	func email() 			-> UITextField {
+	func email() 			-> UITextField	{
 		return emailTextField
 	}
 	
-	func password() 		-> UITextField {
+	func password() 		-> UITextField	{
 		return passwordTextField
 	}
 	
-	func signUp()			-> UIButton {
+	func warning()			-> UILabel		{
+		return warningLabel
+	}
+	
+	func signUp()			-> UIButton		{
 		return signUpButton
 	}
 	
-	func questionLbl()		-> UILabel {
+	func questionLbl()		-> UILabel		{
 		return questionLabel
 	}
 	
-	func questionBtn()		-> UIButton {
+	func questionBtn()		-> UIButton		{
 		return questionButton
 	}
 }
