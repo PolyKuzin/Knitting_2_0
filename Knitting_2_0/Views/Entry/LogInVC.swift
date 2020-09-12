@@ -20,7 +20,7 @@ class LogInVC: UIViewController {
 	private var questionToRegButton		= UIButton()
 	private var questionToRegLabel		= UILabel()
 	
-	private var viewModel : LogInVM! {
+	private var viewModel				: LogInVM! {
 		didSet {
 			self.logoIcon				= viewModel.logoIcon()
 			self.emailTextField			= viewModel.email()
@@ -30,8 +30,9 @@ class LogInVC: UIViewController {
 			self.logInButton		 	= viewModel.logIn()
 			self.questionToRegButton	= viewModel.questionBtn()
 			self.questionToRegLabel		= viewModel.questionLbl()
-			logInButton.addTarget(self, action: #selector(logInTapped), for: .touchUpInside)
-			questionToRegButton.addTarget(self, action: #selector(pushSignUpVC), for: .touchUpInside)
+			forgotPass.addTarget			(self, action: #selector(pushForgotPassVC), for: .touchUpInside)
+			logInButton.addTarget			(self, action: #selector(logInTapped), for: .touchUpInside)
+			questionToRegButton.addTarget	(self, action: #selector(pushSignUpVC), for: .touchUpInside)
 		}
 	}
 	
@@ -51,15 +52,12 @@ extension LogInVC {
 	@objc
 	func logInTapped() {
 		let error = validateFields()
-				
 		if error != nil { showError(error!) }
 		else {
 			let email		= emailTextField.text!.trimmingCharacters	(in: .whitespacesAndNewlines)
 			let password	= passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
 			Auth.auth().signIn(withEmail: email, password: password) { (user, err) in
-				
 				if let error = err as NSError? {
-					
 				  switch AuthErrorCode(rawValue: error.code) {
 				  case .operationNotAllowed:
 					self.setErrorDesign("E-mail and password accounts are not enabled.")
@@ -74,7 +72,6 @@ extension LogInVC {
 				  }
 				} else {
 					self.pushMainVC()
-
 				}
 			}
 		}
@@ -128,6 +125,12 @@ extension LogInVC {
 
 //MARK: Navigation
 extension LogInVC {
+	
+	@objc
+	func pushForgotPassVC() {
+		let vc = ForgotPassVC()
+		self.navigationController?.pushViewController(vc, animated: true)
+	}
 	
 	@objc
 	func pushSignUpVC() {

@@ -10,13 +10,17 @@
 		1310C4F491031D53BD835BDE /* Pods_Knitting_2_0Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3557FE70DD594785E40DB604 /* Pods_Knitting_2_0Tests.framework */; };
 		9905ABE225024F5A0055B138 /* SF-Pro-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9905ABE125024F5A0055B138 /* SF-Pro-Text-Semibold.otf */; };
 		9905ABE4250254B80055B138 /* SF-Pro-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9905ABE3250254B80055B138 /* SF-Pro-Text-Regular.otf */; };
-		9959471E250A582B00D0E273 /* MUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9959471D250A582B00D0E273 /* MUser.swift */; };
+		9959471E250A582B00D0E273 /* MUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9959471D250A582B00D0E273 /* MUsers.swift */; };
 		99594720250AD91F00D0E273 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9959471F250AD91F00D0E273 /* MainVC.swift */; };
 		996FAF2C2508245D00209228 /* EntryVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996FAF2B2508245D00209228 /* EntryVM.swift */; };
 		996FAF2E2508249400209228 /* EntryVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996FAF2D2508249400209228 /* EntryVCTests.swift */; };
 		996FAF30250824A300209228 /* EntryVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996FAF2F250824A300209228 /* EntryVMTests.swift */; };
 		996FAF322508FB6D00209228 /* SF-Pro-Display-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 996FAF312508FB6C00209228 /* SF-Pro-Display-Semibold.otf */; };
 		998B9F85250BCAFA00C0C52F /* UIWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B9F84250BCAFA00C0C52F /* UIWindow.swift */; };
+		998B9F87250C1E2B00C0C52F /* MainVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B9F86250C1E2B00C0C52F /* MainVM.swift */; };
+		998B9F89250C255600C0C52F /* MProjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B9F88250C255600C0C52F /* MProjects.swift */; };
+		998B9F8B250C2FA100C0C52F /* ForgotPassVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B9F8A250C2FA100C0C52F /* ForgotPassVC.swift */; };
+		998B9F8D250C2FBB00C0C52F /* ForgotPassVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B9F8C250C2FBB00C0C52F /* ForgotPassVM.swift */; };
 		99AFBA4724F80D9E00E71FD6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AFBA4624F80D9E00E71FD6 /* AppDelegate.swift */; };
 		99AFBA4924F80D9E00E71FD6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AFBA4824F80D9E00E71FD6 /* SceneDelegate.swift */; };
 		99AFBA4B24F80D9E00E71FD6 /* RegistrationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AFBA4A24F80D9E00E71FD6 /* RegistrationVC.swift */; };
@@ -55,13 +59,17 @@
 		8257CCB6BAEED5BDB6953A6E /* Pods-Knitting_2_0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Knitting_2_0.release.xcconfig"; path = "Target Support Files/Pods-Knitting_2_0/Pods-Knitting_2_0.release.xcconfig"; sourceTree = "<group>"; };
 		9905ABE125024F5A0055B138 /* SF-Pro-Text-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Semibold.otf"; sourceTree = "<group>"; };
 		9905ABE3250254B80055B138 /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
-		9959471D250A582B00D0E273 /* MUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MUser.swift; sourceTree = "<group>"; };
+		9959471D250A582B00D0E273 /* MUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MUsers.swift; sourceTree = "<group>"; };
 		9959471F250AD91F00D0E273 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		996FAF2B2508245D00209228 /* EntryVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryVM.swift; sourceTree = "<group>"; };
 		996FAF2D2508249400209228 /* EntryVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryVCTests.swift; sourceTree = "<group>"; };
 		996FAF2F250824A300209228 /* EntryVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryVMTests.swift; sourceTree = "<group>"; };
 		996FAF312508FB6C00209228 /* SF-Pro-Display-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Semibold.otf"; sourceTree = "<group>"; };
 		998B9F84250BCAFA00C0C52F /* UIWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindow.swift; sourceTree = "<group>"; };
+		998B9F86250C1E2B00C0C52F /* MainVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVM.swift; sourceTree = "<group>"; };
+		998B9F88250C255600C0C52F /* MProjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MProjects.swift; sourceTree = "<group>"; };
+		998B9F8A250C2FA100C0C52F /* ForgotPassVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPassVC.swift; sourceTree = "<group>"; };
+		998B9F8C250C2FBB00C0C52F /* ForgotPassVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPassVM.swift; sourceTree = "<group>"; };
 		99AFBA4324F80D9E00E71FD6 /* Knitting_2_0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Knitting_2_0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99AFBA4624F80D9E00E71FD6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		99AFBA4824F80D9E00E71FD6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -126,6 +134,7 @@
 				99B206792504F10600FA6C50 /* EntryVC.swift */,
 				99B206712504DD8B00FA6C50 /* LogInVC.swift */,
 				99AFBA4A24F80D9E00E71FD6 /* RegistrationVC.swift */,
+				998B9F8A250C2FA100C0C52F /* ForgotPassVC.swift */,
 			);
 			path = Entry;
 			sourceTree = "<group>";
@@ -136,6 +145,7 @@
 				996FAF2B2508245D00209228 /* EntryVM.swift */,
 				99B206732504DDF700FA6C50 /* LogInVM.swift */,
 				99AFBA6F24F8121D00E71FD6 /* RegistrationVM.swift */,
+				998B9F8C250C2FBB00C0C52F /* ForgotPassVM.swift */,
 			);
 			path = Entry;
 			sourceTree = "<group>";
@@ -192,7 +202,8 @@
 		99AFBA6824F8101F00E71FD6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				9959471D250A582B00D0E273 /* MUser.swift */,
+				9959471D250A582B00D0E273 /* MUsers.swift */,
+				998B9F88250C255600C0C52F /* MProjects.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -210,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				996FAF342508FC9000209228 /* Entry */,
+				998B9F86250C1E2B00C0C52F /* MainVM.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -471,19 +483,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9959471E250A582B00D0E273 /* MUser.swift in Sources */,
+				9959471E250A582B00D0E273 /* MUsers.swift in Sources */,
+				998B9F89250C255600C0C52F /* MProjects.swift in Sources */,
 				99594720250AD91F00D0E273 /* MainVC.swift in Sources */,
 				99B509BC24FDB1D60046A2B1 /* UIViewExt.swift in Sources */,
 				99AFBA4B24F80D9E00E71FD6 /* RegistrationVC.swift in Sources */,
 				998B9F85250BCAFA00C0C52F /* UIWindow.swift in Sources */,
 				99AFBA7024F8121D00E71FD6 /* RegistrationVM.swift in Sources */,
 				99B2067A2504F10600FA6C50 /* EntryVC.swift in Sources */,
+				998B9F87250C1E2B00C0C52F /* MainVM.swift in Sources */,
 				99B206722504DD8B00FA6C50 /* LogInVC.swift in Sources */,
 				99B206742504DDF700FA6C50 /* LogInVM.swift in Sources */,
 				99AFBA4724F80D9E00E71FD6 /* AppDelegate.swift in Sources */,
 				996FAF2C2508245D00209228 /* EntryVM.swift in Sources */,
 				99AFBA4924F80D9E00E71FD6 /* SceneDelegate.swift in Sources */,
+				998B9F8B250C2FA100C0C52F /* ForgotPassVC.swift in Sources */,
 				99AFBA7A24F9667F00E71FD6 /* Constants.swift in Sources */,
+				998B9F8D250C2FBB00C0C52F /* ForgotPassVM.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

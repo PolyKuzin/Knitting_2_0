@@ -55,6 +55,7 @@ struct Placeholder {
 	
 	static let forgotPass				= "Forgot your password?" // to test
 	static let fillInTheFields			= "Please fill in all fields" // to test
+	static let resetPassword			= "Reset" // to test
 
 	
 	static let titleForSingUp			= "Sing up"

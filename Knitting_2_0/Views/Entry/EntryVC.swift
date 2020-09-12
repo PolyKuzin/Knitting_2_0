@@ -15,7 +15,7 @@ class EntryVC: UIViewController {
 	private var signUpButton			= UIButton()
 	private var logInButton				= UIButton()
 
-	private var viewModel : EntryVM! {
+	private var viewModel				: EntryVM! {
 		didSet {
 			self.logoIcon				= viewModel.logoIcon()
 			self.signUpButton			= viewModel.signUp()

@@ -14,9 +14,7 @@ import FirebaseFirestore
 
 class RegistrationVC	: UIViewController {
 	
-	private var ref: DatabaseReference!
-
-	
+	private var ref						: DatabaseReference!
 	private var logoIcon				= UIImageView()
 	private var nicknameTextField		= UITextField()
 	private var emailTextField			= UITextField()
@@ -26,16 +24,16 @@ class RegistrationVC	: UIViewController {
 	private var questionToLogInButton	= UIButton()
 	private var questionToLogInLabel	= UILabel()
 	
-	private var viewModel : RegistrationVM! {
+	private var viewModel				: RegistrationVM! {
 		didSet {
-			self.logoIcon				= viewModel.logoIcon()
-			self.nicknameTextField		= viewModel.nickname()
-			self.emailTextField			= viewModel.email()
-			self.passwordTextField		= viewModel.password()
-			self.warning				= viewModel.warning()
-			self.signUpButton 			= viewModel.signUp()
-			self.questionToLogInButton	= viewModel.questionBtn()
-			self.questionToLogInLabel	= viewModel.questionLbl()
+			self.logoIcon				= viewModel.logoIcon	()
+			self.nicknameTextField		= viewModel.nickname	()
+			self.emailTextField			= viewModel.email		()
+			self.passwordTextField		= viewModel.password	()
+			self.warning				= viewModel.warning		()
+			self.signUpButton 			= viewModel.signUp		()
+			self.questionToLogInButton	= viewModel.questionBtn	()
+			self.questionToLogInLabel	= viewModel.questionLbl	()
 			signUpButton.addTarget			(self, action: #selector(signUpTapped), for: .touchUpInside)
 			questionToLogInButton.addTarget	(self, action: #selector(pushLogInVC), for: .touchUpInside)
 		}
@@ -46,7 +44,7 @@ class RegistrationVC	: UIViewController {
 		view.backgroundColor			= .white
 		viewModel 						= RegistrationVM()
 		setUpLayout()
-        ref = Database.database().reference(withPath: "users")
+        ref								= Database.database().reference(withPath: "users")
 		let tap : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyBoard))
 		view.addGestureRecognizer(tap)
 	}
@@ -57,7 +55,7 @@ extension RegistrationVC {
 	@objc
 	func signUpTapped() {
 		let error = validateFields()
-		if error != nil {  } else {
+		if error != nil { showError(error!) } else {
 			//Create cleaned versions of the data
 			guard let nickname	= nicknameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
 			guard let email		= emailTextField.text?.trimmingCharacters	(in: .whitespacesAndNewlines) else { return }
@@ -85,7 +83,8 @@ extension RegistrationVC {
 					} else {
 						print("User signs up successfully")
 						guard let userRef = self?.ref.child((user?.user.uid)!) else { return }
-						userRef.setValue(["email":user!.user.email])
+						userRef.setValue(["nickname"	: user!.user.email])
+						userRef.setValue(["email"	 	: nickname])
 						self?.pushMainVC()
 					}
 				}

@@ -12,7 +12,11 @@ class MainVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+		view.backgroundColor = .purple
+		navigationController?.navigationBar.backgroundColor = .white
+		let image = UIImage()
+		
+		navigationController?.navigationBar.setBackgroundImage(image, for: .default)
+		navigationController?.navigationBar.shadowImage = image
     }
 }
