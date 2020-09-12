@@ -82,8 +82,8 @@ extension RegistrationVC {
 					  }
 					} else {
 						guard let userRef = self?.ref.child((user?.user.uid)!) else { return }
-						userRef.setValue(["nickname"	: user!.user.email])
-						userRef.setValue(["email"	 	: nickname])
+						userRef.setValue(["email"	: user!.user.email,
+										  "nickname": nickname])
 						self?.pushMainVC()
 					}
 				}
@@ -169,7 +169,7 @@ extension RegistrationVC {
 extension RegistrationVC {
 	
 	func setUpLayout() {
-		//Nav bar layout
+		//Navigation Bar scould be invisible
 		self.navigationItem.setHidesBackButton(true, animated: true)
 		
         //A place of view, where the image is

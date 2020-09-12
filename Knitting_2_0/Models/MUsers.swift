@@ -13,12 +13,9 @@ struct Users {
     
     let uid				: String
     let email			: String
-	let nickname		: String
-
     
-	init (user: User, nickname: String){
+	init (user: User){
         self.uid		= user.uid
         self.email		= user.email!
-		self.nickname	= nickname
     }
 }

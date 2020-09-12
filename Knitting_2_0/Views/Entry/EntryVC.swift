@@ -35,7 +35,7 @@ class EntryVC: UIViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		Auth.auth().addStateDidChangeListener { (auth, user) in
-//			if user != nil { self.pushMainVC() }
+			if user != nil { self.pushMainVC() }
 		}
 	}
 }
@@ -70,9 +70,9 @@ extension EntryVC {
 	func setUpLayout() {
 		//Navigation Bar scould be invisible
 		guard let navigationController = navigationController else { return }
-		navigationController.navigationBar.barTintColor	= .white
+		navigationController.navigationBar.barTintColor		= .white
 		navigationController.navigationBar.isTranslucent	= false
-		navigationController.navigationBar.shadowImage	= UIImage()
+		navigationController.navigationBar.shadowImage		= UIImage()
 		navigationController.navigationBar.setBackgroundImage(UIImage(), for: .default)
 		
 		//A place of view, where the image is

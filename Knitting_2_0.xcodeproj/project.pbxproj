@@ -21,6 +21,8 @@
 		998B9F89250C255600C0C52F /* MProjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B9F88250C255600C0C52F /* MProjects.swift */; };
 		998B9F8B250C2FA100C0C52F /* ForgotPassVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B9F8A250C2FA100C0C52F /* ForgotPassVC.swift */; };
 		998B9F8D250C2FBB00C0C52F /* ForgotPassVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B9F8C250C2FBB00C0C52F /* ForgotPassVM.swift */; };
+		998B9F8F250D817000C0C52F /* ProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B9F8E250D817000C0C52F /* ProjectCell.swift */; };
+		998B9F91250D81BE00C0C52F /* SwipeableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B9F90250D81BE00C0C52F /* SwipeableCell.swift */; };
 		99AFBA4724F80D9E00E71FD6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AFBA4624F80D9E00E71FD6 /* AppDelegate.swift */; };
 		99AFBA4924F80D9E00E71FD6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AFBA4824F80D9E00E71FD6 /* SceneDelegate.swift */; };
 		99AFBA4B24F80D9E00E71FD6 /* RegistrationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AFBA4A24F80D9E00E71FD6 /* RegistrationVC.swift */; };
@@ -70,6 +72,8 @@
 		998B9F88250C255600C0C52F /* MProjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MProjects.swift; sourceTree = "<group>"; };
 		998B9F8A250C2FA100C0C52F /* ForgotPassVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPassVC.swift; sourceTree = "<group>"; };
 		998B9F8C250C2FBB00C0C52F /* ForgotPassVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPassVM.swift; sourceTree = "<group>"; };
+		998B9F8E250D817000C0C52F /* ProjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCell.swift; sourceTree = "<group>"; };
+		998B9F90250D81BE00C0C52F /* SwipeableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableCell.swift; sourceTree = "<group>"; };
 		99AFBA4324F80D9E00E71FD6 /* Knitting_2_0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Knitting_2_0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99AFBA4624F80D9E00E71FD6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		99AFBA4824F80D9E00E71FD6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -212,7 +216,9 @@
 			isa = PBXGroup;
 			children = (
 				996FAF332508FC8200209228 /* Entry */,
+				998B9F90250D81BE00C0C52F /* SwipeableCell.swift */,
 				9959471F250AD91F00D0E273 /* MainVC.swift */,
+				998B9F8E250D817000C0C52F /* ProjectCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -492,10 +498,12 @@
 				99AFBA7024F8121D00E71FD6 /* RegistrationVM.swift in Sources */,
 				99B2067A2504F10600FA6C50 /* EntryVC.swift in Sources */,
 				998B9F87250C1E2B00C0C52F /* MainVM.swift in Sources */,
+				998B9F91250D81BE00C0C52F /* SwipeableCell.swift in Sources */,
 				99B206722504DD8B00FA6C50 /* LogInVC.swift in Sources */,
 				99B206742504DDF700FA6C50 /* LogInVM.swift in Sources */,
 				99AFBA4724F80D9E00E71FD6 /* AppDelegate.swift in Sources */,
 				996FAF2C2508245D00209228 /* EntryVM.swift in Sources */,
+				998B9F8F250D817000C0C52F /* ProjectCell.swift in Sources */,
 				99AFBA4924F80D9E00E71FD6 /* SceneDelegate.swift in Sources */,
 				998B9F8B250C2FA100C0C52F /* ForgotPassVC.swift in Sources */,
 				99AFBA7A24F9667F00E71FD6 /* Constants.swift in Sources */,

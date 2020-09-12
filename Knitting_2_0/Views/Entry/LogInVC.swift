@@ -150,7 +150,7 @@ extension LogInVC {
 extension LogInVC {
 	
 	func setUpLayout() {
-		//Nav bar layout
+		//Navigation Bar scould be invisible
 		self.navigationItem.setHidesBackButton(true, animated: true)
 		
 		//A place of view, where the image is

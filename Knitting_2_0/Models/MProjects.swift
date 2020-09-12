@@ -13,40 +13,43 @@ struct Project {
     
     let ref						: DatabaseReference?
     let userID					: String
-	
     let projectID				: String
+	
     var name					: String
-    var imageData				: String
-    var tags					: String
+    var imageRef				: String
+	var counterID				: String? = nil
     
-    init(userID: String,
-         projectID: String,
-         name: String,
-         imageData: String,
-         tags: String) {
+	init(userID: String, projectID: String, name: String, imageRef: String, counterID: String? = nil) {
         self.userID				= userID
         self.projectID			= projectID
         self.name				= name
-        self.imageData			= imageData
-        self.tags				= tags
+        self.imageRef			= imageRef
+		self.counterID			= counterID
         self.ref				= nil
     }
     
-    init( snapshot: DataSnapshot) {
+    init(snapshot: DataSnapshot) {
         let snapshotValue		= snapshot.value				as! [String: AnyObject]
         userID					= snapshotValue["userID"]		as! String
         projectID				= snapshotValue["projectID"]	as! String
         name					= snapshotValue["name"]			as! String
-        imageData				= snapshotValue["imageData"]	as! String
-        tags					= snapshotValue["tags"]			as! String
+        imageRef				= snapshotValue["imageRef"]		as! String
+		counterID				= snapshotValue["counterID"]	as? String
         ref						= snapshot.ref
     }
     
-    func projectToDictionary() -> Any {
+    func projectToDictionaryCounterNO() -> Any {
         return ["userID"		: userID,
                 "projectID"		: projectID,
                 "name"			: name,
-                "imageData"		: imageData,
-                "tags"			: tags]
+                "imageRef"		: imageRef]
+    }
+	
+    func projectToDictionaryCounterYES() -> Any {
+        return ["userID"		: userID,
+                "projectID"		: projectID,
+                "name"			: name,
+                "imageRef"		: imageRef,
+				"counterID"		: counterID]
     }
 }
