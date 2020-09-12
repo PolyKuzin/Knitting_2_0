@@ -141,7 +141,8 @@ extension LogInVC {
 	
 	func pushMainVC() {
 		let vc = MainVC()
-		self.navigationController?.pushViewController(vc, animated: true)
+		guard let navigationController = navigationController else { return }
+		navigationController.pushViewController(vc, animated: true)
 	}
 }
 
@@ -149,6 +150,9 @@ extension LogInVC {
 extension LogInVC {
 	
 	func setUpLayout() {
+		//Nav bar layout
+		self.navigationItem.setHidesBackButton(true, animated: true)
+		
 		//A place of view, where the image is
 		let topImageConteinerView = UIView()
 		view.addSubview(topImageConteinerView)

@@ -59,7 +59,8 @@ extension EntryVC {
 	
 	func pushMainVC() {
 		let vc = MainVC()
-		self.navigationController?.pushViewController(vc, animated: true)
+		guard let navigationController = navigationController else { return }
+		navigationController.pushViewController(vc, animated: true)
 	}
 }
 
@@ -68,7 +69,11 @@ extension EntryVC {
 	
 	func setUpLayout() {
 		//Navigation Bar scould be invisible
-		self.navigationController?.navigationBar.isHidden = true
+		guard let navigationController = navigationController else { return }
+		navigationController.navigationBar.barTintColor	= .white
+		navigationController.navigationBar.isTranslucent	= false
+		navigationController.navigationBar.shadowImage	= UIImage()
+		navigationController.navigationBar.setBackgroundImage(UIImage(), for: .default)
 		
 		//A place of view, where the image is
 		let topImageConteinerView = UIView()

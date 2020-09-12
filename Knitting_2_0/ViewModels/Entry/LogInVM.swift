@@ -103,7 +103,7 @@ class LogInVM	: LogInComposition {
 		label.font						= Fonts.textRegular14
 		label.textColor					= Colors.someErrorHappend
 		label.numberOfLines				= 0
-		label.textAlignment				= .right
+		label.textAlignment				= .left
 		
 		return label
 	}()

@@ -54,9 +54,10 @@ class ForgotPassVM  {
 																width: 180,
 																height: 20))
 		label.font						= Fonts.textRegular14
-		label.textColor					= Colors.someErrorHappend
+		label.textColor					= Colors.questionText
 		label.numberOfLines				= 0
-		label.textAlignment				= .right
+		label.textAlignment				= .left
+		label.text						= Placeholder.resetPasswordForm
 		
 		return label
 	}()

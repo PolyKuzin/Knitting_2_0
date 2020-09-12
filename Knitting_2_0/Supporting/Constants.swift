@@ -11,6 +11,8 @@ import UIKit
 struct Icons {
     
     static let logoIcon = UIImage(named: "logoIcon")
+	
+	static let backIcon	= UIImage(named: "arrow")
 }
 
 struct BorderWidth {
@@ -40,6 +42,7 @@ struct Colors {
 
 	static let titleForButton			= UIColor.white
 	static let questionButton			= UIColor.black
+	static let backIcon					= UIColor(red: 0.682, green: 0.682, blue: 0.698, alpha: 1)
 	
 	//Errors
     static let errorTextField			= UIColor(red: 1,	  green: 0.954, blue: 0.976, alpha: 1)
@@ -56,7 +59,7 @@ struct Placeholder {
 	static let forgotPass				= "Forgot your password?" // to test
 	static let fillInTheFields			= "Please fill in all fields" // to test
 	static let resetPassword			= "Reset" // to test
-
+	static let resetPasswordForm		= "A form for password recovery will be sent to your email address" // to test
 	
 	static let titleForSingUp			= "Sing up"
 	static let titleForLogIn			= "Log in"

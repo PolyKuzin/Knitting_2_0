@@ -70,18 +70,17 @@ extension RegistrationVC {
 					if let error = err as NSError? {
 					  switch AuthErrorCode(rawValue: error.code) {
 					  case .operationNotAllowed:
-						self?.showError("The operation is disabled right now. Try again later")
+						self?.setErrorDesign("The operation is disabled right now. Try again later")
 					  case .emailAlreadyInUse:
-						self?.showError("The email address is already in use by another account.")
+						self?.setErrorDesign("The email address is already in use by another account.")
 					  case .invalidEmail:
-						self?.showError("The email address is badly formatted")
+						self?.setErrorDesign("The email address is badly formatted")
 					  case .weakPassword:
-						self?.showError("The password must be 6 characters long or more")
+						self?.setErrorDesign("The password must be 6 characters long or more")
 					  default:
-						self?.showError(error.localizedDescription)
+						self?.setErrorDesign(error.localizedDescription)
 					  }
 					} else {
-						print("User signs up successfully")
 						guard let userRef = self?.ref.child((user?.user.uid)!) else { return }
 						userRef.setValue(["nickname"	: user!.user.email])
 						userRef.setValue(["email"	 	: nickname])
@@ -95,9 +94,9 @@ extension RegistrationVC {
     func validateFields() -> String? {
         
         //check that fields are filled in
-        if nicknameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)     == "" ||
-        emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)            == "" ||
-        passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)         == "" {
+        if	nicknameTextField	.text?.trimmingCharacters	(in: .whitespacesAndNewlines)	== "" ||
+			emailTextField		.text?.trimmingCharacters	(in: .whitespacesAndNewlines)	== "" ||
+			passwordTextField	.text?.trimmingCharacters	(in: .whitespacesAndNewlines)	== "" {
             return "Please fill in all fields"
         }
 		return nil
@@ -114,6 +113,19 @@ extension RegistrationVC {
 		warning.alpha		= 1
 		warning.isHidden	= false
 	}
+	
+		func setErrorDesign(_ description: String) {
+			showError(description)
+			passwordTextField.backgroundColor      = Colors.errorTextField
+			passwordTextField.layer.borderColor    = Colors.errorTextFieldBorder.cgColor
+			passwordTextField.textColor            = Colors.errorTextFieldBorder
+			emailTextField.backgroundColor         = Colors.errorTextField
+			emailTextField.layer.borderColor       = Colors.errorTextFieldBorder.cgColor
+			emailTextField.textColor               = Colors.errorTextFieldBorder
+			emailTextField.shakeAnimation	()
+			passwordTextField.shakeAnimation()
+			signUpButton.shakeAnimation		()
+		}
 }
 
 //MARK: AUTH
@@ -148,7 +160,8 @@ extension RegistrationVC {
 	
 	func pushMainVC() {
 		let vc = MainVC()
-		self.navigationController?.pushViewController(vc, animated: true)
+		guard let navigationController = navigationController else { return }
+		navigationController.pushViewController(vc, animated: true)
 	}
 }
 
@@ -156,6 +169,9 @@ extension RegistrationVC {
 extension RegistrationVC {
 	
 	func setUpLayout() {
+		//Nav bar layout
+		self.navigationItem.setHidesBackButton(true, animated: true)
+		
         //A place of view, where the image is
 		let topImageConteinerView = UIView()
 		view.addSubview(topImageConteinerView)
@@ -172,7 +188,6 @@ extension RegistrationVC {
         logoIcon.centerYAnchor.constraint(equalTo: topImageConteinerView.centerYAnchor, constant: 10).isActive		= true
 		logoIcon.heightAnchor.constraint(lessThanOrEqualToConstant: 154.89).isActive								= true
 		logoIcon.widthAnchor.constraint(lessThanOrEqualToConstant: 129.39).isActive									= true
-
 		
 		//A palce for nickname TextField
 		view.addSubview(nicknameTextField)
