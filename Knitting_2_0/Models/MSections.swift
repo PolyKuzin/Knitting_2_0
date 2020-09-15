@@ -12,4 +12,5 @@ struct MSection {
 	let type	: String
 	let title	: String
 	let items	: [MProject]
+	let itemImage : [String]
 }
