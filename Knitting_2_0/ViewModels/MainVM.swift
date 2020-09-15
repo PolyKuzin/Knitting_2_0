@@ -18,10 +18,10 @@ protocol CollectionViewViewModelType {
 
 class MainVM : CollectionViewViewModelType {
 	
-	var projects = [Project(userID: "123456", projectID: "1234567890", name: "Слон", imageRef: "!@#$%^&*()", counterID: "1234567890"),
-					Project(userID: "123456", projectID: "1234567890", name: "Слон", imageRef: "!@#$%^&*()", counterID: "1234567890"),
-					Project(userID: "123456", projectID: "1234567890", name: "Слон", imageRef: "!@#$%^&*()", counterID: "1234567890"),
-					Project(userID: "123456", projectID: "1234567890", name: "Слон", imageRef: "!@#$%^&*()", counterID: "1234567890")]
+	var projects = [MProject(userID: "123456", projectID: "1234567890", name: "Слон", imageRef: "!@#$%^&*()", counterID: "1234567890"),
+					MProject(userID: "123456", projectID: "1234567890", name: "Слон", imageRef: "!@#$%^&*()", counterID: "1234567890"),
+					MProject(userID: "123456", projectID: "1234567890", name: "Слон", imageRef: "!@#$%^&*()", counterID: "1234567890"),
+					MProject(userID: "123456", projectID: "1234567890", name: "Слон", imageRef: "!@#$%^&*()", counterID: "1234567890")]
 
 	var projectsCollectionView : UICollectionView = {
 		let collectionView = UICollectionView(frame: CGRect(x: 0, y: 0,

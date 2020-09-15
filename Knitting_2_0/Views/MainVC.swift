@@ -13,7 +13,7 @@ import FirebaseFirestore
 
 class MainVC: UIViewController {
 	
-    private var user            	: Users!
+    private var user            	: MUsers!
     private var ref             	: DatabaseReference!
 	private var projectsCollection	: UICollectionView!
 	
@@ -26,7 +26,7 @@ class MainVC: UIViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(true)
 		guard let currentUser = Auth.auth().currentUser else { return }
-		user = Users(user: currentUser)
+		user = MUsers(user: currentUser)
         ref = Database.database().reference(withPath: "users").child(String(user.uid)).child("projects")
 	}
 
