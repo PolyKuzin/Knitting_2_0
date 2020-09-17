@@ -66,18 +66,18 @@ extension RegistrationVC {
 													  "email"		: email]) { (error) in
 				if error != nil { self.showError("Error saving user data") }
 			}
-				Auth.auth().createUser(withEmail: email, password: password) {[weak self] (user, err) in
+				Auth.auth().createUser(withEmail: email, password: password) { [weak self] (user, err) in
 					if let error = err as NSError? {
 					  switch AuthErrorCode(rawValue: error.code) {
-					  case .operationNotAllowed:
+					  case .operationNotAllowed	:
 						self?.setErrorDesign("The operation is disabled right now. Try again later")
-					  case .emailAlreadyInUse:
+					  case .emailAlreadyInUse	:
 						self?.setErrorDesign("The email address is already in use by another account.")
-					  case .invalidEmail:
+					  case .invalidEmail		:
 						self?.setErrorDesign("The email address is badly formatted")
-					  case .weakPassword:
+					  case .weakPassword		:
 						self?.setErrorDesign("The password must be 6 characters long or more")
-					  default:
+					  default					:
 						self?.setErrorDesign(error.localizedDescription)
 					  }
 					} else {

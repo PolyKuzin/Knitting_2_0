@@ -38,10 +38,10 @@ class LogInVC: UIViewController {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-		view.backgroundColor			= .white
-		let tap : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyBoard))
+		view.backgroundColor				= .white
+		viewModel 							= LogInVM()
+		let tap : UITapGestureRecognizer	= UITapGestureRecognizer(target: self, action: #selector(dismissKeyBoard))
 		view.addGestureRecognizer(tap)
-		viewModel 						= LogInVM()
 		setUpLayout()
     }
 }
@@ -59,15 +59,15 @@ extension LogInVC {
 			Auth.auth().signIn(withEmail: email, password: password) { (user, err) in
 				if let error = err as NSError? {
 				  switch AuthErrorCode(rawValue: error.code) {
-				  case .operationNotAllowed:
+				  case .operationNotAllowed	:
 					self.setErrorDesign("E-mail and password accounts are not enabled.")
-				  case .userDisabled:
+				  case .userDisabled		:
 					self.setErrorDesign("The user account has been disabled by an administrator.")
-				  case .wrongPassword:
+				  case .wrongPassword		:
 					self.setErrorDesign("The password is invalid or the user does not have a password.")
-				  case .invalidEmail:
+				  case .invalidEmail		:
 					self.setErrorDesign("The email address is malformed.")
-				  default:
+				  default					:
 					self.setErrorDesign(error.localizedDescription)
 				  }
 				} else {
@@ -97,20 +97,17 @@ extension LogInVC {
     }
 	
 	func setErrorDesign(_ description: String) {
-		passwordTextField.backgroundColor      = Colors.errorTextField
-		passwordTextField.layer.borderColor    = Colors.errorTextFieldBorder.cgColor
-		passwordTextField.textColor            = Colors.errorTextFieldBorder
+		showError(description)
 		emailTextField.backgroundColor         = Colors.errorTextField
 		emailTextField.layer.borderColor       = Colors.errorTextFieldBorder.cgColor
 		emailTextField.textColor               = Colors.errorTextFieldBorder
-							
-//TODO: ErrorHandling; + methods to specify the errors in the UI
-		showError(description)
-		
-		emailTextField.shakeAnimation()
-		passwordTextField.shakeAnimation()
-		forgotPass.shakeAnimation()
-		logInButton.shakeAnimation()
+		passwordTextField.backgroundColor      = Colors.errorTextField
+		passwordTextField.layer.borderColor    = Colors.errorTextFieldBorder.cgColor
+		passwordTextField.textColor            = Colors.errorTextFieldBorder
+		emailTextField.shakeAnimation		()
+		passwordTextField.shakeAnimation	()
+		forgotPass.shakeAnimation			()
+		logInButton.shakeAnimation			()
 	}
 }
 
@@ -129,7 +126,8 @@ extension LogInVC {
 	@objc
 	func pushForgotPassVC() {
 		let vc = ForgotPassVC()
-		self.navigationController?.pushViewController(vc, animated: true)
+		guard let navigationController = navigationController else { return }
+		navigationController.pushViewController(vc, animated: true)
 	}
 	
 	@objc
