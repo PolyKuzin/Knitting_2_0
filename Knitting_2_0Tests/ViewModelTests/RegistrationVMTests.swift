@@ -154,7 +154,7 @@ class RegistrationVMTests: XCTestCase {
 	}
 	
 	func testButtonsTitlesColorHasCorrectValues() {
-		XCTAssertEqual(sut.signUp().titleColor(for: .normal),		Colors.titleForButton)
+		XCTAssertEqual(sut.signUp().titleColor(for: .normal),		Colors.whiteColor)
 		XCTAssertEqual(sut.questionBtn().titleColor(for: .normal),	Colors.questionButton)
 	}
 	

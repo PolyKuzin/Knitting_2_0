@@ -118,7 +118,7 @@ class RegistrationVM {
 		button.layer.cornerRadius		= CornerRadius.forButton
         button.layer.masksToBounds		= true
 		button.setTitle					(Placeholder.titleForSingUp, for: .normal)
-		button.setTitleColor			(Colors.titleForButton, for: .normal)
+		button.setTitleColor			(Colors.whiteColor, for: .normal)
 		button.setGradientBackground	(colorOne: Colors.backgroundUpButton,
 										 colorTwo: Colors.backgroundDownButton)
         

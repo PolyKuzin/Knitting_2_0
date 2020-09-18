@@ -18,7 +18,7 @@ class SwipeableCollectionViewCell: UICollectionViewCell {
     let visibleContainerView	= UIView()
     let hiddenContainerView		= UIView()
 	
-    private let scrollView		: UIScrollView = {
+    private let scrollView							: UIScrollView = {
         let scrollView								= UIScrollView(frame: .zero)
         scrollView.isPagingEnabled					= true
         scrollView.showsVerticalScrollIndicator 	= false
@@ -76,7 +76,6 @@ class SwipeableCollectionViewCell: UICollectionViewCell {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        // when the orientation changes and the cell is open -> update the content offset for the new cell width
         if scrollView.contentOffset.x > 0 {
             scrollView.contentOffset.x = scrollView.frame.width
         }

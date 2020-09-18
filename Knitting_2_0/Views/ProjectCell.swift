@@ -10,29 +10,32 @@ import UIKit
 
 class ProjectCell: SwipeableCollectionViewCell {
     
-	static var reuseId = "projectCell"
+	static var reuseId 							= "projectCell"
 	
-	let projectName		= UILabel()
-	var projectImage 	= UIImageView()
+	let projectName								= UILabel()
+	var projectImage 							= UIImageView()
+    let deleteImageView: UIImageView = {
+		guard let image							= Icons.delete?.withRenderingMode(.alwaysTemplate) else { return UIImageView() }
+        let imageView							= UIImageView(image: image)
+        imageView.tintColor						= .white
+        return imageView
+    }()
 	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
+		setupLayout()
 		
-		setupElements()
-		setupConstraints()
-		
-		self.layer.cornerRadius = 15
-		self.clipsToBounds = true
+		self.layer.cornerRadius					= 20
+        projectImage.layer.cornerRadius         = 10
+		self.clipsToBounds						= true
+        projectImage.clipsToBounds              = true
+		visibleContainerView.backgroundColor 	= Colors.whiteColor
+		hiddenContainerView.backgroundColor 	= Colors.hiddenCollectionView
 	}
 	
 	func configure() { //(with project: MProject) {
-		self.backgroundColor = .purple
-		projectImage.image 	= UIImage(named: "empty")
-		projectName.text	= "Empty Project"
-	}
-	
-	func setupElements() {
-		projectImage.backgroundColor = .black
+		projectImage.image 						= Icons.emptyProject		//project.image
+		projectName.text						= Placeholder.emptyProject	//project.name
 	}
 	
 	required init?(coder aDecoder: NSCoder) {
@@ -43,20 +46,28 @@ class ProjectCell: SwipeableCollectionViewCell {
 //MARK: Layout
 extension ProjectCell {
 	
-	func setupConstraints() {
-		addSubview(projectName)
-		addSubview(projectImage)
+	func setupLayout() {
+		sendSubviewToBack(visibleContainerView)
 		
-		projectName.translatesAutoresizingMaskIntoConstraints	= false
-		projectName.leadingAnchor.constraint(equalTo: projectImage.trailingAnchor, constant: 20).isActive	= true
-		projectName.centerYAnchor.constraint(equalTo: centerYAnchor).isActive								= true
-		projectName.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive				= true
-		projectName.heightAnchor.constraint(equalToConstant: 26).isActive									= true
+        visibleContainerView.addSubview(projectImage)
+		projectImage.translatesAutoresizingMaskIntoConstraints														= false
+		projectImage.leadingAnchor.constraint(equalTo: visibleContainerView.leadingAnchor, constant: 20).isActive	= true
+		projectImage.topAnchor.constraint(equalTo: visibleContainerView.topAnchor, constant: 20).isActive			= true
+		projectImage.heightAnchor.constraint(equalTo: visibleContainerView.heightAnchor, constant: -40).isActive	= true
+		projectImage.widthAnchor.constraint(equalTo: projectImage.heightAnchor).isActive							= true
 		
-		projectImage.translatesAutoresizingMaskIntoConstraints												= false
-		projectImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive				= true
-		projectImage.topAnchor.constraint(equalTo: topAnchor, constant: 20).isActive						= true
-		projectImage.heightAnchor.constraint(equalTo: heightAnchor, constant: -40).isActive					= true
-		projectImage.widthAnchor.constraint(equalTo: projectImage.heightAnchor).isActive					= true
+        visibleContainerView.addSubview(projectName)
+		projectName.translatesAutoresizingMaskIntoConstraints														= false
+		projectName.leadingAnchor.constraint(equalTo: projectImage.trailingAnchor, constant: 20).isActive			= true
+		projectName.centerYAnchor.constraint(equalTo: visibleContainerView.centerYAnchor).isActive					= true
+		projectName.trailingAnchor.constraint(equalTo: visibleContainerView.trailingAnchor, constant: -20).isActive	= true
+		projectName.heightAnchor.constraint(equalToConstant: 26).isActive											= true
+		
+        hiddenContainerView.addSubview(deleteImageView)
+        deleteImageView.translatesAutoresizingMaskIntoConstraints 													= false
+        deleteImageView.centerXAnchor.constraint(equalTo: hiddenContainerView.centerXAnchor).isActive 				= true
+        deleteImageView.centerYAnchor.constraint(equalTo: hiddenContainerView.centerYAnchor).isActive 				= true
+        deleteImageView.widthAnchor.constraint(equalToConstant: 25).isActive 										= true
+        deleteImageView.heightAnchor.constraint(equalToConstant: 30).isActive 										= true
 	}
 }

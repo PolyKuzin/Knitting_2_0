@@ -9,12 +9,13 @@
 import Foundation
 
 struct MSection		: Hashable {
-	static func == (lhs: MSection, rhs: MSection) -> Bool {
-		return	lhs.type == rhs.type && lhs.title == rhs.title
-				
-	}
 	
 	let type		: String
 	let title		: String
 	let projects	: [MProject]
+	
+	static func == (lhs: MSection, rhs: MSection) -> Bool {
+		return	lhs.type == rhs.type && lhs.title == rhs.title
+				
+	}
 }

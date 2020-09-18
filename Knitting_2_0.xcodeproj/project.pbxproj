@@ -11,6 +11,7 @@
 		9905ABE225024F5A0055B138 /* SF-Pro-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9905ABE125024F5A0055B138 /* SF-Pro-Text-Semibold.otf */; };
 		9905ABE4250254B80055B138 /* SF-Pro-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9905ABE3250254B80055B138 /* SF-Pro-Text-Regular.otf */; };
 		994EF7142514B424009AA35B /* SetionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994EF7132514B423009AA35B /* SetionHeader.swift */; };
+		994EF7162514ECFF009AA35B /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 994EF7152514ECFF009AA35B /* SF-Pro-Display-Bold.otf */; };
 		9959471E250A582B00D0E273 /* MUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9959471D250A582B00D0E273 /* MUsers.swift */; };
 		99594720250AD91F00D0E273 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9959471F250AD91F00D0E273 /* MainVC.swift */; };
 		996FAF2C2508245D00209228 /* EntryVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996FAF2B2508245D00209228 /* EntryVM.swift */; };
@@ -64,6 +65,7 @@
 		9905ABE125024F5A0055B138 /* SF-Pro-Text-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Semibold.otf"; sourceTree = "<group>"; };
 		9905ABE3250254B80055B138 /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
 		994EF7132514B423009AA35B /* SetionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetionHeader.swift; sourceTree = "<group>"; };
+		994EF7152514ECFF009AA35B /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
 		9959471D250A582B00D0E273 /* MUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MUsers.swift; sourceTree = "<group>"; };
 		9959471F250AD91F00D0E273 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		996FAF2B2508245D00209228 /* EntryVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryVM.swift; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 				99AFBA7C24FC298E00E71FD6 /* SF-Pro-Display-Medium.otf */,
 				9905ABE125024F5A0055B138 /* SF-Pro-Text-Semibold.otf */,
 				9905ABE3250254B80055B138 /* SF-Pro-Text-Regular.otf */,
+				994EF7152514ECFF009AA35B /* SF-Pro-Display-Bold.otf */,
 				996FAF312508FB6C00209228 /* SF-Pro-Display-Semibold.otf */,
 			);
 			path = Fonts;
@@ -413,6 +416,7 @@
 				99AFBA5324F80DA000E71FD6 /* LaunchScreen.storyboard in Resources */,
 				9905ABE225024F5A0055B138 /* SF-Pro-Text-Semibold.otf in Resources */,
 				99AFBA5024F80DA000E71FD6 /* Assets.xcassets in Resources */,
+				994EF7162514ECFF009AA35B /* SF-Pro-Display-Bold.otf in Resources */,
 				99E4A1C625091FBE003CA7C9 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -685,7 +689,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.polykuzin.Knitting-2-0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -704,7 +708,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.polykuzin.Knitting-2-0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -10,9 +10,11 @@ import UIKit
 
 struct Icons {
     
-    static let logoIcon = UIImage(named: "logoIcon")
+    static let logoIcon 	= UIImage(named: "logoIcon")
 	
-	static let backIcon	= UIImage(named: "arrow")
+	static let backIcon		= UIImage(named: "arrow")
+	static let delete		= UIImage(named: "delete")
+	static let emptyProject	= UIImage(named: "empty")
 }
 
 struct BorderWidth {
@@ -40,9 +42,10 @@ struct Colors {
 	static let questionText				= UIColor(red: 0.621, green: 0.621, blue: 0.621, alpha: 1)
     static let someErrorHappend			= UIColor(red: 0.962, green: 0.188, blue: 0.467, alpha: 1)
 
-	static let titleForButton			= UIColor.white
+	static let whiteColor				= UIColor.white
 	static let questionButton			= UIColor.black
 	static let backIcon					= UIColor(red: 0.682, green: 0.682, blue: 0.698, alpha: 1)
+	static let hiddenCollectionView		= UIColor(red: 231.0 / 255.0, green: 76.0 / 255.0, blue: 60.0 / 255.0, alpha: 1)
 	
 	//Errors
     static let errorTextField			= UIColor(red: 1,	  green: 0.954, blue: 0.976, alpha: 1)
@@ -68,6 +71,8 @@ struct Placeholder {
 	static let questionToRegistrLbl		= "You don't have an account? "
 	static let questionToRegistrBtn		= " Sign up"
 	static let createNewAccount			= "Create a new account"
+	
+	static let emptyProject				= "Empty Project"
 }
 
 struct Fonts {
@@ -82,5 +87,5 @@ struct Fonts {
 	static let textSemibold17			= UIFont(name: "SFProText-Semibold",	size: 17)
 	
 	static let textSemibold14			= UIFont(name: "SFProText-Semibold",	size: 14) // to test
-
+	static let displayBold28			= UIFont(name: "SFProDisplay-Bold", 	size: 28)
 }

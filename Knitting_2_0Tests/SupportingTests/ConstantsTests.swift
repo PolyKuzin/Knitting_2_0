@@ -46,7 +46,7 @@ class ConstantsTests: XCTestCase {
 		XCTAssertEqual(Colors.backgroundDownButton,		UIColor(red: 0.745, green: 0.616, blue: 0.875, alpha: 1))
 		XCTAssertEqual(Colors.borderButton,				UIColor(red: 0.265, green: 0.102, blue: 0.613, alpha: 1))
 		XCTAssertEqual(Colors.questionText,				UIColor(red: 0.621, green: 0.621, blue: 0.621, alpha: 1))
-		XCTAssertEqual(Colors.titleForButton, 			UIColor.white)
+		XCTAssertEqual(Colors.whiteColor, 			UIColor.white)
 		XCTAssertEqual(Colors.questionButton, 			UIColor.black)
 	}
 	
