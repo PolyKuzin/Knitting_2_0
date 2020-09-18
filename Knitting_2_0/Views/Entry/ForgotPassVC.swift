@@ -97,15 +97,24 @@ extension ForgotPassVC {
 					}
 				}
 			} else {
-			let alert = UIAlertController(title: "Don't worry:", message: "A form for password recovery has been send to your email address.", preferredStyle: .alert)
-			alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
-				let vc = LogInVC()
-				guard let navigationController = self.navigationController else { return }
-				navigationController.pushViewController(vc, animated: true)			}))
-			self.present(alert, animated: true)
+				let alert = UIAlertController(title: "Don't worry:", message: "A form for password recovery has been send to your email address.", preferredStyle: .alert)
+				alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+					self.pushLoginVC()
+				}))
+				self.dismissKeyBoard()
+				self.present(alert, animated: true)
 			}
 		}
-		dismissKeyBoard()
+	}
+}
+
+//MARK: Navigation
+extension ForgotPassVC {
+	
+	func pushLoginVC() {
+		let vc = LogInVC()
+		guard let navigationController = self.navigationController else { return }
+		navigationController.pushViewController(vc, animated: true)
 	}
 }
 

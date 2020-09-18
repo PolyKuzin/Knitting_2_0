@@ -9,29 +9,27 @@
 import UIKit
 
 protocol SwipeableCollectionViewCellDelegate: class {
-    func visibleContainerViewTapped(inCell cell: UICollectionViewCell)
-    func hiddenContainerViewTapped(inCell cell: UICollectionViewCell)
+    func visibleContainerViewTapped	(inCell cell: UICollectionViewCell)
+    func hiddenContainerViewTapped	(inCell cell: UICollectionViewCell)
 }
 
 class SwipeableCollectionViewCell: UICollectionViewCell {
     
-    // MARK: Properties
-    private let scrollView: UIScrollView = {
-        let scrollView = UIScrollView(frame: .zero)
-        scrollView.isPagingEnabled = true
-        scrollView.showsVerticalScrollIndicator = false
-        scrollView.showsHorizontalScrollIndicator = false
+    let visibleContainerView	= UIView()
+    let hiddenContainerView		= UIView()
+	
+    private let scrollView		: UIScrollView = {
+        let scrollView								= UIScrollView(frame: .zero)
+        scrollView.isPagingEnabled					= true
+        scrollView.showsVerticalScrollIndicator 	= false
+        scrollView.showsHorizontalScrollIndicator	= false
         scrollView.layer.cornerRadius = 20
+		
         return scrollView
     }()
     
-    let visibleContainerView = UIView()
-    let hiddenContainerView = UIView()
-    
     weak var delegate: SwipeableCollectionViewCellDelegate?
-    
-    // MARK: Initializers
-    
+        
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupSubviews()
@@ -43,9 +41,9 @@ class SwipeableCollectionViewCell: UICollectionViewCell {
     }
     
     private func setupSubviews() {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.distribution = .fillEqually
+        let stackView			= UIStackView()
+        stackView.axis			= .horizontal
+        stackView.distribution 	= .fillEqually
         stackView.addArrangedSubview(visibleContainerView)
         stackView.addArrangedSubview(hiddenContainerView)
         
@@ -53,24 +51,26 @@ class SwipeableCollectionViewCell: UICollectionViewCell {
         scrollView.pinEdgesToSuperView()
         scrollView.addSubview(stackView)
         stackView.pinEdgesToSuperView()
-        stackView.heightAnchor.constraint(equalTo: scrollView.heightAnchor).isActive = true
-        stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 2).isActive = true
+        stackView.heightAnchor.constraint(equalTo: scrollView.heightAnchor).isActive				= true
+        stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 2).isActive	= true
     }
     
     private func setupGestureRecognizer() {
-        let hiddenContainerTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hiddenContainerViewTapped))
-        hiddenContainerView.addGestureRecognizer(hiddenContainerTapGestureRecognizer)
+        let hiddenContainerTapGestureRecognizer		= UITapGestureRecognizer(target: self, action: #selector(hiddenContainerViewTapped))
+        hiddenContainerView.addGestureRecognizer	(hiddenContainerTapGestureRecognizer)
         
-        let visibleContainerTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(visibleContainerViewTapped))
-        visibleContainerView.addGestureRecognizer(visibleContainerTapGestureRecognizer)
+        let visibleContainerTapGestureRecognizer	= UITapGestureRecognizer(target: self, action: #selector(visibleContainerViewTapped))
+        visibleContainerView.addGestureRecognizer	(visibleContainerTapGestureRecognizer)
         
     }
     
-    @objc private func visibleContainerViewTapped() {
+    @objc
+	private func visibleContainerViewTapped() {
         delegate?.visibleContainerViewTapped(inCell: self)
     }
     
-    @objc private func hiddenContainerViewTapped() {
+    @objc
+	private func hiddenContainerViewTapped() {
         delegate?.hiddenContainerViewTapped(inCell: self)
     }
 

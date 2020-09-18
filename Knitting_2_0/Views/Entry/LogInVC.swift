@@ -46,7 +46,7 @@ class LogInVC: UIViewController {
     }
 }
 
-//MARK: Lon In Tapped
+//MARK: Auth
 extension LogInVC {
 	
 	@objc
@@ -71,11 +71,11 @@ extension LogInVC {
 					self.setErrorDesign(error.localizedDescription)
 				  }
 				} else {
-					self.pushMainVC()
+					self.dismissKeyBoard()
+					self.pushMainVC		()
 				}
 			}
 		}
-		dismissKeyBoard()
 	}
 }
 

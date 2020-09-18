@@ -14,7 +14,8 @@ import FirebaseFirestore
 
 class RegistrationVC	: UIViewController {
 	
-	private var ref						: DatabaseReference!
+	private var dbReference				: DatabaseReference!
+	private let tap						= UITapGestureRecognizer(target: self, action: #selector(dismissKeyBoard))
 	private var logoIcon				= UIImageView()
 	private var nicknameTextField		= UITextField()
 	private var emailTextField			= UITextField()
@@ -42,14 +43,14 @@ class RegistrationVC	: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		view.backgroundColor			= .white
-		viewModel 						= RegistrationVM()
-		setUpLayout()
-        ref								= Database.database().reference(withPath: "users")
-		let tap : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyBoard))
 		view.addGestureRecognizer(tap)
+		viewModel 						= RegistrationVM()
+        dbReference						= Database.database().reference(withPath: "users")
+		setUpLayout()
 	}
 }
 
+//MARK: Creating User
 extension RegistrationVC {
 	
 	@objc
@@ -61,35 +62,40 @@ extension RegistrationVC {
 			guard let email		= emailTextField.text?.trimmingCharacters	(in: .whitespacesAndNewlines) else { return }
 			guard let password	= passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
 
-			let db = Firestore.firestore()
-			db.collection("users").addDocument(data: ["nickname"	: nickname,
-													  "email"		: email]) { (error) in
-				if error != nil { self.showError("Error saving user data") }
-			}
-				Auth.auth().createUser(withEmail: email, password: password) { [weak self] (user, err) in
-					if let error = err as NSError? {
-					  switch AuthErrorCode(rawValue: error.code) {
-					  case .operationNotAllowed	:
+			Auth.auth().createUser(withEmail: email, password: password) { [weak self] (user, err) in
+				if let error = err as NSError? {
+					switch AuthErrorCode(rawValue: error.code) {
+					case .operationNotAllowed	:
 						self?.setErrorDesign("The operation is disabled right now. Try again later")
-					  case .emailAlreadyInUse	:
+					case .emailAlreadyInUse		:
 						self?.setErrorDesign("The email address is already in use by another account.")
-					  case .invalidEmail		:
+					case .invalidEmail			:
 						self?.setErrorDesign("The email address is badly formatted")
-					  case .weakPassword		:
+					case .weakPassword			:
 						self?.setErrorDesign("The password must be 6 characters long or more")
-					  default					:
+					default						:
 						self?.setErrorDesign(error.localizedDescription)
-					  }
-					} else {
-						guard let userRef = self?.ref.child((user?.user.uid)!) else { return }
-						userRef.setValue(["email"	: user!.user.email,
-										  "nickname": nickname])
-						self?.pushMainVC()
 					}
+				} else {
+					guard let userRef = self?.dbReference.child((user?.user.uid)!) else { return }
+					userRef.setValue(["email"	: user!.user.email,
+									  "nickname": nickname])
+					let db = Firestore.firestore()
+					db.collection("users").addDocument(data: ["uid"			: user?.user.uid as Any,
+															  "nickname"	: nickname,
+															  "email"		: email]) { (error) in
+						if error != nil { self?.showError("Error saving user data") }
+					}
+						self?.dismissKeyBoard	()
+					self?.pushMainVC()
 				}
 			}
-		dismissKeyBoard()
+		}
 	}
+}
+
+//MARK: Error Handling
+extension RegistrationVC {
 	
     func validateFields() -> String? {
         
@@ -114,29 +120,18 @@ extension RegistrationVC {
 		warning.isHidden	= false
 	}
 	
-		func setErrorDesign(_ description: String) {
-			showError(description)
-			passwordTextField.backgroundColor      = Colors.errorTextField
-			passwordTextField.layer.borderColor    = Colors.errorTextFieldBorder.cgColor
-			passwordTextField.textColor            = Colors.errorTextFieldBorder
-			emailTextField.backgroundColor         = Colors.errorTextField
-			emailTextField.layer.borderColor       = Colors.errorTextFieldBorder.cgColor
-			emailTextField.textColor               = Colors.errorTextFieldBorder
-			emailTextField.shakeAnimation	()
-			passwordTextField.shakeAnimation()
-			signUpButton.shakeAnimation		()
-		}
-}
-
-//MARK: AUTH
-extension RegistrationVC {
-    func authitication() {
-        Auth.auth().addStateDidChangeListener { (auth, user) in
-            if user != nil {
-                self.performSegue(withIdentifier: "LogInSegue", sender: nil)
-            }
-        }
-    }
+	func setErrorDesign(_ description: String) {
+		showError(description)
+		passwordTextField.backgroundColor      = Colors.errorTextField
+		passwordTextField.layer.borderColor    = Colors.errorTextFieldBorder.cgColor
+		passwordTextField.textColor            = Colors.errorTextFieldBorder
+		emailTextField.backgroundColor         = Colors.errorTextField
+		emailTextField.layer.borderColor       = Colors.errorTextFieldBorder.cgColor
+		emailTextField.textColor               = Colors.errorTextFieldBorder
+		emailTextField.shakeAnimation	()
+		passwordTextField.shakeAnimation()
+		signUpButton.shakeAnimation		()
+	}
 }
 
 //MARK: Dismiss KeyBoard
