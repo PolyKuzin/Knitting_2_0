@@ -137,6 +137,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		994EF71725153490009AA35B /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				9959471F250AD91F00D0E273 /* MainVC.swift */,
+				998B9F8E250D817000C0C52F /* ProjectCell.swift */,
+				998B9F90250D81BE00C0C52F /* SwipeableCell.swift */,
+				994EF7132514B423009AA35B /* SetionHeader.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 		996FAF332508FC8200209228 /* Entry */ = {
 			isa = PBXGroup;
 			children = (
@@ -223,10 +234,7 @@
 			isa = PBXGroup;
 			children = (
 				996FAF332508FC8200209228 /* Entry */,
-				9959471F250AD91F00D0E273 /* MainVC.swift */,
-				998B9F8E250D817000C0C52F /* ProjectCell.swift */,
-				998B9F90250D81BE00C0C52F /* SwipeableCell.swift */,
-				994EF7132514B423009AA35B /* SetionHeader.swift */,
+				994EF71725153490009AA35B /* Main */,
 			);
 			path = Views;
 			sourceTree = "<group>";
