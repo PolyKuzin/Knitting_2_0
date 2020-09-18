@@ -9,7 +9,7 @@
 import Foundation
 import FirebaseDatabase
 
-struct MProject {
+struct MProject : Hashable {
     
     let ref						: DatabaseReference?
     let userID					: String

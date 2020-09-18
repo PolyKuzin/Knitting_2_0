@@ -19,6 +19,8 @@ class MainVC: UIViewController {
 	
 	private var sections			: Array<MSection> = []
 	
+	var dataSourse					: UICollectionViewDiffableDataSource<MSection, MProject>?
+	
 //	private var viewModel	: MainVM! {
 //		didSet {
 //			self.projectsCollection = viewModel.projectsCollectionView
@@ -27,6 +29,7 @@ class MainVC: UIViewController {
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(true)
+		setupNavBar()
 		guard let currentUser = Auth.auth().currentUser else { return }
 		user = MUsers(user: currentUser)
         ref = Database.database().reference(withPath: "users").child(String(user.uid)).child("projects")
@@ -34,10 +37,13 @@ class MainVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-		let section = MSection(type: "projects", title: "Working on this?", projects: [])
+		let project = MProject(userID: "123", projectID: "123", name: "123", imageRef: "123")
+		let section = MSection(type: "projects", title: "Working on this?", projects: [project])
 		sections.append(section)
 		view.backgroundColor = .white
 		setupCollectionView()
+		createDataSourse()
+		reloadData()
 //		viewModel = MainVM()
 
 		setUpLayout()
@@ -53,8 +59,6 @@ class MainVC: UIViewController {
 		
 		projectsCollection.register(SectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeader.reusedId)
 		projectsCollection.register(ProjectCell.self, forCellWithReuseIdentifier: ProjectCell.reuseId)
-		projectsCollection.dataSource	= self
-		projectsCollection.delegate		= self
 	}
 	
 	func createCompositionalLayout() -> UICollectionViewLayout {
@@ -71,60 +75,62 @@ class MainVC: UIViewController {
 	
 	func createActiveChatSection() -> NSCollectionLayoutSection {
 		let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(86))
-		
 		let item = NSCollectionLayoutItem(layoutSize: itemSize)
-		item.contentInsets = NSDirectionalEdgeInsets.init(top: 0, leading: 0, bottom: 10, trailing: 0)
-		
 		let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(1))
-		
 		let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
-		
 		let section = NSCollectionLayoutSection(group: group)
+		item.contentInsets = NSDirectionalEdgeInsets.init(top: 0, leading: 0, bottom: 10, trailing: 0)
 		section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 20, bottom: 0, trailing: 20)
 		
+		let header = createSectionHeader()
+		section.boundarySupplementaryItems = [header]
 		return section
 	}
-}
-
-extension MainVC : UICollectionViewDelegateFlowLayout {
 	
-	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-		return CGSize(width: view.frame.width, height: 76)
+	func createSectionHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
+		let layoutSectionHeaderSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+															 heightDimension: .estimated(1))
+		let layoutSectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: layoutSectionHeaderSize,
+																			   elementKind: UICollectionView.elementKindSectionHeader,
+																			   alignment: .top)
+		return layoutSectionHeader
 	}
-}
-
-//MARK: Collection View Data Source
-extension MainVC : UICollectionViewDataSource {
-
-	func numberOfSections(in collectionView: UICollectionView) -> Int {
-		return sections.count
+	
+	func createDataSourse() {
+		dataSourse = UICollectionViewDiffableDataSource<MSection, MProject>(collectionView: projectsCollection, cellProvider: { (collectionView, indexPath, project) -> UICollectionViewCell? in
+			switch self.sections[indexPath.section].type {
+		// add storyies
+			default:
+				let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProjectCell.reuseId, for: indexPath) as! ProjectCell
+				cell.configure()
+				return cell
+			}
+		})
+		dataSourse?.supplementaryViewProvider = { [weak self] collectionView, kind, indexPath in
+			guard let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SectionHeader.reusedId, for: indexPath) as? SectionHeader else { return nil }
+			guard let firstProject = self?.dataSourse?.itemIdentifier(for: indexPath) else { return nil }
+			guard let section = self?.dataSourse?.snapshot().sectionIdentifier(containingItem: firstProject) else { return nil}
+			if section.title.isEmpty { return nil}
+			sectionHeader.title.text = section.title
+			return sectionHeader
+		}
 	}
-
-	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return 4
+	
+	func reloadData() {
+		var snapShot = NSDiffableDataSourceSnapshot<MSection, MProject>()
+		snapShot.appendSections(sections)
+		for section in sections {
+			snapShot.appendItems(section.projects, toSection: section)
+		}
+		
+		dataSourse?.apply(snapShot)
 	}
-
-	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProjectCell.reuseId, for: indexPath) as! ProjectCell
-
-//		let section = sections[indexPath.section]
-//		let project = section.projects[indexPath.row]
-		cell.configure()//(with: project)
-        cell.backgroundColor = UIColor.blue
-
-        return cell
-	}
-}
-
-//MARK: Collection View Delegate
-extension MainVC : UICollectionViewDelegate {
-
 }
 
 //MARK: Layout
 extension MainVC {
 	
-	func setUpLayout() {
+	func setupNavBar() {
 		//Navigation Bar scould be invisible
 		guard let navigationController = navigationController else { return }
 		navigationController.navigationBar.barTintColor		= .white
@@ -132,7 +138,9 @@ extension MainVC {
 		navigationController.navigationBar.shadowImage		= UIImage()
 		navigationController.navigationBar.setBackgroundImage(UIImage(), for: .default)
 		self.navigationItem.setHidesBackButton(true, animated: true)
-		
+	}
+	
+	func setUpLayout() {
 		//Projects collection View Layout
 		view.addSubview(projectsCollection)
 		projectsCollection.translatesAutoresizingMaskIntoConstraints								= false

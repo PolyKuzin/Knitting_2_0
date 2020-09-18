@@ -26,6 +26,7 @@ class ProjectCell: SwipeableCollectionViewCell {
 	}
 	
 	func configure() { //(with project: MProject) {
+		self.backgroundColor = .purple
 		projectImage.image 	= UIImage(named: "empty")
 		projectName.text	= "Empty Project"
 	}
