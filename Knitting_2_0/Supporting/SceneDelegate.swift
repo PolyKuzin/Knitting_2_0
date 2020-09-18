@@ -20,10 +20,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		let nav1				= UINavigationController()
 		let entryView			= EntryVC(nibName: nil, bundle: nil)
 		nav1.viewControllers	= [entryView]
+		nav1.navigationBar.barTintColor		= .white
+		nav1.navigationBar.isTranslucent	= false
+		nav1.navigationBar.shadowImage		= UIImage()
+		nav1.navigationBar.setBackgroundImage(UIImage(), for: .default)
 		
 		let nav2				= UINavigationController()
 		let logInView			= LogInVC(nibName: nil, bundle: nil)
 		nav2.viewControllers	= [logInView]
+//		nav2.navigationBar.barTintColor		= .white
+//		nav2.navigationBar.isTranslucent	= false
+//		nav2.navigationBar.shadowImage		= UIImage()
+//		nav2.navigationBar.setBackgroundImage(UIImage(), for: .default)
 		
 		let nav3				= UINavigationController()
 		let mainView			= MainVC(nibName: nil, bundle: nil)

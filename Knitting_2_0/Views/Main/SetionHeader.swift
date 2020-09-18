@@ -22,7 +22,7 @@ class SectionHeader: UICollectionReusableView {
 	
 	let profileImage : UIImageView = {
 		let imageView = UIImageView()
-		imageView.image = UIImage(named: "profile")
+		imageView.image = UIImage(named: "emptyProfile")
         imageView.isUserInteractionEnabled = true
 		
 		return imageView

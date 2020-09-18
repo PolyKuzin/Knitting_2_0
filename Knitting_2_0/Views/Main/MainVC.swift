@@ -11,67 +11,101 @@ import FirebaseAuth
 import FirebaseDatabase
 import FirebaseFirestore
 
-class MainVC: UIViewController {
+class MainVC	: UIViewController, UIGestureRecognizerDelegate {
 	
-    private var user            		: MUsers!
-    private var ref             		: DatabaseReference!
+    private var user           		: MUsers!
+    private var ref             	: DatabaseReference!
 	
-	private var collectionView			: UICollectionView!
-	private var sections				: Array<MSection> = []
-	var dataSourse						: UICollectionViewDiffableDataSource<MSection, MProject>?
-	let teardownProfileTap 				= UITapGestureRecognizer(target: self, action: #selector(animateOut))
+	private var collectionView		: UICollectionView!
+	private var sections			: Array<MSection> = []
+	var dataSourse					: UICollectionViewDiffableDataSource<MSection, MProject>?
 
-	var signoutButton : UIButton = {
-		let button						= UIButton(type: .system)
-		button.frame 					= CGRect(x: 0, y: 0, width: 500, height: 50)
-		button.titleLabel?.font			= Fonts.textSemibold17
-		button.setTitle					("Sign out", for: .normal)
-		button.setTitleColor			(UIColor(red: 0.961, green: 0.188, blue: 0.467, alpha: 1), 	for: .normal)
-		button.addTarget(self, action: #selector(signoutFromAccount), for: .touchUpInside)
+	var signoutButton				: UIButton = {
+		let button					= UIButton(type: .system)
+		button.frame 				= CGRect(x: 0, y: 0, width: 500, height: 50)
+		button.titleLabel?.font		= Fonts.textSemibold17
+		button.setTitle				("Sign out ", for: .normal)
+		button.setTitleColor		(UIColor(red: 0.961, green: 0.188, blue: 0.467, alpha: 1), 	for: .normal)
+		button.addTarget			(self, action: #selector(signoutFromAccount), for: .touchUpInside)
+		button.setImage(Icons.exit, for: .normal)
+		button.tintColor = UIColor(red: 0.961, green: 0.188, blue: 0.467, alpha: 1)
+		button.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+		button.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+		button.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
 		
 		return button
 	}()
 	
-	let profileView : UIView = {
-		let view = UIView()
-		view.backgroundColor	= .white
-        view.alpha				= 0
+	var deleteAccountButton			: UIButton = {
+		let button					= UIButton(type: .system)
+		button.frame 				= CGRect(x: 0, y: 0, width: 500, height: 50)
+		button.titleLabel?.font		= Fonts.textSemibold14
+		button.setTitle				("Delete account", for: .normal)
+		button.setTitleColor		(UIColor(red: 0.961, green: 0.188, blue: 0.467, alpha: 1), 	for: .normal)
+		button.addTarget			(self, action: #selector(deleteAcoount), for: .touchUpInside)
+		
+		return button
+	}()
+	
+	let profileView 				: UIView = {
+		let view 					= UIView()
+		view.backgroundColor		= .white
+        view.alpha					= 0
         view.layer.cornerRadius		= 20
-        view.layer.masksToBounds		= false
-		view.layer.maskedCorners		= [.layerMaxXMinYCorner, .layerMinXMinYCorner]
-
+        view.layer.masksToBounds	= false
+		view.layer.maskedCorners	= [.layerMaxXMinYCorner, .layerMinXMinYCorner]
 		
 		return view
 	}()
 	
-	let darkBackground : UIView = {
-		let view = UIView()
-        view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
-		view.alpha = 0.7
+	let profileImage				: UIImageView = {
+		let imageView				= UIImageView()
+		imageView.image				= Icons.emptyProfile
+		imageView.layer.cornerRadius = 40
+		imageView.layer.masksToBounds = true
+		
+		return imageView
+	}()
+	
+	let fullnameLabel				: UILabel = {
+		let label					= UILabel()
+		label.text 					= "Kostya The Knitter"
+		label.textAlignment 		= .center
+		label.font 					= Fonts.displaySemibold22
+		label.textColor 			= UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
+		
+		return label
+	}()
+	
+	let emailLabel					: UILabel = {
+		let label					= UILabel()
+		label.text 					= "example@example.com"
+		label.textAlignment 		= .center
+		label.font 					= Fonts.displayRegular17
+		label.textColor 			= UIColor(red: 0.55, green: 0.55, blue: 0.55, alpha: 1)
+		
+		return label
+	}()
+	
+	let darkBackground				: UIView = {
+		let view					= UIView()
+        view.backgroundColor		= UIColor(red: 0, green: 0, blue: 0, alpha: 1)
+		view.alpha 					= 0.7
 		view.isUserInteractionEnabled = true
 
 		return view
 	}()
 	
-	let closeLabel : UILabel = {
-		let label = UILabel()
-		label.text = "Close"
-		label.textColor = .white
-		label.alpha			= 0
+	let closeLabel					: UILabel = {
+		let label					= UILabel()
+		label.text					= "Close"
+		label.textColor				= .white
+		label.alpha					= 0
 		label.isUserInteractionEnabled = true
+		label.font					= Fonts.textBold17
 		
 		return label
 	}()
-	
-	@objc
-	func signoutFromAccount() {
-        do {
-            try Auth.auth().signOut()
-        } catch {
-            print(error.localizedDescription)
-        }
-        dismiss(animated: true, completion: nil)
-	}
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(true)
@@ -96,6 +130,10 @@ class MainVC: UIViewController {
 		setUpLayout()
 		createDataSourse()
 		reloadData()
+		let teardownProfileTap1 			= UITapGestureRecognizer(target: self, action: #selector(animateOut))
+		let teardownProfileTap2 			= UITapGestureRecognizer(target: self, action: #selector(animateOut))
+		darkBackground.addGestureRecognizer(teardownProfileTap1)
+		closeLabel.addGestureRecognizer(teardownProfileTap2)
     }
 }
 
@@ -205,21 +243,18 @@ extension MainVC {
 	}
 }
 
-//MARK: ProfileView
+//MARK: ProfileView Animations
 extension MainVC {
 	
 	@objc
     func animateIn() {
         setupProfileView()
-        profileView.transform				= CGAffineTransform(translationX: profileView.frame.width, y: profileView.frame.height)
-            
-        UIView.animate(withDuration: 0.4) {
+        profileView.transform				= CGAffineTransform(translationX: 0, y: profileView.frame.height)
+		UIView.animate(withDuration: 0.4) {
             self.darkBackground.alpha		= 0.7
 			self.closeLabel.alpha			= 1.0
 			self.profileView.alpha			= 1.0
             self.profileView.transform		= CGAffineTransform.identity
-			self.closeLabel.addGestureRecognizer		(self.teardownProfileTap)
-			self.darkBackground.addGestureRecognizer	(self.teardownProfileTap)
 		}
 	}
 	
@@ -227,12 +262,41 @@ extension MainVC {
 	func animateOut() {
 		print("!!!!!")
 		UIView.animate(withDuration: 0.4, animations: {
-			self.profileView.transform		= CGAffineTransform(translationX: self.profileView.frame.width, y: 0)
+			self.profileView.transform		= CGAffineTransform(translationX: 0, y: 0)
 			self.darkBackground.alpha		= 0.0
 			self.profileView.alpha			= 0.0
 			self.closeLabel.alpha			= 0.0
 		}) { (success: Bool) in
 			self.teardownProfileView()
+		}
+	}
+}
+
+//MARK: Signout Screen
+extension MainVC {
+	
+	@objc
+	func signoutFromAccount() {
+        do {
+            try Auth.auth().signOut()
+        } catch {
+            print(error.localizedDescription)
+        }
+		self.navigationController?.popToRootViewController(animated: true)
+		self.navigationController?.dismiss(animated: false, completion: nil)
+	}
+	
+	@objc
+	func deleteAcoount() {
+		let user = Auth.auth().currentUser
+
+		user?.delete { error in
+			if let error = error {
+				print(error.localizedDescription)
+			} else {
+				self.navigationController?.popToRootViewController(animated: true)
+				self.navigationController?.dismiss(animated: false, completion: nil)
+			}
 		}
 	}
 }
@@ -258,18 +322,22 @@ extension MainVC {
 		collectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive 							= true
 		collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive 					= true
 		collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive					= true
+		
+        self.view.addSubview(darkBackground)
+
 	}
 	
 	func setupProfileView() {
-		
-		self.navigationController?.navigationBar.barTintColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
-		self.navigationController?.navigationBar.alpha = 0.7
-		
-		self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default) //UIImage.init(named: "transparent.png")
-		self.navigationController?.navigationBar.shadowImage = UIImage()
-		self.navigationController?.navigationBar.isTranslucent = true
-		self.navigationController?.view.backgroundColor = .clear
+		// DarkBackGround schould be
+		guard let navigationController = navigationController else { return }
+		navigationController.navigationBar.barTintColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
+		navigationController.navigationBar.alpha = 0.7
+		navigationController.navigationBar.setBackgroundImage(UIImage(), for: .default)
+		navigationController.navigationBar.shadowImage = UIImage()
+		navigationController.navigationBar.isTranslucent = true
+		navigationController.view.backgroundColor = .clear
 
+		//Seting up profile view
         self.view.addSubview(profileView)
         profileView.translatesAutoresizingMaskIntoConstraints											= false
         profileView.heightAnchor.constraint(equalToConstant: 300).isActive								= true
@@ -278,6 +346,38 @@ extension MainVC {
         profileView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive				= true
         profileView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive					= true
 		
+		profileView.addSubview(profileImage)
+		profileImage.translatesAutoresizingMaskIntoConstraints											= false
+		profileImage.topAnchor.constraint(equalTo: profileView.topAnchor, constant: 20).isActive		= true
+		profileImage.centerXAnchor.constraint(equalTo: profileView.centerXAnchor).isActive				= true
+		profileImage.heightAnchor.constraint(equalToConstant: 80).isActive								= true
+		profileImage.widthAnchor.constraint(equalTo: profileImage.heightAnchor).isActive				= true
+
+		profileView.addSubview(fullnameLabel)
+		fullnameLabel.translatesAutoresizingMaskIntoConstraints											= false
+		fullnameLabel.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 20).isActive	= true
+		fullnameLabel.centerXAnchor.constraint(equalTo: profileView.centerXAnchor).isActive				= true
+		fullnameLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 300).isActive				= true
+		
+		profileView.addSubview(emailLabel)
+		emailLabel.translatesAutoresizingMaskIntoConstraints											= false
+		emailLabel.topAnchor.constraint(equalTo: fullnameLabel.bottomAnchor, constant: 8).isActive		= true
+		emailLabel.centerXAnchor.constraint(equalTo: profileView.centerXAnchor).isActive				= true
+		emailLabel.leadingAnchor.constraint(equalTo: profileView.leadingAnchor, constant: 16).isActive	= true
+		
+		profileView.addSubview(signoutButton)
+		signoutButton.translatesAutoresizingMaskIntoConstraints											= false
+		signoutButton.topAnchor.constraint(equalTo: emailLabel.bottomAnchor, constant: 45).isActive		= true
+		signoutButton.centerXAnchor.constraint(equalTo: profileView.centerXAnchor).isActive				= true
+		signoutButton.widthAnchor.constraint(equalToConstant: 150).isActive								= true
+		
+		profileView.addSubview(deleteAccountButton)
+		deleteAccountButton.translatesAutoresizingMaskIntoConstraints									= false
+		deleteAccountButton.topAnchor.constraint(equalTo: signoutButton.bottomAnchor, constant: 5).isActive		= true
+		deleteAccountButton.centerXAnchor.constraint(equalTo: profileView.centerXAnchor).isActive		= true
+		deleteAccountButton.widthAnchor.constraint(equalToConstant: 150).isActive						= true
+		
+		//Seting up darkBackground
         self.view.addSubview(darkBackground)
 		darkBackground.translatesAutoresizingMaskIntoConstraints										= false
         darkBackground.topAnchor.constraint(equalTo: self.view.topAnchor, constant: -50).isActive		= true
@@ -285,15 +385,14 @@ extension MainVC {
         darkBackground.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive				= true
         darkBackground.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive				= true
        
-		view.addSubview(closeLabel)
+		self.view.addSubview(closeLabel)
         closeLabel.translatesAutoresizingMaskIntoConstraints											= false
-        closeLabel.bottomAnchor.constraint(equalTo: profileView.topAnchor, constant: -20).isActive		= true
+        closeLabel.bottomAnchor.constraint(equalTo: profileView.topAnchor, constant: -10).isActive		= true
         closeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive						= true
 		
 		self.view.bringSubviewToFront(darkBackground)
         self.view.bringSubviewToFront(profileView)
         self.view.bringSubviewToFront(closeLabel)
-
 	}
 	
 	func teardownProfileView() {
@@ -301,10 +400,4 @@ extension MainVC {
 		self.darkBackground.removeFromSuperview()
 		self.profileView.removeFromSuperview()
 	}
-}
-
-//MARK: Signout Screen
-extension MainVC {
-	
-	
 }

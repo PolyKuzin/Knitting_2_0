@@ -15,6 +15,9 @@ struct Icons {
 	static let backIcon		= UIImage(named: "arrow")
 	static let delete		= UIImage(named: "delete")
 	static let emptyProject	= UIImage(named: "empty")
+	static let emptyProfile	= UIImage(named: "emptyProfile")
+	static let exit			= UIImage(named: "exit")
+
 }
 
 struct BorderWidth {
@@ -88,4 +91,6 @@ struct Fonts {
 	
 	static let textSemibold14			= UIFont(name: "SFProText-Semibold",	size: 14) // to test
 	static let displayBold28			= UIFont(name: "SFProDisplay-Bold", 	size: 28)
+	static let textBold17				= UIFont(name: "SFProText-Bold", 		size: 17)
+	static let displayRegular17			= UIFont(name: "SFProDisplay-Regular", size: 17)
 }
