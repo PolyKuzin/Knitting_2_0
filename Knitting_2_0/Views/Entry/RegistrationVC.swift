@@ -47,6 +47,8 @@ class RegistrationVC	: UIViewController {
 		viewModel 						= RegistrationVM()
         dbReference						= Database.database().reference(withPath: "users")
 		setUpLayout()
+		let tap : UITapGestureRecognizer	= UITapGestureRecognizer(target: self, action: #selector(dismissKeyBoard))
+		view.addGestureRecognizer(tap)
 	}
 }
 
