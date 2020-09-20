@@ -11,105 +11,107 @@ import FirebaseAuth
 import FirebaseDatabase
 import FirebaseFirestore
 
-class MainVC	: UIViewController, UIGestureRecognizerDelegate {
+class MainVC	: UIViewController {
 	
     private var user           		: MUsers!
     private var ref             	: DatabaseReference!
 	
 	private var collectionView		: UICollectionView!
+	private var dataSourse			: UICollectionViewDiffableDataSource<MSection, MProject>?
+	
+	//MARK: UI Elements
+	private var signoutBtn			= UIButton()
+	private var deleteAccountBtn	= UIButton()
+	private var profileImage		= UIImageView()
+	private var fullname			= UILabel()
+	private var email				= UILabel()
+	private var darkBackground		= UIView()
+	private var close				= UILabel()
+	
 	private var sections			: Array<MSection> = []
-	var dataSourse					: UICollectionViewDiffableDataSource<MSection, MProject>?
 
-	var signoutButton				: UIButton = {
-		let button					= UIButton(type: .system)
-		button.frame 				= CGRect(x: 0, y: 0, width: 500, height: 50)
-		button.titleLabel?.font		= Fonts.textSemibold17
-		button.setTitle				("Sign out ", for: .normal)
-		button.setTitleColor		(UIColor(red: 0.961, green: 0.188, blue: 0.467, alpha: 1), 	for: .normal)
-		button.addTarget			(self, action: #selector(signoutFromAccount), for: .touchUpInside)
-		button.setImage(Icons.exit, for: .normal)
-		button.tintColor = UIColor(red: 0.961, green: 0.188, blue: 0.467, alpha: 1)
-		button.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
-		button.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
-		button.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
-		
-		return button
-	}()
+	private var viewModel			: MainVM! {
+		didSet {
+			self.signoutBtn			= viewModel.signOut()
+			self.deleteAccountBtn	= viewModel.deleteAccount()
+			self.profileImage		= viewModel.profileImageView()
+			self.fullname			= viewModel.fullnameLabel()
+			self.email				= viewModel.emailLabel()
+			self.darkBackground		= viewModel.darkBackgroundView()
+			self.close				= viewModel.closeLabel()
+			self.sections.append(viewModel.sections())
+		}
+	}
 	
-	var deleteAccountButton			: UIButton = {
-		let button					= UIButton(type: .system)
-		button.frame 				= CGRect(x: 0, y: 0, width: 500, height: 50)
-		button.titleLabel?.font		= Fonts.textSemibold14
-		button.setTitle				("Delete account", for: .normal)
-		button.setTitleColor		(UIColor(red: 0.961, green: 0.188, blue: 0.467, alpha: 1), 	for: .normal)
-		button.addTarget			(self, action: #selector(deleteAcoount), for: .touchUpInside)
-		
-		return button
-	}()
+    enum CardState {
+        case expanded
+        case collapsed
+    }
+    
+    var cardViewController      : ProfileCardVC!
+    var visualEffectView        : UIVisualEffectView!
+    
+    let cardHeight              : CGFloat = 300 + 20  				//TO CONSTANTS
+    let cardHandleAreaHeight    : CGFloat = 0						//TO CONSTANTS
+    
+    var cardVisible				= false
+    var nextState				:CardState {
+        return cardVisible ? .collapsed : .expanded
+    }
+    
+    var runningAnimations = [UIViewPropertyAnimator]()
+    var animationProgressWhenInterrupted:CGFloat = 0
 	
-	let profileView 				: UIView = {
-		let view 					= UIView()
-		view.backgroundColor		= .white
-        view.alpha					= 0
-        view.layer.cornerRadius		= 20
-        view.layer.masksToBounds	= false
-		view.layer.maskedCorners	= [.layerMaxXMinYCorner, .layerMinXMinYCorner]
-		
-		return view
-	}()
+	func setupCard() {
+        visualEffectView = UIVisualEffectView()
+		visualEffectView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        self.view.addSubview(visualEffectView)
+		self.view.sendSubviewToBack(visualEffectView)
+        
+        cardViewController = ProfileCardVC()
+        self.addChild(cardViewController)
+		self.view.insertSubview(cardViewController.view, at: 2)
+        
+        cardViewController.view.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.bounds.width, height: cardHeight)
+        
+        cardViewController.view.clipsToBounds = true
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MainVC.handleCardTap(recognzier:)))
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(MainVC.handleCardPan(recognizer:)))
+        visualEffectView.addGestureRecognizer			(tapGestureRecognizer)
+        cardViewController.handle.addGestureRecognizer	(panGestureRecognizer)
+    }
 	
-	let profileImage				: UIImageView = {
-		let imageView				= UIImageView()
-		imageView.image				= Icons.emptyProfile
-		imageView.layer.cornerRadius = 40
-		imageView.layer.masksToBounds = true
-		
-		return imageView
-	}()
-	
-	let fullnameLabel				: UILabel = {
-		let label					= UILabel()
-		label.text 					= "Kostya The Knitter"
-		label.textAlignment 		= .center
-		label.font 					= Fonts.displaySemibold22
-		label.textColor 			= UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
-		
-		return label
-	}()
-	
-	let emailLabel					: UILabel = {
-		let label					= UILabel()
-		label.text 					= "example@example.com"
-		label.textAlignment 		= .center
-		label.font 					= Fonts.displayRegular17
-		label.textColor 			= UIColor(red: 0.55, green: 0.55, blue: 0.55, alpha: 1)
-		
-		return label
-	}()
-	
-	let darkBackground				: UIView = {
-		let view					= UIView()
-        view.backgroundColor		= UIColor(red: 0, green: 0, blue: 0, alpha: 1)
-		view.alpha 					= 0.7
-		view.isUserInteractionEnabled = true
-
-		return view
-	}()
-	
-	let closeLabel					: UILabel = {
-		let label					= UILabel()
-		label.text					= "Close"
-		label.textColor				= .white
-		label.alpha					= 0
-		label.isUserInteractionEnabled = true
-		label.font					= Fonts.textBold17
-		
-		return label
-	}()
+	@objc
+    func handleCardTap(recognzier:UITapGestureRecognizer) {
+        switch recognzier.state {
+        case .ended		:
+            animateTransitionIfNeeded(state: nextState, duration: 0.9)
+        default			:
+            break
+        }
+    }
+    
+    @objc
+    func handleCardPan (recognizer:UIPanGestureRecognizer) {
+        switch recognizer.state {
+        case .began		:
+            startInteractiveTransition(state: nextState, duration: 0.9)
+        case .changed	:
+            let translation			= recognizer.translation(in: self.cardViewController.handle)
+            var fractionComplete	= translation.y / cardHeight
+            fractionComplete		= cardVisible ? fractionComplete : -fractionComplete
+            updateInteractiveTransition(fractionCompleted: fractionComplete)
+        case .ended		:
+            continueInteractiveTransition()
+        default:
+            break
+        }
+    }
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(true)
-		setupNavBar()
+		setupNormalNavBar()
 		guard let currentUser = Auth.auth().currentUser else { return }
 		user	= MUsers(user: currentUser)
         ref		= Database.database().reference(withPath: "users").child(String(user.uid)).child("projects")
@@ -117,23 +119,15 @@ class MainVC	: UIViewController, UIGestureRecognizerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+		viewModel = MainVM()
 		view.backgroundColor = .white
-		let project1 = MProject(userID: "1238", projectID: "123", name: "123", imageRef: "123")
-		let project2 = MProject(userID: "1234", projectID: "123", name: "123", imageRef: "123")
-		let project3 = MProject(userID: "1235", projectID: "123", name: "123", imageRef: "123")
-		let project4 = MProject(userID: "1236", projectID: "123", name: "123", imageRef: "123")
-		let project5 = MProject(userID: "1237", projectID: "123", name: "123", imageRef: "123")
-
-		let section = MSection(type: "projects", title: "Working on this?", projects: [project1, project2, project3, project4, project5])
-		sections.append(section)
+		
 		setupCollectionView()
 		setUpLayout()
 		createDataSourse()
 		reloadData()
-		let teardownProfileTap1 			= UITapGestureRecognizer(target: self, action: #selector(animateOut))
-		let teardownProfileTap2 			= UITapGestureRecognizer(target: self, action: #selector(animateOut))
-		darkBackground.addGestureRecognizer(teardownProfileTap1)
-		closeLabel.addGestureRecognizer(teardownProfileTap2)
+		
+		setupCard()
     }
 }
 
@@ -156,10 +150,10 @@ extension MainVC {
 	func createCompositionalLayout() -> UICollectionViewLayout {
 		let layout = UICollectionViewCompositionalLayout { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
 			let section = self.sections[sectionIndex]
-		//A place for adding a new section
+	//A place for adding a new section
 			switch section.type {
-			default:
-				return self.createProjectsSection()
+				default:
+			return self.createProjectsSection()
 			}
 		}
 		return layout
@@ -227,8 +221,9 @@ extension MainVC {
 				else { return nil}
 			if section.title.isEmpty { return nil}
 			sectionHeader.title.text	= section.title
-			let profileTap 					= UITapGestureRecognizer(target: self, action: #selector(self?.animateIn))
-			sectionHeader.profileImage.addGestureRecognizer(profileTap)
+			let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MainVC.handleCardTap(recognzier:)))
+			sectionHeader.profileImage.addGestureRecognizer(tapGestureRecognizer)
+
 			return sectionHeader
 		}
 	}
@@ -243,92 +238,96 @@ extension MainVC {
 	}
 }
 
-//MARK: ProfileView Animations
+//MARK: CardView Animations
 extension MainVC {
-	
-	@objc
-    func animateIn() {
-        setupProfileView()
-        profileView.transform				= CGAffineTransform(translationX: 0, y: profileView.frame.height)
-		UIView.animate(withDuration: 0.4) {
-            self.darkBackground.alpha		= 0.7
-			self.closeLabel.alpha			= 1.0
-			self.profileView.alpha			= 1.0
-            self.profileView.transform		= CGAffineTransform.identity
-		}
-	}
-	
-	@objc
-	func animateOut() {
-		print("!!!!!")
-		UIView.animate(withDuration: 0.4, animations: {
-			self.profileView.transform		= CGAffineTransform(translationX: 0, y: 0)
-			self.darkBackground.alpha		= 0.0
-			self.profileView.alpha			= 0.0
-			self.closeLabel.alpha			= 0.0
-		}) { (success: Bool) in
-			self.teardownProfileView()
-		}
-	}
-}
 
-//MARK: Signout Screen
-extension MainVC {
-	
-	@objc
-	func signoutFromAccount() {
-        do {
-            try Auth.auth().signOut()
-        } catch {
-            print(error.localizedDescription)
-        }
-		self.navigationController?.popToRootViewController(animated: true)
-		self.navigationController?.dismiss(animated: false, completion: nil)
-	}
-	
-	@objc
-	func deleteAcoount() {
-		let user = Auth.auth().currentUser
-
-		user?.delete { error in
-			if let error = error {
-				print(error.localizedDescription)
-			} else {
-				self.navigationController?.popToRootViewController(animated: true)
-				self.navigationController?.dismiss(animated: false, completion: nil)
+    func animateTransitionIfNeeded (state:CardState, duration:TimeInterval) {
+        if runningAnimations.isEmpty {
+			
+		let frameAnimator = UIViewPropertyAnimator(duration: duration, dampingRatio: 1) {
+			switch state {
+			case .expanded	:
+				self.setUpClearNavBar()
+				self.cardViewController.view.frame.origin.y = self.view.frame.height - self.cardHeight + 20
+			case .collapsed	:
+				self.setupNormalNavBar()
+				self.cardViewController.view.frame.origin.y = self.view.frame.height - self.cardHandleAreaHeight
 			}
 		}
+		frameAnimator.addCompletion { _ in
+			self.cardVisible = !self.cardVisible
+			self.runningAnimations.removeAll()
+		}
+		frameAnimator.startAnimation()
+		runningAnimations.append(frameAnimator)
+		
+		let cornerRadiusAnimator = UIViewPropertyAnimator(duration: duration, curve: .linear) {
+			switch state {
+			case .expanded:
+				self.cardViewController.view.layer.cornerRadius = 20
+			case .collapsed:
+				self.cardViewController.view.layer.cornerRadius = 0
+			}
+		}
+		
+		cornerRadiusAnimator.startAnimation()
+		runningAnimations.append(cornerRadiusAnimator)
+		
+		let blurAnimator = UIViewPropertyAnimator(duration: duration, dampingRatio: 1) {
+			switch state {
+			case .expanded:
+				self.view.insertSubview(self.visualEffectView, at: 1)
+				self.visualEffectView.effect	= UIBlurEffect(style: .dark)
+				self.visualEffectView.alpha		= 0.7
+			case .collapsed:
+				self.visualEffectView.effect	= nil
+				self.view.sendSubviewToBack(self.visualEffectView)
+			}
+		}
+		blurAnimator.startAnimation()
+		runningAnimations.append(blurAnimator)
 	}
+}
+	
+    func startInteractiveTransition(state:CardState, duration:TimeInterval) {
+        if runningAnimations.isEmpty {
+            animateTransitionIfNeeded(state: state, duration: duration)
+        }
+        for animator in runningAnimations {
+            animator.pauseAnimation()
+            animationProgressWhenInterrupted = animator.fractionComplete
+        }
+    }
+    
+    func updateInteractiveTransition(fractionCompleted:CGFloat) {
+        for animator in runningAnimations {
+            animator.fractionComplete = fractionCompleted + animationProgressWhenInterrupted
+        }
+    }
+    
+    func continueInteractiveTransition (){
+        for animator in runningAnimations {
+            animator.continueAnimation(withTimingParameters: nil, durationFactor: 0)
+        }
+    }
 }
 
 //MARK: Layout
 extension MainVC {
 	
-	func setupNavBar() {
+	func setupNormalNavBar() {
 		//Navigation Bar scould be invisible
 		guard let navigationController = navigationController else { return }
 		navigationController.navigationBar.barTintColor		= .white
+		navigationController.view.backgroundColor			= .white
 		navigationController.navigationBar.isTranslucent	= false
 		navigationController.navigationBar.shadowImage		= UIImage()
 		navigationController.navigationBar.setBackgroundImage(UIImage(), for: .default)
+		
 		self.navigationItem.setHidesBackButton(true, animated: true)
 	}
 	
-	func setUpLayout() {
-		//Projects collection View Layout
-		view.addSubview(collectionView)
-		collectionView.translatesAutoresizingMaskIntoConstraints										= false
-		collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive 				= true
-		collectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive 							= true
-		collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive 					= true
-		collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive					= true
-		
-        self.view.addSubview(darkBackground)
-
-	}
-	
-	func setupProfileView() {
-		// DarkBackGround schould be
+	func setUpClearNavBar() {
 		guard let navigationController = navigationController else { return }
 		navigationController.navigationBar.barTintColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
 		navigationController.navigationBar.alpha = 0.7
@@ -336,68 +335,26 @@ extension MainVC {
 		navigationController.navigationBar.shadowImage = UIImage()
 		navigationController.navigationBar.isTranslucent = true
 		navigationController.view.backgroundColor = .clear
-
-		//Seting up profile view
-        self.view.addSubview(profileView)
-        profileView.translatesAutoresizingMaskIntoConstraints											= false
-        profileView.heightAnchor.constraint(equalToConstant: 300).isActive								= true
-        profileView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width).isActive	= true
-        profileView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive					= true
-        profileView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive				= true
-        profileView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive					= true
-		
-		profileView.addSubview(profileImage)
-		profileImage.translatesAutoresizingMaskIntoConstraints											= false
-		profileImage.topAnchor.constraint(equalTo: profileView.topAnchor, constant: 20).isActive		= true
-		profileImage.centerXAnchor.constraint(equalTo: profileView.centerXAnchor).isActive				= true
-		profileImage.heightAnchor.constraint(equalToConstant: 80).isActive								= true
-		profileImage.widthAnchor.constraint(equalTo: profileImage.heightAnchor).isActive				= true
-
-		profileView.addSubview(fullnameLabel)
-		fullnameLabel.translatesAutoresizingMaskIntoConstraints											= false
-		fullnameLabel.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 20).isActive	= true
-		fullnameLabel.centerXAnchor.constraint(equalTo: profileView.centerXAnchor).isActive				= true
-		fullnameLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 300).isActive				= true
-		
-		profileView.addSubview(emailLabel)
-		emailLabel.translatesAutoresizingMaskIntoConstraints											= false
-		emailLabel.topAnchor.constraint(equalTo: fullnameLabel.bottomAnchor, constant: 8).isActive		= true
-		emailLabel.centerXAnchor.constraint(equalTo: profileView.centerXAnchor).isActive				= true
-		emailLabel.leadingAnchor.constraint(equalTo: profileView.leadingAnchor, constant: 16).isActive	= true
-		
-		profileView.addSubview(signoutButton)
-		signoutButton.translatesAutoresizingMaskIntoConstraints											= false
-		signoutButton.topAnchor.constraint(equalTo: emailLabel.bottomAnchor, constant: 45).isActive		= true
-		signoutButton.centerXAnchor.constraint(equalTo: profileView.centerXAnchor).isActive				= true
-		signoutButton.widthAnchor.constraint(equalToConstant: 150).isActive								= true
-		
-		profileView.addSubview(deleteAccountButton)
-		deleteAccountButton.translatesAutoresizingMaskIntoConstraints									= false
-		deleteAccountButton.topAnchor.constraint(equalTo: signoutButton.bottomAnchor, constant: 5).isActive		= true
-		deleteAccountButton.centerXAnchor.constraint(equalTo: profileView.centerXAnchor).isActive		= true
-		deleteAccountButton.widthAnchor.constraint(equalToConstant: 150).isActive						= true
-		
-		//Seting up darkBackground
-        self.view.addSubview(darkBackground)
-		darkBackground.translatesAutoresizingMaskIntoConstraints										= false
-        darkBackground.topAnchor.constraint(equalTo: self.view.topAnchor, constant: -50).isActive		= true
-        darkBackground.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive			= true
-        darkBackground.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive				= true
-        darkBackground.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive				= true
-       
-		self.view.addSubview(closeLabel)
-        closeLabel.translatesAutoresizingMaskIntoConstraints											= false
-        closeLabel.bottomAnchor.constraint(equalTo: profileView.topAnchor, constant: -10).isActive		= true
-        closeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive						= true
-		
-		self.view.bringSubviewToFront(darkBackground)
-        self.view.bringSubviewToFront(profileView)
-        self.view.bringSubviewToFront(closeLabel)
 	}
 	
-	func teardownProfileView() {
-		self.closeLabel.removeFromSuperview()
-		self.darkBackground.removeFromSuperview()
-		self.profileView.removeFromSuperview()
+	func setUpLayout() {
+		//Projects collection View Layout
+		view.addSubview(collectionView)
+		view.insertSubview(collectionView, at: 0)
+		collectionView.translatesAutoresizingMaskIntoConstraints										= false
+		collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive 				= true
+		collectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive 							= true
+		collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive 					= true
+		collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive					= true
+		
+        self.view.addSubview(collectionView)
+	}
+	
+	func teardownCardView() {
+		runningAnimations.removeAll()
+		cardViewController.removeFromParent()
+		cardViewController.dismiss(animated: false, completion: nil)
+		visualEffectView.removeFromSuperview()
+		visualEffectView = nil
 	}
 }

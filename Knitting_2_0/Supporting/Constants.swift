@@ -67,7 +67,7 @@ struct Placeholder {
 	static let resetPassword			= "Reset" // to test
 	static let resetPasswordForm		= "A form for password recovery will be sent to your email address" // to test
 	
-	static let titleForSingUp			= "Sing up"
+	static let titleForSingUp			= "Sign up"
 	static let titleForLogIn			= "Log in"
 	static let questionToLogInLbl		= "Already have an account? "
 	static let questionToLogInBtn		= " Log in"

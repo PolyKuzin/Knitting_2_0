@@ -12,17 +12,17 @@ class SectionHeader: UICollectionReusableView {
 	
 	static let reusedId = "SectionHeader"
 	
-	let title : UILabel = {
-		let label = UILabel()
-		label.textColor = .black
+	let title			: UILabel = {
+		let label		= UILabel()
+		label.textColor = .black							//TO CONSTANTS
 		label.font		= Fonts.displayBold28
 		
 		return label
 	}()
 	
-	let profileImage : UIImageView = {
-		let imageView = UIImageView()
-		imageView.image = UIImage(named: "emptyProfile")
+	let profileImage	: UIImageView = {
+		let imageView	= UIImageView()
+		imageView.image = UIImage(named: "emptyProfile") 	//TO CONSTANTS
         imageView.isUserInteractionEnabled = true
 		
 		return imageView

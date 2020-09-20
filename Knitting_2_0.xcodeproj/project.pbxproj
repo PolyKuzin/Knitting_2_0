@@ -47,6 +47,8 @@
 		99E4A1C625091FBE003CA7C9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 99E4A1C525091FBE003CA7C9 /* GoogleService-Info.plist */; };
 		99EFB5602515638F003A5D07 /* SF-Pro-Text-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 99EFB55F2515638F003A5D07 /* SF-Pro-Text-Bold.otf */; };
 		99EFB562251567CD003A5D07 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 99EFB561251567CD003A5D07 /* SF-Pro-Display-Regular.otf */; };
+		99EFB56425168A7E003A5D07 /* ProfileCardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EFB56325168A7E003A5D07 /* ProfileCardVC.swift */; };
+		99EFB56625168AF5003A5D07 /* ProfileCardVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EFB56525168AF5003A5D07 /* ProfileCardVM.swift */; };
 		F923C35C687FA08E942E54EC /* Pods_Knitting_2_0.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9AB0322FBAB47D7907630EB /* Pods_Knitting_2_0.framework */; };
 /* End PBXBuildFile section */
 
@@ -107,6 +109,8 @@
 		99E4A1C525091FBE003CA7C9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		99EFB55F2515638F003A5D07 /* SF-Pro-Text-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Bold.otf"; sourceTree = "<group>"; };
 		99EFB561251567CD003A5D07 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
+		99EFB56325168A7E003A5D07 /* ProfileCardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardVC.swift; sourceTree = "<group>"; };
+		99EFB56525168AF5003A5D07 /* ProfileCardVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardVM.swift; sourceTree = "<group>"; };
 		A9AB0322FBAB47D7907630EB /* Pods_Knitting_2_0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Knitting_2_0.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B63AB392BD94FD626BC5C223 /* Pods-Knitting_2_0Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Knitting_2_0Tests.release.xcconfig"; path = "Target Support Files/Pods-Knitting_2_0Tests/Pods-Knitting_2_0Tests.release.xcconfig"; sourceTree = "<group>"; };
 		E1676BB02479D45F64F22B54 /* Pods-Knitting_2_0Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Knitting_2_0Tests.debug.xcconfig"; path = "Target Support Files/Pods-Knitting_2_0Tests/Pods-Knitting_2_0Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -148,6 +152,7 @@
 				998B9F8E250D817000C0C52F /* ProjectCell.swift */,
 				998B9F90250D81BE00C0C52F /* SwipeableCell.swift */,
 				994EF7132514B423009AA35B /* SetionHeader.swift */,
+				99EFB56325168A7E003A5D07 /* ProfileCardVC.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -248,6 +253,7 @@
 			children = (
 				996FAF342508FC9000209228 /* Entry */,
 				998B9F86250C1E2B00C0C52F /* MainVM.swift */,
+				99EFB56525168AF5003A5D07 /* ProfileCardVM.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -523,12 +529,14 @@
 				99AFBA4B24F80D9E00E71FD6 /* RegistrationVC.swift in Sources */,
 				998B9F85250BCAFA00C0C52F /* UIWindow.swift in Sources */,
 				99AFBA7024F8121D00E71FD6 /* RegistrationVM.swift in Sources */,
+				99EFB56425168A7E003A5D07 /* ProfileCardVC.swift in Sources */,
 				99B2067A2504F10600FA6C50 /* EntryVC.swift in Sources */,
 				998B9F87250C1E2B00C0C52F /* MainVM.swift in Sources */,
 				998B9F91250D81BE00C0C52F /* SwipeableCell.swift in Sources */,
 				99B206722504DD8B00FA6C50 /* LogInVC.swift in Sources */,
 				99B206742504DDF700FA6C50 /* LogInVM.swift in Sources */,
 				99AFBA4724F80D9E00E71FD6 /* AppDelegate.swift in Sources */,
+				99EFB56625168AF5003A5D07 /* ProfileCardVM.swift in Sources */,
 				996FAF2C2508245D00209228 /* EntryVM.swift in Sources */,
 				998B9F8F250D817000C0C52F /* ProjectCell.swift in Sources */,
 				99AFBA4924F80D9E00E71FD6 /* SceneDelegate.swift in Sources */,
@@ -702,7 +710,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.01;
+				MARKETING_VERSION = 1.01.01;
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.polykuzin.Knitting-2-0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -722,7 +730,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.01;
+				MARKETING_VERSION = 1.01.01;
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.polykuzin.Knitting-2-0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

@@ -1,36 +1,14 @@
 //
-//  MainVM.swift
+//  ProfileCardVM.swift
 //  Knitting_2_0
 //
-//  Created by Павел Кузин on 12.09.2020.
+//  Created by Павел Кузин on 19.09.2020.
 //  Copyright © 2020 Павел Кузин. All rights reserved.
 //
 
 import UIKit
-import FirebaseAuth
-import FirebaseDatabase
-import FirebaseFirestore
 
-protocol CollectionViewViewModelType {
-
-}
-
-class MainVM : CollectionViewViewModelType {
-	
-//MARK: MAIN View Controller
-	// Setting up sections
-	func sections() -> MSection {
-		let project1 = MProject(userID: "1238", projectID: "123", name: "123", imageRef: "123")
-		let project2 = MProject(userID: "1234", projectID: "123", name: "123", imageRef: "123")
-		let project3 = MProject(userID: "1235", projectID: "123", name: "123", imageRef: "123")
-		let project4 = MProject(userID: "1236", projectID: "123", name: "123", imageRef: "123")
-		let project5 = MProject(userID: "1237", projectID: "123", name: "123", imageRef: "123")
-
-		let section = MSection(type: "projects", title: "Working on this?", projects: [project1, project2, project3, project4, project5])
-		
-		return section
-	}
-	
+class ProfileCardVM {
 	
 //MARK: Profile Card View Controller
 	private var signoutBtn			: UIButton = {
@@ -96,7 +74,7 @@ class MainVM : CollectionViewViewModelType {
 		return view
 	}()
 	
-	let close					: UILabel = {
+	let close						: UILabel = {
 		let label					= UILabel()
 		label.text					= "Close"
 		label.textColor				= .white
@@ -105,6 +83,15 @@ class MainVM : CollectionViewViewModelType {
 		label.font					= Fonts.textBold17
 		
 		return label
+	}()
+	
+	let handle						: UIView = {
+		let view					= UIView()
+		view.backgroundColor		= .white
+		
+		view.isUserInteractionEnabled = true
+		
+		return view
 	}()
 	
 	func signOut() -> UIButton {
@@ -133,5 +120,9 @@ class MainVM : CollectionViewViewModelType {
 	
 	func closeLabel() -> UILabel {
 		return close
+	}
+	
+	func handleView() -> UIView {
+		return handle
 	}
 }
