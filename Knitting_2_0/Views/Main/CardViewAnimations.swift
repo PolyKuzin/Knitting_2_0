@@ -19,16 +19,13 @@ extension MainVC {
 					self.setUpClearNavBar()
 					self.cardViewController.view.frame.origin.y = self.view.frame.height - self.cardHeight + 20
 				case .collapsed	:
-					self.setupNormalNavBar()
 					self.cardViewController.view.frame.origin.y = self.view.frame.height - self.cardHandleAreaHeight
 				}
 			}
 			frameAnimator.addCompletion { _ in
 				self.cardVisible = !self.cardVisible
 				self.runningAnimations.removeAll()
-			}
-			frameAnimator.startAnimation()
-			runningAnimations.append(frameAnimator)
+			} 
 			
 			let cornerRadiusAnimator = UIViewPropertyAnimator(duration: duration, curve: .linear) {
 				switch state {
@@ -39,8 +36,6 @@ extension MainVC {
 				}
 			}
 			
-			cornerRadiusAnimator.startAnimation()
-			runningAnimations.append(cornerRadiusAnimator)
 		
 			let blurAnimator = UIViewPropertyAnimator(duration: duration, dampingRatio: 1) {
 				switch state {
@@ -52,7 +47,13 @@ extension MainVC {
 					self.visualEffectView.effect	= nil
 				}
 			}
-		
+			
+			frameAnimator.startAnimation()
+			runningAnimations.append(frameAnimator)
+//
+			cornerRadiusAnimator.startAnimation()
+			runningAnimations.append(cornerRadiusAnimator)
+//
 			blurAnimator.startAnimation()
 			runningAnimations.append(blurAnimator)
 		}
@@ -65,27 +66,23 @@ extension MainVC {
         for animator in runningAnimations {
             animator.pauseAnimation()
             animationProgressWhenInterrupted = animator.fractionComplete
-			checkWhenAnimationsScholdEnd()
         }
     }
     
     func updateInteractiveTransition(fractionCompleted:CGFloat) {
         for animator in runningAnimations {
             animator.fractionComplete = fractionCompleted + animationProgressWhenInterrupted
-			checkWhenAnimationsScholdEnd()
         }
     }
     
     func continueInteractiveTransition (){
         for animator in runningAnimations {
             animator.continueAnimation(withTimingParameters: nil, durationFactor: 0)
-			checkWhenAnimationsScholdEnd()
         }
-    }
-	
-	func checkWhenAnimationsScholdEnd() {
-		if self.cardViewController.view.frame.origin.y == self.view.frame.height {
+		let seconds = 0.3
+		DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+			NotificationCenter.default.removeObserver(self, name: self.light, object: nil)
 			self.teardownCardView()
 		}
-	}
+    }
 }

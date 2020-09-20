@@ -41,7 +41,7 @@ class MainVC	: UIViewController {
 	var cardViewController      	: CardViewControllerProtocol!
     var visualEffectView			: UIVisualEffectView!
     
-    let cardHeight					: CGFloat = 300 + 20  				//TO CONSTANTS
+    var cardHeight					: CGFloat = 300 + 20  				//TO CONSTANTS
     let cardHandleAreaHeight		: CGFloat = 0						//TO CONSTANTS
     
     var cardVisible					= false
@@ -82,8 +82,6 @@ class MainVC	: UIViewController {
 
 		setupCollectionView()
 		setupVisualEffect()
-//		setupProfileCard()
-//		setupNewProjectCard()
     }
 	
     deinit {
@@ -211,7 +209,6 @@ extension MainVC {
 	}
 	
 	func setupProfileCard() {
-//        cardViewController = ProfileCardVC()
         self.addChild(cardViewController)
 		self.view.insertSubview(cardViewController.view, at: 2)
         
@@ -237,7 +234,6 @@ extension MainVC {
 		let seconds = 0.3
 		DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
 			NotificationCenter.default.removeObserver(self, name: self.light, object: nil)
-			
 			self.teardownCardView()
 		}
     }
@@ -312,6 +308,7 @@ extension MainVC {
 	}
 	
 	func teardownCardView() {
+		self.setupNormalNavBar()
 		runningAnimations.removeAll()
 		cardViewController.removeFromParent()
 		cardViewController.view.removeFromSuperview()
