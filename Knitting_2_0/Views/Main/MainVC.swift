@@ -11,6 +11,13 @@ import FirebaseAuth
 import FirebaseDatabase
 import FirebaseFirestore
 
+let profileImageInSectionNotificationKey = "ru.polykuzin.profileImage"
+
+enum CardState {
+	case expanded
+	case collapsed
+}
+
 class MainVC	: UIViewController {
 	
     private var user           		: MUsers!
@@ -29,6 +36,21 @@ class MainVC	: UIViewController {
 	private var close				= UILabel()
 	
 	private var sections			: Array<MSection> = []
+	
+    
+	var cardViewController      	: CardViewControllerProtocol!
+    var visualEffectView			: UIVisualEffectView!
+    
+    let cardHeight					: CGFloat = 300 + 20  				//TO CONSTANTS
+    let cardHandleAreaHeight		: CGFloat = 0						//TO CONSTANTS
+    
+    var cardVisible					= false
+    var nextState					:CardState {
+        return cardVisible ? .collapsed : .expanded
+    }
+    
+    var runningAnimations = [UIViewPropertyAnimator]()
+    var animationProgressWhenInterrupted:CGFloat = 0
 
 	private var viewModel			: MainVM! {
 		didSet {
@@ -43,72 +65,6 @@ class MainVC	: UIViewController {
 		}
 	}
 	
-    enum CardState {
-        case expanded
-        case collapsed
-    }
-    
-    var cardViewController      : ProfileCardVC!
-    var visualEffectView        : UIVisualEffectView!
-    
-    let cardHeight              : CGFloat = 300 + 20  				//TO CONSTANTS
-    let cardHandleAreaHeight    : CGFloat = 0						//TO CONSTANTS
-    
-    var cardVisible				= false
-    var nextState				:CardState {
-        return cardVisible ? .collapsed : .expanded
-    }
-    
-    var runningAnimations = [UIViewPropertyAnimator]()
-    var animationProgressWhenInterrupted:CGFloat = 0
-	
-	func setupCard() {
-        visualEffectView = UIVisualEffectView()
-		visualEffectView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-        self.view.addSubview(visualEffectView)
-		self.view.sendSubviewToBack(visualEffectView)
-        
-        cardViewController = ProfileCardVC()
-        self.addChild(cardViewController)
-		self.view.insertSubview(cardViewController.view, at: 2)
-        
-        cardViewController.view.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.bounds.width, height: cardHeight)
-        
-        cardViewController.view.clipsToBounds = true
-        
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MainVC.handleCardTap(recognzier:)))
-        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(MainVC.handleCardPan(recognizer:)))
-        visualEffectView.addGestureRecognizer			(tapGestureRecognizer)
-        cardViewController.handle.addGestureRecognizer	(panGestureRecognizer)
-    }
-	
-	@objc
-    func handleCardTap(recognzier:UITapGestureRecognizer) {
-        switch recognzier.state {
-        case .ended		:
-            animateTransitionIfNeeded(state: nextState, duration: 0.9)
-        default			:
-            break
-        }
-    }
-    
-    @objc
-    func handleCardPan (recognizer:UIPanGestureRecognizer) {
-        switch recognizer.state {
-        case .began		:
-            startInteractiveTransition(state: nextState, duration: 0.9)
-        case .changed	:
-            let translation			= recognizer.translation(in: self.cardViewController.handle)
-            var fractionComplete	= translation.y / cardHeight
-            fractionComplete		= cardVisible ? fractionComplete : -fractionComplete
-            updateInteractiveTransition(fractionCompleted: fractionComplete)
-        case .ended		:
-            continueInteractiveTransition()
-        default:
-            break
-        }
-    }
-	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(true)
 		setupNormalNavBar()
@@ -117,17 +73,21 @@ class MainVC	: UIViewController {
         ref		= Database.database().reference(withPath: "users").child(String(user.uid)).child("projects")
 	}
 
+    let light = Notification.Name(rawValue: profileImageInSectionNotificationKey)
+
     override func viewDidLoad() {
         super.viewDidLoad()
 		viewModel = MainVM()
 		view.backgroundColor = .white
-		
+
 		setupCollectionView()
-		setUpLayout()
-		createDataSourse()
-		reloadData()
-		
-		setupCard()
+		setupVisualEffect()
+//		setupProfileCard()
+//		setupNewProjectCard()
+    }
+	
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
 
@@ -145,6 +105,9 @@ extension MainVC {
 									withReuseIdentifier: SectionHeader.reusedId)
 		collectionView.register(ProjectCell.self,
 									forCellWithReuseIdentifier: ProjectCell.reuseId)
+		createDataSourse()
+		reloadData()
+		setUpLayout()
 	}
 	
 	func createCompositionalLayout() -> UICollectionViewLayout {
@@ -160,17 +123,17 @@ extension MainVC {
 	}
 	
 	func createProjectsSection() -> NSCollectionLayoutSection {
-		let itemSize			= NSCollectionLayoutSize			(widthDimension:	.fractionalWidth(1.0),
-																	 heightDimension:	.fractionalHeight(UIScreen.main.bounds.height / 6.7))
-		let item				= NSCollectionLayoutItem			(layoutSize: itemSize)
-		let groupSize			= NSCollectionLayoutSize			(widthDimension:	.fractionalWidth(1.0),
-																	 heightDimension:	.estimated(1.0))
-		let group				= NSCollectionLayoutGroup.vertical	(layoutSize: groupSize, subitems: [item])
-		let section				= NSCollectionLayoutSection			(group: group)
-		item.contentInsets		= NSDirectionalEdgeInsets.init		(top: 20,	leading: 0,		bottom: 20,	trailing: 0)
-		group.interItemSpacing = .fixed(20)
-		section.contentInsets	= NSDirectionalEdgeInsets.init		(top: 20,	leading: 20,	bottom: 20,	trailing: 20)
-		section.interGroupSpacing = 15
+		let itemSize				= NSCollectionLayoutSize			(widthDimension:	.fractionalWidth(1.0),
+																		 heightDimension:	.fractionalHeight(UIScreen.main.bounds.height / 6.7))
+		let item					= NSCollectionLayoutItem			(layoutSize: itemSize)
+		let groupSize				= NSCollectionLayoutSize			(widthDimension:	.fractionalWidth(1.0),
+																		 heightDimension:	.estimated(1.0))
+		let group					= NSCollectionLayoutGroup.vertical	(layoutSize: groupSize, subitems: [item])
+		let section					= NSCollectionLayoutSection			(group: group)
+		item.contentInsets			= NSDirectionalEdgeInsets.init		(top: 20,	leading: 0,		bottom: 20,	trailing: 0)
+		section.contentInsets		= NSDirectionalEdgeInsets.init		(top: 20,	leading: 20,	bottom: 20,	trailing: 20)
+		group.interItemSpacing		= .fixed(20)
+		section.interGroupSpacing	= 15
 		let header = createSectionHeader()
 		section.boundarySupplementaryItems = [header]
 		return section
@@ -196,24 +159,12 @@ extension MainVC {
 		//A place for adding a stories
 			default:
 				let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProjectCell.reuseId, for: indexPath) as! ProjectCell
-				
-				cell.layer.cornerRadius		= 20
-				cell.layer.borderWidth		= 0.0
-				cell.layer.shadowColor		= UIColor(red: 0, green: 0, blue: 0, alpha: 0.12).cgColor
-				cell.layer.shadowOffset		= CGSize(width: 0, height: 8)
-				cell.layer.shadowRadius		= 30.0
-				cell.layer.shadowOpacity	= 1
-				cell.layer.masksToBounds	= false
-				
 				cell.configure()
-
 				return cell
 			}
 		})
 		dataSourse?.supplementaryViewProvider = { [weak self] collectionView, kind, indexPath in
-			guard let sectionHeader		= collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-																						  withReuseIdentifier: SectionHeader.reusedId,
-																						  for: indexPath) as? SectionHeader
+			guard let sectionHeader		= collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SectionHeader.reusedId, for: indexPath) as? SectionHeader
 				else { return nil }
 			guard let firstProject		= self?.dataSourse?.itemIdentifier(for: indexPath)
 				else { return nil }
@@ -223,7 +174,6 @@ extension MainVC {
 			sectionHeader.title.text	= section.title
 			let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MainVC.handleCardTap(recognzier:)))
 			sectionHeader.profileImage.addGestureRecognizer(tapGestureRecognizer)
-
 			return sectionHeader
 		}
 	}
@@ -238,76 +188,87 @@ extension MainVC {
 	}
 }
 
-//MARK: CardView Animations
+//MARK: Setting up cards
 extension MainVC {
-
-    func animateTransitionIfNeeded (state:CardState, duration:TimeInterval) {
-        if runningAnimations.isEmpty {
-			
-		let frameAnimator = UIViewPropertyAnimator(duration: duration, dampingRatio: 1) {
-			switch state {
-			case .expanded	:
-				self.setUpClearNavBar()
-				self.cardViewController.view.frame.origin.y = self.view.frame.height - self.cardHeight + 20
-			case .collapsed	:
-				self.setupNormalNavBar()
-				self.cardViewController.view.frame.origin.y = self.view.frame.height - self.cardHandleAreaHeight
-			}
-		}
-		frameAnimator.addCompletion { _ in
-			self.cardVisible = !self.cardVisible
-			self.runningAnimations.removeAll()
-		}
-		frameAnimator.startAnimation()
-		runningAnimations.append(frameAnimator)
-		
-		let cornerRadiusAnimator = UIViewPropertyAnimator(duration: duration, curve: .linear) {
-			switch state {
-			case .expanded:
-				self.cardViewController.view.layer.cornerRadius = 20
-			case .collapsed:
-				self.cardViewController.view.layer.cornerRadius = 0
-			}
-		}
-		
-		cornerRadiusAnimator.startAnimation()
-		runningAnimations.append(cornerRadiusAnimator)
-		
-		let blurAnimator = UIViewPropertyAnimator(duration: duration, dampingRatio: 1) {
-			switch state {
-			case .expanded:
-				self.view.insertSubview(self.visualEffectView, at: 1)
-				self.visualEffectView.effect	= UIBlurEffect(style: .dark)
-				self.visualEffectView.alpha		= 0.7
-			case .collapsed:
-				self.visualEffectView.effect	= nil
-				self.view.sendSubviewToBack(self.visualEffectView)
-			}
-		}
-		blurAnimator.startAnimation()
-		runningAnimations.append(blurAnimator)
-	}
-}
 	
-    func startInteractiveTransition(state:CardState, duration:TimeInterval) {
-        if runningAnimations.isEmpty {
-            animateTransitionIfNeeded(state: state, duration: duration)
+    @objc func updateCardViewController(notification: NSNotification) {
+        cardViewController = ProfileCardVC()
+		setupProfileCard()
+    }
+	
+	func setupVisualEffect() {
+        visualEffectView = UIVisualEffectView()
+		visualEffectView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        self.view.addSubview(visualEffectView)
+		self.view.sendSubviewToBack(visualEffectView)
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MainVC.visualEffectTap(recognzier:)))
+		tapGestureRecognizer.numberOfTapsRequired = 1
+        visualEffectView.addGestureRecognizer(tapGestureRecognizer)
+	}
+	
+	func setupNewProjectCard() {
+		
+	}
+	
+	func setupProfileCard() {
+//        cardViewController = ProfileCardVC()
+        self.addChild(cardViewController)
+		self.view.insertSubview(cardViewController.view, at: 2)
+        
+        cardViewController.view.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.bounds.width, height: cardHeight)
+        cardViewController.view.clipsToBounds = true
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(MainVC.handleCardPan(recognizer:)))
+        cardViewController.handle.addGestureRecognizer	(panGestureRecognizer)
+    }
+}
+
+//MARK: Gesture Selectors
+extension MainVC {
+	
+	@objc
+    func visualEffectTap(recognzier:UITapGestureRecognizer) {
+
+        switch recognzier.state {
+        case .ended		:
+			animateTransitionIfNeeded(state: nextState, duration: 0.3)
+        default			:
+            break
         }
-        for animator in runningAnimations {
-            animator.pauseAnimation()
-            animationProgressWhenInterrupted = animator.fractionComplete
+		let seconds = 0.3
+		DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+			NotificationCenter.default.removeObserver(self, name: self.light, object: nil)
+			
+			self.teardownCardView()
+		}
+    }
+	
+	@objc
+    func handleCardTap(recognzier:UITapGestureRecognizer) {
+		NotificationCenter.default.addObserver(self, selector: #selector(MainVC.updateCardViewController(notification:)), name: light, object: nil)
+		let name = Notification.Name(rawValue: profileImageInSectionNotificationKey)
+		NotificationCenter.default.post(name: name, object: nil)
+        switch recognzier.state {
+        case .ended		:
+            animateTransitionIfNeeded(state: nextState, duration: 0.9)
+        default			:
+            break
         }
     }
     
-    func updateInteractiveTransition(fractionCompleted:CGFloat) {
-        for animator in runningAnimations {
-            animator.fractionComplete = fractionCompleted + animationProgressWhenInterrupted
-        }
-    }
-    
-    func continueInteractiveTransition (){
-        for animator in runningAnimations {
-            animator.continueAnimation(withTimingParameters: nil, durationFactor: 0)
+    @objc
+    func handleCardPan (recognizer:UIPanGestureRecognizer) {
+        switch recognizer.state {
+        case .began		:
+            startInteractiveTransition(state: nextState, duration: 0.9)
+        case .changed	:
+            let translation			= recognizer.translation(in: self.cardViewController.handle)
+            var fractionComplete	= translation.y / cardHeight
+            fractionComplete		= cardVisible ? fractionComplete : -fractionComplete
+            updateInteractiveTransition(fractionCompleted: fractionComplete)
+        case .ended		:
+            continueInteractiveTransition()
+        default:
+            break
         }
     }
 }
@@ -353,8 +314,11 @@ extension MainVC {
 	func teardownCardView() {
 		runningAnimations.removeAll()
 		cardViewController.removeFromParent()
-		cardViewController.dismiss(animated: false, completion: nil)
-		visualEffectView.removeFromSuperview()
-		visualEffectView = nil
+		cardViewController.view.removeFromSuperview()
+		cardViewController = nil
+		self.view.insertSubview(self.visualEffectView, at: 0)
+
+//		visualEffectView.removeFromSuperview()
+//		visualEffectView = nil
 	}
 }

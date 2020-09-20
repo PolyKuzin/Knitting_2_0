@@ -142,10 +142,4 @@ extension ProfileCardVC {
 		self.view.bringSubviewToFront(darkBackground)
         self.view.bringSubviewToFront(close)
 	}
-//	
-//	func teardownProfileView() {
-//		self.close.removeFromSuperview()
-//		self.darkBackground.removeFromSuperview()
-//		self.view.removeFromSuperview()
-//	}
 }
