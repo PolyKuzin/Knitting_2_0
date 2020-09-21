@@ -36,6 +36,12 @@ class LogInVC: UIViewController {
 		}
 	}
 	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		emailTextField.text		= ""
+		passwordTextField.text	= ""
+	}
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 		view.backgroundColor				= .white

@@ -38,6 +38,11 @@ class EntryVC: UIViewController {
 			if user != nil { self.pushMainVC() }
 		}
 	}
+	
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.viewControllers.removeAll(where: { self === $0 })
+    }
 }
 
 //MARK: Navigation

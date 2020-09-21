@@ -11,13 +11,13 @@ import FirebaseAuth
 import FirebaseDatabase
 import FirebaseFirestore
 
-let profileImageInSectionNotificationKey	= "ru.polykuzin.profileImage"
-let newprojectNotificationKey				= "ru.polykuzin.newproject"
-
 enum CardState {
 	case expanded
 	case collapsed
 }
+
+let profileImageInSectionNotificationKey	= "ru.polykuzin.profileImage"
+let newprojectNotificationKey				= "ru.polykuzin.newproject"
 
 class MainVC	: UIViewController {
 	
@@ -31,7 +31,8 @@ class MainVC	: UIViewController {
 	//MARK: UI Elements
 	
 	open var cardViewController      	: CardViewControllerProtocol!
-    open var visualEffectView			: UIVisualEffectView!
+    open var visualEffectView			: UIVisualEffectView! = UIVisualEffectView()
+
     
     open var cardHeight					: CGFloat = 300 + 20  				//TO CONSTANTS
 	public let cardHandleAreaHeight		: CGFloat = 0						//TO CONSTANTS
@@ -200,8 +201,7 @@ extension MainVC {
     }
 	
 	func setupVisualEffect() {
-        visualEffectView = UIVisualEffectView()
-		visualEffectView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+		visualEffectView.frame	= CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         self.view.addSubview(visualEffectView)
 		self.view.sendSubviewToBack(visualEffectView)
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MainVC.visualEffectTap(recognzier:)))
@@ -242,6 +242,7 @@ extension MainVC {
 	
 	@objc
 	func newProjectTaped(recognizer: UITapGestureRecognizer){
+//		collectionView.
 		NotificationCenter.default.addObserver(self, selector: #selector(MainVC.updateCardViewControllerWithNewProjectVC(notification:)), name: dark, object: nil)
 		let name = Notification.Name(rawValue: newprojectNotificationKey)
 		NotificationCenter.default.post(name: name, object: nil)

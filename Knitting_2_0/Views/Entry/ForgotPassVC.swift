@@ -42,7 +42,7 @@ extension ForgotPassVC {
     func validateFields() -> String? {
         //check that fields are filled in
         if	emailTextField.text?.trimmingCharacters	(in: .whitespacesAndNewlines)	== "" {
-            return "Please fill in all fields"
+            return "Please fill in all field"
         }
 		return nil
 	}
@@ -59,10 +59,7 @@ extension ForgotPassVC {
 		emailTextField.backgroundColor         = Colors.errorTextField
 		emailTextField.layer.borderColor       = Colors.errorTextFieldBorder.cgColor
 		emailTextField.textColor               = Colors.errorTextFieldBorder
-								
-	//TODO: ErrorHandling; + methods to specify the errors in the UI
 		showError(description)
-			
 		emailTextField.shakeAnimation()
 		}
 }

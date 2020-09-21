@@ -83,6 +83,7 @@ class ProfileCardVC					: UIViewController, CardViewControllerProtocol {
 			} else {
 				self.navigationController?.popToRootViewController(animated: true)
 				self.navigationController?.dismiss(animated: false, completion: nil)
+				
 			}
 		}
 	}
