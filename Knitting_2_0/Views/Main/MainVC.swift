@@ -11,7 +11,8 @@ import FirebaseAuth
 import FirebaseDatabase
 import FirebaseFirestore
 
-let profileImageInSectionNotificationKey = "ru.polykuzin.profileImage"
+let profileImageInSectionNotificationKey	= "ru.polykuzin.profileImage"
+let newprojectNotificationKey				= "ru.polykuzin.newproject"
 
 enum CardState {
 	case expanded
@@ -20,6 +21,7 @@ enum CardState {
 
 class MainVC	: UIViewController {
 	
+	//MARK: Supporting Stuff
     private var user           		: MUsers!
     private var ref             	: DatabaseReference!
 	
@@ -27,41 +29,34 @@ class MainVC	: UIViewController {
 	private var dataSourse			: UICollectionViewDiffableDataSource<MSection, MProject>?
 	
 	//MARK: UI Elements
-	private var signoutBtn			= UIButton()
-	private var deleteAccountBtn	= UIButton()
-	private var profileImage		= UIImageView()
-	private var fullname			= UILabel()
-	private var email				= UILabel()
-	private var darkBackground		= UIView()
-	private var close				= UILabel()
 	
-	private var sections			: Array<MSection> = []
-	
+	open var cardViewController      	: CardViewControllerProtocol!
+    open var visualEffectView			: UIVisualEffectView!
     
-	var cardViewController      	: CardViewControllerProtocol!
-    var visualEffectView			: UIVisualEffectView!
+    open var cardHeight					: CGFloat = 300 + 20  				//TO CONSTANTS
+	public let cardHandleAreaHeight		: CGFloat = 0						//TO CONSTANTS
     
-    var cardHeight					: CGFloat = 300 + 20  				//TO CONSTANTS
-    let cardHandleAreaHeight		: CGFloat = 0						//TO CONSTANTS
-    
-    var cardVisible					= false
-    var nextState					:CardState {
+    open var cardVisible					= false
+    open var nextState					:CardState {
         return cardVisible ? .collapsed : .expanded
     }
     
-    var runningAnimations = [UIViewPropertyAnimator]()
-    var animationProgressWhenInterrupted:CGFloat = 0
+    open var runningAnimations = [UIViewPropertyAnimator]()
+    open var animationProgressWhenInterrupted:CGFloat = 0
+
+	private var sections			: Array<MSection> = []
+	private var addView				= UIView()
+	private var addImage			= UIImageView()
+	
+    let light	= Notification.Name(rawValue: profileImageInSectionNotificationKey)
+    let dark	= Notification.Name(rawValue: newprojectNotificationKey)
 
 	private var viewModel			: MainVM! {
 		didSet {
-			self.signoutBtn			= viewModel.signOut()
-			self.deleteAccountBtn	= viewModel.deleteAccount()
-			self.profileImage		= viewModel.profileImageView()
-			self.fullname			= viewModel.fullnameLabel()
-			self.email				= viewModel.emailLabel()
-			self.darkBackground		= viewModel.darkBackgroundView()
-			self.close				= viewModel.closeLabel()
 			self.sections.append(viewModel.sections())
+			self.addImage	= viewModel.addImageView()
+			self.addView	= viewModel.addViewBackground()
+			self.addView.frame = CGRect(x: 0, y: 0, width: 110, height: 60)
 		}
 	}
 	
@@ -73,15 +68,18 @@ class MainVC	: UIViewController {
         ref		= Database.database().reference(withPath: "users").child(String(user.uid)).child("projects")
 	}
 
-    let light = Notification.Name(rawValue: profileImageInSectionNotificationKey)
 
     override func viewDidLoad() {
         super.viewDidLoad()
-		viewModel = MainVM()
 		view.backgroundColor = .white
-
+		setupAddNewProjectButton()
+		viewModel = MainVM()
 		setupCollectionView()
 		setupVisualEffect()
+		
+		view.sendSubviewToBack(addView)
+		view.sendSubviewToBack(collectionView)
+		view.sendSubviewToBack(visualEffectView)
     }
 	
     deinit {
@@ -170,7 +168,7 @@ extension MainVC {
 				else { return nil}
 			if section.title.isEmpty { return nil}
 			sectionHeader.title.text	= section.title
-			let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MainVC.handleCardTap(recognzier:)))
+			let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MainVC.handleCardTap(recognizer:)))
 			sectionHeader.profileImage.addGestureRecognizer(tapGestureRecognizer)
 			return sectionHeader
 		}
@@ -189,9 +187,16 @@ extension MainVC {
 //MARK: Setting up cards
 extension MainVC {
 	
-    @objc func updateCardViewController(notification: NSNotification) {
-        cardViewController = ProfileCardVC()
-		setupProfileCard()
+    @objc
+	func updateCardViewControllerWithProfileVC(notification: NSNotification) {
+		cardHeight = 320
+		setupCardViewController(ProfileCardVC())
+    }
+	
+    @objc
+	func updateCardViewControllerWithNewProjectVC(notification: NSNotification) {
+		cardHeight = 400
+		setupCardViewController(NewProjectVC())
     }
 	
 	func setupVisualEffect() {
@@ -204,14 +209,11 @@ extension MainVC {
         visualEffectView.addGestureRecognizer(tapGestureRecognizer)
 	}
 	
-	func setupNewProjectCard() {
-		
-	}
-	
-	func setupProfileCard() {
+	func setupCardViewController(_ cardVC: CardViewControllerProtocol) {
+		cardViewController	= cardVC
+		addView.isHidden	= true
         self.addChild(cardViewController)
-		self.view.insertSubview(cardViewController.view, at: 2)
-        
+		self.view.insertSubview(cardViewController.view, at: 3)
         cardViewController.view.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.bounds.width, height: cardHeight)
         cardViewController.view.clipsToBounds = true
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(MainVC.handleCardPan(recognizer:)))
@@ -224,7 +226,6 @@ extension MainVC {
 	
 	@objc
     func visualEffectTap(recognzier:UITapGestureRecognizer) {
-
         switch recognzier.state {
         case .ended		:
 			animateTransitionIfNeeded(state: nextState, duration: 0.3)
@@ -234,16 +235,32 @@ extension MainVC {
 		let seconds = 0.3
 		DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
 			NotificationCenter.default.removeObserver(self, name: self.light, object: nil)
+			NotificationCenter.default.removeObserver(self, name: self.dark, object: nil)
 			self.teardownCardView()
 		}
     }
 	
 	@objc
-    func handleCardTap(recognzier:UITapGestureRecognizer) {
-		NotificationCenter.default.addObserver(self, selector: #selector(MainVC.updateCardViewController(notification:)), name: light, object: nil)
+	func newProjectTaped(recognizer: UITapGestureRecognizer){
+		NotificationCenter.default.addObserver(self, selector: #selector(MainVC.updateCardViewControllerWithNewProjectVC(notification:)), name: dark, object: nil)
+		let name = Notification.Name(rawValue: newprojectNotificationKey)
+		NotificationCenter.default.post(name: name, object: nil)
+		addView.isHidden = true
+        switch recognizer.state {
+        case .ended		:
+            animateTransitionIfNeeded(state: nextState, duration: 0.9)
+        default			:
+            break
+        }
+    }
+	
+	@objc
+    func handleCardTap(recognizer:UITapGestureRecognizer) {
+		NotificationCenter.default.addObserver(self, selector: #selector(MainVC.updateCardViewControllerWithProfileVC(notification:)), name: light, object: nil)
 		let name = Notification.Name(rawValue: profileImageInSectionNotificationKey)
 		NotificationCenter.default.post(name: name, object: nil)
-        switch recognzier.state {
+		addView.accessibilityElementsHidden = true
+        switch recognizer.state {
         case .ended		:
             animateTransitionIfNeeded(state: nextState, duration: 0.9)
         default			:
@@ -252,7 +269,7 @@ extension MainVC {
     }
     
     @objc
-    func handleCardPan (recognizer:UIPanGestureRecognizer) {
+    func handleCardPan(recognizer:UIPanGestureRecognizer) {
         switch recognizer.state {
         case .began		:
             startInteractiveTransition(state: nextState, duration: 0.9)
@@ -303,8 +320,46 @@ extension MainVC {
 		collectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive 							= true
 		collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive 					= true
 		collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive					= true
+	}
+	
+	func hideAddButton() {
+		addView.isHidden = true
+	}
+	
+	func setupAddNewProjectButton() {
+		let tapToCreateNewProject1 = UITapGestureRecognizer(target: self, action: #selector(newProjectTaped(recognizer:)))
+		let tapToCreateNewProject2 = UITapGestureRecognizer(target: self, action: #selector(newProjectTaped(recognizer:)))
+
+		addView.isUserInteractionEnabled = true
+		addImage.isUserInteractionEnabled = true
+		addView.addGestureRecognizer(tapToCreateNewProject1)
+		addImage.addGestureRecognizer(tapToCreateNewProject2)
+		addView.isHidden = false
+		view.addSubview(addView)
+
+		addView.translatesAutoresizingMaskIntoConstraints										= false
+		addView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive 					= true
+		addView.widthAnchor.constraint(equalToConstant: 110).isActive							= true
+		addView.heightAnchor.constraint(equalToConstant: 60).isActive							= true
+		addView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -28).isActive		= true
 		
-        self.view.addSubview(collectionView)
+		addView.backgroundColor		= .white
+		addView.layer.shadowColor	= UIColor(red: 0, green: 0, blue: 0, alpha: 0.12).cgColor  				//TO CONSTANTS
+		addView.layer.shadowOpacity	= 1
+		addView.layer.shadowRadius	= 10
+		addView.layer.shadowOffset	= CGSize(width: 0, height: 4)
+		addView.layer.bounds		= addView.bounds
+		addView.layer.position		= addView.center
+		addView.layer.masksToBounds	= false
+		addView.layer.cornerRadius	= 30
+		
+		addView.addSubview(addImage)
+		addImage.image = UIImage(named: "addProject")
+		addImage.translatesAutoresizingMaskIntoConstraints										= false
+		addImage.bottomAnchor.constraint(equalTo: addView.bottomAnchor, constant: -12).isActive	= true
+		addImage.topAnchor.constraint(equalTo: addView.topAnchor, constant: 12).isActive		= true
+		addImage.widthAnchor.constraint(equalTo: addImage.heightAnchor).isActive				= true
+		addImage.centerXAnchor.constraint(equalTo: addView.centerXAnchor).isActive				= true
 	}
 	
 	func teardownCardView() {
@@ -314,8 +369,5 @@ extension MainVC {
 		cardViewController.view.removeFromSuperview()
 		cardViewController = nil
 		self.view.insertSubview(self.visualEffectView, at: 0)
-
-//		visualEffectView.removeFromSuperview()
-//		visualEffectView = nil
 	}
 }

@@ -10,10 +10,6 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
-protocol CardViewControllerProtocol	: UIViewController {
-	var handle : UIView! { get }
-}
-
 class ProfileCardVC					: UIViewController, CardViewControllerProtocol {
 	
 	var handle: UIView! 			= UIView()

@@ -45,6 +45,9 @@
 		99B509BC24FDB1D60046A2B1 /* UIViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B509BB24FDB1D60046A2B1 /* UIViewExt.swift */; };
 		99B509BF24FDB2780046A2B1 /* UIViewExtentionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B509BE24FDB2780046A2B1 /* UIViewExtentionsTests.swift */; };
 		99E4A1C625091FBE003CA7C9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 99E4A1C525091FBE003CA7C9 /* GoogleService-Info.plist */; };
+		99EF88B42517F46E00C77181 /* SwipeableCollectionViewCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EF88B32517F46E00C77181 /* SwipeableCollectionViewCellProtocol.swift */; };
+		99EF88B62517F4AC00C77181 /* CardViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EF88B52517F4AC00C77181 /* CardViewControllerProtocol.swift */; };
+		99EF88B8251821F900C77181 /* NewProjectCardVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EF88B7251821F900C77181 /* NewProjectCardVM.swift */; };
 		99EFB5602515638F003A5D07 /* SF-Pro-Text-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 99EFB55F2515638F003A5D07 /* SF-Pro-Text-Bold.otf */; };
 		99EFB562251567CD003A5D07 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 99EFB561251567CD003A5D07 /* SF-Pro-Display-Regular.otf */; };
 		99EFB56425168A7E003A5D07 /* ProfileCardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EFB56325168A7E003A5D07 /* ProfileCardVC.swift */; };
@@ -109,6 +112,9 @@
 		99B509BB24FDB1D60046A2B1 /* UIViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExt.swift; sourceTree = "<group>"; };
 		99B509BE24FDB2780046A2B1 /* UIViewExtentionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtentionsTests.swift; sourceTree = "<group>"; };
 		99E4A1C525091FBE003CA7C9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		99EF88B32517F46E00C77181 /* SwipeableCollectionViewCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SwipeableCollectionViewCellProtocol.swift; path = Knitting_2_0/Views/Main/SwipeableCollectionViewCellProtocol.swift; sourceTree = SOURCE_ROOT; };
+		99EF88B52517F4AC00C77181 /* CardViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CardViewControllerProtocol.swift; path = Knitting_2_0/Views/Main/CardViewControllerProtocol.swift; sourceTree = SOURCE_ROOT; };
+		99EF88B7251821F900C77181 /* NewProjectCardVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProjectCardVM.swift; sourceTree = "<group>"; };
 		99EFB55F2515638F003A5D07 /* SF-Pro-Text-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Bold.otf"; sourceTree = "<group>"; };
 		99EFB561251567CD003A5D07 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
 		99EFB56325168A7E003A5D07 /* ProfileCardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardVC.swift; sourceTree = "<group>"; };
@@ -258,7 +264,7 @@
 			children = (
 				996FAF342508FC9000209228 /* Entry */,
 				998B9F86250C1E2B00C0C52F /* MainVM.swift */,
-				99EFB56525168AF5003A5D07 /* ProfileCardVM.swift */,
+				99EF88B9251822FD00C77181 /* CardsVM */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -277,6 +283,8 @@
 		99AFBA6C24F810BC00E71FD6 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				99EF88B32517F46E00C77181 /* SwipeableCollectionViewCellProtocol.swift */,
+				99EF88B52517F4AC00C77181 /* CardViewControllerProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -338,6 +346,15 @@
 				99B509BE24FDB2780046A2B1 /* UIViewExtentionsTests.swift */,
 			);
 			path = ExtensionsTests;
+			sourceTree = "<group>";
+		};
+		99EF88B9251822FD00C77181 /* CardsVM */ = {
+			isa = PBXGroup;
+			children = (
+				99EFB56525168AF5003A5D07 /* ProfileCardVM.swift */,
+				99EF88B7251821F900C77181 /* NewProjectCardVM.swift */,
+			);
+			path = CardsVM;
 			sourceTree = "<group>";
 		};
 		99EFB56D25178D89003A5D07 /* Cards */ = {
@@ -538,8 +555,10 @@
 				9959471E250A582B00D0E273 /* MUsers.swift in Sources */,
 				998B9F89250C255600C0C52F /* MProjects.swift in Sources */,
 				99594720250AD91F00D0E273 /* MainVC.swift in Sources */,
+				99EF88B8251821F900C77181 /* NewProjectCardVM.swift in Sources */,
 				99B509BC24FDB1D60046A2B1 /* UIViewExt.swift in Sources */,
 				994EF7142514B424009AA35B /* SetionHeader.swift in Sources */,
+				99EF88B42517F46E00C77181 /* SwipeableCollectionViewCellProtocol.swift in Sources */,
 				99AFBA4B24F80D9E00E71FD6 /* RegistrationVC.swift in Sources */,
 				998B9F85250BCAFA00C0C52F /* UIWindow.swift in Sources */,
 				99AFBA7024F8121D00E71FD6 /* RegistrationVM.swift in Sources */,
@@ -560,6 +579,7 @@
 				99EFB56C25178D77003A5D07 /* NewProjectCardVC.swift in Sources */,
 				998B9F8D250C2FBB00C0C52F /* ForgotPassVM.swift in Sources */,
 				998B9F93250E1CD300C0C52F /* MSections.swift in Sources */,
+				99EF88B62517F4AC00C77181 /* CardViewControllerProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
