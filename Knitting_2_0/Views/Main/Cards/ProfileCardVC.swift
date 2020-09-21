@@ -43,25 +43,14 @@ class ProfileCardVC					: UIViewController, CardViewControllerProtocol {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-		view.backgroundColor = .white
 		viewModel = ProfileCardVM()
+		viewModel.chekingEmailAndNickName()
 		setupProfileView()
-		
-		guard let currentUser = Auth.auth().currentUser else { return }
-		user	= MUsers(user: currentUser)
-        ref		= Database.database().reference(withPath: "users").child(String(user.uid))
-		ref.observeSingleEvent(of: .value, with: { (snapshot) in
-			// Get user value
-			let value		= snapshot.value		as? NSDictionary
-			let nickname	= value?["nickname"]	as? String ?? ""
-			let email		= value?["email"]		as? String ?? ""
-			self.fullname.text	= nickname
-			self.email.text		= email
-		  }) { (error) in
-			print(error.localizedDescription)
-		}
     }
-
+}
+//MARK: Targets for buttons
+extension ProfileCardVC {
+	
 	@objc
 	func signoutFromAccount() {
 		do {
@@ -75,15 +64,16 @@ class ProfileCardVC					: UIViewController, CardViewControllerProtocol {
 	
 	@objc
 	func deleteAcoount() {
-		let user = Auth.auth().currentUser
-		
-		user?.delete { error in
+		guard let currentUser = Auth.auth().currentUser else { return }
+
+		currentUser.delete { error in
 			if let error = error {
 				print(error.localizedDescription)
 			} else {
+				self.ref = Database.database().reference(withPath: "users").child(String(currentUser.uid))
+				self.ref.removeValue()
 				self.navigationController?.popToRootViewController(animated: true)
 				self.navigationController?.dismiss(animated: false, completion: nil)
-				
 			}
 		}
 	}
@@ -93,6 +83,7 @@ class ProfileCardVC					: UIViewController, CardViewControllerProtocol {
 extension ProfileCardVC {
 	
 	func setupProfileView() {
+		view.backgroundColor = .white
 
 		view.addSubview(handle)
 		handle.translatesAutoresizingMaskIntoConstraints											= false

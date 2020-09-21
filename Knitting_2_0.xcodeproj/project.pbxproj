@@ -12,7 +12,7 @@
 		9905ABE4250254B80055B138 /* SF-Pro-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9905ABE3250254B80055B138 /* SF-Pro-Text-Regular.otf */; };
 		994EF7142514B424009AA35B /* SetionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994EF7132514B423009AA35B /* SetionHeader.swift */; };
 		994EF7162514ECFF009AA35B /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 994EF7152514ECFF009AA35B /* SF-Pro-Display-Bold.otf */; };
-		9959471E250A582B00D0E273 /* MUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9959471D250A582B00D0E273 /* MUsers.swift */; };
+		9959471E250A582B00D0E273 /* MUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9959471D250A582B00D0E273 /* MUser.swift */; };
 		99594720250AD91F00D0E273 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9959471F250AD91F00D0E273 /* MainVC.swift */; };
 		996FAF2C2508245D00209228 /* EntryVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996FAF2B2508245D00209228 /* EntryVM.swift */; };
 		996FAF2E2508249400209228 /* EntryVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996FAF2D2508249400209228 /* EntryVCTests.swift */; };
@@ -20,12 +20,12 @@
 		996FAF322508FB6D00209228 /* SF-Pro-Display-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 996FAF312508FB6C00209228 /* SF-Pro-Display-Semibold.otf */; };
 		998B9F85250BCAFA00C0C52F /* UIWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B9F84250BCAFA00C0C52F /* UIWindow.swift */; };
 		998B9F87250C1E2B00C0C52F /* MainVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B9F86250C1E2B00C0C52F /* MainVM.swift */; };
-		998B9F89250C255600C0C52F /* MProjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B9F88250C255600C0C52F /* MProjects.swift */; };
+		998B9F89250C255600C0C52F /* MProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B9F88250C255600C0C52F /* MProject.swift */; };
 		998B9F8B250C2FA100C0C52F /* ForgotPassVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B9F8A250C2FA100C0C52F /* ForgotPassVC.swift */; };
 		998B9F8D250C2FBB00C0C52F /* ForgotPassVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B9F8C250C2FBB00C0C52F /* ForgotPassVM.swift */; };
 		998B9F8F250D817000C0C52F /* ProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B9F8E250D817000C0C52F /* ProjectCell.swift */; };
 		998B9F91250D81BE00C0C52F /* SwipeableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B9F90250D81BE00C0C52F /* SwipeableCell.swift */; };
-		998B9F93250E1CD300C0C52F /* MSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B9F92250E1CD300C0C52F /* MSections.swift */; };
+		998B9F93250E1CD300C0C52F /* MSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B9F92250E1CD300C0C52F /* MSection.swift */; };
 		99AFBA4724F80D9E00E71FD6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AFBA4624F80D9E00E71FD6 /* AppDelegate.swift */; };
 		99AFBA4924F80D9E00E71FD6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AFBA4824F80D9E00E71FD6 /* SceneDelegate.swift */; };
 		99AFBA4B24F80D9E00E71FD6 /* RegistrationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AFBA4A24F80D9E00E71FD6 /* RegistrationVC.swift */; };
@@ -48,6 +48,8 @@
 		99EF88B42517F46E00C77181 /* SwipeableCollectionViewCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EF88B32517F46E00C77181 /* SwipeableCollectionViewCellProtocol.swift */; };
 		99EF88B62517F4AC00C77181 /* CardViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EF88B52517F4AC00C77181 /* CardViewControllerProtocol.swift */; };
 		99EF88B8251821F900C77181 /* NewProjectCardVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EF88B7251821F900C77181 /* NewProjectCardVM.swift */; };
+		99EF88BB25191EC400C77181 /* MCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EF88BA25191EC400C77181 /* MCounter.swift */; };
+		99EF88BD25193F7000C77181 /* UIImage+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EF88BC25193F7000C77181 /* UIImage+String.swift */; };
 		99EFB5602515638F003A5D07 /* SF-Pro-Text-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 99EFB55F2515638F003A5D07 /* SF-Pro-Text-Bold.otf */; };
 		99EFB562251567CD003A5D07 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 99EFB561251567CD003A5D07 /* SF-Pro-Display-Regular.otf */; };
 		99EFB56425168A7E003A5D07 /* ProfileCardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EFB56325168A7E003A5D07 /* ProfileCardVC.swift */; };
@@ -75,7 +77,7 @@
 		9905ABE3250254B80055B138 /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
 		994EF7132514B423009AA35B /* SetionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetionHeader.swift; sourceTree = "<group>"; };
 		994EF7152514ECFF009AA35B /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
-		9959471D250A582B00D0E273 /* MUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MUsers.swift; sourceTree = "<group>"; };
+		9959471D250A582B00D0E273 /* MUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MUser.swift; sourceTree = "<group>"; };
 		9959471F250AD91F00D0E273 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		996FAF2B2508245D00209228 /* EntryVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryVM.swift; sourceTree = "<group>"; };
 		996FAF2D2508249400209228 /* EntryVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryVCTests.swift; sourceTree = "<group>"; };
@@ -83,12 +85,12 @@
 		996FAF312508FB6C00209228 /* SF-Pro-Display-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Semibold.otf"; sourceTree = "<group>"; };
 		998B9F84250BCAFA00C0C52F /* UIWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindow.swift; sourceTree = "<group>"; };
 		998B9F86250C1E2B00C0C52F /* MainVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVM.swift; sourceTree = "<group>"; };
-		998B9F88250C255600C0C52F /* MProjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MProjects.swift; sourceTree = "<group>"; };
+		998B9F88250C255600C0C52F /* MProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MProject.swift; sourceTree = "<group>"; };
 		998B9F8A250C2FA100C0C52F /* ForgotPassVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPassVC.swift; sourceTree = "<group>"; };
 		998B9F8C250C2FBB00C0C52F /* ForgotPassVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPassVM.swift; sourceTree = "<group>"; };
 		998B9F8E250D817000C0C52F /* ProjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCell.swift; sourceTree = "<group>"; };
 		998B9F90250D81BE00C0C52F /* SwipeableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableCell.swift; sourceTree = "<group>"; };
-		998B9F92250E1CD300C0C52F /* MSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSections.swift; sourceTree = "<group>"; };
+		998B9F92250E1CD300C0C52F /* MSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSection.swift; sourceTree = "<group>"; };
 		99AFBA4324F80D9E00E71FD6 /* Knitting_2_0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Knitting_2_0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99AFBA4624F80D9E00E71FD6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		99AFBA4824F80D9E00E71FD6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -115,6 +117,8 @@
 		99EF88B32517F46E00C77181 /* SwipeableCollectionViewCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SwipeableCollectionViewCellProtocol.swift; path = Knitting_2_0/Views/Main/SwipeableCollectionViewCellProtocol.swift; sourceTree = SOURCE_ROOT; };
 		99EF88B52517F4AC00C77181 /* CardViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CardViewControllerProtocol.swift; path = Knitting_2_0/Views/Main/CardViewControllerProtocol.swift; sourceTree = SOURCE_ROOT; };
 		99EF88B7251821F900C77181 /* NewProjectCardVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProjectCardVM.swift; sourceTree = "<group>"; };
+		99EF88BA25191EC400C77181 /* MCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCounter.swift; sourceTree = "<group>"; };
+		99EF88BC25193F7000C77181 /* UIImage+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+String.swift"; sourceTree = "<group>"; };
 		99EFB55F2515638F003A5D07 /* SF-Pro-Text-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Bold.otf"; sourceTree = "<group>"; };
 		99EFB561251567CD003A5D07 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
 		99EFB56325168A7E003A5D07 /* ProfileCardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardVC.swift; sourceTree = "<group>"; };
@@ -243,9 +247,10 @@
 		99AFBA6824F8101F00E71FD6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				9959471D250A582B00D0E273 /* MUsers.swift */,
-				998B9F88250C255600C0C52F /* MProjects.swift */,
-				998B9F92250E1CD300C0C52F /* MSections.swift */,
+				9959471D250A582B00D0E273 /* MUser.swift */,
+				998B9F92250E1CD300C0C52F /* MSection.swift */,
+				998B9F88250C255600C0C52F /* MProject.swift */,
+				99EF88BA25191EC400C77181 /* MCounter.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -294,6 +299,7 @@
 			children = (
 				99B509BB24FDB1D60046A2B1 /* UIViewExt.swift */,
 				998B9F84250BCAFA00C0C52F /* UIWindow.swift */,
+				99EF88BC25193F7000C77181 /* UIImage+String.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -552,8 +558,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9959471E250A582B00D0E273 /* MUsers.swift in Sources */,
-				998B9F89250C255600C0C52F /* MProjects.swift in Sources */,
+				9959471E250A582B00D0E273 /* MUser.swift in Sources */,
+				998B9F89250C255600C0C52F /* MProject.swift in Sources */,
 				99594720250AD91F00D0E273 /* MainVC.swift in Sources */,
 				99EF88B8251821F900C77181 /* NewProjectCardVM.swift in Sources */,
 				99B509BC24FDB1D60046A2B1 /* UIViewExt.swift in Sources */,
@@ -566,6 +572,7 @@
 				99B2067A2504F10600FA6C50 /* EntryVC.swift in Sources */,
 				998B9F87250C1E2B00C0C52F /* MainVM.swift in Sources */,
 				998B9F91250D81BE00C0C52F /* SwipeableCell.swift in Sources */,
+				99EF88BB25191EC400C77181 /* MCounter.swift in Sources */,
 				99B206722504DD8B00FA6C50 /* LogInVC.swift in Sources */,
 				99B206742504DDF700FA6C50 /* LogInVM.swift in Sources */,
 				99AFBA4724F80D9E00E71FD6 /* AppDelegate.swift in Sources */,
@@ -578,7 +585,8 @@
 				99AFBA7A24F9667F00E71FD6 /* Constants.swift in Sources */,
 				99EFB56C25178D77003A5D07 /* NewProjectCardVC.swift in Sources */,
 				998B9F8D250C2FBB00C0C52F /* ForgotPassVM.swift in Sources */,
-				998B9F93250E1CD300C0C52F /* MSections.swift in Sources */,
+				998B9F93250E1CD300C0C52F /* MSection.swift in Sources */,
+				99EF88BD25193F7000C77181 /* UIImage+String.swift in Sources */,
 				99EF88B62517F4AC00C77181 /* CardViewControllerProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

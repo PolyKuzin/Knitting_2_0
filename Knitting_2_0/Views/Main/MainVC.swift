@@ -21,6 +21,9 @@ let newprojectNotificationKey				= "ru.polykuzin.newproject"
 
 class MainVC	: UIViewController {
 	
+	let light						= Notification.Name(rawValue: profileImageInSectionNotificationKey)
+	let dark						= Notification.Name(rawValue: newprojectNotificationKey)
+	
 	//MARK: Supporting Stuff
     private var user           		: MUsers!
     private var ref             	: DatabaseReference!
@@ -48,9 +51,6 @@ class MainVC	: UIViewController {
 	private var sections			: Array<MSection> = []
 	private var addView				= UIView()
 	private var addImage			= UIImageView()
-	
-    let light	= Notification.Name(rawValue: profileImageInSectionNotificationKey)
-    let dark	= Notification.Name(rawValue: newprojectNotificationKey)
 
 	private var viewModel			: MainVM! {
 		didSet {
@@ -72,6 +72,7 @@ class MainVC	: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+		NotificationCenter.default.addObserver(self, selector: #selector(hideViewWithDeinit), name: Notification.Name(rawValue: "disconnectNewProjectVC"), object: nil)
 		view.backgroundColor = .white
 		setupAddNewProjectButton()
 		viewModel = MainVM()
@@ -196,7 +197,7 @@ extension MainVC {
 	
     @objc
 	func updateCardViewControllerWithNewProjectVC(notification: NSNotification) {
-		cardHeight = 400
+		cardHeight = 500
 		setupCardViewController(NewProjectVC())
     }
 	
@@ -204,7 +205,7 @@ extension MainVC {
 		visualEffectView.frame	= CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         self.view.addSubview(visualEffectView)
 		self.view.sendSubviewToBack(visualEffectView)
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MainVC.visualEffectTap(recognzier:)))
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MainVC.visualEffectTaped(recognzier:)))
 		tapGestureRecognizer.numberOfTapsRequired = 1
         visualEffectView.addGestureRecognizer(tapGestureRecognizer)
 	}
@@ -225,24 +226,12 @@ extension MainVC {
 extension MainVC {
 	
 	@objc
-    func visualEffectTap(recognzier:UITapGestureRecognizer) {
-        switch recognzier.state {
-        case .ended		:
-			animateTransitionIfNeeded(state: nextState, duration: 0.3)
-        default			:
-            break
-        }
-		let seconds = 0.3
-		DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
-			NotificationCenter.default.removeObserver(self, name: self.light, object: nil)
-			NotificationCenter.default.removeObserver(self, name: self.dark, object: nil)
-			self.teardownCardView()
-		}
+    func visualEffectTaped	(recognzier: UITapGestureRecognizer) {
+		hideViewWithDeinit()
     }
 	
 	@objc
-	func newProjectTaped(recognizer: UITapGestureRecognizer){
-//		collectionView.
+	func newProjectTaped	(recognizer: UITapGestureRecognizer) {
 		NotificationCenter.default.addObserver(self, selector: #selector(MainVC.updateCardViewControllerWithNewProjectVC(notification:)), name: dark, object: nil)
 		let name = Notification.Name(rawValue: newprojectNotificationKey)
 		NotificationCenter.default.post(name: name, object: nil)
@@ -256,7 +245,8 @@ extension MainVC {
     }
 	
 	@objc
-    func handleCardTap(recognizer:UITapGestureRecognizer) {
+    func handleCardTap		(recognizer: UITapGestureRecognizer) {
+		
 		NotificationCenter.default.addObserver(self, selector: #selector(MainVC.updateCardViewControllerWithProfileVC(notification:)), name: light, object: nil)
 		let name = Notification.Name(rawValue: profileImageInSectionNotificationKey)
 		NotificationCenter.default.post(name: name, object: nil)
@@ -270,7 +260,7 @@ extension MainVC {
     }
     
     @objc
-    func handleCardPan(recognizer:UIPanGestureRecognizer) {
+    func handleCardPan		(recognizer: UIPanGestureRecognizer) {
         switch recognizer.state {
         case .began		:
             startInteractiveTransition(state: nextState, duration: 0.9)
@@ -285,6 +275,18 @@ extension MainVC {
             break
         }
     }
+	
+	@objc
+	func hideViewWithDeinit() {
+		animateTransitionIfNeeded(state: nextState, duration: 0.3)
+		let seconds = 0.3
+		DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+			NotificationCenter.default.removeObserver(self, name: self.light, object: nil)
+			NotificationCenter.default.removeObserver(self, name: self.dark, object: nil)
+			self.teardownCardView()
+		}
+	}
+	
 }
 
 //MARK: Layout
@@ -321,10 +323,6 @@ extension MainVC {
 		collectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive 							= true
 		collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive 					= true
 		collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive					= true
-	}
-	
-	func hideAddButton() {
-		addView.isHidden = true
 	}
 	
 	func setupAddNewProjectButton() {

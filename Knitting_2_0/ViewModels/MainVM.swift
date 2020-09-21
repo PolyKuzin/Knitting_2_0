@@ -43,11 +43,11 @@ class MainVM : CollectionViewViewModelType {
 	
 	// Setting up sections
 	func sections() -> MSection {
-		let project1 = MProject(userID: "1238", projectID: "123", name: "123", imageRef: "123")
-		let project2 = MProject(userID: "1234", projectID: "123", name: "123", imageRef: "123")
-		let project3 = MProject(userID: "1235", projectID: "123", name: "123", imageRef: "123")
-		let project4 = MProject(userID: "1236", projectID: "123", name: "123", imageRef: "123")
-		let project5 = MProject(userID: "1237", projectID: "123", name: "123", imageRef: "123")
+		let project1 = MProject(userID: "1238", name: "123", image: "123")
+		let project2 = MProject(userID: "1234", name: "123", image: "123")
+		let project3 = MProject(userID: "1235", name: "123", image: "123")
+		let project4 = MProject(userID: "1236", name: "123", image: "123")
+		let project5 = MProject(userID: "1237", name: "123", image: "123")
 
 		let section = MSection(type: "projects", title: "Working on this?", projects: [project1, project2, project3, project4, project5])
 		

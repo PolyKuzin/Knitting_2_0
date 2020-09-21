@@ -7,8 +7,13 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseDatabase
 
 class ProfileCardVM {
+	
+	private var user           		: MUsers!
+    private var ref             	: DatabaseReference!
 	
 //MARK: Profile Card View Controller
 	private var signoutBtn			: UIButton = {
@@ -93,6 +98,22 @@ class ProfileCardVM {
 		
 		return view
 	}()
+	
+	func chekingEmailAndNickName() {
+		guard let currentUser = Auth.auth().currentUser else { return }									//TO ViewModel!
+		user	= MUsers(user: currentUser)
+        ref		= Database.database().reference(withPath: "users").child(String(user.uid))
+		ref.observeSingleEvent(of: .value, with: { (snapshot) in
+			// Get user value
+			let value		= snapshot.value		as? NSDictionary
+			let nickname	= value?["nickname"]	as? String ?? ""
+			let email		= value?["email"]		as? String ?? ""
+			self.fullname.text	= nickname
+			self.email.text		= email
+		  }) { (error) in
+			print(error.localizedDescription)
+		}
+	}
 	
 	func signOut() -> UIButton {
 		return signoutBtn
