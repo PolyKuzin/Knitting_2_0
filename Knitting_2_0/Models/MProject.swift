@@ -26,15 +26,15 @@ struct MProject : Hashable {
     
     init(snapshot: DataSnapshot) {
         let snapshotValue		= snapshot.value				as! [String: AnyObject]
-        userID					= snapshotValue["userID"]		as! String
-        name					= snapshotValue["name"]			as! String
         image					= snapshotValue["image"]		as! String
+        name					= snapshotValue["name"]			as! String
+        userID					= snapshotValue["userID"]		as! String
         ref						= snapshot.ref
     }
     
     func projectToDictionary() -> Any {
-        return ["userID"		: userID,
+        return ["image"			: image,
                 "name"			: name,
-                "image"			: image]
+                "userID"		: userID]
     }
 }

@@ -12,7 +12,7 @@ import FirebaseDatabase
 
 class ProfileCardVM {
 	
-	private var user           		: MUsers!
+	private var user           		: MUser!
     private var ref             	: DatabaseReference!
 	
 //MARK: Profile Card View Controller
@@ -101,7 +101,7 @@ class ProfileCardVM {
 	
 	func chekingEmailAndNickName() {
 		guard let currentUser = Auth.auth().currentUser else { return }									//TO ViewModel!
-		user	= MUsers(user: currentUser)
+		user	= MUser(user: currentUser)
         ref		= Database.database().reference(withPath: "users").child(String(user.uid))
 		ref.observeSingleEvent(of: .value, with: { (snapshot) in
 			// Get user value

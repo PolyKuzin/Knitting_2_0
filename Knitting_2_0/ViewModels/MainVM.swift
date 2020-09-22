@@ -19,6 +19,9 @@ class MainVM : CollectionViewViewModelType {
 	
 //MARK: MAIN View Controller
 	
+//    var ref             : DatabaseReference!
+//    var user            : MUser!
+	
 	private var addImage : UIImageView = {
 		let imageView = UIImageView()
 		
@@ -37,22 +40,39 @@ class MainVM : CollectionViewViewModelType {
 		return addImage
 	}
 
-	func addViewBackground() -> UIView {		
+	func addViewBackground() -> UIView {
 		return addView
 	}
 	
+//	private var projects : Array<MProject> = {
+//		var projects = Array<MProject>()
+//		let currentUser = Auth.auth().currentUser //else { return MSection(type: "projects", title: "Working on this?", projects: [])}
+//		let user : MUser = MUser(user: currentUser!)
+//        let reff = Database.database().reference(withPath: "users").child(String(user.uid)).child("projects")
+//
+//		reff.observe(.value, with: { (snapshot) in
+//            var _projects = Array<MProject>()
+//            for item in snapshot.children {
+//                let project = MProject(snapshot: item as! DataSnapshot)
+//                _projects.append(project)
+//            }
+//			projects = _projects
+//        })
+//		let project = MProject(userID: user.uid, name: "name", image: "imageData")
+//		let referenceForProject = reff
+//		referenceForProject.setValue(project.projectToDictionary())
+//
+//		return projects
+//	}()
+
 	// Setting up sections
 	func sections() -> MSection {
-		let project1 = MProject(userID: "1238", name: "123", image: "123")
-		let project2 = MProject(userID: "1234", name: "123", image: "123")
-		let project3 = MProject(userID: "1235", name: "123", image: "123")
-		let project4 = MProject(userID: "1236", name: "123", image: "123")
-		let project5 = MProject(userID: "1237", name: "123", image: "123")
+		
 
-		let section = MSection(type: "projects", title: "Working on this?", projects: [project1, project2, project3, project4, project5])
+		let project1 = MProject(userID: "1", name: "1", image: "1")
+
+		let section = MSection(type: "projects", title: "Working on this?", projects: [project1])
 		
 		return section
 	}
-	
-	
 }

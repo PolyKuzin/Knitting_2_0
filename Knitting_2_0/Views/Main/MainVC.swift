@@ -25,7 +25,7 @@ class MainVC	: UIViewController {
 	let dark						= Notification.Name(rawValue: newprojectNotificationKey)
 	
 	//MARK: Supporting Stuff
-    private var user           		: MUsers!
+    private var user           		: MUser!
     private var ref             	: DatabaseReference!
 	
 	private var collectionView		: UICollectionView!
@@ -54,7 +54,7 @@ class MainVC	: UIViewController {
 
 	private var viewModel			: MainVM! {
 		didSet {
-			self.sections.append(viewModel.sections())
+//			self.sections.append(viewModel.sections())
 			self.addImage	= viewModel.addImageView()
 			self.addView	= viewModel.addViewBackground()
 			self.addView.frame = CGRect(x: 0, y: 0, width: 110, height: 60)
@@ -64,9 +64,10 @@ class MainVC	: UIViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(true)
 		setupNormalNavBar()
-		guard let currentUser = Auth.auth().currentUser else { return }
-		user	= MUsers(user: currentUser)
-        ref		= Database.database().reference(withPath: "users").child(String(user.uid)).child("projects")
+//		guard let currentUser = Auth.auth().currentUser else { return }
+//		user	= MUser(user: currentUser)
+//        ref		= Database.database().reference(withPath: "users").child(String(user.uid)).child("projects")
+
 	}
 
 
@@ -76,12 +77,31 @@ class MainVC	: UIViewController {
 		view.backgroundColor = .white
 		setupAddNewProjectButton()
 		viewModel = MainVM()
-		setupCollectionView()
 		setupVisualEffect()
 		
-		view.sendSubviewToBack(addView)
-		view.sendSubviewToBack(collectionView)
-		view.sendSubviewToBack(visualEffectView)
+		var projects = Array<MProject>()
+		let currentUser = Auth.auth().currentUser //else { return MSection(type: "projects", title: "Working on this?", projects: [])}
+		let user : MUser = MUser(user: currentUser!)
+		let reff = Database.database().reference(withPath: "users").child(String(user.uid)).child("projects")
+		
+		reff.observe(.value, with: { (snapshot) in
+            var _projects = Array<MProject>()
+            for item in snapshot.children {
+				print("\(item)")
+                let project = MProject(snapshot: item as! DataSnapshot)
+                _projects.append(project)
+            }
+			projects = _projects
+			self.sections.append(MSection(type: "projects", title: "Working on this?", projects: projects))
+			self.setupCollectionView()
+			self.collectionView.reloadData()
+			self.view.sendSubviewToBack(self.addView)
+			self.view.sendSubviewToBack(self.collectionView)
+			self.view.sendSubviewToBack(self.visualEffectView)
+        })
+//		let project = MProject(userID: user.uid, name: "name", image: "imageData")
+//		let referenceForProject = reff
+//		referenceForProject.setValue(project.projectToDictionary())
     }
 	
     deinit {

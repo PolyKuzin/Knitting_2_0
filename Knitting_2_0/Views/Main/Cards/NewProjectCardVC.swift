@@ -16,7 +16,7 @@ class NewProjectVC					: UIViewController, CardViewControllerProtocol, UINavigat
 	
 	var handle: UIView! 			= UIView()
     
-	private var user           		: MUsers!
+	private var user           		: MUser!
     private var ref             	: DatabaseReference!
 
 	private var imageIsChanged 		: Bool = false
@@ -65,6 +65,7 @@ class NewProjectVC					: UIViewController, CardViewControllerProtocol, UINavigat
 		let projectUniqueID = Int(Date().timeIntervalSince1970)
 		guard let imageData = image?.toString() else { return }
 		guard let name		= projectName.text	else { return }
+//		ref.child("projectsIDs").setValue(["\(projectUniqueID)": projectUniqueID])
 		let project = MProject(userID: user.uid, name: name, image: imageData)
 		let referenceForProject = self.ref.child("projects").child("\(projectUniqueID)")
 		referenceForProject.setValue(project.projectToDictionary())
@@ -77,7 +78,7 @@ class NewProjectVC					: UIViewController, CardViewControllerProtocol, UINavigat
 		setupNewProjectView()
 		
 		guard let currentUser = Auth.auth().currentUser else { return }
-		user	= MUsers(user: currentUser)
+		user	= MUser(user: currentUser)
         ref		= Database.database().reference(withPath: "users").child(String(user.uid))
     }
 	

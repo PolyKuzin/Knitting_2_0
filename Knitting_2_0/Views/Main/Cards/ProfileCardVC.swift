@@ -14,7 +14,7 @@ class ProfileCardVC					: UIViewController, CardViewControllerProtocol {
 	
 	var handle: UIView! 			= UIView()
     
-	private var user           		: MUsers!
+	private var user           		: MUser!
     private var ref             	: DatabaseReference!
 
 	private var signoutBtn			= UIButton()
