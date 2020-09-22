@@ -51,6 +51,11 @@ class MainVC	: UIViewController {
 	private var sections			: Array<MSection> = []
 	private var addView				= UIView()
 	private var addImage			= UIImageView()
+	
+	var reloadMainVc : Bool = false
+	
+	var projects = Array<MProject>()
+
 
 	private var viewModel			: MainVM! {
 		didSet {
@@ -64,10 +69,6 @@ class MainVC	: UIViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(true)
 		setupNormalNavBar()
-//		guard let currentUser = Auth.auth().currentUser else { return }
-//		user	= MUser(user: currentUser)
-//        ref		= Database.database().reference(withPath: "users").child(String(user.uid)).child("projects")
-
 	}
 
 
@@ -79,7 +80,7 @@ class MainVC	: UIViewController {
 		viewModel = MainVM()
 		setupVisualEffect()
 		
-		var projects = Array<MProject>()
+		let seconds = 1.5
 		let currentUser = Auth.auth().currentUser //else { return MSection(type: "projects", title: "Working on this?", projects: [])}
 		let user : MUser = MUser(user: currentUser!)
 		let reff = Database.database().reference(withPath: "users").child(String(user.uid)).child("projects")
@@ -87,21 +88,20 @@ class MainVC	: UIViewController {
 		reff.observe(.value, with: { (snapshot) in
             var _projects = Array<MProject>()
             for item in snapshot.children {
-				print("\(item)")
+				
                 let project = MProject(snapshot: item as! DataSnapshot)
                 _projects.append(project)
             }
-			projects = _projects
-			self.sections.append(MSection(type: "projects", title: "Working on this?", projects: projects))
+			self.projects = _projects
+        })
+		DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+			self.sections.append(MSection(type: "projects", title: "Working on this?", projects: self.projects))
 			self.setupCollectionView()
 			self.collectionView.reloadData()
 			self.view.sendSubviewToBack(self.addView)
 			self.view.sendSubviewToBack(self.collectionView)
 			self.view.sendSubviewToBack(self.visualEffectView)
-        })
-//		let project = MProject(userID: user.uid, name: "name", image: "imageData")
-//		let referenceForProject = reff
-//		referenceForProject.setValue(project.projectToDictionary())
+		}
     }
 	
     deinit {
@@ -384,9 +384,17 @@ extension MainVC {
 	func teardownCardView() {
 		self.setupNormalNavBar()
 		runningAnimations.removeAll()
+		if cardViewController === NewProjectVC() {
+			reloadMainVc = true
+		} else {
+			reloadMainVc = false
+		}
 		cardViewController.removeFromParent()
 		cardViewController.view.removeFromSuperview()
 		cardViewController = nil
+		if reloadMainVc {
+			super.viewWillAppear(true)
+		}
 		self.view.insertSubview(self.visualEffectView, at: 0)
 	}
 }
