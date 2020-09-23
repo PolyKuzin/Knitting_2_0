@@ -41,7 +41,7 @@ class LogInVM	: LogInComposition {
 													width: UIScreen.main.bounds.width - 32,
 													height: 62))
 		//design
-		textField.placeholder			= Placeholder.emailPlaceHolder
+		textField.placeholder			= Placeholder.enterEmail
 		textField.layer.cornerRadius	= CornerRadius.forTextField
 		textField.backgroundColor		= Colors.normalTextField
 		textField.font					= Fonts.displayMedium20
@@ -66,7 +66,7 @@ class LogInVM	: LogInComposition {
 																	width: UIScreen.main.bounds.width - 32,
 																	height: 62))
 		//design
-		textField.placeholder			= Placeholder.passwordRegistration
+		textField.placeholder			= Placeholder.createPassword
 		textField.layer.cornerRadius	= CornerRadius.forTextField
 		textField.backgroundColor		= Colors.normalTextField
 		textField.font					= Fonts.displayMedium20
@@ -89,7 +89,7 @@ class LogInVM	: LogInComposition {
 		button.frame 					= CGRect(x: 0, y: 0, width: 500, height: 50)
 		button.titleLabel?.font			= Fonts.textSemibold14
 		button.layer.masksToBounds		= true
-		button.setTitle					(Placeholder.forgotPass,	for: .normal)
+		button.setTitle					(Placeholder.forgotPassword,	for: .normal)
 		button.setTitleColor			(Colors.questionText, 		for: .normal)
 			
 			return button
@@ -101,7 +101,7 @@ class LogInVM	: LogInComposition {
 																width: 180,
 																height: 20))
 		label.font						= Fonts.textRegular14
-		label.textColor					= Colors.someErrorHappend
+		label.textColor					= Colors.errorLabel
 		label.numberOfLines				= 0
 		label.textAlignment				= .left
 		
@@ -114,7 +114,7 @@ class LogInVM	: LogInComposition {
 		button.titleLabel?.font			= Fonts.textSemibold17
 		button.layer.cornerRadius		= CornerRadius.forButton
 		button.layer.masksToBounds		= true
-		button.setTitle					(Placeholder.titleForLogIn,	for: .normal)
+		button.setTitle					(Placeholder.logIn,	for: .normal)
 		button.setTitleColor			(Colors.whiteColor,		for: .normal)
 		button.setGradientBackground	(colorOne: Colors.backgroundUpButton,
 										 colorTwo: Colors.backgroundDownButton)
@@ -140,7 +140,7 @@ class LogInVM	: LogInComposition {
 		button.frame 					= CGRect(x: 0, y: 0, width: 40, height: 20)
 		button.titleLabel?.font			= Fonts.textRegular17
 		button.layer.masksToBounds		= true
-		button.setTitle					(Placeholder.questionToRegistrBtn,	for: .normal)
+		button.setTitle					(Placeholder.signupWithSpace,	for: .normal)
 		button.setTitleColor			(Colors.questionButton, 			for: .normal)
 		button.contentHorizontalAlignment = .left
 		

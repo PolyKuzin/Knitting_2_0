@@ -15,8 +15,9 @@ import FirebaseFirestore
 class RegistrationVC	: UIViewController {
 	
 	private var dbReference				: DatabaseReference!
-	private let tap						= UITapGestureRecognizer(target: self, action: #selector(dismissKeyBoard))
+//	private let tap						= UITapGestureRecognizer(target: self, action: #selector(dismissKeyBoard))
 	private var logoIcon				= UIImageView()
+	private var titleLabel				= UILabel()
 	private var nicknameTextField		= UITextField()
 	private var emailTextField			= UITextField()
 	private var passwordTextField		= UITextField()
@@ -25,9 +26,12 @@ class RegistrationVC	: UIViewController {
 	private var questionToLogInButton	= UIButton()
 	private var questionToLogInLabel	= UILabel()
 	
+	var viewFrame = CGRect(x: 0, y: 0, width: 0, height: 0)
+	
 	private var viewModel				: RegistrationVM! {
 		didSet {
 			self.logoIcon				= viewModel.logoIcon	()
+			self.titleLabel				= viewModel.titleLabel	()
 			self.nicknameTextField		= viewModel.nickname	()
 			self.emailTextField			= viewModel.email		()
 			self.passwordTextField		= viewModel.password	()
@@ -50,13 +54,19 @@ class RegistrationVC	: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		view.backgroundColor			= .white
-		view.addGestureRecognizer(tap)
+        setingUpKeyboardHiding()
 		viewModel 						= RegistrationVM()
         dbReference						= Database.database().reference(withPath: "users")
 		setUpLayout()
 		let tap : UITapGestureRecognizer	= UITapGestureRecognizer(target: self, action: #selector(dismissKeyBoard))
 		view.addGestureRecognizer(tap)
 	}
+	
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+    }
 }
 
 //MARK: Creating User
@@ -67,9 +77,9 @@ extension RegistrationVC {
 		let error = validateFields()
 		if error != nil { showError(error!) } else {
 			//Create cleaned versions of the data
-			guard let nickname	= nicknameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
-			guard let email		= emailTextField.text?.trimmingCharacters	(in: .whitespacesAndNewlines) else { return }
-			guard let password	= passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
+			guard let nickname	= nicknameTextField	.text?.trimmingCharacters(in: .whitespacesAndNewlines)		else { return }
+			guard let email		= emailTextField	.text?.trimmingCharacters(in: .whitespacesAndNewlines)		else { return }
+			guard let password	= passwordTextField	.text?.trimmingCharacters(in: .whitespacesAndNewlines)		else { return }
 
 			Auth.auth().createUser(withEmail: email, password: password) { [weak self] (user, err) in
 				if let error = err as NSError? {
@@ -87,15 +97,8 @@ extension RegistrationVC {
 					}
 				} else {
 					guard let userRef = self?.dbReference.child((user?.user.uid)!) else { return }
-					userRef.setValue(["email"	: user!.user.email,
-									  "nickname": nickname])
-//					let db = Firestore.firestore()
-//					db.collection("users").addDocument(data: ["uid"			: user?.user.uid as Any,
-//															  "nickname"	: nickname,
-//															  "email"		: email]) { (error) in
-//						if error != nil { self?.showError("Error saving user data") }
-//					}
-					self?.dismissKeyBoard	()
+					userRef.setValue(["email"	: user!.user.email, "nickname": nickname])
+					self?.hideKeyboard()
 					self?.pushMainVC()
 				}
 			}
@@ -167,6 +170,47 @@ extension RegistrationVC {
 		guard let navigationController = navigationController else { return }
 		navigationController.pushViewController(vc, animated: true)
 	}
+}
+
+// MARK: Keyboard Issues
+extension RegistrationVC: UITextFieldDelegate {
+    
+    func setingUpKeyboardHiding(){
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification: )), name: UIResponder.keyboardWillShowNotification,			object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification: )), name: UIResponder.keyboardWillHideNotification, 			object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification: )), name: UIResponder.keyboardWillChangeFrameNotification,	object: nil)
+
+        delegates()
+    }
+    
+    func hideKeyboard(){
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+    }
+    
+    func delegates(){
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        hideKeyboard()
+        return true
+    }
+    
+    @objc
+	func keyboardWillChange(notification: Notification){
+
+        guard let userInfo = notification.userInfo else {return}
+		guard let keyboardRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
+        
+        if notification.name == UIResponder.keyboardWillShowNotification ||
+           notification.name == UIResponder.keyboardWillChangeFrameNotification {
+			view.frame.origin.y = -keyboardRect.height
+        } else {
+			view.frame.origin.y = keyboardRect.height
+        }
+    }
 }
 
 //MARK: Layout

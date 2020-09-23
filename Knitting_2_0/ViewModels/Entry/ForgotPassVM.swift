@@ -30,7 +30,7 @@ class ForgotPassVM  {
 													width: UIScreen.main.bounds.width - 32,
 													height: 62))
 		//design
-		textField.placeholder			= Placeholder.emailPlaceHolder
+		textField.placeholder			= Placeholder.enterEmail
 		textField.layer.cornerRadius	= CornerRadius.forTextField
 		textField.backgroundColor		= Colors.normalTextField
 		textField.font					= Fonts.displayMedium20

@@ -80,7 +80,7 @@ class MainVC	: UIViewController {
 		viewModel = MainVM()
 		setupVisualEffect()
 		
-		let seconds = 1.5
+		let seconds = 2.0
 		let currentUser = Auth.auth().currentUser //else { return MSection(type: "projects", title: "Working on this?", projects: [])}
 		let user : MUser = MUser(user: currentUser!)
 		let reff = Database.database().reference(withPath: "users").child(String(user.uid)).child("projects")

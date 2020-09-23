@@ -10,11 +10,24 @@
         <!--View Controller-->
         <scene sceneID="EHf-IW-A2E">
             <objects>
-                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="partialCurl" modalPresentationStyle="fullScreen" id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.68627450980000004" green="0.1960784314" blue="0.63529411759999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoIcon" translatesAutoresizingMaskIntoConstraints="NO" id="5UX-SR-QBt">
+                                <rect key="frame" x="106" y="368" width="202" height="219"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="219" id="HL2-cY-Dmr"/>
+                                    <constraint firstAttribute="width" constant="202" id="eBL-D2-CR1"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="5UX-SR-QBt" secondAttribute="bottom" constant="275" id="KXj-jS-WgY"/>
+                            <constraint firstItem="5UX-SR-QBt" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="nlr-Kn-Plp"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
@@ -23,4 +36,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="logoIcon" width="404" height="438"/>
+    </resources>
 </document>

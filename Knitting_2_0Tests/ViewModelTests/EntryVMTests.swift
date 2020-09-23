@@ -66,7 +66,7 @@ class EntryVMTests: XCTestCase {
 	
 	func testButtonsTitlesHasCorrectValues() {
 		XCTAssertEqual(sut.signUp().titleLabel?.text,				Placeholder.createNewAccount)
-		XCTAssertEqual(sut.logIn().titleLabel?.text, 				Placeholder.titleForLogIn)
+		XCTAssertEqual(sut.logIn().titleLabel?.text, 				Placeholder.logIn)
 	}
 	
 	func testButtonsTitlesColorHasCorrectValues() {

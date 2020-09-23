@@ -37,52 +37,64 @@ struct CornerRadius {
 struct Colors {
 	
 	//Normal
-	static let normalTextField			= UIColor(red: 0.949, green: 0.949, blue: 0.969, alpha: 1)
-	static let normalBorderTextField	= UIColor(red: 0.82,  green: 0.82,  blue: 0.839, alpha: 1)
-	static let backgroundUpButton		= UIColor(red: 0.584, green: 0.475, blue: 0.820, alpha: 1)
-	static let backgroundDownButton		= UIColor(red: 0.745, green: 0.616, blue: 0.875, alpha: 1)
-	static let borderButton				= UIColor(red: 0.265, green: 0.102, blue: 0.613, alpha: 1)
-	static let questionText				= UIColor(red: 0.621, green: 0.621, blue: 0.621, alpha: 1)
-    static let someErrorHappend			= UIColor(red: 0.962, green: 0.188, blue: 0.467, alpha: 1)
-
 	static let whiteColor				= UIColor.white
 	static let questionButton			= UIColor.black
-	static let backIcon					= UIColor(red: 0.682, green: 0.682, blue: 0.698, alpha: 1)
-	static let hiddenCollectionView		= UIColor(red: 231.0 / 255.0, green: 76.0 / 255.0, blue: 60.0 / 255.0, alpha: 1)
 	
-	//Errors
+	static let normalTextField			= UIColor(red: 0.949, green: 0.949, blue: 0.969, alpha: 1)
+	static let normalBorderTextField	= UIColor(red: 0.82,  green: 0.82,  blue: 0.839, alpha: 1)
     static let errorTextField			= UIColor(red: 1,	  green: 0.954, blue: 0.976, alpha: 1)
     static let errorTextFieldBorder		= UIColor(red: 0.962, green: 0.188, blue: 0.467, alpha: 1)
+
+	static let questionText				= UIColor(red: 0.621, green: 0.621, blue: 0.621, alpha: 1)
+    static let errorLabel				= UIColor(red: 0.962, green: 0.188, blue: 0.467, alpha: 1)
+	static let labelText				= UIColor(red: 0.234, green: 0.234, blue: 0.234, alpha: 1)
+	
+	static let borderButton				= UIColor(red: 0.265, green: 0.102, blue: 0.613, alpha: 1)
+	static let backgroundUpButton		= UIColor(red: 0.584, green: 0.475, blue: 0.82,  alpha: 1)
+	static let backgroundDownButton		= UIColor(red: 0.745, green: 0.616, blue: 0.875, alpha: 1)
+
+
+	static let backIcon					= UIColor(red: 0.682, green: 0.682, blue: 0.698, alpha: 1)
+	static let hiddenContainerView		= UIColor(red: 231.0 / 255.0, green: 76.0 / 255.0, blue: 60.0 / 255.0, alpha: 1)
+	
+	//Errors
+
 }
 
 struct Placeholder {
 	
-	static let nicknameRegistration 	= "Create a nickname"
-	static let emailPlaceHolder			= "Enter your e-mail"
-	static let passwordRegistration 	= "Create a password"
-	static let passwordLogIn			= "Enter your password"
+	static let enterEmail				= "E-mail"
+	static let enterPassword			= "Enter your password"
+	static let createNickname 			= "Nickname"
+	static let createPassword 			= "Password"
 	
-	static let forgotPass				= "Forgot your password?" // to test
-	static let fillInTheFields			= "Please fill in all fields" // to test
-	static let resetPassword			= "Reset" // to test
-	static let resetPasswordForm		= "A form for password recovery will be sent to your email address" // to test
+	static let forgotPassword			= "Forgot your password?"
+	static let fillInTheFields			= "Please fill in all fields"
+	static let resetPassword			= "Reset"
+	static let resetPasswordForm		= "A form for password recovery will be sent to your email address"
 	
-	static let titleForSingUp			= "Sign up"
-	static let titleForLogIn			= "Log in"
-	static let questionToLogInLbl		= "Already have an account? "
-	static let questionToLogInBtn		= " Log in"
-	static let questionToRegistrLbl		= "You don't have an account? "
-	static let questionToRegistrBtn		= " Sign up"
+	static let logIn					= "Log in"
+	static let loginWithSpace			= " Log in"
+	static let signUp					= "Sign up"
+	static let signupWithSpace			= " Sign up"
 	static let createNewAccount			= "Create a new account"
+	static let questionToLogInLbl		= "Already have an account? "
+	static let questionToRegistrLbl		= "You don't have an account? "
+
 	
 	static let emptyProject				= "Empty Project"
 }
 
 struct Fonts {
 	
+	static let displayMedium18			= UIFont(name: "SFProDisplay-Medium",	size: 18)
 	static let displayMedium20			= UIFont(name: "SFProDisplay-Medium",	size: 20)
 	static let displayMedium22			= UIFont(name: "SFProDisplay-Medium",	size: 22)
+	
+	static let displaySemibold18		= UIFont(name: "SFProDisplay-Semibold", size: 18)
 	static let displaySemibold22		= UIFont(name: "SFProDisplay-Semibold", size: 22)
+	static let displaySemibold28		= UIFont(name: "SFProDisplay-Semibold", size: 28)
+	
 	static let textRegular17			= UIFont(name: "SFProText-Regular", 	size: 17)
 	
 	static let textRegular14			= UIFont(name: "SFProText-Regular", 	size: 14) // to test

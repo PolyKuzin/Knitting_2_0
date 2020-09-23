@@ -134,8 +134,8 @@ class LogInVMTests: XCTestCase {
 	}
 	
 	func testButtonsTitlesHasCorrectValues() {
-		XCTAssertEqual(sut.logIn().titleLabel?.text, 				Placeholder.titleForLogIn)
-		XCTAssertEqual(sut.questionBtn().titleLabel?.text,			Placeholder.questionToRegistrBtn)
+		XCTAssertEqual(sut.logIn().titleLabel?.text, 				Placeholder.logIn)
+		XCTAssertEqual(sut.questionBtn().titleLabel?.text,			Placeholder.signUpWithSpace)
 	}
 	
 	func testButtonsTitlesColorHasCorrectValues() {

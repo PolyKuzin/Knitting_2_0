@@ -52,16 +52,16 @@ class ConstantsTests: XCTestCase {
 	
 	//PlaceHolders structure Tests
 	func testPlaceholdersnHasCorrectString() {
-		XCTAssertEqual(Placeholder.nicknameRegistration,"Create a nickname")
-		XCTAssertEqual(Placeholder.emailPlaceHolder,	"Enter your e-mail")
-		XCTAssertEqual(Placeholder.passwordRegistration,"Create a password")
-		XCTAssertEqual(Placeholder.passwordLogIn, 		"Enter your password")
-		XCTAssertEqual(Placeholder.titleForSingUp,		"Sing up")
-		XCTAssertEqual(Placeholder.titleForLogIn,		"Log in")
+		XCTAssertEqual(Placeholder.createNickname,"Create a nickname")
+		XCTAssertEqual(Placeholder.enterEmail,	"Enter your e-mail")
+		XCTAssertEqual(Placeholder.createPassword,"Create a password")
+		XCTAssertEqual(Placeholder.enterPassword, 		"Enter your password")
+		XCTAssertEqual(Placeholder.signUp,		"Sing up")
+		XCTAssertEqual(Placeholder.logIn,		"Log in")
 		XCTAssertEqual(Placeholder.questionToLogInLbl,	"Already have an account? ")
-		XCTAssertEqual(Placeholder.questionToLogInBtn, 	" Log in")
+		XCTAssertEqual(Placeholder.logInWithSpace, 	" Log in")
 		XCTAssertEqual(Placeholder.questionToRegistrLbl,"You don't have an account? ")
-		XCTAssertEqual(Placeholder.questionToRegistrBtn," Sign up")
+		XCTAssertEqual(Placeholder.signUpWithSpace," Sign up")
 		XCTAssertEqual(Placeholder.createNewAccount, 	"Create a new account")
 	}
 	

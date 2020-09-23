@@ -10,25 +10,35 @@ import UIKit
 
 class EntryVM {
 	
-    private lazy var logoIconView		: UIImageView = {
-        let image						= Icons.logoIcon
-        let imageView					= UIImageView(frame: CGRect(x: 135.33,
-																	y: 116.79,
-																	width: 129.39,
-																	height: 154.89))
-		imageView.image					= image
+	func logoIcon	()	-> UIImageView	{
+		return logoIconView
+	}
+	
+	func signUp		()	-> UIButton		{
+		return signUpButton
+	}
+	
+	func logIn		()	-> UIButton		{
+		return logInButton
+	}
+	
+    private lazy var logoIconView		: UIImageView	= {
+        let imageView					= UIImageView()
+		imageView.frame 				= CGRect(x: 0, y: 0, width: 129.39, height: 154.89)
+		imageView.image					= Icons.logoIcon
         imageView.contentMode			= .scaleAspectFit
 		
         return imageView
 	}()
 	
-	private lazy var signUpButton		: UIButton = {
+	private lazy var signUpButton		: UIButton		= {
 		let button						= UIButton(type: .system)
-		button.frame 					= CGRect(x: 0, y: 0, width: 500, height: 64)
-		button.titleLabel?.font			= Fonts.displayMedium22
-		button.layer.cornerRadius		= CornerRadius.forEntryBtn
+		button.frame 					= CGRect(x: 0, y: 0, width: 152, height: 53)
+		button.titleLabel?.font			= Fonts.displayMedium18
+		button.alpha					= 0
+		button.layer.cornerRadius		= 26.5
 		button.layer.masksToBounds		= true
-		button.setTitle					(Placeholder.createNewAccount, for: .normal)
+		button.setTitle					(Placeholder.signUp, for: .normal)
 		button.setTitleColor			(Colors.whiteColor, for: .normal)
 		button.setGradientBackground	(colorOne: Colors.backgroundUpButton,
 										 colorTwo: Colors.backgroundDownButton)
@@ -36,27 +46,15 @@ class EntryVM {
 		return button
 	}()
 	
-	private lazy var logInButton		: UIButton = {
+	private lazy var logInButton		: UIButton		= {
 		let button						= UIButton(type: .system)
-		button.frame 					= CGRect(x: 0, y: 0, width: 500, height: 50)
-		button.titleLabel?.font			= Fonts.displaySemibold22
-		button.layer.cornerRadius		= CornerRadius.forButton
+		button.frame 					= CGRect(x: 0, y: 0, width: 500, height: 21)
+		button.titleLabel?.font			= Fonts.displaySemibold18
+		button.alpha					= 0
 		button.layer.masksToBounds		= true
-		button.setTitle					(Placeholder.titleForLogIn, for: .normal)
-		button.setTitleColor			(Colors.questionButton, 	for: .normal)
+		button.setTitle					(Placeholder.logIn,		for: .normal)
+		button.setTitleColor			(Colors.questionButton, for: .normal)
 			
 		return button
 	}()
-	
-	func logoIcon()			-> UIImageView {
-		return logoIconView
-	}
-	
-	func signUp()			-> UIButton {
-		return signUpButton
-	}
-	
-	func logIn()			-> UIButton {
-		return logInButton
-	}
 }

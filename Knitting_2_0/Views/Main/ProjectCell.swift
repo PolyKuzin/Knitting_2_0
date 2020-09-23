@@ -30,7 +30,7 @@ class ProjectCell: SwipeableCollectionViewCell {
 		self.clipsToBounds						= true
         projectImage.clipsToBounds              = true
 		visibleContainerView.backgroundColor 	= Colors.whiteColor
-		hiddenContainerView.backgroundColor 	= Colors.hiddenCollectionView
+		hiddenContainerView.backgroundColor 	= Colors.hiddenContainerView
 	}
 	
 	func configure() { //(with project: MProject) {
