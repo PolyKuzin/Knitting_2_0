@@ -78,6 +78,10 @@ class NewProjectVC					: UIViewController, CardViewControllerProtocol, UINavigat
 		guard let currentUser = Auth.auth().currentUser else { return }
 		user	= MUser(user: currentUser)
         ref		= Database.database().reference(withPath: "users").child(String(user.uid))
+		
+		setingUpKeyboardHiding()
+		let tap : UITapGestureRecognizer	= UITapGestureRecognizer(target: self, action: #selector(dismissKeyBoard))
+		view.addGestureRecognizer(tap)
     }
 	
 	@objc
@@ -116,6 +120,45 @@ extension NewProjectVC: UIImagePickerControllerDelegate {
         projectImage.clipsToBounds 		= true
         imageIsChanged 					= true
         dismiss(animated: true)
+    }
+}
+
+// MARK: Keyboard Issues
+extension NewProjectVC: UITextFieldDelegate {
+    
+    func setingUpKeyboardHiding(){
+        projectName		.delegate = self
+		
+        NotificationCenter.default.addObserver(self,	selector: #selector(keyboardWillChange(notification: )),	name: UIResponder.keyboardWillShowNotification,			object: nil)
+        NotificationCenter.default.addObserver(self,	selector: #selector(keyboardWillChange(notification: )),	name: UIResponder.keyboardWillHideNotification,			object: nil)
+        NotificationCenter.default.addObserver(self,	selector: #selector(keyboardWillChange(notification: )),	name: UIResponder.keyboardWillChangeFrameNotification,	object: nil)
+    }
+    
+    func hideKeyboard(){
+        projectName		.resignFirstResponder()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+		hideKeyboard()
+        return true
+    }
+    
+    @objc
+	func keyboardWillChange(notification: Notification){
+        guard let userInfo = notification.userInfo else {return}
+              let keyboardRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        
+        if notification.name == UIResponder.keyboardWillShowNotification ||
+           notification.name == UIResponder.keyboardWillChangeFrameNotification {
+			view.frame.origin.y = -keyboardRect.height + 110
+        } else {
+			view.frame.origin.y += keyboardRect.height - 22
+        }
+    }
+	
+    @objc
+    private func dismissKeyBoard() {
+        hideKeyboard()
     }
 }
 

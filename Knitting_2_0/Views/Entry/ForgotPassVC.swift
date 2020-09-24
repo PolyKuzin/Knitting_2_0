@@ -33,7 +33,8 @@ class ForgotPassVC				: UIViewController {
 		view.backgroundColor = .white
 		viewModel = ForgotPassVM()
 		setUpLayout()
-		let tap : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyBoard))
+		setingUpKeyboardHiding()
+		let tap : UITapGestureRecognizer	= UITapGestureRecognizer(target: self, action: #selector(dismissKeyBoard))
 		view.addGestureRecognizer(tap)
 	}
 }
@@ -64,15 +65,6 @@ extension ForgotPassVC {
 		showError(description)
 		emailTextField.shakeAnimation()
 		}
-}
-
-//MARK: Dismiss KeyBoard
-extension ForgotPassVC {
-		
-    @objc
-    private func dismissKeyBoard() {
-        view.endEditing(true)
-    }
 }
 
 extension ForgotPassVC {
@@ -115,6 +107,45 @@ extension ForgotPassVC {
 		guard let navigationController = self.navigationController else { return }
 		navigationController.pushViewController(vc, animated: true)
 	}
+}
+
+// MARK: Keyboard Issues
+extension ForgotPassVC: UITextFieldDelegate {
+    
+    func setingUpKeyboardHiding(){
+        emailTextField		.delegate = self
+		
+        NotificationCenter.default.addObserver(self,	selector: #selector(keyboardWillChange(notification: )),	name: UIResponder.keyboardWillShowNotification,			object: nil)
+        NotificationCenter.default.addObserver(self,	selector: #selector(keyboardWillChange(notification: )),	name: UIResponder.keyboardWillHideNotification,			object: nil)
+        NotificationCenter.default.addObserver(self,	selector: #selector(keyboardWillChange(notification: )),	name: UIResponder.keyboardWillChangeFrameNotification,	object: nil)
+    }
+    
+    func hideKeyboard(){
+        emailTextField		.resignFirstResponder()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+		hideKeyboard()
+        return true
+    }
+    
+    @objc
+	func keyboardWillChange(notification: Notification){
+        guard let userInfo = notification.userInfo else {return}
+              let keyboardRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        
+        if notification.name == UIResponder.keyboardWillShowNotification ||
+           notification.name == UIResponder.keyboardWillChangeFrameNotification {
+			view.frame.origin.y = -keyboardRect.height + 110
+        } else {
+			view.frame.origin.y += keyboardRect.height - 22
+        }
+    }
+	
+    @objc
+    private func dismissKeyBoard() {
+        hideKeyboard()
+    }
 }
 
 //MARK: Layout
