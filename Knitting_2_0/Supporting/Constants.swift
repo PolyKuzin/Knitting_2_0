@@ -71,13 +71,14 @@ struct Placeholder {
 	static let forgotPassword			= "Forgot your password?"
 	static let fillInTheFields			= "Please fill in all fields"
 	static let resetPassword			= "Reset"
-	static let resetPasswordForm		= "A form for password recovery will be sent to your email address"
+	static let resetPasswordForm		= "We will send you an E-mail. Click the link in the E-mail and reset your password."
 	
 	static let logIn					= "Log in"
 	static let loginWithSpace			= " Log in"
 	static let signUp					= "Sign up"
 	static let signupWithSpace			= " Sign up"
-	static let createNewAccount			= "Create a new account"
+	static let createNewAccount			= "Create new account"
+	static let loginIntoAccount			= "Log in to your account"
 	static let questionToLogInLbl		= "Already have an account? "
 	static let questionToRegistrLbl		= "You don't have an account? "
 

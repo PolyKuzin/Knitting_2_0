@@ -28,8 +28,9 @@ class EntryVC: UIViewController {
 	override func viewWillAppear(_ animated: Bool)	 {
 		super.viewWillAppear(animated)
 		Auth.auth().addStateDidChangeListener { (auth, user) in
-//			if user != nil { self.pushMainVC() }
-			
+			if user != nil {
+				self.pushMainVC()
+			}
 		}
 	}
 	
@@ -93,25 +94,25 @@ extension EntryVC {
 		//Image or Gif constraints in a cell
 		view.addSubview(logoIcon)
 		logoIcon.translatesAutoresizingMaskIntoConstraints													= false
-		logoIcon.centerXAnchor.constraint		(equalTo: view.centerXAnchor)					.isActive	= true
-		logoIcon.heightAnchor.constraint		(equalToConstant: 219)							.isActive	= true
-		logoIcon.widthAnchor.constraint			(equalToConstant: 202)							.isActive	= true
+		logoIcon.centerXAnchor		.constraint(equalTo: view.centerXAnchor)					.isActive	= true
+		logoIcon.heightAnchor		.constraint(equalToConstant: 219)							.isActive	= true
+		logoIcon.widthAnchor		.constraint(equalToConstant: 202)							.isActive	= true
 		
 		//A place for registration buttom
 		view.addSubview(logInButton)
 		logInButton.translatesAutoresizingMaskIntoConstraints												= false
-		logInButton.centerXAnchor.constraint	(equalTo: view.centerXAnchor)					.isActive	= true
-		logInButton.heightAnchor.constraint		(equalToConstant: 21)							.isActive	= true
-		logInButton.trailingAnchor.constraint	(equalTo: view.trailingAnchor, constant: -120)	.isActive	= true
-		logInButton.bottomAnchor.constraint		(equalTo: view.bottomAnchor, constant: -48)		.isActive	= true
+		logInButton.centerXAnchor	.constraint(equalTo: view.centerXAnchor)					.isActive	= true
+		logInButton.heightAnchor	.constraint(equalToConstant: 21)							.isActive	= true
+		logInButton.trailingAnchor	.constraint(equalTo: view.trailingAnchor,	constant: -120)	.isActive	= true
+		logInButton.bottomAnchor	.constraint(equalTo: view.bottomAnchor,		constant: -48)	.isActive	= true
 		
 		//A place for registration buttom
 		view.addSubview(signUpButton)
 		signUpButton.translatesAutoresizingMaskIntoConstraints												= false
-		signUpButton.topAnchor.constraint		(equalTo: logoIcon.bottomAnchor,constant: 163)	.isActive	= true
-		signUpButton.centerXAnchor.constraint	(equalTo: view.centerXAnchor)					.isActive	= true
-		signUpButton.bottomAnchor.constraint	(equalTo: logInButton.topAnchor, constant: -24)	.isActive	= true
-		signUpButton.heightAnchor.constraint	(equalToConstant: 53)							.isActive	= true
-		signUpButton.widthAnchor.constraint		(equalToConstant: 152)							.isActive	= true
+		signUpButton.topAnchor		.constraint(equalTo: logoIcon.bottomAnchor,	constant: 163)	.isActive	= true
+		signUpButton.centerXAnchor	.constraint(equalTo: view.centerXAnchor)					.isActive	= true
+		signUpButton.bottomAnchor	.constraint(equalTo: logInButton.topAnchor, constant: -24)	.isActive	= true
+		signUpButton.heightAnchor	.constraint(equalToConstant: 53)							.isActive	= true
+		signUpButton.widthAnchor	.constraint(equalToConstant: 152)							.isActive	= true
 	}
 }

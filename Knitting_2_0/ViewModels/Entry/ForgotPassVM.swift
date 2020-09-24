@@ -10,6 +10,26 @@ import UIKit
 
 class ForgotPassVM  {
 	
+	func logo()				-> UIImageView	{
+		return logoIconView
+	}
+	
+	func resetPassLabel() -> UILabel {
+		return resetPassLb
+	}
+	
+	func email()			-> UITextField	{
+		return emailTextField
+	}
+	
+	func info()				-> UILabel	{
+		return infoLabel
+	}
+	
+	func reset() 			-> UIButton {
+		return resetButton
+	}
+	
     private lazy var logoIconView		: UIImageView = {
         let image						= Icons.logoIcon
         let imageView					= UIImageView(frame: CGRect(x: 135.33,
@@ -23,12 +43,21 @@ class ForgotPassVM  {
         return imageView
 	}()
 	
+	private lazy var resetPassLb		: UILabel		= {
+		let label 						= UILabel()
+		label.text						= Placeholder.loginIntoAccount
+		label.textColor 				= Colors.labelText
+		label.font						= Fonts.displaySemibold28
+		
+		return label
+	}()
+	
 	private lazy var emailTextField		: UITextField = {
 		//change the frame of the TextFfield
 		let textField = UITextField(frame: CGRect(x: 16,
 													y: 448,
 													width: UIScreen.main.bounds.width - 32,
-													height: 62))
+													height: 51))
 		//design
 		textField.placeholder			= Placeholder.enterEmail
 		textField.layer.cornerRadius	= CornerRadius.forTextField
@@ -75,20 +104,4 @@ class ForgotPassVM  {
 			
 			return button
 	}()
-	
-	func logo()				-> UIImageView	{
-		return logoIconView
-	}
-	
-	func email()			-> UITextField	{
-		return emailTextField
-	}
-	
-	func info()				-> UILabel	{
-		return infoLabel
-	}
-	
-	func reset() 			-> UIButton {
-		return resetButton
-	}
 }

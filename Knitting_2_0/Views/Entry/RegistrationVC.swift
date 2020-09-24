@@ -15,19 +15,20 @@ import FirebaseFirestore
 class RegistrationVC	: UIViewController {
 	
 	private var dbReference				: DatabaseReference!
-//	private let tap						= UITapGestureRecognizer(target: self, action: #selector(dismissKeyBoard))
-	private var logoIcon				= UIImageView()
-	private var nicknameTextField		= UITextField()
-	private var emailTextField			= UITextField()
-	private var passwordTextField		= UITextField()
-	private var warning					= UILabel()
-	private var signUpButton			= UIButton()
-	private var questionToLogInButton	= UIButton()
-	private var questionToLogInLabel	= UILabel()
-	
+	private var logoIcon				= UIImageView	()
+	private var createAccount			= UILabel		()
+	private var nicknameTextField		= UITextField	()
+	private var emailTextField			= UITextField	()
+	private var passwordTextField		= UITextField	()
+	private var warning					= UILabel		()
+	private var signUpButton			= UIButton		()
+	private var questionToLogInButton	= UIButton		()
+	private var questionToLogInLabel	= UILabel		()
+		
 	private var viewModel				: RegistrationVM! {
 		didSet {
 			self.logoIcon				= viewModel.logoIcon	()
+			self.createAccount			= viewModel.titleLabel	()
 			self.nicknameTextField		= viewModel.nickname	()
 			self.emailTextField			= viewModel.email		()
 			self.passwordTextField		= viewModel.password	()
@@ -35,56 +36,77 @@ class RegistrationVC	: UIViewController {
 			self.signUpButton 			= viewModel.signUp		()
 			self.questionToLogInButton	= viewModel.questionBtn	()
 			self.questionToLogInLabel	= viewModel.questionLbl	()
-			signUpButton.addTarget			(self, action: #selector(signUpTapped), for: .touchUpInside)
-			questionToLogInButton.addTarget	(self, action: #selector(pushLogInVC), for: .touchUpInside)
+			signUpButton			.addTarget	(self, action: #selector(signUpTapped),	for: .touchUpInside)
+			questionToLogInButton	.addTarget	(self, action: #selector(pushLogInVC),	for: .touchUpInside)
 		}
 	}
 	
     override func viewDidLoad() {
         super.viewDidLoad()
 		view.backgroundColor			= .white
-//		view.addGestureRecognizer(tap)
 		viewModel 						= RegistrationVM()
         dbReference						= Database.database().reference(withPath: "users")
 		setUpLayout()
-//		let tap : UITapGestureRecognizer	= UITapGestureRecognizer(target: self, action: #selector(dismissKeyBoard))
-//		view.addGestureRecognizer(tap)
-		
-//		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(sender:)), name:UIResponder.keyboardWillShowNotification, object: self.view.window)
-//		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(sender:)), name:UIResponder.keyboardWillHideNotification, object: self.view.window)
+		setingUpKeyboardHiding()
+		let tap : UITapGestureRecognizer	= UITapGestureRecognizer(target: self, action: #selector(dismissKeyBoard))
+		view.addGestureRecognizer(tap)
 	}
 	
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
-		NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: self.view.window)
-		NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: self.view.window)
+		NotificationCenter.default.removeObserver(self,	name: UIResponder.keyboardWillShowNotification,			object: nil)
+        NotificationCenter.default.removeObserver(self,	name: UIResponder.keyboardWillHideNotification,			object: nil)
+        NotificationCenter.default.removeObserver(self,	name: UIResponder.keyboardWillChangeFrameNotification,	object: nil)
 	}
-//
-//	@objc
-//	func keyboardWillHide(sender: NSNotification) {
-//		guard let userInfo = sender.userInfo else { return }
-//		let keyboardSize: CGSize = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue.size
-//		self.view.frame.origin.y += keyboardSize.height
-//	}
-//
-//	@objc
-//	func keyboardWillShow(sender: NSNotification) {
-//		guard let userInfo				= sender.userInfo else { return }
-//		let keyboardSize	: CGSize	= (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue.size
-//		let offset			: CGSize	= (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.size
-//
-//		if keyboardSize.height == offset.height {
-//			if self.view.frame.origin.y == 0 {
-//				UIView.animate(withDuration: 0.1, animations: { () -> Void in
-//					self.view.frame.origin.y -= keyboardSize.height
-//				})
-//			}
-//		} else {
-//			UIView.animate(withDuration: 0.1, animations: { () -> Void in
-//				self.view.frame.origin.y += keyboardSize.height - offset.height
-//			})
-//		}
-//	}
+}
+
+// MARK: Keyboard Issues
+extension RegistrationVC: UITextFieldDelegate {
+    
+    func setingUpKeyboardHiding(){
+		nicknameTextField	.delegate = self
+        emailTextField		.delegate = self
+        passwordTextField	.delegate = self
+		
+        NotificationCenter.default.addObserver(self,	selector: #selector(keyboardWillChange(notification: )),	name: UIResponder.keyboardWillShowNotification,			object: nil)
+        NotificationCenter.default.addObserver(self,	selector: #selector(keyboardWillChange(notification: )),	name: UIResponder.keyboardWillHideNotification,			object: nil)
+        NotificationCenter.default.addObserver(self,	selector: #selector(keyboardWillChange(notification: )),	name: UIResponder.keyboardWillChangeFrameNotification,	object: nil)
+    }
+    
+    func hideKeyboard(){
+		nicknameTextField	.resignFirstResponder()
+        emailTextField		.resignFirstResponder()
+        passwordTextField	.resignFirstResponder()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {		
+		if 			textField == nicknameTextField {
+			emailTextField		.becomeFirstResponder()
+		} else if 	textField == emailTextField {
+			passwordTextField	.becomeFirstResponder()
+		} else {
+			hideKeyboard()
+		}
+        return true
+    }
+    
+    @objc
+	func keyboardWillChange(notification: Notification){
+        guard let userInfo = notification.userInfo else {return}
+              let keyboardRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        
+        if notification.name == UIResponder.keyboardWillShowNotification ||
+           notification.name == UIResponder.keyboardWillChangeFrameNotification {
+			view.frame.origin.y = -keyboardRect.height + 110
+        } else {
+			view.frame.origin.y += keyboardRect.height - 22
+        }
+    }
+	
+    @objc
+    private func dismissKeyBoard() {
+        hideKeyboard()
+    }
 }
 
 //MARK: Creating User
@@ -124,6 +146,7 @@ extension RegistrationVC {
 						if error != nil { self?.showError("Error saving user data") }
 					}
 //					self?.dismissKeyBoard	()
+					self?.hideKeyboard()
 					self?.pushMainVC()
 				}
 			}
@@ -171,15 +194,6 @@ extension RegistrationVC {
 	}
 }
 
-////MARK: Dismiss KeyBoard
-//extension RegistrationVC {
-//
-//    @objc
-//    private func dismissKeyBoard() {
-//        view.endEditing(true)
-//    }
-//}
-
 //MARK: Navigation
 extension RegistrationVC {
 	
@@ -205,54 +219,62 @@ extension RegistrationVC {
 		self.navigationItem.setHidesBackButton(true, animated: true)
 		
         //A place of view, where the image is
-		let topImageConteinerView = UIView()
-		view.addSubview(topImageConteinerView)
-		topImageConteinerView.translatesAutoresizingMaskIntoConstraints												= false
-		topImageConteinerView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive						= true
-        topImageConteinerView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive						= true
-        topImageConteinerView.topAnchor.constraint(equalTo: view.topAnchor).isActive								= true
-        topImageConteinerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.35).isActive		= true
+		let imageContainer = UIView()
+		view.addSubview(imageContainer)
+		imageContainer.translatesAutoresizingMaskIntoConstraints													= false
+		imageContainer.leadingAnchor	.constraint(equalTo: view.leadingAnchor)						.isActive	= true
+        imageContainer.trailingAnchor	.constraint(equalTo: view.trailingAnchor)						.isActive	= true
+        imageContainer.topAnchor		.constraint(equalTo: view.topAnchor)							.isActive	= true
+        imageContainer.heightAnchor		.constraint(equalTo: view.heightAnchor, multiplier: 0.3)		.isActive	= true
 		
         //Image or Gif constraints in a cell
-        topImageConteinerView.addSubview(logoIcon)
+        imageContainer.addSubview(logoIcon)
         logoIcon.translatesAutoresizingMaskIntoConstraints															= false
-        logoIcon.centerXAnchor.constraint(equalTo: topImageConteinerView.centerXAnchor, constant: -10).isActive		= true
-        logoIcon.centerYAnchor.constraint(equalTo: topImageConteinerView.centerYAnchor, constant: 10).isActive		= true
-		logoIcon.heightAnchor.constraint(lessThanOrEqualToConstant: 154.89).isActive								= true
-		logoIcon.widthAnchor.constraint(lessThanOrEqualToConstant: 129.39).isActive									= true
+        logoIcon.centerXAnchor.constraint(equalTo: imageContainer.centerXAnchor, constant: -10)			.isActive	= true
+        logoIcon.centerYAnchor.constraint(equalTo: imageContainer.centerYAnchor, constant: 10)			.isActive	= true
+		logoIcon.heightAnchor.constraint(lessThanOrEqualToConstant: 154.89)								.isActive	= true
+		logoIcon.widthAnchor.constraint(lessThanOrEqualToConstant: 129.39)								.isActive	= true
+		
+		//A place for title
+		view.addSubview(createAccount)
+		createAccount.translatesAutoresizingMaskIntoConstraints														= false
+		createAccount.topAnchor			.constraint(equalTo: imageContainer.bottomAnchor)				.isActive	= true
+		createAccount.leadingAnchor		.constraint(equalTo: view.leadingAnchor, constant: 16)			.isActive	= true
+		createAccount.trailingAnchor	.constraint(equalTo: view.trailingAnchor, constant: -16)		.isActive	= true
+		createAccount.heightAnchor		.constraint(equalToConstant: 33)								.isActive	= true
 		
 		//A palce for nickname TextField
 		view.addSubview(nicknameTextField)
 		nicknameTextField.translatesAutoresizingMaskIntoConstraints													= false
-		nicknameTextField.topAnchor.constraint(equalTo: topImageConteinerView.bottomAnchor, constant: 20).isActive	= true
-		nicknameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive			= true
-		nicknameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive				= true
-		nicknameTextField.heightAnchor.constraint(equalToConstant: 62).isActive 									= true
+		nicknameTextField.topAnchor		.constraint(equalTo: createAccount.bottomAnchor, constant: 20)	.isActive	= true
+		nicknameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)		.isActive	= true
+		nicknameTextField.leadingAnchor	.constraint(equalTo: view.leadingAnchor, constant: 16)			.isActive	= true
+		nicknameTextField.heightAnchor	.constraint(equalToConstant: 51)								.isActive 	= true
 		
 		//A palce for email TextField
 		view.addSubview(emailTextField)
 		emailTextField.translatesAutoresizingMaskIntoConstraints													= false
-		emailTextField.topAnchor.constraint(equalTo: nicknameTextField.bottomAnchor, constant: 20).isActive			= true
-		emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive				= true
-		emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive					= true
-		emailTextField.heightAnchor.constraint(equalToConstant: 62).isActive 										= true
+		emailTextField.topAnchor		.constraint(equalTo: nicknameTextField.bottomAnchor, constant: 20).isActive	= true
+		emailTextField.trailingAnchor	.constraint(equalTo: view.trailingAnchor, constant: -16)		.isActive	= true
+		emailTextField.leadingAnchor	.constraint(equalTo: view.leadingAnchor, constant: 16)			.isActive	= true
+		emailTextField.heightAnchor		.constraint(equalToConstant: 51)								.isActive 	= true
 		
 		//A palce for password TextField
 		view.addSubview(passwordTextField)
 		passwordTextField.translatesAutoresizingMaskIntoConstraints													= false
-		passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 20).isActive			= true
-		passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive			= true
-		passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive				= true
-		passwordTextField.heightAnchor.constraint(equalToConstant: 62).isActive 									= true
+		passwordTextField.topAnchor		.constraint(equalTo: emailTextField.bottomAnchor, constant: 20)	.isActive	= true
+		passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)		.isActive	= true
+		passwordTextField.leadingAnchor	.constraint(equalTo: view.leadingAnchor, constant: 16)			.isActive	= true
+		passwordTextField.heightAnchor	.constraint(equalToConstant: 51)								.isActive 	= true
 		
 		//A palce for warning label
 		view.addSubview(warning)
 		warning.isHidden																							= true
 		warning.translatesAutoresizingMaskIntoConstraints															= false
-		warning.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive						= true
-		warning.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 8).isActive					= true
-		warning.heightAnchor.constraint(greaterThanOrEqualToConstant: 17).isActive									= true
-		warning.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -16).isActive			= true
+		warning.leadingAnchor			.constraint(equalTo: view.leadingAnchor, constant: 16)			.isActive	= true
+		warning.topAnchor				.constraint(equalTo: passwordTextField.bottomAnchor, constant: 8).isActive	= true
+		warning.heightAnchor			.constraint(greaterThanOrEqualToConstant: 17)					.isActive	= true
+		warning.trailingAnchor			.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -16).isActive	= true
 		
 		//A place for question Label And Question Button
 		let bottomLicensSV			= UIStackView(arrangedSubviews: [questionToLogInLabel, questionToLogInButton])
@@ -260,18 +282,17 @@ extension RegistrationVC {
 
         view.addSubview(bottomLicensSV)
         bottomLicensSV.translatesAutoresizingMaskIntoConstraints													= false
-		bottomLicensSV.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40).isActive					= true
-		bottomLicensSV.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive								= true
-		bottomLicensSV.trailingAnchor.constraint(greaterThanOrEqualTo: view.trailingAnchor, constant: -16).isActive	= true
-		bottomLicensSV.heightAnchor.constraint(equalToConstant: 50).isActive										= true
+		bottomLicensSV.bottomAnchor		.constraint(equalTo: view.bottomAnchor, constant: -40)			.isActive	= true
+		bottomLicensSV.centerXAnchor	.constraint(equalTo: view.centerXAnchor)						.isActive	= true
+		bottomLicensSV.heightAnchor		.constraint(equalToConstant: 20)								.isActive	= true
 		
 		//A place for registration buttom
 		view.addSubview(signUpButton)
 		signUpButton.translatesAutoresizingMaskIntoConstraints														= false
-		signUpButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive									= true
-		signUpButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive				= true
-		signUpButton.bottomAnchor.constraint(equalTo: bottomLicensSV.topAnchor, constant: -20).isActive				= true
-		signUpButton.heightAnchor.constraint(equalToConstant: 50).isActive											= true
+		signUpButton.centerXAnchor		.constraint(equalTo: view.centerXAnchor)						.isActive	= true
+		signUpButton.trailingAnchor		.constraint(equalTo: view.trailingAnchor, constant: -64)		.isActive	= true
+		signUpButton.bottomAnchor		.constraint(equalTo: bottomLicensSV.topAnchor, constant: -20)	.isActive	= true
+		signUpButton.heightAnchor		.constraint(equalToConstant: 53)								.isActive	= true
 		
 		//Button alignment
 		questionToLogInButton.translatesAutoresizingMaskIntoConstraints													= false

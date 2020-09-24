@@ -12,6 +12,7 @@ import FirebaseAuth
 class ForgotPassVC				: UIViewController {
 
 	private var logoIcon		= UIImageView()
+	private var resetPass		= UILabel()
 	private var emailTextField	= UITextField()
 	private var infoLabel		= UILabel()
 	private var resetBtn		= UIButton()
@@ -19,6 +20,7 @@ class ForgotPassVC				: UIViewController {
 	private var viewModel	: ForgotPassVM! {
 		didSet {
 			self.logoIcon		= viewModel.logo	()
+			self.resetPass		= viewModel.resetPassLabel()
 			self.emailTextField	= viewModel.email	()
 			self.infoLabel		= viewModel.info	()
 			self.resetBtn		= viewModel.reset	()
@@ -128,29 +130,37 @@ extension ForgotPassVC {
 		navigationController.navigationBar.tintColor 																= Colors.backIcon
 		
 		//A place of view, where the image is
-		let topImageConteinerView = UIView()
-		view.addSubview(topImageConteinerView)
-		topImageConteinerView.translatesAutoresizingMaskIntoConstraints												= false
-		topImageConteinerView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive						= true
-		topImageConteinerView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive						= true
-		topImageConteinerView.topAnchor.constraint(equalTo: view.topAnchor).isActive								= true
-		topImageConteinerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.35).isActive		= true
+		let imageContainer = UIView()
+		view.addSubview(imageContainer)
+		imageContainer.translatesAutoresizingMaskIntoConstraints												= false
+		imageContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive						= true
+		imageContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive						= true
+		imageContainer.topAnchor.constraint(equalTo: view.topAnchor).isActive								= true
+		imageContainer.heightAnchor	.constraint(equalTo: view.heightAnchor, multiplier: 0.35).isActive		= true
+		
+		//A place for title
+		view.addSubview(resetPass)
+		resetPass.translatesAutoresizingMaskIntoConstraints														= false
+		resetPass.topAnchor			.constraint(equalTo: imageContainer.bottomAnchor)				.isActive	= true
+		resetPass.leadingAnchor		.constraint(equalTo: view.leadingAnchor, constant: 16)			.isActive	= true
+		resetPass.trailingAnchor	.constraint(equalTo: view.trailingAnchor, constant: -16)		.isActive	= true
+		resetPass.heightAnchor		.constraint(equalToConstant: 33)								.isActive	= true
 		
 		//Image or Gif constraints in a cell
-		topImageConteinerView.addSubview(logoIcon)
+		imageContainer.addSubview(logoIcon)
 		logoIcon.translatesAutoresizingMaskIntoConstraints															= false
-		logoIcon.centerXAnchor.constraint(equalTo: topImageConteinerView.centerXAnchor, constant: -10).isActive		= true
-		logoIcon.centerYAnchor.constraint(equalTo: topImageConteinerView.centerYAnchor, constant: 10).isActive		= true
+		logoIcon.centerXAnchor.constraint(equalTo: imageContainer.centerXAnchor, constant: -10).isActive		= true
+		logoIcon.centerYAnchor.constraint(equalTo: imageContainer.centerYAnchor, constant: 10).isActive		= true
 		logoIcon.heightAnchor.constraint(lessThanOrEqualToConstant: 154.89).isActive								= true
 		logoIcon.widthAnchor.constraint(lessThanOrEqualToConstant: 129.39).isActive									= true
 		
 		//A palce for email TextField
 		view.addSubview(emailTextField)
 		emailTextField.translatesAutoresizingMaskIntoConstraints													= false
-		emailTextField.topAnchor.constraint(equalTo: topImageConteinerView.bottomAnchor, constant: 20).isActive		= true
+		emailTextField.topAnchor.constraint(equalTo: resetPass.bottomAnchor, constant: 20).isActive		= true
 		emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive				= true
 		emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive					= true
-		emailTextField.heightAnchor.constraint(equalToConstant: 62).isActive 										= true
+		emailTextField.heightAnchor.constraint(equalToConstant: 51).isActive 										= true
 		
 		//A palce for info label
 		view.addSubview(infoLabel)
@@ -164,7 +174,7 @@ extension ForgotPassVC {
 		view.addSubview(resetBtn)
 		resetBtn.translatesAutoresizingMaskIntoConstraints															= false
 		resetBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive										= true
-		resetBtn.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -85).isActive					= true
+		resetBtn.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -120).isActive					= true
 		resetBtn.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -75).isActive						= true
 		resetBtn.heightAnchor.constraint(equalToConstant: 50).isActive												= true
 	}
