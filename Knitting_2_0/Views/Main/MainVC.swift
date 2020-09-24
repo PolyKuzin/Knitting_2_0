@@ -21,32 +21,28 @@ let newprojectNotificationKey				= "ru.polykuzin.newproject"
 
 class MainVC	: UIViewController {
 	
-	let light						= Notification.Name(rawValue: profileImageInSectionNotificationKey)
-	let dark						= Notification.Name(rawValue: newprojectNotificationKey)
+	let light								= Notification.Name(rawValue: profileImageInSectionNotificationKey)
+	let dark								= Notification.Name(rawValue: newprojectNotificationKey)
 	
 	//MARK: Supporting Stuff
-    private var user           		: MUser!
-    private var ref             	: DatabaseReference!
-	
-	private var collectionView		: UICollectionView!
-	private var dataSourse			: UICollectionViewDiffableDataSource<MSection, MProject>?
+    private var user           				: MUser!
+    private var ref             			: DatabaseReference!
+	private var collectionView				: UICollectionView!
+	private var dataSourse					: UICollectionViewDiffableDataSource<MSection, MProject>?
 	
 	//MARK: UI Elements
-	
-	open var cardViewController      	: CardViewControllerProtocol!
-    open var visualEffectView			: UIVisualEffectView! = UIVisualEffectView()
-
     
-    open var cardHeight					: CGFloat = 300 + 20  				//TO CONSTANTS
-	public let cardHandleAreaHeight		: CGFloat = 0						//TO CONSTANTS
-    
+    open var runningAnimations 				= [UIViewPropertyAnimator]()
+    open var animationProgressWhenInterrupted:CGFloat = 0
+	open var cardViewController      		: CardViewControllerProtocol!
+    open var visualEffectView				: UIVisualEffectView! = UIVisualEffectView()
+    open var cardHeight						: CGFloat = 300 + 20  				//TO CONSTANTS
+	public let cardHandleAreaHeight			: CGFloat = 0						//TO CONSTANTS
     open var cardVisible					= false
-    open var nextState					:CardState {
+    open var nextState						:CardState {
         return cardVisible ? .collapsed : .expanded
     }
-    
-    open var runningAnimations = [UIViewPropertyAnimator]()
-    open var animationProgressWhenInterrupted:CGFloat = 0
+
 
 	private var sections			: Array<MSection> = []
 	private var addView				= UIView()
@@ -59,7 +55,6 @@ class MainVC	: UIViewController {
 
 	private var viewModel			: MainVM! {
 		didSet {
-//			self.sections.append(viewModel.sections())
 			self.addImage	= viewModel.addImageView()
 			self.addView	= viewModel.addViewBackground()
 			self.addView.frame = CGRect(x: 0, y: 0, width: 110, height: 60)
@@ -79,29 +74,24 @@ class MainVC	: UIViewController {
 		setupAddNewProjectButton()
 		viewModel = MainVM()
 		setupVisualEffect()
-		
-		let seconds = 2.0
-		let currentUser = Auth.auth().currentUser //else { return MSection(type: "projects", title: "Working on this?", projects: [])}
+		let currentUser = Auth.auth().currentUser
 		let user : MUser = MUser(user: currentUser!)
 		let reff = Database.database().reference(withPath: "users").child(String(user.uid)).child("projects")
 		
+
 		reff.observe(.value, with: { (snapshot) in
-            var _projects = Array<MProject>()
+			self.sections.append(MSection(type: "projects", title: "Working on this?", projects: []))
             for item in snapshot.children {
-				
                 let project = MProject(snapshot: item as! DataSnapshot)
-                _projects.append(project)
+				self.sections[0].projects.append(project)
             }
-			self.projects = _projects
-        })
-		DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
-			self.sections.append(MSection(type: "projects", title: "Working on this?", projects: self.projects))
 			self.setupCollectionView()
 			self.collectionView.reloadData()
 			self.view.sendSubviewToBack(self.addView)
 			self.view.sendSubviewToBack(self.collectionView)
 			self.view.sendSubviewToBack(self.visualEffectView)
-		}
+        })
+		
     }
 	
     deinit {

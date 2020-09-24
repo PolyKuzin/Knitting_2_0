@@ -12,7 +12,7 @@ struct MSection		: Hashable {
 	
 	let type		: String
 	let title		: String
-	let projects	: [MProject]
+	var projects	: [MProject]
 	
 	static func == (lhs: MSection, rhs: MSection) -> Bool {
 		return	lhs.type == rhs.type && lhs.title == rhs.title
