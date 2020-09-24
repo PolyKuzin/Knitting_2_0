@@ -138,7 +138,7 @@ extension ForgotPassVC: UITextFieldDelegate {
            notification.name == UIResponder.keyboardWillChangeFrameNotification {
 			view.frame.origin.y = -keyboardRect.height + 110
         } else {
-			view.frame.origin.y += keyboardRect.height - 22
+			view.frame.origin.y += keyboardRect.height - keyboardBlackArea
         }
     }
 	

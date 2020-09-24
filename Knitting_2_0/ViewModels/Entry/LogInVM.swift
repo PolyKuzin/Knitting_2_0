@@ -100,6 +100,7 @@ class LogInVM	: LogInComposition {
 		textField.keyboardType			= UIKeyboardType.default
 		textField.returnKeyType 		= UIReturnKeyType.continue
 		textField.clearButtonMode 		= UITextField.ViewMode.whileEditing
+		textField.autocapitalizationType = .none
 		
 		return textField
 		}()
@@ -125,6 +126,7 @@ class LogInVM	: LogInComposition {
 		textField.keyboardType			= UIKeyboardType.default
 		textField.returnKeyType 		= UIReturnKeyType.done
 		textField.clearButtonMode 		= UITextField.ViewMode.whileEditing
+		textField.autocapitalizationType = .none
 		
 		return textField
 		}()

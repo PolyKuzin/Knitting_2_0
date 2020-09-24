@@ -9,6 +9,9 @@
 import UIKit
 import FirebaseAuth
 
+var keyboardBlackArea: CGFloat = 0.0
+var keyboardReturnDistance: CGFloat = 0.0
+
 class EntryVC: UIViewController {
 	
 	private var logoIcon				= UIImageView		()
@@ -17,6 +20,8 @@ class EntryVC: UIViewController {
 
 	private var viewModel				: EntryVM! {
 		didSet {
+			keyboardReturnDistance		= viewModel.setupKeyboardReturnDistance()
+			keyboardBlackArea			= viewModel.setupKeyboardBlackArea()
 			self.logoIcon				= viewModel.logoIcon()
 			self.signUpButton			= viewModel.signUp	()
 			self.logInButton		 	= viewModel.logIn	()

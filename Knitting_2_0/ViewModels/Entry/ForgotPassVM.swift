@@ -73,6 +73,7 @@ class ForgotPassVM  {
 		textField.keyboardType			= UIKeyboardType.default
 		textField.returnKeyType 		= UIReturnKeyType.done
 		textField.clearButtonMode 		= UITextField.ViewMode.whileEditing
+		textField.autocapitalizationType = .none
 		
 		return textField
 	}()

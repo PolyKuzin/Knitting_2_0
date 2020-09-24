@@ -80,8 +80,8 @@ class NewProjectVC					: UIViewController, CardViewControllerProtocol, UINavigat
         ref		= Database.database().reference(withPath: "users").child(String(user.uid))
 		
 		setingUpKeyboardHiding()
-		let tap : UITapGestureRecognizer	= UITapGestureRecognizer(target: self, action: #selector(dismissKeyBoard))
-		view.addGestureRecognizer(tap)
+//		let tap : UITapGestureRecognizer	= UITapGestureRecognizer(target: self, action: #selector(dismissKeyBoard))
+//		view.addGestureRecognizer(tap)
     }
 	
 	@objc
@@ -139,7 +139,8 @@ extension NewProjectVC: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-		hideKeyboard()
+		projectName		.resignFirstResponder()
+		NotificationCenter.default.post(name: UIResponder.keyboardDidHideNotification, object: nil)
         return true
     }
     
@@ -150,15 +151,10 @@ extension NewProjectVC: UITextFieldDelegate {
         
         if notification.name == UIResponder.keyboardWillShowNotification ||
            notification.name == UIResponder.keyboardWillChangeFrameNotification {
-			view.frame.origin.y = -keyboardRect.height + 110
+			self.view.frame.origin.y -= keyboardRect.height - 200
         } else {
-			view.frame.origin.y += keyboardRect.height - 22
+			self.view.frame.origin.y =  keyboardReturnDistance
         }
-    }
-	
-    @objc
-    private func dismissKeyBoard() {
-        hideKeyboard()
     }
 }
 

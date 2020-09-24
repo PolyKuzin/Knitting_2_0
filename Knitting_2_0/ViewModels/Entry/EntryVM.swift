@@ -22,6 +22,20 @@ class EntryVM {
 		return logInButton
 	}
 	
+	func setupKeyboardBlackArea() -> CGFloat {
+		switch UIDevice().type {
+			case .iPhoneX, .iPhoneXS, .iPhoneXSMax, .iPhoneXR, .iPhone11, .iPhone11Pro, .iPhone11ProMax: return 22
+			default: return 46
+		}
+	}
+	
+	func setupKeyboardReturnDistance() -> CGFloat {
+		switch UIDevice().type {
+			case .iPhoneX, .iPhoneXS, .iPhoneXSMax, .iPhoneXR, .iPhone11, .iPhone11Pro, .iPhone11ProMax: return 400
+			default: return 200
+		}
+	}
+	
     private lazy var logoIconView		: UIImageView	= {
         let imageView					= UIImageView()
 		imageView.frame 				= CGRect(x: 0, y: 0, width: 129.39, height: 154.89)

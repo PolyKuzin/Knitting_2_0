@@ -43,27 +43,6 @@ class MainVM : CollectionViewViewModelType {
 	func addViewBackground() -> UIView {
 		return addView
 	}
-	
-//	private var projects : Array<MProject> = {
-//		var projects = Array<MProject>()
-//		let currentUser = Auth.auth().currentUser //else { return MSection(type: "projects", title: "Working on this?", projects: [])}
-//		let user : MUser = MUser(user: currentUser!)
-//        let reff = Database.database().reference(withPath: "users").child(String(user.uid)).child("projects")
-//
-//		reff.observe(.value, with: { (snapshot) in
-//            var _projects = Array<MProject>()
-//            for item in snapshot.children {
-//                let project = MProject(snapshot: item as! DataSnapshot)
-//                _projects.append(project)
-//            }
-//			projects = _projects
-//        })
-//		let project = MProject(userID: user.uid, name: "name", image: "imageData")
-//		let referenceForProject = reff
-//		referenceForProject.setValue(project.projectToDictionary())
-//
-//		return projects
-//	}()
 
 	// Setting up sections
 	func sections() -> MSection {

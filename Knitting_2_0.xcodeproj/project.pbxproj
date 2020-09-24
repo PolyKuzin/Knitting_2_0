@@ -50,6 +50,7 @@
 		99EF88B8251821F900C77181 /* NewProjectCardVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EF88B7251821F900C77181 /* NewProjectCardVM.swift */; };
 		99EF88BB25191EC400C77181 /* MCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EF88BA25191EC400C77181 /* MCounter.swift */; };
 		99EF88BD25193F7000C77181 /* UIImage+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EF88BC25193F7000C77181 /* UIImage+String.swift */; };
+		99EF88BF251D3A9F00C77181 /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EF88BE251D3A9D00C77181 /* UIDevice.swift */; };
 		99EFB5602515638F003A5D07 /* SF-Pro-Text-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 99EFB55F2515638F003A5D07 /* SF-Pro-Text-Bold.otf */; };
 		99EFB562251567CD003A5D07 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 99EFB561251567CD003A5D07 /* SF-Pro-Display-Regular.otf */; };
 		99EFB56425168A7E003A5D07 /* ProfileCardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EFB56325168A7E003A5D07 /* ProfileCardVC.swift */; };
@@ -119,6 +120,7 @@
 		99EF88B7251821F900C77181 /* NewProjectCardVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProjectCardVM.swift; sourceTree = "<group>"; };
 		99EF88BA25191EC400C77181 /* MCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCounter.swift; sourceTree = "<group>"; };
 		99EF88BC25193F7000C77181 /* UIImage+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+String.swift"; sourceTree = "<group>"; };
+		99EF88BE251D3A9D00C77181 /* UIDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
 		99EFB55F2515638F003A5D07 /* SF-Pro-Text-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Bold.otf"; sourceTree = "<group>"; };
 		99EFB561251567CD003A5D07 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
 		99EFB56325168A7E003A5D07 /* ProfileCardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardVC.swift; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 				99B509BB24FDB1D60046A2B1 /* UIViewExt.swift */,
 				998B9F84250BCAFA00C0C52F /* UIWindow.swift */,
 				99EF88BC25193F7000C77181 /* UIImage+String.swift */,
+				99EF88BE251D3A9D00C77181 /* UIDevice.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -580,6 +583,7 @@
 				996FAF2C2508245D00209228 /* EntryVM.swift in Sources */,
 				998B9F8F250D817000C0C52F /* ProjectCell.swift in Sources */,
 				99AFBA4924F80D9E00E71FD6 /* SceneDelegate.swift in Sources */,
+				99EF88BF251D3A9F00C77181 /* UIDevice.swift in Sources */,
 				99EFB56A25177805003A5D07 /* CardViewAnimations.swift in Sources */,
 				998B9F8B250C2FA100C0C52F /* ForgotPassVC.swift in Sources */,
 				99AFBA7A24F9667F00E71FD6 /* Constants.swift in Sources */,

@@ -71,20 +71,21 @@ class MainVC	: UIViewController {
         super.viewDidLoad()
 		NotificationCenter.default.addObserver(self, selector: #selector(hideViewWithDeinit), name: Notification.Name(rawValue: "disconnectNewProjectVC"), object: nil)
 		view.backgroundColor = .white
-		setupAddNewProjectButton()
 		viewModel = MainVM()
 		setupVisualEffect()
-		let currentUser = Auth.auth().currentUser
-		let user : MUser = MUser(user: currentUser!)
+		let currentUser		= Auth.auth().currentUser
+		let user : MUser	= MUser(user: currentUser!)
 		let reff = Database.database().reference(withPath: "users").child(String(user.uid)).child("projects")
-		
-
 		reff.observe(.value, with: { (snapshot) in
 			self.sections.append(MSection(type: "projects", title: "Working on this?", projects: []))
             for item in snapshot.children {
                 let project = MProject(snapshot: item as! DataSnapshot)
 				self.sections[0].projects.append(project)
             }
+			if self.sections[0].projects.isEmpty {
+				let project = MProject(userID: "123", name: "knitting-f824f", image: "12345")
+				self.sections[0].projects.append(project)
+			}
 			self.setupCollectionView()
 			self.collectionView.reloadData()
 			self.view.sendSubviewToBack(self.addView)
@@ -222,7 +223,7 @@ extension MainVC {
 	
 	func setupCardViewController(_ cardVC: CardViewControllerProtocol) {
 		cardViewController	= cardVC
-		addView.isHidden	= true
+//		addView.isHidden	= true
         self.addChild(cardViewController)
 		self.view.insertSubview(cardViewController.view, at: 3)
         cardViewController.view.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.bounds.width, height: cardHeight)
@@ -245,7 +246,7 @@ extension MainVC {
 		NotificationCenter.default.addObserver(self, selector: #selector(MainVC.updateCardViewControllerWithNewProjectVC(notification:)), name: dark, object: nil)
 		let name = Notification.Name(rawValue: newprojectNotificationKey)
 		NotificationCenter.default.post(name: name, object: nil)
-		addView.isHidden = true
+//		addView.isHidden = true
         switch recognizer.state {
         case .ended		:
             animateTransitionIfNeeded(state: nextState, duration: 0.9)
@@ -333,9 +334,7 @@ extension MainVC {
 		collectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive 							= true
 		collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive 					= true
 		collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive					= true
-	}
-	
-	func setupAddNewProjectButton() {
+		
 		let tapToCreateNewProject1 = UITapGestureRecognizer(target: self, action: #selector(newProjectTaped(recognizer:)))
 		let tapToCreateNewProject2 = UITapGestureRecognizer(target: self, action: #selector(newProjectTaped(recognizer:)))
 
@@ -343,7 +342,7 @@ extension MainVC {
 		addImage.isUserInteractionEnabled = true
 		addView.addGestureRecognizer(tapToCreateNewProject1)
 		addImage.addGestureRecognizer(tapToCreateNewProject2)
-		addView.isHidden = false
+//		addView.isHidden = false
 		view.addSubview(addView)
 
 		addView.translatesAutoresizingMaskIntoConstraints										= false
