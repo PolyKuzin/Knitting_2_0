@@ -20,6 +20,10 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>If you want to take a photo of a project, please give us permission)</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>If you want to add a picture to a project from your library, please give us permission)</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>SF-Pro-Display-Medium.otf</string>
@@ -66,9 +70,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSCameraUsageDescription</key>
-	<string>If you want to take a photo of a project, please give us permission)</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>If you want to add a picture to a project from your library, please give us permission)</string>
 </dict>
 </plist>
