@@ -66,18 +66,18 @@ class MainVC	: UIViewController {
 		setupNormalNavBar()
 	}
 
-	let refreshControl : UIRefreshControl = {
-		let refreshControl = UIRefreshControl()
-		refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
-		
-		return refreshControl
-	}()
-	
-	@objc
-	func refresh(sender: UIRefreshControl) {
-		self.navigateToSelf()
-		sender.endRefreshing()
-	}
+//	let refreshControl : UIRefreshControl = {
+//		let refreshControl = UIRefreshControl()
+//		refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
+//
+//		return refreshControl
+//	}()
+//
+//	@objc
+//	func refresh(sender: UIRefreshControl) {
+//		self.navigateToSelf()
+//		sender.endRefreshing()
+//	}
 	
 	func navigateToSelf() {
 		self.dismiss(animated: true, completion: nil)
@@ -101,15 +101,15 @@ class MainVC	: UIViewController {
             for item in snapshot.children {
                 let project = MProject(snapshot: item as! DataSnapshot)
 				self.sections[0].projects.append(project)
-				if self.sections[0].projects.isEmpty {
-					let project = MProject(userID: "123", name: "knitting-f824f", image: (Icons.emptyProject?.toString())!)
-					self.sections[0].projects.append(project)
-				}
             }
+			if self.sections[0].projects.isEmpty {
+				let project = MProject(userID: "123", name: "knitting-f824f", image: (Icons.emptyProject?.toString())!)
+				self.sections[0].projects.append(project)
+			}
 			if self.reloadMainVc == false {
 				self.setupCollectionView()
 				self.collectionView.reloadData()
-				self.collectionView.refreshControl = self.refreshControl
+//				self.collectionView.refreshControl = self.refreshControl
 				self.view.sendSubviewToBack(self.addView)
 				self.view.sendSubviewToBack(self.collectionView)
 				self.view.sendSubviewToBack(self.visualEffectView)
