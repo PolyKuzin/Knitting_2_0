@@ -12,6 +12,8 @@ class ProjectCell: SwipeableCollectionViewCell {
     
 	static var reuseId 							= "projectCell"
 	
+
+	
 	let projectName								= UILabel()
 	var projectImage 							= UIImageView()
     let deleteImageView: UIImageView = {
@@ -33,18 +35,23 @@ class ProjectCell: SwipeableCollectionViewCell {
 		hiddenContainerView.backgroundColor 	= Colors.hiddenContainerView
 	}
 	
-	func configure() { //(with project: MProject) {
-		projectImage.image 						= Icons.emptyProject		//project.image
-		projectName.text						= Placeholder.emptyProject	//project.name
+	func configurу(with project: MProject) {
+		
+//		if project.name == "knitting-f824f" {
+//			self.isHidden = true
+//		}
+		
+		projectImage.image 						= project.image.toImage()
+		projectName.text						= project.name
 		
 		
-		layer.cornerRadius		= 20
-		layer.borderWidth		= 0.0
-		layer.shadowColor		= UIColor(red: 0, green: 0, blue: 0, alpha: 0.12).cgColor
-		layer.shadowOffset		= CGSize(width: 0, height: 8)
-		layer.shadowRadius		= 30.0
-		layer.shadowOpacity		= 1
-		layer.masksToBounds		= false
+		layer.cornerRadius						= 20
+		layer.borderWidth						= 0.0
+		layer.shadowColor						= UIColor(red: 0, green: 0, blue: 0, alpha: 0.12).cgColor
+		layer.shadowOffset						= CGSize(width: 0, height: 8)
+		layer.shadowRadius						= 30.0
+		layer.shadowOpacity						= 1
+		layer.masksToBounds						= false
 	}
 	
 	required init?(coder aDecoder: NSCoder) {

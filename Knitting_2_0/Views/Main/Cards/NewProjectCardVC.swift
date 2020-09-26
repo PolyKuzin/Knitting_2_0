@@ -63,7 +63,6 @@ class NewProjectVC					: UIViewController, CardViewControllerProtocol, UINavigat
 		let projectUniqueID = Int(Date().timeIntervalSince1970)
 		guard let imageData = image?.toString() else { return }
 		guard let name		= projectName.text	else { return }
-//		ref.child("projectsIDs").setValue(["\(projectUniqueID)": projectUniqueID])
 		let project = MProject(userID: user.uid, name: name, image: imageData)
 		let referenceForProject = self.ref.child("projects").child("\(projectUniqueID)")
 		referenceForProject.setValue(project.projectToDictionary())

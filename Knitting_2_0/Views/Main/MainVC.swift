@@ -44,11 +44,11 @@ class MainVC	: UIViewController {
     }
 
 
-	private var sections			: Array<MSection> = []
-	private var addView				= UIView()
-	private var addImage			= UIImageView()
+	private var sections					: Array<MSection> = []
+	private var addView						= UIView()
+	private var addImage					= UIImageView()
 	
-	var reloadMainVc : Bool = false
+	var reloadMainVc 						: Bool = false
 	
 	var projects = Array<MProject>()
 
@@ -66,9 +66,29 @@ class MainVC	: UIViewController {
 		setupNormalNavBar()
 	}
 
+	let refreshControl : UIRefreshControl = {
+		let refreshControl = UIRefreshControl()
+		refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
+		
+		return refreshControl
+	}()
+	
+	@objc
+	func refresh(sender: UIRefreshControl) {
+		self.navigateToSelf()
+		sender.endRefreshing()
+	}
+	
+	func navigateToSelf() {
+		self.dismiss(animated: true, completion: nil)
+		guard let navigationController = navigationController else { return }
+		navigationController.pushViewController(ReloadingVC(), animated: false)
+		navigationController.viewControllers.removeAll(where: { self === $0 })
+	}
 
     override func viewDidLoad() {
         super.viewDidLoad()
+		
 		NotificationCenter.default.addObserver(self, selector: #selector(hideViewWithDeinit), name: Notification.Name(rawValue: "disconnectNewProjectVC"), object: nil)
 		view.backgroundColor = .white
 		viewModel = MainVM()
@@ -76,23 +96,26 @@ class MainVC	: UIViewController {
 		let currentUser		= Auth.auth().currentUser
 		let user : MUser	= MUser(user: currentUser!)
 		let reff = Database.database().reference(withPath: "users").child(String(user.uid)).child("projects")
+		self.sections.append(MSection(type: "projects", title: "Working on this?", projects: []))
 		reff.observe(.value, with: { (snapshot) in
-			self.sections.append(MSection(type: "projects", title: "Working on this?", projects: []))
             for item in snapshot.children {
                 let project = MProject(snapshot: item as! DataSnapshot)
 				self.sections[0].projects.append(project)
+				if self.sections[0].projects.isEmpty {
+					let project = MProject(userID: "123", name: "knitting-f824f", image: (Icons.emptyProject?.toString())!)
+					self.sections[0].projects.append(project)
+				}
             }
-			if self.sections[0].projects.isEmpty {
-				let project = MProject(userID: "123", name: "knitting-f824f", image: "12345")
-				self.sections[0].projects.append(project)
+			if self.reloadMainVc == false {
+				self.setupCollectionView()
+				self.collectionView.reloadData()
+				self.collectionView.refreshControl = self.refreshControl
+				self.view.sendSubviewToBack(self.addView)
+				self.view.sendSubviewToBack(self.collectionView)
+				self.view.sendSubviewToBack(self.visualEffectView)
+				self.reloadMainVc = true
 			}
-			self.setupCollectionView()
-			self.collectionView.reloadData()
-			self.view.sendSubviewToBack(self.addView)
-			self.view.sendSubviewToBack(self.collectionView)
-			self.view.sendSubviewToBack(self.visualEffectView)
         })
-		
     }
 	
     deinit {
@@ -114,6 +137,7 @@ extension MainVC {
 									withReuseIdentifier: SectionHeader.reusedId)
 		collectionView.register(ProjectCell.self,
 									forCellWithReuseIdentifier: ProjectCell.reuseId)
+		
 		createDataSourse()
 		reloadData()
 		setUpLayout()
@@ -168,7 +192,9 @@ extension MainVC {
 		//A place for adding a stories
 			default:
 				let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProjectCell.reuseId, for: indexPath) as! ProjectCell
-				cell.configure()
+				let project = self.sections[0].projects[indexPath.row]
+				cell.configurу(with: project)
+				cell.delegate = self
 				return cell
 			}
 		})
@@ -300,6 +326,33 @@ extension MainVC {
 	
 }
 
+//MARK: Swipeable Collection View Cell Delegate
+extension MainVC: SwipeableCollectionViewCellDelegate {
+	
+	func hiddenContainerViewTapped(inCell cell: UICollectionViewCell) {
+		guard let indexPath = collectionView.indexPath(for: cell) else { return }
+		let project = sections[0].projects[indexPath.row]
+		project.ref?.removeValue()
+		navigateToSelf()
+	}
+	
+	func visibleContainerViewTapped(inCell cell: UICollectionViewCell) {
+		guard let indexPath = collectionView.indexPath(for: cell) else { return }
+		showSimpleAlert()
+	}
+	
+	func showSimpleAlert() {
+		let alert = UIAlertController(title: "There schould be another view", message: "", preferredStyle: UIAlertController.Style.alert)
+
+		alert.addAction(UIAlertAction(title: "ЦмокЬ",
+									  style: UIAlertAction.Style.default,
+										handler: {(_: UIAlertAction!) in
+											//
+		}))
+			self.present(alert, animated: true, completion: nil)
+		}
+}
+
 //MARK: Layout
 extension MainVC {
 	
@@ -373,16 +426,12 @@ extension MainVC {
 	func teardownCardView() {
 		self.setupNormalNavBar()
 		runningAnimations.removeAll()
-		if cardViewController === NewProjectVC() {
-			reloadMainVc = true
-		} else {
-			reloadMainVc = false
-		}
 		cardViewController.removeFromParent()
 		cardViewController.view.removeFromSuperview()
-		cardViewController = nil
+//		cardViewController = nil
 		if reloadMainVc {
-			super.viewWillAppear(true)
+			self.navigateToSelf()
+			reloadMainVc = !reloadMainVc
 		}
 		self.view.insertSubview(self.visualEffectView, at: 0)
 	}

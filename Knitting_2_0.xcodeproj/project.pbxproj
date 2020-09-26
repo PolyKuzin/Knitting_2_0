@@ -10,6 +10,8 @@
 		1310C4F491031D53BD835BDE /* Pods_Knitting_2_0Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3557FE70DD594785E40DB604 /* Pods_Knitting_2_0Tests.framework */; };
 		9905ABE225024F5A0055B138 /* SF-Pro-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9905ABE125024F5A0055B138 /* SF-Pro-Text-Semibold.otf */; };
 		9905ABE4250254B80055B138 /* SF-Pro-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9905ABE3250254B80055B138 /* SF-Pro-Text-Regular.otf */; };
+		99192D57251FC208001C6720 /* CounterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99192D56251FC208001C6720 /* CounterVC.swift */; };
+		99192D74251FDC75001C6720 /* ReloadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99192D73251FDC75001C6720 /* ReloadingVC.swift */; };
 		994EF7142514B424009AA35B /* SetionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994EF7132514B423009AA35B /* SetionHeader.swift */; };
 		994EF7162514ECFF009AA35B /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 994EF7152514ECFF009AA35B /* SF-Pro-Display-Bold.otf */; };
 		9959471E250A582B00D0E273 /* MUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9959471D250A582B00D0E273 /* MUser.swift */; };
@@ -76,6 +78,8 @@
 		8257CCB6BAEED5BDB6953A6E /* Pods-Knitting_2_0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Knitting_2_0.release.xcconfig"; path = "Target Support Files/Pods-Knitting_2_0/Pods-Knitting_2_0.release.xcconfig"; sourceTree = "<group>"; };
 		9905ABE125024F5A0055B138 /* SF-Pro-Text-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Semibold.otf"; sourceTree = "<group>"; };
 		9905ABE3250254B80055B138 /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
+		99192D56251FC208001C6720 /* CounterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterVC.swift; sourceTree = "<group>"; };
+		99192D73251FDC75001C6720 /* ReloadingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReloadingVC.swift; sourceTree = "<group>"; };
 		994EF7132514B423009AA35B /* SetionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetionHeader.swift; sourceTree = "<group>"; };
 		994EF7152514ECFF009AA35B /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
 		9959471D250A582B00D0E273 /* MUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MUser.swift; sourceTree = "<group>"; };
@@ -168,6 +172,7 @@
 				998B9F8E250D817000C0C52F /* ProjectCell.swift */,
 				998B9F90250D81BE00C0C52F /* SwipeableCell.swift */,
 				994EF7132514B423009AA35B /* SetionHeader.swift */,
+				99192D73251FDC75001C6720 /* ReloadingVC.swift */,
 				99EFB56925177805003A5D07 /* CardViewAnimations.swift */,
 				99EFB56D25178D89003A5D07 /* Cards */,
 			);
@@ -222,8 +227,8 @@
 			isa = PBXGroup;
 			children = (
 				99AFBA4F24F80DA000E71FD6 /* Assets.xcassets */,
-				99C31FDB251F2D3900A1F75D /* Protocols */,
 				99AFBA6D24F8111500E71FD6 /* Extensions */,
+				99C31FDB251F2D3900A1F75D /* Protocols */,
 				99AFBA6B24F810B000E71FD6 /* Supporting */,
 				99AFBA6824F8101F00E71FD6 /* Models */,
 				99AFBA6924F8102A00E71FD6 /* Views */,
@@ -262,6 +267,7 @@
 			children = (
 				996FAF332508FC8200209228 /* Entry */,
 				994EF71725153490009AA35B /* Main */,
+				99192D56251FC208001C6720 /* CounterVC.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -564,6 +570,7 @@
 				9959471E250A582B00D0E273 /* MUser.swift in Sources */,
 				998B9F89250C255600C0C52F /* MProject.swift in Sources */,
 				99594720250AD91F00D0E273 /* MainVC.swift in Sources */,
+				99192D57251FC208001C6720 /* CounterVC.swift in Sources */,
 				99EF88B8251821F900C77181 /* NewProjectCardVM.swift in Sources */,
 				99B509BC24FDB1D60046A2B1 /* UIViewExt.swift in Sources */,
 				994EF7142514B424009AA35B /* SetionHeader.swift in Sources */,
@@ -573,6 +580,7 @@
 				99EFB56425168A7E003A5D07 /* ProfileCardVC.swift in Sources */,
 				99B2067A2504F10600FA6C50 /* EntryVC.swift in Sources */,
 				99C31FDE251F2DA200A1F75D /* CardViewControllerProtocol.swift in Sources */,
+				99192D74251FDC75001C6720 /* ReloadingVC.swift in Sources */,
 				998B9F87250C1E2B00C0C52F /* MainVM.swift in Sources */,
 				998B9F91250D81BE00C0C52F /* SwipeableCell.swift in Sources */,
 				99EF88BB25191EC400C77181 /* MCounter.swift in Sources */,
@@ -761,7 +769,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.01.03;
+				MARKETING_VERSION = 1.01.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.polykuzin.Knitting-2-0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -782,7 +790,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.01.03;
+				MARKETING_VERSION = 1.01.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.polykuzin.Knitting-2-0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

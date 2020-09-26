@@ -41,6 +41,13 @@ class RegistrationVC	: UIViewController {
 		}
 	}
 	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		nicknameTextField	.text	= ""
+		emailTextField		.text	= ""
+		passwordTextField	.text	= ""
+	}
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 		view.backgroundColor			= .white
@@ -117,9 +124,9 @@ extension RegistrationVC {
 		let error = validateFields()
 		if error != nil { showError(error!) } else {
 			//Create cleaned versions of the data
-			guard let nickname	= nicknameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
-			guard let email		= emailTextField.text?.trimmingCharacters	(in: .whitespacesAndNewlines) else { return }
-			guard let password	= passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
+			guard let nickname	= nicknameTextField	.text?.trimmingCharacters(in: .whitespacesAndNewlines)	else { return }
+			guard let email		= emailTextField	.text?.trimmingCharacters(in: .whitespacesAndNewlines)	else { return }
+			guard let password	= passwordTextField	.text?.trimmingCharacters(in: .whitespacesAndNewlines)	else { return }
 
 			Auth.auth().createUser(withEmail: email, password: password) { [weak self] (user, err) in
 				if let error = err as NSError? {
@@ -139,12 +146,12 @@ extension RegistrationVC {
 					guard let userRef = self?.dbReference.child((user?.user.uid)!) else { return }
 					userRef.setValue(["email"	: user!.user.email,
 									  "nickname": nickname])
-					let db = Firestore.firestore()
-					db.collection("users").addDocument(data: ["uid"			: user?.user.uid as Any,
-															  "nickname"	: nickname,
-															  "email"		: email]) { (error) in
-						if error != nil { self?.showError("Error saving user data") }
-					}
+//					let db = Firestore.firestore()
+//					db.collection("users").addDocument(data: ["uid"			: user?.user.uid as Any,
+//															  "nickname"	: nickname,
+//															  "email"		: email]) { (error) in
+//						if error != nil { self?.showError("Error saving user data") }
+//					}
 //					self?.dismissKeyBoard	()
 					self?.hideKeyboard()
 					self?.pushMainVC()
