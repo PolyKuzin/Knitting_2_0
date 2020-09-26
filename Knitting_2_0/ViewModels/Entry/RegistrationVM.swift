@@ -101,7 +101,7 @@ class RegistrationVM {
 		tF.keyboardType					= UIKeyboardType.default
 		tF.returnKeyType 				= UIReturnKeyType.continue
 		tF.clearButtonMode 				= UITextField.ViewMode.whileEditing
-		tF.autocapitalizationType = .none
+		tF.autocapitalizationType 		= .none
 
 		return tF
 	}()
@@ -123,7 +123,7 @@ class RegistrationVM {
 		tF.returnKeyType 				= UIReturnKeyType.done
 		tF.clearButtonMode 				= UITextField.ViewMode.whileEditing
 		tF.isSecureTextEntry 			= true
-		tF.autocapitalizationType = .none
+		tF.autocapitalizationType 		= .none
 		
 		return tF
 	}()
