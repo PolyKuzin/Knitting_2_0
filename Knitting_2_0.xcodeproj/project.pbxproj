@@ -11,7 +11,6 @@
 		9905ABE225024F5A0055B138 /* SF-Pro-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9905ABE125024F5A0055B138 /* SF-Pro-Text-Semibold.otf */; };
 		9905ABE4250254B80055B138 /* SF-Pro-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9905ABE3250254B80055B138 /* SF-Pro-Text-Regular.otf */; };
 		99192D57251FC208001C6720 /* CounterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99192D56251FC208001C6720 /* CounterVC.swift */; };
-		99192D74251FDC75001C6720 /* ReloadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99192D73251FDC75001C6720 /* ReloadingVC.swift */; };
 		994EF7142514B424009AA35B /* SetionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994EF7132514B423009AA35B /* SetionHeader.swift */; };
 		994EF7162514ECFF009AA35B /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 994EF7152514ECFF009AA35B /* SF-Pro-Display-Bold.otf */; };
 		9959471E250A582B00D0E273 /* MUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9959471D250A582B00D0E273 /* MUser.swift */; };
@@ -79,7 +78,6 @@
 		9905ABE125024F5A0055B138 /* SF-Pro-Text-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Semibold.otf"; sourceTree = "<group>"; };
 		9905ABE3250254B80055B138 /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
 		99192D56251FC208001C6720 /* CounterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterVC.swift; sourceTree = "<group>"; };
-		99192D73251FDC75001C6720 /* ReloadingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReloadingVC.swift; sourceTree = "<group>"; };
 		994EF7132514B423009AA35B /* SetionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetionHeader.swift; sourceTree = "<group>"; };
 		994EF7152514ECFF009AA35B /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
 		9959471D250A582B00D0E273 /* MUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MUser.swift; sourceTree = "<group>"; };
@@ -172,7 +170,6 @@
 				998B9F8E250D817000C0C52F /* ProjectCell.swift */,
 				998B9F90250D81BE00C0C52F /* SwipeableCell.swift */,
 				994EF7132514B423009AA35B /* SetionHeader.swift */,
-				99192D73251FDC75001C6720 /* ReloadingVC.swift */,
 				99EFB56925177805003A5D07 /* CardViewAnimations.swift */,
 				99EFB56D25178D89003A5D07 /* Cards */,
 			);
@@ -580,7 +577,6 @@
 				99EFB56425168A7E003A5D07 /* ProfileCardVC.swift in Sources */,
 				99B2067A2504F10600FA6C50 /* EntryVC.swift in Sources */,
 				99C31FDE251F2DA200A1F75D /* CardViewControllerProtocol.swift in Sources */,
-				99192D74251FDC75001C6720 /* ReloadingVC.swift in Sources */,
 				998B9F87250C1E2B00C0C52F /* MainVM.swift in Sources */,
 				998B9F91250D81BE00C0C52F /* SwipeableCell.swift in Sources */,
 				99EF88BB25191EC400C77181 /* MCounter.swift in Sources */,

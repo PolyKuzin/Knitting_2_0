@@ -43,15 +43,13 @@ class MainVC	: UIViewController {
         return cardVisible ? .collapsed : .expanded
     }
 
-
+	private var projects					: Array<MProject> = []
 	private var sections					: Array<MSection> = []
 	private var addView						= UIView()
 	private var addImage					= UIImageView()
 	
-	var reloadMainVc 						: Bool = false
-	
-	var projects = Array<MProject>()
-
+	private var reloadMainVc				: Bool = false
+	private var setupCollectinView			: Bool = false
 
 	private var viewModel			: MainVM! {
 		didSet {
@@ -66,24 +64,29 @@ class MainVC	: UIViewController {
 		setupNormalNavBar()
 	}
 
-//	let refreshControl : UIRefreshControl = {
-//		let refreshControl = UIRefreshControl()
-//		refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
-//
-//		return refreshControl
-//	}()
-//
-//	@objc
-//	func refresh(sender: UIRefreshControl) {
-//		self.navigateToSelf()
-//		sender.endRefreshing()
-//	}
+	let refreshControl : UIRefreshControl = {
+		let refreshControl = UIRefreshControl()
+		refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
+
+		return refreshControl
+	}()
+
+	@objc
+	func refresh(sender: UIRefreshControl) {
+		self.navigateToSelf()
+		sender.endRefreshing()
+	}
 	
 	func navigateToSelf() {
-		self.dismiss(animated: true, completion: nil)
-		guard let navigationController = navigationController else { return }
-		navigationController.pushViewController(ReloadingVC(), animated: false)
-		navigationController.viewControllers.removeAll(where: { self === $0 })
+		var snapshot = dataSourse?.snapshot()
+		snapshot?.deleteItems(sections[0].projects)
+		dataSourse?.apply(snapshot!, animatingDifferences: true)
+		var snapShot = NSDiffableDataSourceSnapshot<MSection, MProject>()
+		snapShot.appendSections(self.sections)
+		for section in self.sections {
+			snapShot.appendItems(section.projects, toSection: section)
+		}
+		self.dataSourse?.apply(snapShot, animatingDifferences: true)
 	}
 
     override func viewDidLoad() {
@@ -93,34 +96,40 @@ class MainVC	: UIViewController {
 		view.backgroundColor = .white
 		viewModel = MainVM()
 		setupVisualEffect()
-		let currentUser		= Auth.auth().currentUser
-		let user : MUser	= MUser(user: currentUser!)
-		let reff = Database.database().reference(withPath: "users").child(String(user.uid)).child("projects")
-		self.sections.append(MSection(type: "projects", title: "Working on this?", projects: []))
-		reff.observe(.value, with: { (snapshot) in
-            for item in snapshot.children {
-                let project = MProject(snapshot: item as! DataSnapshot)
-				self.sections[0].projects.append(project)
-            }
-			if self.sections[0].projects.isEmpty {
-				let project = MProject(userID: "123", name: "knitting-f824f", image: (Icons.emptyProject?.toString())!)
-				self.sections[0].projects.append(project)
-			}
-			if self.reloadMainVc == false {
-				self.setupCollectionView()
-				self.collectionView.reloadData()
-//				self.collectionView.refreshControl = self.refreshControl
-				self.view.sendSubviewToBack(self.addView)
-				self.view.sendSubviewToBack(self.collectionView)
-				self.view.sendSubviewToBack(self.visualEffectView)
-				self.reloadMainVc = true
-			}
-        })
+		setupSections()
+		self.setupCollectionView()
+		self.collectionView.reloadData()
+		self.collectionView.refreshControl = self.refreshControl
+		self.view.sendSubviewToBack(self.addView)
+		self.view.sendSubviewToBack(self.collectionView)
+		self.view.sendSubviewToBack(self.visualEffectView)
+		self.reloadMainVc = true
     }
 	
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
+
+	func setupSections() {
+		let currentUser		= Auth.auth().currentUser
+		let user : MUser	= MUser(user: currentUser!)
+		let reff = Database.database().reference(withPath: "users").child(String(user.uid)).child("projects")
+		self.sections.append(MSection(type: "projects", title: "Working on this?", projects: []))
+		reff.observe(.value, with: { (snapshot) in
+			for item in snapshot.children {
+				let project = MProject(snapshot: item as! DataSnapshot)
+				if !self.sections[0].projects.contains(project) {
+					self.sections[0].projects.append(project)
+				}
+				var snapShot = NSDiffableDataSourceSnapshot<MSection, MProject>()
+				snapShot.appendSections(self.sections)
+				for section in self.sections {
+					snapShot.appendItems(section.projects, toSection: section)
+				}
+				self.dataSourse?.apply(snapShot, animatingDifferences: true)
+			}
+		})
+	}
 }
 
 //MARK: CollectionView Creating
@@ -137,10 +146,10 @@ extension MainVC {
 									withReuseIdentifier: SectionHeader.reusedId)
 		collectionView.register(ProjectCell.self,
 									forCellWithReuseIdentifier: ProjectCell.reuseId)
-		
 		createDataSourse()
 		reloadData()
 		setUpLayout()
+		setupCollectinView = true
 	}
 	
 	func createCompositionalLayout() -> UICollectionViewLayout {
@@ -214,12 +223,21 @@ extension MainVC {
 	}
 	
 	func reloadData() {
-		var snapShot = NSDiffableDataSourceSnapshot<MSection, MProject>()
-		snapShot.appendSections(sections)
-		for section in sections {
-			snapShot.appendItems(section.projects, toSection: section)
+		var snap = dataSourse?.snapshot()
+		snap?.deleteAllItems()
+		snap?.deleteSections(sections)
+		if self.sections[0].projects.isEmpty {
+			let project = MProject(userID: "123", name: "knitting-f824f", image: (Icons.emptyProject?.toString())!)
+			self.sections[0].projects.append(project)
 		}
-		dataSourse?.apply(snapShot)
+		if !setupCollectinView {
+			var snapShot = NSDiffableDataSourceSnapshot<MSection, MProject>()
+			snapShot.appendSections(sections)
+			for section in sections {
+				snapShot.appendItems(section.projects, toSection: section)
+			}
+			dataSourse?.apply(snapShot, animatingDifferences: true)
+		}
 	}
 }
 
@@ -239,7 +257,7 @@ extension MainVC {
     }
 	
 	func setupVisualEffect() {
-		visualEffectView.frame	= CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+		visualEffectView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         self.view.addSubview(visualEffectView)
 		self.view.sendSubviewToBack(visualEffectView)
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MainVC.visualEffectTaped(recognzier:)))
@@ -249,7 +267,6 @@ extension MainVC {
 	
 	func setupCardViewController(_ cardVC: CardViewControllerProtocol) {
 		cardViewController	= cardVC
-//		addView.isHidden	= true
         self.addChild(cardViewController)
 		self.view.insertSubview(cardViewController.view, at: 3)
         cardViewController.view.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.bounds.width, height: cardHeight)
@@ -337,20 +354,8 @@ extension MainVC: SwipeableCollectionViewCellDelegate {
 	}
 	
 	func visibleContainerViewTapped(inCell cell: UICollectionViewCell) {
-		guard let indexPath = collectionView.indexPath(for: cell) else { return }
-		showSimpleAlert()
+		
 	}
-	
-	func showSimpleAlert() {
-		let alert = UIAlertController(title: "There schould be another view", message: "", preferredStyle: UIAlertController.Style.alert)
-
-		alert.addAction(UIAlertAction(title: "ЦмокЬ",
-									  style: UIAlertAction.Style.default,
-										handler: {(_: UIAlertAction!) in
-											//
-		}))
-			self.present(alert, animated: true, completion: nil)
-		}
 }
 
 //MARK: Layout
@@ -395,7 +400,6 @@ extension MainVC {
 		addImage.isUserInteractionEnabled = true
 		addView.addGestureRecognizer(tapToCreateNewProject1)
 		addImage.addGestureRecognizer(tapToCreateNewProject2)
-//		addView.isHidden = false
 		view.addSubview(addView)
 
 		addView.translatesAutoresizingMaskIntoConstraints										= false
@@ -428,11 +432,7 @@ extension MainVC {
 		runningAnimations.removeAll()
 		cardViewController.removeFromParent()
 		cardViewController.view.removeFromSuperview()
-//		cardViewController = nil
-		if reloadMainVc {
-			self.navigateToSelf()
-			reloadMainVc = !reloadMainVc
-		}
+		self.navigateToSelf()
 		self.view.insertSubview(self.visualEffectView, at: 0)
 	}
 }

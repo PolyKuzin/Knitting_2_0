@@ -79,8 +79,8 @@ class NewProjectVC					: UIViewController, CardViewControllerProtocol, UINavigat
         ref		= Database.database().reference(withPath: "users").child(String(user.uid))
 		
 		setingUpKeyboardHiding()
-//		let tap : UITapGestureRecognizer	= UITapGestureRecognizer(target: self, action: #selector(dismissKeyBoard))
-//		view.addGestureRecognizer(tap)
+		let tap : UITapGestureRecognizer	= UITapGestureRecognizer(target: self, action: #selector(hideKeyboardWhenTapped))
+		view.addGestureRecognizer(tap)
     }
 	
 	@objc
@@ -133,6 +133,10 @@ extension NewProjectVC: UITextFieldDelegate {
         NotificationCenter.default.addObserver(self,	selector: #selector(keyboardWillChange(notification: )),	name: UIResponder.keyboardWillChangeFrameNotification,	object: nil)
     }
     
+	@objc
+	func hideKeyboardWhenTapped() {
+		hideKeyboard()
+	}
     func hideKeyboard(){
         projectName		.resignFirstResponder()
     }
