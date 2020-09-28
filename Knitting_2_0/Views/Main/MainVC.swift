@@ -78,15 +78,7 @@ class MainVC	: UIViewController {
 	}
 	
 	func navigateToSelf() {
-		var snapshot = dataSourse?.snapshot()
-		snapshot?.deleteItems(sections[0].projects)
-		dataSourse?.apply(snapshot!, animatingDifferences: true)
-		var snapShot = NSDiffableDataSourceSnapshot<MSection, MProject>()
-		snapShot.appendSections(self.sections)
-		for section in self.sections {
-			snapShot.appendItems(section.projects, toSection: section)
-		}
-		self.dataSourse?.apply(snapShot, animatingDifferences: true)
+
 	}
 
     override func viewDidLoad() {
@@ -115,7 +107,11 @@ class MainVC	: UIViewController {
 		let user : MUser	= MUser(user: currentUser!)
 		let reff = Database.database().reference(withPath: "users").child(String(user.uid)).child("projects")
 		self.sections.append(MSection(type: "projects", title: "Working on this?", projects: []))
-		reff.observe(.value, with: { (snapshot) in
+		reff.observeSingleEvent(of: .value) { (snapshot) in
+			var snap = self.dataSourse?.snapshot()
+			snap?.deleteAllItems()
+			snap?.deleteSections(self.sections)
+			self.dataSourse?.apply(snap!, animatingDifferences: true)
 			for item in snapshot.children {
 				let project = MProject(snapshot: item as! DataSnapshot)
 				if !self.sections[0].projects.contains(project) {
@@ -128,7 +124,16 @@ class MainVC	: UIViewController {
 				}
 				self.dataSourse?.apply(snapShot, animatingDifferences: true)
 			}
-		})
+		}
+//		reff.observe(.childAdded) { (snapshot) in
+//			for item in snapshot.children {
+//				let project = MProject(snapshot: item as! DataSnapshot)
+//				self.sections[0].projects.append(project)
+//				var snapShot = NSDiffableDataSourceSnapshot<MSection, MProject>()
+//				snapShot.appendItems([project], toSection: self.sections[0])
+//				self.dataSourse?.apply(snapShot, animatingDifferences: true)
+//			}
+//		}
 	}
 }
 
@@ -223,9 +228,7 @@ extension MainVC {
 	}
 	
 	func reloadData() {
-		var snap = dataSourse?.snapshot()
-		snap?.deleteAllItems()
-		snap?.deleteSections(sections)
+
 		if self.sections[0].projects.isEmpty {
 			let project = MProject(userID: "123", name: "knitting-f824f", image: (Icons.emptyProject?.toString())!)
 			self.sections[0].projects.append(project)
@@ -289,7 +292,6 @@ extension MainVC {
 		NotificationCenter.default.addObserver(self, selector: #selector(MainVC.updateCardViewControllerWithNewProjectVC(notification:)), name: dark, object: nil)
 		let name = Notification.Name(rawValue: newprojectNotificationKey)
 		NotificationCenter.default.post(name: name, object: nil)
-//		addView.isHidden = true
         switch recognizer.state {
         case .ended		:
             animateTransitionIfNeeded(state: nextState, duration: 0.9)
@@ -350,7 +352,12 @@ extension MainVC: SwipeableCollectionViewCellDelegate {
 		guard let indexPath = collectionView.indexPath(for: cell) else { return }
 		let project = sections[0].projects[indexPath.row]
 		project.ref?.removeValue()
-		navigateToSelf()
+		var snap = dataSourse?.snapshot()
+		snap?.deleteItems([sections[0].projects[indexPath.row]])
+		sections[0].projects.remove(at: indexPath.row)
+
+		dataSourse?.apply(snap!, animatingDifferences: true)
+//		navigateToSelf()
 	}
 	
 	func visibleContainerViewTapped(inCell cell: UICollectionViewCell) {
@@ -432,7 +439,7 @@ extension MainVC {
 		runningAnimations.removeAll()
 		cardViewController.removeFromParent()
 		cardViewController.view.removeFromSuperview()
-		self.navigateToSelf()
+//		self.navigateToSelf()
 		self.view.insertSubview(self.visualEffectView, at: 0)
 	}
 }
