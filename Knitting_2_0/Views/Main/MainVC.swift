@@ -44,6 +44,7 @@ class MainVC	: UIViewController {
     }
 
 	private var projects					: Array<MProject> = []
+	private var filteredProjects			: Array<MProject> = []
 	private var sections					: Array<MSection> = []
 	private var addView						= UIView()
 	private var addImage					= UIImageView()
@@ -96,6 +97,8 @@ class MainVC	: UIViewController {
 		self.view.sendSubviewToBack(self.collectionView)
 		self.view.sendSubviewToBack(self.visualEffectView)
 		self.reloadMainVc = true
+		
+		filteredProjects = self.sections[0].projects.filter {$0.name != "knitting-f824f" }
     }
 	
     deinit {
@@ -109,19 +112,16 @@ class MainVC	: UIViewController {
 		self.sections.append(MSection(type: "projects", title: "Working on this?", projects: []))
 		reff.observe(.value) { (snapshot) in
 			self.sections[0].projects.removeAll()
-//			var snap = self.dataSourse?.snapshot()
-//			snap?.deleteAllItems()
-//			snap?.deleteSections(self.sections)
-//			self.dataSourse?.apply(snap!, animatingDifferences: true)
 			for item in snapshot.children {
 				let project = MProject(snapshot: item as! DataSnapshot)
 				if !self.sections[0].projects.contains(project) {
 					self.sections[0].projects.append(project)
+					let sortedProjects = self.sections[0].projects.sorted(by: {$0 > $1})
+					print(sortedProjects)
 					var snapShot = NSDiffableDataSourceSnapshot<MSection, MProject>()
 					snapShot.appendSections(self.sections)
-					for section in self.sections {
-						snapShot.appendItems(section.projects, toSection: section)
-					}
+					snapShot.appendItems(sortedProjects)
+					
 					self.dataSourse?.apply(snapShot, animatingDifferences: true)
 				}
 			}
@@ -163,26 +163,11 @@ extension MainVC {
 	}
 	
 	func createProjectsSection() -> NSCollectionLayoutSection {
-//
-//		let fullPhotoItem = NSCollectionLayoutItem(
-//		  layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0), heightDimension: .fractionalWidth(0)))
-//
-//		fullPhotoItem.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0,trailing: 0)
-//
-//		let mainItem = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize( widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(UIScreen.main.bounds.height / 6)))
-//
-//		mainItem.contentInsets = NSDirectionalEdgeInsets( top: 20, leading: 20, bottom: 20, trailing: 20)
-//
-//		let nestedGroup = NSCollectionLayoutGroup.vertical(
-//			layoutSize: NSCollectionLayoutSize( widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(1.0)), subitems: [fullPhotoItem, mainItem] )
-//
-//		let section = NSCollectionLayoutSection(group: nestedGroup)
-		
 		let itemSize				= NSCollectionLayoutSize			(widthDimension	:	.fractionalWidth(1.0),
 																		 heightDimension:	.fractionalHeight(UIScreen.main.bounds.height / 6))
 		let item					= NSCollectionLayoutItem			(layoutSize		:	itemSize)
 		let groupSize				= NSCollectionLayoutSize			(widthDimension	:	.fractionalWidth(1.0),
-																		 heightDimension:	.estimated(1.0))
+																		heightDimension:	.estimated(1.0))
 		let group					= NSCollectionLayoutGroup.vertical	(layoutSize		: groupSize, subitems: [item])
 		let section					= NSCollectionLayoutSection			(group: group)
 		item.contentInsets			= NSDirectionalEdgeInsets.init		(top: 20,	leading: 0,		bottom: 20,	trailing: 0)
@@ -211,17 +196,14 @@ extension MainVC {
 		dataSourse = UICollectionViewDiffableDataSource<MSection, MProject>(collectionView: collectionView,
 																			cellProvider: { (collectionView, indexPath, project) -> UICollectionViewCell? in
 			switch self.sections[indexPath.section].type {
-		//A place for adding a stories
+//				A place for adding a stories
 			default:
 				let project = self.sections[0].projects[indexPath.row]
-//				if project.name != "knitting-f824f"{
-					let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProjectCell.reuseId, for: indexPath) as! ProjectCell
-					cell.delegate = self
-					cell.configurу(with: project)
-					return cell
-//				} else {
-//					return UICollectionViewCell()
-//				}
+				let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProjectCell.reuseId, for: indexPath) as! ProjectCell
+				cell.delegate = self
+				cell.configurу(with: project)
+					
+				return cell
 			}
 		})
 		dataSourse?.supplementaryViewProvider = { [weak self] collectionView, kind, indexPath in
@@ -240,9 +222,8 @@ extension MainVC {
 	}
 	
 	func reloadData() {
-
 		if self.sections[0].projects.isEmpty {
-			let project = MProject(userID: "123", name: "knitting-f824f", image: (Icons.emptyProject?.toString())!)
+			let project = MProject(userID: "123", name: "knitting-f824f", image: (Icons.emptyProject?.toString())!, date: "999999999")
 			self.sections[0].projects.append(project)
 		}
 		if !setupCollectinView {

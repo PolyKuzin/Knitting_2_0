@@ -67,7 +67,7 @@ class NewProjectVC					: UIViewController, CardViewControllerProtocol, UINavigat
 			let projectUniqueID = Int(Date().timeIntervalSince1970)
 			guard let imageData = image?.toString() else { return }
 			guard let name		= projectName.text	else { return }
-			let project = MProject(userID: user.uid, name: name, image: imageData)
+			let project = MProject(userID: user.uid, name: name, image: imageData, date: "\(projectUniqueID)")
 			let referenceForProject = self.ref.child("projects").child("\(projectUniqueID)")
 			referenceForProject.setValue(project.projectToDictionary())
 			NotificationCenter.default.post(name: Notification.Name(rawValue: "disconnectNewProjectVC"), object: nil)

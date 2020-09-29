@@ -48,7 +48,7 @@ class MainVM : CollectionViewViewModelType {
 	func sections() -> MSection {
 		
 
-		let project1 = MProject(userID: "1", name: "1", image: "1")
+		let project1 = MProject(userID: "1", name: "1", image: "1", date: "1")
 
 		let section = MSection(type: "projects", title: "Working on this?", projects: [project1])
 		

@@ -9,18 +9,20 @@
 import Foundation
 import FirebaseDatabase
 
-struct MProject : Hashable {
+struct MProject : Hashable, Comparable {
     
     let ref						: DatabaseReference?
     let userID					: String
 	
     var name					: String
     var image					: String
+	var date					: String
     
-	init(userID: String, name: String, image: String) {
+	init(userID: String, name: String, image: String, date: String) {
         self.userID				= userID
         self.name				= name
         self.image				= image
+		self.date				= date
         self.ref				= nil
     }
     
@@ -29,12 +31,18 @@ struct MProject : Hashable {
         image					= snapshotValue["image"]		as! String
         name					= snapshotValue["name"]			as! String
         userID					= snapshotValue["userID"]		as! String
+		date					= snapshotValue["date"]			as! String
         ref						= snapshot.ref
     }
     
     func projectToDictionary() -> Any {
         return ["image"			: image,
                 "name"			: name,
+				"date"			: date,
                 "userID"		: userID]
     }
+	
+	static func < (lhs: MProject, rhs: MProject) -> Bool {
+		return lhs.date < rhs.date
+	}
 }
