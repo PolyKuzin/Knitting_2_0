@@ -152,6 +152,9 @@ extension RegistrationVC {
 															  "email"		: email]) { (error) in
 						if error != nil { self?.showError("Error saving user data") }
 					}
+					let project = MProject(userID: "123", name: "knitting-f824f", image: (Icons.emptyProject?.toString())!)
+					guard let referenceForProject = self?.dbReference.child((user?.user.uid)!).child("projects").child("123") else { return }
+					referenceForProject.setValue(project.projectToDictionary())
 					self?.dismissKeyBoard	()
 					self?.hideKeyboard()
 					self?.pushMainVC()

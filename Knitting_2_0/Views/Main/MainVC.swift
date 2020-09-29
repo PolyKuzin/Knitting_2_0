@@ -163,12 +163,27 @@ extension MainVC {
 	}
 	
 	func createProjectsSection() -> NSCollectionLayoutSection {
-		let itemSize				= NSCollectionLayoutSize			(widthDimension:	.fractionalWidth(1.0),
-																		 heightDimension:	.fractionalHeight(UIScreen.main.bounds.height / 6.7))
-		let item					= NSCollectionLayoutItem			(layoutSize: itemSize)
-		let groupSize				= NSCollectionLayoutSize			(widthDimension:	.fractionalWidth(1.0),
+//
+//		let fullPhotoItem = NSCollectionLayoutItem(
+//		  layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0), heightDimension: .fractionalWidth(0)))
+//
+//		fullPhotoItem.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0,trailing: 0)
+//
+//		let mainItem = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize( widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(UIScreen.main.bounds.height / 6)))
+//
+//		mainItem.contentInsets = NSDirectionalEdgeInsets( top: 20, leading: 20, bottom: 20, trailing: 20)
+//
+//		let nestedGroup = NSCollectionLayoutGroup.vertical(
+//			layoutSize: NSCollectionLayoutSize( widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(1.0)), subitems: [fullPhotoItem, mainItem] )
+//
+//		let section = NSCollectionLayoutSection(group: nestedGroup)
+		
+		let itemSize				= NSCollectionLayoutSize			(widthDimension	:	.fractionalWidth(1.0),
+																		 heightDimension:	.fractionalHeight(UIScreen.main.bounds.height / 6))
+		let item					= NSCollectionLayoutItem			(layoutSize		:	itemSize)
+		let groupSize				= NSCollectionLayoutSize			(widthDimension	:	.fractionalWidth(1.0),
 																		 heightDimension:	.estimated(1.0))
-		let group					= NSCollectionLayoutGroup.vertical	(layoutSize: groupSize, subitems: [item])
+		let group					= NSCollectionLayoutGroup.vertical	(layoutSize		: groupSize, subitems: [item])
 		let section					= NSCollectionLayoutSection			(group: group)
 		item.contentInsets			= NSDirectionalEdgeInsets.init		(top: 20,	leading: 0,		bottom: 20,	trailing: 0)
 		section.contentInsets		= NSDirectionalEdgeInsets.init		(top: 20,	leading: 20,	bottom: 20,	trailing: 20)
@@ -198,11 +213,15 @@ extension MainVC {
 			switch self.sections[indexPath.section].type {
 		//A place for adding a stories
 			default:
-				let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProjectCell.reuseId, for: indexPath) as! ProjectCell
 				let project = self.sections[0].projects[indexPath.row]
-				cell.configurу(with: project)
-				cell.delegate = self
-				return cell
+//				if project.name != "knitting-f824f"{
+					let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProjectCell.reuseId, for: indexPath) as! ProjectCell
+					cell.delegate = self
+					cell.configurу(with: project)
+					return cell
+//				} else {
+//					return UICollectionViewCell()
+//				}
 			}
 		})
 		dataSourse?.supplementaryViewProvider = { [weak self] collectionView, kind, indexPath in
