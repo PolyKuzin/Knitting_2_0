@@ -54,6 +54,19 @@ class NewProjectCardVM {
 		return textField
 	}()
 	
+	private lazy var warningLabel			: UILabel = {
+		let label 							= UILabel(frame: CGRect(x: 0,
+																y: 0,
+																width: 180,
+																height: 20))
+		label.font							= Fonts.textRegular14
+		label.textColor						= Colors.errorTextFieldBorder
+		label.numberOfLines					= 0
+		label.textAlignment					= .left
+		
+		return label
+	}()
+	
 	private lazy var createGlobalCounter	: UILabel = {
 		let label						= UILabel()
 		label.text						= "Create global counter?"

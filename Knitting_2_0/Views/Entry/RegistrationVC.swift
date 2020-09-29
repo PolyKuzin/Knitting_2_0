@@ -122,7 +122,7 @@ extension RegistrationVC {
 	@objc
 	func signUpTapped() {
 		let error = validateFields()
-		if error != nil { showError(error!) } else {
+		if error != nil { setErrorDesign(error!) } else {
 			//Create cleaned versions of the data
 			guard let nickname	= nicknameTextField	.text?.trimmingCharacters(in: .whitespacesAndNewlines)	else { return }
 			guard let email		= emailTextField	.text?.trimmingCharacters(in: .whitespacesAndNewlines)	else { return }

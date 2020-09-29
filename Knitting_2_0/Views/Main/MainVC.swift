@@ -107,33 +107,26 @@ class MainVC	: UIViewController {
 		let user : MUser	= MUser(user: currentUser!)
 		let reff = Database.database().reference(withPath: "users").child(String(user.uid)).child("projects")
 		self.sections.append(MSection(type: "projects", title: "Working on this?", projects: []))
-		reff.observeSingleEvent(of: .value) { (snapshot) in
-			var snap = self.dataSourse?.snapshot()
-			snap?.deleteAllItems()
-			snap?.deleteSections(self.sections)
-			self.dataSourse?.apply(snap!, animatingDifferences: true)
+		reff.observe(.value) { (snapshot) in
+			self.sections[0].projects.removeAll()
+//			var snap = self.dataSourse?.snapshot()
+//			snap?.deleteAllItems()
+//			snap?.deleteSections(self.sections)
+//			self.dataSourse?.apply(snap!, animatingDifferences: true)
 			for item in snapshot.children {
 				let project = MProject(snapshot: item as! DataSnapshot)
 				if !self.sections[0].projects.contains(project) {
 					self.sections[0].projects.append(project)
+					var snapShot = NSDiffableDataSourceSnapshot<MSection, MProject>()
+					snapShot.appendSections(self.sections)
+					for section in self.sections {
+						snapShot.appendItems(section.projects, toSection: section)
+					}
+					self.dataSourse?.apply(snapShot, animatingDifferences: true)
 				}
-				var snapShot = NSDiffableDataSourceSnapshot<MSection, MProject>()
-				snapShot.appendSections(self.sections)
-				for section in self.sections {
-					snapShot.appendItems(section.projects, toSection: section)
-				}
-				self.dataSourse?.apply(snapShot, animatingDifferences: true)
 			}
+			self.collectionView.reloadData()
 		}
-//		reff.observe(.childAdded) { (snapshot) in
-//			for item in snapshot.children {
-//				let project = MProject(snapshot: item as! DataSnapshot)
-//				self.sections[0].projects.append(project)
-//				var snapShot = NSDiffableDataSourceSnapshot<MSection, MProject>()
-//				snapShot.appendItems([project], toSection: self.sections[0])
-//				self.dataSourse?.apply(snapShot, animatingDifferences: true)
-//			}
-//		}
 	}
 }
 
@@ -357,7 +350,8 @@ extension MainVC: SwipeableCollectionViewCellDelegate {
 		sections[0].projects.remove(at: indexPath.row)
 
 		dataSourse?.apply(snap!, animatingDifferences: true)
-//		navigateToSelf()
+		self.collectionView.reloadData()
+
 	}
 	
 	func visibleContainerViewTapped(inCell cell: UICollectionViewCell) {
@@ -439,7 +433,7 @@ extension MainVC {
 		runningAnimations.removeAll()
 		cardViewController.removeFromParent()
 		cardViewController.view.removeFromSuperview()
-//		self.navigateToSelf()
+		self.collectionView.reloadData()
 		self.view.insertSubview(self.visualEffectView, at: 0)
 	}
 }

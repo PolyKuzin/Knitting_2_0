@@ -28,6 +28,7 @@ class NewProjectVC					: UIViewController, CardViewControllerProtocol, UINavigat
 	private var globalCounterSwitch = UISwitch()
 
 	private var createButton		= UIButton()
+	private var warning				= UILabel()
 
 	private var viewModel			: NewProjectCardVM! {
 		didSet {
@@ -35,6 +36,7 @@ class NewProjectVC					: UIViewController, CardViewControllerProtocol, UINavigat
 			self.projectImage		= viewModel.profileImage()
 			self.projectName		= viewModel.projectName()
 			self.createButton		= viewModel.createButton()
+//			self.warning			= viewModel.
 			self.globalCounterSwitch = viewModel.globarCounterSwitch()
 			self.createGlobalCounterLabel = viewModel.createGlobalCounterLabel()
 			
@@ -54,19 +56,22 @@ class NewProjectVC					: UIViewController, CardViewControllerProtocol, UINavigat
 	
 	@objc
 	func saveProject() {
-        var image: UIImage?
-        if imageIsChanged {
-            image = projectImage.image
-        } else {
-            image = #imageLiteral(resourceName: "empty")
-        }
-		let projectUniqueID = Int(Date().timeIntervalSince1970)
-		guard let imageData = image?.toString() else { return }
-		guard let name		= projectName.text	else { return }
-		let project = MProject(userID: user.uid, name: name, image: imageData)
-		let referenceForProject = self.ref.child("projects").child("\(projectUniqueID)")
-		referenceForProject.setValue(project.projectToDictionary())
-		NotificationCenter.default.post(name: Notification.Name(rawValue: "disconnectNewProjectVC"), object: nil)
+		let error = validateFields()
+		if error != nil {  setErrorDesign(error!) } else {
+			var image: UIImage?
+			if imageIsChanged {
+				image = projectImage.image
+			} else {
+				image = #imageLiteral(resourceName: "empty")
+			}
+			let projectUniqueID = Int(Date().timeIntervalSince1970)
+			guard let imageData = image?.toString() else { return }
+			guard let name		= projectName.text	else { return }
+			let project = MProject(userID: user.uid, name: name, image: imageData)
+			let referenceForProject = self.ref.child("projects").child("\(projectUniqueID)")
+			referenceForProject.setValue(project.projectToDictionary())
+			NotificationCenter.default.post(name: Notification.Name(rawValue: "disconnectNewProjectVC"), object: nil)
+		}
 	}
 	
     override func viewDidLoad() {
@@ -121,6 +126,36 @@ extension NewProjectVC: UIImagePickerControllerDelegate {
         dismiss(animated: true)
     }
 }
+
+//MARK: Error Handling
+extension NewProjectVC {
+	
+	func validateFields() -> String? {
+		
+		//check that fields are filled in
+		if	projectName	.text?.trimmingCharacters	(in: .whitespacesAndNewlines)	== "" {
+			return "Please fill in all fields"
+		}
+		return nil
+	}
+		
+	func showError(_ message: String) {
+		warning.textColor	= Colors.errorTextFieldBorder
+		warning.text		= message
+		warning.alpha		= 1
+		warning.isHidden	= false
+	}
+	
+	func setErrorDesign(_ description: String) {
+		showError(description)
+		projectName.backgroundColor      = Colors.errorTextField
+		projectName.layer.borderColor    = Colors.errorTextFieldBorder.cgColor
+		projectName.shakeAnimation		()
+		createLabel.shakeAnimation		()
+		createButton.shakeAnimation		()
+	}
+}
+
 
 // MARK: Keyboard Issues
 extension NewProjectVC: UITextFieldDelegate {
@@ -194,14 +229,20 @@ extension NewProjectVC {
 		projectName.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive	= true
 		projectName.heightAnchor.constraint(equalToConstant: 44).isActive							= true
 		
+		view.addSubview(warning)
+		warning.translatesAutoresizingMaskIntoConstraints											= false
+		warning.topAnchor.constraint(equalTo: projectName.bottomAnchor, constant: 7).isActive		= true
+		warning.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive		= true
+		warning.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive		= true
+		
 		view.addSubview(globalCounterSwitch)
 		globalCounterSwitch.translatesAutoresizingMaskIntoConstraints								= false
 		globalCounterSwitch.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-		globalCounterSwitch.topAnchor.constraint(equalTo: projectName.bottomAnchor, constant: 16).isActive = true
+		globalCounterSwitch.topAnchor.constraint(equalTo: projectName.bottomAnchor, constant: 35).isActive = true
 		
 		view.addSubview(createGlobalCounterLabel)
 		createGlobalCounterLabel.translatesAutoresizingMaskIntoConstraints							= false
-		createGlobalCounterLabel.topAnchor.constraint(equalTo: projectName.bottomAnchor, constant: 20).isActive = true
+		createGlobalCounterLabel.topAnchor.constraint(equalTo: projectName.bottomAnchor, constant: 39).isActive = true
 		createGlobalCounterLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
 		createGlobalCounterLabel.trailingAnchor.constraint(equalTo: globalCounterSwitch.leadingAnchor, constant: 10).isActive = true
 		
