@@ -49,8 +49,8 @@ extension SectionHeader {
 	
 	private func setupLayout() {
 		
-//		translatesAutoresizingMaskIntoConstraints												= false
-//		heightAnchor.constraint(equalToConstant: 200).isActive									= true
+		translatesAutoresizingMaskIntoConstraints												= false
+		heightAnchor.constraint(equalToConstant: 200).isActive									= true
 		
 		addSubview(profileImage)
 		profileImage.translatesAutoresizingMaskIntoConstraints									= false

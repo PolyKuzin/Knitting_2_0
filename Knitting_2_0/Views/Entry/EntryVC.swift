@@ -34,7 +34,7 @@ class EntryVC: UIViewController {
 		super.viewWillAppear(animated)
 		Auth.auth().addStateDidChangeListener { (auth, user) in
 			if user != nil {
-				self.pushMainVC()
+//				self.pushMainVC()
 			}
 		}
 	}
