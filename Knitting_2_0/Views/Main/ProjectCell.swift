@@ -35,9 +35,12 @@ class ProjectCell: SwipeableCollectionViewCell {
 	
 	func configurу(with project: MProject) {
 		
+		if project.name == "knitting-f824f" {
+			self.isHidden = true
+		}
+		
 		projectImage.image 						= project.image.toImage()
 		projectName.text						= project.name
-		
 		
 		layer.cornerRadius						= 20
 		layer.borderWidth						= 0.0

@@ -116,12 +116,13 @@ class MainVC	: UIViewController {
 				let project = MProject(snapshot: item as! DataSnapshot)
 				if !self.sections[0].projects.contains(project) {
 					self.sections[0].projects.append(project)
-					let sortedProjects = self.sections[0].projects.sorted(by: {$0 > $1})
-					print(sortedProjects)
+					self.sections[0].projects.sort(by: {
+						return
+								($0.date) < ($1.date)
+					})
 					var snapShot = NSDiffableDataSourceSnapshot<MSection, MProject>()
 					snapShot.appendSections(self.sections)
-					snapShot.appendItems(sortedProjects)
-					
+					snapShot.appendItems(self.sections[0].projects)
 					self.dataSourse?.apply(snapShot, animatingDifferences: true)
 				}
 			}
