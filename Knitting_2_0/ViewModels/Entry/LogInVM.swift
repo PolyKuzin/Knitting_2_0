@@ -97,7 +97,7 @@ class LogInVM	: LogInComposition {
 
 		//functionality
 		textField.autocorrectionType		= UITextAutocorrectionType.no
-		textField.keyboardType				= UIKeyboardType.default
+		textField.keyboardType				= UIKeyboardType.emailAddress
 		textField.returnKeyType 			= UIReturnKeyType.continue
 		textField.clearButtonMode 			= UITextField.ViewMode.whileEditing
 		textField.autocapitalizationType	= .none

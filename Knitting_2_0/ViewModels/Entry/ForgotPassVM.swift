@@ -70,7 +70,7 @@ class ForgotPassVM  {
 
 		//functionality
 		textField.autocorrectionType	= UITextAutocorrectionType.no
-		textField.keyboardType			= UIKeyboardType.default
+		textField.keyboardType			= UIKeyboardType.emailAddress
 		textField.returnKeyType 		= UIReturnKeyType.done
 		textField.clearButtonMode 		= UITextField.ViewMode.whileEditing
 		textField.autocapitalizationType = .none
