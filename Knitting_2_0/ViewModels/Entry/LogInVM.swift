@@ -189,7 +189,7 @@ class LogInVM	: LogInComposition {
 		button.titleLabel?.font				= Fonts.textRegular17
 		button.layer.masksToBounds			= true
 		button.setTitle						(Placeholder.signupWithSpace,	for: .normal)
-		button.setTitleColor				(Colors.questionButton, 		for: .normal)
+		button.setTitleColor				(Colors.blackColor, 		for: .normal)
 		button.contentHorizontalAlignment	= .left
 		
 		return button

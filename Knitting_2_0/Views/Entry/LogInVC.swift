@@ -177,7 +177,7 @@ extension LogInVC {
 	
 	@objc
 	func pushSignUpVC() {
-		let vc = RegistrationVC()
+		let vc = SignUpVC()
 		guard let navigationController = navigationController else { return }
 		navigationController.pushViewController(vc, animated: true)
 	}

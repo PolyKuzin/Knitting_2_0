@@ -9,8 +9,8 @@
 import UIKit
 import FirebaseAuth
 
-var keyboardBlackArea: CGFloat = 0.0
-var keyboardReturnDistance: CGFloat = 0.0
+var keyboardBlackArea					: CGFloat = 0.0
+var keyboardReturnDistance				: CGFloat = 0.0
 
 class EntryVC: UIViewController {
 	
@@ -73,7 +73,7 @@ extension EntryVC {
 	
 	@objc
 	func pushSignUpVC() {
-		let vc = RegistrationVC()
+		let vc = SignUpVC()
 		guard let navigationController = navigationController else { return }
 		navigationController.pushViewController(vc, animated: true)
 	}

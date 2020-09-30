@@ -12,7 +12,7 @@ import FirebaseAuth
 import FirebaseDatabase
 import FirebaseFirestore
 
-class RegistrationVC	: UIViewController {
+class SignUpVC	: UIViewController {
 	
 	private var dbReference				: DatabaseReference!
 	private var logoIcon				= UIImageView	()
@@ -68,7 +68,7 @@ class RegistrationVC	: UIViewController {
 }
 
 // MARK: Keyboard Issues
-extension RegistrationVC: UITextFieldDelegate {
+extension SignUpVC: UITextFieldDelegate {
     
     func setingUpKeyboardHiding(){
 		nicknameTextField	.delegate = self
@@ -117,7 +117,7 @@ extension RegistrationVC: UITextFieldDelegate {
 }
 
 //MARK: Creating User
-extension RegistrationVC {
+extension SignUpVC {
 	
 	@objc
 	func signUpTapped() {
@@ -152,7 +152,7 @@ extension RegistrationVC {
 															  "email"		: email]) { (error) in
 						if error != nil { self?.showError("Error saving user data") }
 					}
-					let project = MProject(userID: "123", name: "knitting-f824f", image: (Icons.emptyProject?.toString())!, date: "9999999999999999")
+					let project = MProject(userID: "123", name: "knitting-f824f", image: (Icons.emptyProject?.toString())!, date: "0")
 					guard let referenceForProject = self?.dbReference.child((user?.user.uid)!).child("projects").child("123") else { return }
 					referenceForProject.setValue(project.projectToDictionary())
 					self?.dismissKeyBoard	()
@@ -165,7 +165,7 @@ extension RegistrationVC {
 }
 
 //MARK: Error Handling
-extension RegistrationVC {
+extension SignUpVC {
 	
     func validateFields() -> String? {
         
@@ -205,7 +205,7 @@ extension RegistrationVC {
 }
 
 //MARK: Navigation
-extension RegistrationVC {
+extension SignUpVC {
 	
 	@objc
 	func pushLogInVC() {
@@ -222,7 +222,7 @@ extension RegistrationVC {
 }
 
 //MARK: Layout
-extension RegistrationVC {
+extension SignUpVC {
 	
 	func setUpLayout() {
 		//Navigation Bar scould be invisible

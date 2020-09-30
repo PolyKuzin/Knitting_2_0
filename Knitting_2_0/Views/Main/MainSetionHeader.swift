@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SectionHeader: UICollectionReusableView {
+class MainSectionHeader: UICollectionReusableView {
 	
 	static let reusedId = "SectionHeader"
 	
@@ -38,7 +38,7 @@ class SectionHeader: UICollectionReusableView {
 	}
 }
 
-extension SectionHeader {
+extension MainSectionHeader {
 	
 	private func setupLayout() {
 		addSubview(profileImage)

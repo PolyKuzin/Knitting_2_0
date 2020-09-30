@@ -9,27 +9,26 @@
 import Foundation
 import FirebaseDatabase
 
-struct CounterToKnit {
+struct MCounter : Hashable, Comparable {
     
     let ref						: DatabaseReference?
+	
     let userID					: String
     var projectID				: String
     var name					: String
     var rows					: Int
     var rowsMax					: Int
+	var date					: String
     var congratulations			: Bool = false
     
-    init(userID: String,
-         projectID: String,
-         name: String,
-         rows: Int,
-         rowsMax: Int) {
+	init(userID: String, projectID: String, name: String, rows: Int, rowsMax: Int, date: String) {
         
         self.userID				= userID
         self.projectID			= projectID
         self.name				= name
         self.rows				= rows
         self.rowsMax			= rowsMax
+		self.date				= date
         self.ref				= nil
     }
     
@@ -41,6 +40,7 @@ struct CounterToKnit {
         rows					= snapshotValue["rows"]					as! Int
         rowsMax					= snapshotValue["rowsMax"]				as! Int
         congratulations			= snapshotValue["congratulations"]		as! Bool
+		date					= snapshotValue["date"]					as! String
         ref						= snapshot.ref
     }
     
@@ -50,6 +50,11 @@ struct CounterToKnit {
                 "name"               : name,
                 "rows"               : rows,
                 "rowsMax"            : rowsMax,
-                "congratulations"    : congratulations]
+                "congratulations"    : congratulations,
+				"date"				 : date]
     }
+	
+	static func < (lhs: MCounter, rhs: MCounter) -> Bool {
+		return lhs.date < rhs.date
+	}
 }

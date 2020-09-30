@@ -31,8 +31,8 @@ class EntryVM {
 	
 	func setupKeyboardReturnDistance() -> CGFloat {
 		switch UIDevice().type {
-			case .iPhoneX, .iPhoneXS, .iPhoneXSMax, .iPhoneXR, .iPhone11, .iPhone11Pro, .iPhone11ProMax: return 400
-			default: return 200
+		case .iPhoneX, .iPhoneXS, .iPhoneXSMax, .iPhoneXR, .iPhone11, .iPhone11Pro, .iPhone11ProMax: return UIScreen.main.nativeScale < UIScreen.main.scale ? 350 :  400
+		default: return UIScreen.main.nativeScale < UIScreen.main.scale ? 150 : 200
 		}
 	}
 	
@@ -67,7 +67,7 @@ class EntryVM {
 		button.alpha					= 0
 		button.layer.masksToBounds		= true
 		button.setTitle					(Placeholder.logIn,		for: .normal)
-		button.setTitleColor			(Colors.questionButton, for: .normal)
+		button.setTitleColor			(Colors.blackColor, for: .normal)
 			
 		return button
 	}()

@@ -38,7 +38,7 @@ struct Colors {
 	
 	//Normal
 	static let whiteColor				= UIColor.white
-	static let questionButton			= UIColor.black
+	static let blackColor				= UIColor.black
 	
 	static let normalTextField			= UIColor(red: 0.949, green: 0.949, blue: 0.969, alpha: 1)
 	static let normalBorderTextField	= UIColor(red: 0.82,  green: 0.82,  blue: 0.839, alpha: 1)
@@ -91,17 +91,12 @@ struct Fonts {
 	static let displayMedium18			= UIFont(name: "SFProDisplay-Medium",	size: 18)
 	static let displayMedium20			= UIFont(name: "SFProDisplay-Medium",	size: 20)
 	static let displayMedium22			= UIFont(name: "SFProDisplay-Medium",	size: 22)
-	
 	static let displaySemibold18		= UIFont(name: "SFProDisplay-Semibold", size: 18)
 	static let displaySemibold22		= UIFont(name: "SFProDisplay-Semibold", size: 22)
 	static let displaySemibold28		= UIFont(name: "SFProDisplay-Semibold", size: 28)
-	
 	static let textRegular17			= UIFont(name: "SFProText-Regular", 	size: 17)
-	
 	static let textRegular14			= UIFont(name: "SFProText-Regular", 	size: 14) // to test
-
 	static let textSemibold17			= UIFont(name: "SFProText-Semibold",	size: 17)
-	
 	static let textSemibold14			= UIFont(name: "SFProText-Semibold",	size: 14) // to test
 	static let displayBold28			= UIFont(name: "SFProDisplay-Bold", 	size: 28)
 	static let textBold17				= UIFont(name: "SFProText-Bold", 		size: 17)

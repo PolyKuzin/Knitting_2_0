@@ -1,31 +1,31 @@
 //
-//  CardViewAnimations.swift
+//  CountersCardViewAnimations.swift
 //  Knitting_2_0
 //
-//  Created by Павел Кузин on 20.09.2020.
+//  Created by Павел Кузин on 30.09.2020.
 //  Copyright © 2020 Павел Кузин. All rights reserved.
 //
 
 import UIKit
 
 //MARK: CardView Animations
-extension MainVC {
+extension CountersVC {
 
-    func animateTransitionIfNeeded (state:CardState, duration:TimeInterval) {
-        if runningAnimations.isEmpty {
+	func animateTransitionIfNeeded (state:CardState, duration:TimeInterval) {
+		if runningAnimations.isEmpty {
 			let frameAnimator = UIViewPropertyAnimator(duration: duration, dampingRatio: 1) {
 				switch state {
 				case .expanded	:
 					self.setUpClearNavBar()
 					self.cardViewController.view.frame.origin.y = self.view.frame.height - self.cardHeight + 20
 				case .collapsed	:
-					self.cardViewController.view.frame.origin.y = self.view.frame.height - self.cardHandleAreaHeight
+					self.cardViewController.view.frame.origin.y = self.view.frame.height
 				}
 			}
 			frameAnimator.addCompletion { _ in
 				self.cardVisible = !self.cardVisible
 				self.runningAnimations.removeAll()
-			} 
+			}
 			
 			let cornerRadiusAnimator = UIViewPropertyAnimator(duration: duration, curve: .linear) {
 				switch state {
@@ -59,31 +59,31 @@ extension MainVC {
 		}
 	}
 	
-    func startInteractiveTransition(state:CardState, duration:TimeInterval) {
-        if runningAnimations.isEmpty {
-            animateTransitionIfNeeded(state: state, duration: duration)
-        }
-        for animator in runningAnimations {
-            animator.pauseAnimation()
-            animationProgressWhenInterrupted = animator.fractionComplete
-        }
-    }
-    
-    func updateInteractiveTransition(fractionCompleted:CGFloat) {
-        for animator in runningAnimations {
-            animator.fractionComplete = fractionCompleted + animationProgressWhenInterrupted
-        }
-    }
-    
-    func continueInteractiveTransition (){
-        for animator in runningAnimations {
-            animator.continueAnimation(withTimingParameters: nil, durationFactor: 0)
-        }
+	func startInteractiveTransition(state:CardState, duration:TimeInterval) {
+		if runningAnimations.isEmpty {
+			animateTransitionIfNeeded(state: state, duration: duration)
+		}
+		for animator in runningAnimations {
+			animator.pauseAnimation()
+			animationProgressWhenStopped = animator.fractionComplete
+		}
+	}
+	
+	func updateInteractiveTransition(fractionCompleted:CGFloat) {
+		for animator in runningAnimations {
+			animator.fractionComplete = fractionCompleted + animationProgressWhenStopped
+		}
+	}
+	
+	func continueInteractiveTransition (){
+		for animator in runningAnimations {
+			animator.continueAnimation(withTimingParameters: nil, durationFactor: 0)
+		}
 		let seconds = 0.3
 		DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
-			NotificationCenter.default.removeObserver(self, name: self.light, object: nil)
-			NotificationCenter.default.removeObserver(self, name: self.dark, object: nil)
+			NotificationCenter.default.removeObserver(self, name: self.profileImageTaped, object: nil)
+			NotificationCenter.default.removeObserver(self, name: self.newprojectViewTaped, object: nil)
 			self.teardownCardView()
 		}
-    }
+	}
 }

@@ -11,7 +11,7 @@
 		9905ABE225024F5A0055B138 /* SF-Pro-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9905ABE125024F5A0055B138 /* SF-Pro-Text-Semibold.otf */; };
 		9905ABE4250254B80055B138 /* SF-Pro-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9905ABE3250254B80055B138 /* SF-Pro-Text-Regular.otf */; };
 		99192D57251FC208001C6720 /* CounterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99192D56251FC208001C6720 /* CounterVC.swift */; };
-		994EF7142514B424009AA35B /* SetionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994EF7132514B423009AA35B /* SetionHeader.swift */; };
+		994EF7142514B424009AA35B /* MainSetionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994EF7132514B423009AA35B /* MainSetionHeader.swift */; };
 		994EF7162514ECFF009AA35B /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 994EF7152514ECFF009AA35B /* SF-Pro-Display-Bold.otf */; };
 		9959471E250A582B00D0E273 /* MUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9959471D250A582B00D0E273 /* MUser.swift */; };
 		99594720250AD91F00D0E273 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9959471F250AD91F00D0E273 /* MainVC.swift */; };
@@ -29,7 +29,7 @@
 		998B9F93250E1CD300C0C52F /* MSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B9F92250E1CD300C0C52F /* MSection.swift */; };
 		99AFBA4724F80D9E00E71FD6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AFBA4624F80D9E00E71FD6 /* AppDelegate.swift */; };
 		99AFBA4924F80D9E00E71FD6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AFBA4824F80D9E00E71FD6 /* SceneDelegate.swift */; };
-		99AFBA4B24F80D9E00E71FD6 /* RegistrationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AFBA4A24F80D9E00E71FD6 /* RegistrationVC.swift */; };
+		99AFBA4B24F80D9E00E71FD6 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AFBA4A24F80D9E00E71FD6 /* SignUpVC.swift */; };
 		99AFBA5024F80DA000E71FD6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99AFBA4F24F80DA000E71FD6 /* Assets.xcassets */; };
 		99AFBA5324F80DA000E71FD6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99AFBA5124F80DA000E71FD6 /* LaunchScreen.storyboard */; };
 		99AFBA5E24F80DA000E71FD6 /* RegistrationVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AFBA5D24F80DA000E71FD6 /* RegistrationVMTests.swift */; };
@@ -45,6 +45,9 @@
 		99B2067A2504F10600FA6C50 /* EntryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B206792504F10600FA6C50 /* EntryVC.swift */; };
 		99B509BC24FDB1D60046A2B1 /* UIViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B509BB24FDB1D60046A2B1 /* UIViewExt.swift */; };
 		99B509BF24FDB2780046A2B1 /* UIViewExtentionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B509BE24FDB2780046A2B1 /* UIViewExtentionsTests.swift */; };
+		99B956FA25248E9D00AC5438 /* CountersCardViewAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B956F925248E9D00AC5438 /* CountersCardViewAnimations.swift */; };
+		99B956FE25249AFE00AC5438 /* CounterSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B956FD25249AFE00AC5438 /* CounterSectionHeader.swift */; };
+		99B957062524A0C900AC5438 /* CounterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B957052524A0C900AC5438 /* CounterCell.swift */; };
 		99C31FDE251F2DA200A1F75D /* CardViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C31FDC251F2DA200A1F75D /* CardViewControllerProtocol.swift */; };
 		99C31FDF251F2DA200A1F75D /* SwipeableCollectionViewCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C31FDD251F2DA200A1F75D /* SwipeableCollectionViewCellProtocol.swift */; };
 		99E4A1C625091FBE003CA7C9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 99E4A1C525091FBE003CA7C9 /* GoogleService-Info.plist */; };
@@ -56,7 +59,7 @@
 		99EFB562251567CD003A5D07 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 99EFB561251567CD003A5D07 /* SF-Pro-Display-Regular.otf */; };
 		99EFB56425168A7E003A5D07 /* ProfileCardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EFB56325168A7E003A5D07 /* ProfileCardVC.swift */; };
 		99EFB56625168AF5003A5D07 /* ProfileCardVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EFB56525168AF5003A5D07 /* ProfileCardVM.swift */; };
-		99EFB56A25177805003A5D07 /* CardViewAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EFB56925177805003A5D07 /* CardViewAnimations.swift */; };
+		99EFB56A25177805003A5D07 /* MainCardViewAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EFB56925177805003A5D07 /* MainCardViewAnimations.swift */; };
 		99EFB56C25178D77003A5D07 /* NewProjectCardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EFB56B25178D77003A5D07 /* NewProjectCardVC.swift */; };
 		F923C35C687FA08E942E54EC /* Pods_Knitting_2_0.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9AB0322FBAB47D7907630EB /* Pods_Knitting_2_0.framework */; };
 /* End PBXBuildFile section */
@@ -78,7 +81,7 @@
 		9905ABE125024F5A0055B138 /* SF-Pro-Text-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Semibold.otf"; sourceTree = "<group>"; };
 		9905ABE3250254B80055B138 /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
 		99192D56251FC208001C6720 /* CounterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterVC.swift; sourceTree = "<group>"; };
-		994EF7132514B423009AA35B /* SetionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetionHeader.swift; sourceTree = "<group>"; };
+		994EF7132514B423009AA35B /* MainSetionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSetionHeader.swift; sourceTree = "<group>"; };
 		994EF7152514ECFF009AA35B /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
 		9959471D250A582B00D0E273 /* MUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MUser.swift; sourceTree = "<group>"; };
 		9959471F250AD91F00D0E273 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
@@ -97,7 +100,7 @@
 		99AFBA4324F80D9E00E71FD6 /* Knitting_2_0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Knitting_2_0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99AFBA4624F80D9E00E71FD6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		99AFBA4824F80D9E00E71FD6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		99AFBA4A24F80D9E00E71FD6 /* RegistrationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationVC.swift; sourceTree = "<group>"; };
+		99AFBA4A24F80D9E00E71FD6 /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		99AFBA4F24F80DA000E71FD6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		99AFBA5224F80DA000E71FD6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		99AFBA5424F80DA000E71FD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -116,6 +119,9 @@
 		99B206792504F10600FA6C50 /* EntryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryVC.swift; sourceTree = "<group>"; };
 		99B509BB24FDB1D60046A2B1 /* UIViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExt.swift; sourceTree = "<group>"; };
 		99B509BE24FDB2780046A2B1 /* UIViewExtentionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtentionsTests.swift; sourceTree = "<group>"; };
+		99B956F925248E9D00AC5438 /* CountersCardViewAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountersCardViewAnimations.swift; sourceTree = "<group>"; };
+		99B956FD25249AFE00AC5438 /* CounterSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterSectionHeader.swift; sourceTree = "<group>"; };
+		99B957052524A0C900AC5438 /* CounterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterCell.swift; sourceTree = "<group>"; };
 		99C31FDC251F2DA200A1F75D /* CardViewControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardViewControllerProtocol.swift; sourceTree = "<group>"; };
 		99C31FDD251F2DA200A1F75D /* SwipeableCollectionViewCellProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeableCollectionViewCellProtocol.swift; sourceTree = "<group>"; };
 		99E4A1C525091FBE003CA7C9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -127,7 +133,7 @@
 		99EFB561251567CD003A5D07 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
 		99EFB56325168A7E003A5D07 /* ProfileCardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardVC.swift; sourceTree = "<group>"; };
 		99EFB56525168AF5003A5D07 /* ProfileCardVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardVM.swift; sourceTree = "<group>"; };
-		99EFB56925177805003A5D07 /* CardViewAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewAnimations.swift; sourceTree = "<group>"; };
+		99EFB56925177805003A5D07 /* MainCardViewAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCardViewAnimations.swift; sourceTree = "<group>"; };
 		99EFB56B25178D77003A5D07 /* NewProjectCardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProjectCardVC.swift; sourceTree = "<group>"; };
 		A9AB0322FBAB47D7907630EB /* Pods_Knitting_2_0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Knitting_2_0.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B63AB392BD94FD626BC5C223 /* Pods-Knitting_2_0Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Knitting_2_0Tests.release.xcconfig"; path = "Target Support Files/Pods-Knitting_2_0Tests/Pods-Knitting_2_0Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -169,8 +175,8 @@
 				9959471F250AD91F00D0E273 /* MainVC.swift */,
 				998B9F8E250D817000C0C52F /* ProjectCell.swift */,
 				998B9F90250D81BE00C0C52F /* SwipeableCell.swift */,
-				994EF7132514B423009AA35B /* SetionHeader.swift */,
-				99EFB56925177805003A5D07 /* CardViewAnimations.swift */,
+				994EF7132514B423009AA35B /* MainSetionHeader.swift */,
+				99EFB56925177805003A5D07 /* MainCardViewAnimations.swift */,
 				99EFB56D25178D89003A5D07 /* Cards */,
 			);
 			path = Main;
@@ -181,8 +187,8 @@
 			children = (
 				99AFBA5124F80DA000E71FD6 /* LaunchScreen.storyboard */,
 				99B206792504F10600FA6C50 /* EntryVC.swift */,
-				99AFBA4A24F80D9E00E71FD6 /* RegistrationVC.swift */,
 				99B206712504DD8B00FA6C50 /* LogInVC.swift */,
+				99AFBA4A24F80D9E00E71FD6 /* SignUpVC.swift */,
 				998B9F8A250C2FA100C0C52F /* ForgotPassVC.swift */,
 			);
 			path = Entry;
@@ -264,7 +270,7 @@
 			children = (
 				996FAF332508FC8200209228 /* Entry */,
 				994EF71725153490009AA35B /* Main */,
-				99192D56251FC208001C6720 /* CounterVC.swift */,
+				99B956F425248E5900AC5438 /* Counters */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -349,6 +355,17 @@
 				99B509BE24FDB2780046A2B1 /* UIViewExtentionsTests.swift */,
 			);
 			path = ExtensionsTests;
+			sourceTree = "<group>";
+		};
+		99B956F425248E5900AC5438 /* Counters */ = {
+			isa = PBXGroup;
+			children = (
+				99192D56251FC208001C6720 /* CounterVC.swift */,
+				99B957052524A0C900AC5438 /* CounterCell.swift */,
+				99B956FD25249AFE00AC5438 /* CounterSectionHeader.swift */,
+				99B956F925248E9D00AC5438 /* CountersCardViewAnimations.swift */,
+			);
+			path = Counters;
 			sourceTree = "<group>";
 		};
 		99C31FDB251F2D3900A1F75D /* Protocols */ = {
@@ -570,8 +587,8 @@
 				99192D57251FC208001C6720 /* CounterVC.swift in Sources */,
 				99EF88B8251821F900C77181 /* NewProjectCardVM.swift in Sources */,
 				99B509BC24FDB1D60046A2B1 /* UIViewExt.swift in Sources */,
-				994EF7142514B424009AA35B /* SetionHeader.swift in Sources */,
-				99AFBA4B24F80D9E00E71FD6 /* RegistrationVC.swift in Sources */,
+				994EF7142514B424009AA35B /* MainSetionHeader.swift in Sources */,
+				99AFBA4B24F80D9E00E71FD6 /* SignUpVC.swift in Sources */,
 				998B9F85250BCAFA00C0C52F /* UIWindow.swift in Sources */,
 				99AFBA7024F8121D00E71FD6 /* RegistrationVM.swift in Sources */,
 				99EFB56425168A7E003A5D07 /* ProfileCardVC.swift in Sources */,
@@ -588,13 +605,16 @@
 				998B9F8F250D817000C0C52F /* ProjectCell.swift in Sources */,
 				99AFBA4924F80D9E00E71FD6 /* SceneDelegate.swift in Sources */,
 				99EF88BF251D3A9F00C77181 /* UIDevice.swift in Sources */,
-				99EFB56A25177805003A5D07 /* CardViewAnimations.swift in Sources */,
+				99EFB56A25177805003A5D07 /* MainCardViewAnimations.swift in Sources */,
+				99B956FE25249AFE00AC5438 /* CounterSectionHeader.swift in Sources */,
 				998B9F8B250C2FA100C0C52F /* ForgotPassVC.swift in Sources */,
 				99AFBA7A24F9667F00E71FD6 /* Constants.swift in Sources */,
 				99EFB56C25178D77003A5D07 /* NewProjectCardVC.swift in Sources */,
 				998B9F8D250C2FBB00C0C52F /* ForgotPassVM.swift in Sources */,
+				99B957062524A0C900AC5438 /* CounterCell.swift in Sources */,
 				99C31FDF251F2DA200A1F75D /* SwipeableCollectionViewCellProtocol.swift in Sources */,
 				998B9F93250E1CD300C0C52F /* MSection.swift in Sources */,
+				99B956FA25248E9D00AC5438 /* CountersCardViewAnimations.swift in Sources */,
 				99EF88BD25193F7000C77181 /* UIImage+String.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
