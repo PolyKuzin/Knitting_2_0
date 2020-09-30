@@ -44,7 +44,6 @@ class MainVC	: UIViewController {
     }
 
 	private var projects					: Array<MProject> = []
-	private var filteredProjects			: Array<MProject> = []
 	private var sections					: Array<MSection> = []
 	private var addView						= UIView()
 	private var addImage					= UIImageView()
@@ -65,23 +64,6 @@ class MainVC	: UIViewController {
 		setupNormalNavBar()
 	}
 
-	let refreshControl : UIRefreshControl = {
-		let refreshControl = UIRefreshControl()
-		refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
-
-		return refreshControl
-	}()
-
-	@objc
-	func refresh(sender: UIRefreshControl) {
-		self.navigateToSelf()
-		sender.endRefreshing()
-	}
-	
-	func navigateToSelf() {
-
-	}
-
     override func viewDidLoad() {
         super.viewDidLoad()
 		
@@ -92,13 +74,10 @@ class MainVC	: UIViewController {
 		setupSections()
 		self.setupCollectionView()
 		self.collectionView.reloadData()
-		self.collectionView.refreshControl = self.refreshControl
 		self.view.sendSubviewToBack(self.addView)
 		self.view.sendSubviewToBack(self.collectionView)
 		self.view.sendSubviewToBack(self.visualEffectView)
 		self.reloadMainVc = true
-		
-		filteredProjects = self.sections[0].projects.filter {$0.name != "knitting-f824f" }
     }
 	
     deinit {
@@ -124,6 +103,7 @@ class MainVC	: UIViewController {
 					snapShot.appendSections(self.sections)
 					snapShot.appendItems(self.sections[0].projects)
 					self.dataSourse?.apply(snapShot, animatingDifferences: true)
+					self.collectionView.reloadData()
 				}
 			}
 			self.collectionView.reloadData()
@@ -203,7 +183,12 @@ extension MainVC {
 				let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProjectCell.reuseId, for: indexPath) as! ProjectCell
 				cell.delegate = self
 				cell.configurу(with: project)
-					
+				if project == self.sections[0].projects.last! {
+					cell.isHidden = true
+				} else {
+					cell.isHidden = false
+				}
+
 				return cell
 			}
 		})
@@ -224,7 +209,7 @@ extension MainVC {
 	
 	func reloadData() {
 		if self.sections[0].projects.isEmpty {
-			let project = MProject(userID: "123", name: "knitting-f824f", image: (Icons.emptyProject?.toString())!, date: "999999999")
+			let project = MProject(userID: "123", name: "", image: "", date: "9999999999999999")
 			self.sections[0].projects.append(project)
 		}
 		if !setupCollectinView {
