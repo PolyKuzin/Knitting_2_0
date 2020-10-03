@@ -12,12 +12,44 @@ class CounterCell: SwipeableCollectionViewCell {
 	
 	static var reuseId 							= "counterCell"
 	
-	let projectName								= UILabel()
-	var projectImage 							= UIImageView()
 	let deleteImageView: UIImageView = {
 		guard let image							= Icons.delete?.withRenderingMode(.alwaysTemplate) else { return UIImageView() }
 		let imageView							= UIImageView(image: image)
 		imageView.tintColor						= .white
+		return imageView
+	}()
+	
+	let counterName								: UILabel = {
+		let label 								= UILabel()
+		label.font								= Fonts.textSemibold17
+		label.frame 							= CGRect(x: 0, y: 0, width: 65, height: 20)
+		label.textColor 						= UIColor(red: 0.663, green: 0.663, blue: 0.663, alpha: 1)
+		
+		return label
+	}()
+	
+	let currentRows								: UILabel = {
+		let label								= UILabel()
+		label.font								= UIFont(name: "SFProRounded-Medium", size: 72)
+		label.frame								= CGRect(x: 0, y: 0, width: 75, height: 86)
+		label.textColor							= UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
+		
+		return label
+	}()
+	
+	let plusButton								: UIButton = {
+		let imageView							= UIButton()
+		imageView.setImage(UIImage(named: "addProject"), for: .normal)
+		imageView.frame							= CGRect(x: 0, y: 0, width: 49, height: 49)
+		
+		return imageView
+	}()
+	
+	let minusButton								: UIButton = {
+		let imageView							= UIButton()
+		imageView.setImage(UIImage(named: "minus"), for: .normal)
+		imageView.frame							= CGRect(x: 0, y: 0, width: 32, height: 5)
+		
 		return imageView
 	}()
 	
@@ -26,16 +58,16 @@ class CounterCell: SwipeableCollectionViewCell {
 		setupLayout()
 		
 		self.layer.cornerRadius					= 20
-		projectImage.layer.cornerRadius         = 10
 		self.clipsToBounds						= true
-		projectImage.clipsToBounds              = true
+		
 		visibleContainerView.backgroundColor 	= Colors.whiteColor
 		hiddenContainerView.backgroundColor 	= Colors.hiddenContainerView
 	}
 	
-	func configurу(with project: MCounter) {
+	func configurу(with counter: MCounter) {
 		
-		projectName.text						= "DO NOT DELETE!"
+		counterName.text = counter.name
+		currentRows.text = String(counter.rows)
 		
 		layer.cornerRadius						= 20
 		layer.borderWidth						= 0.0
@@ -56,26 +88,25 @@ extension CounterCell	{
 	
 	func setupLayout()	{
 		sendSubviewToBack(visibleContainerView)
+
+		addSubview(counterName)
+		counterName.translatesAutoresizingMaskIntoConstraints = false
+		counterName.topAnchor.constraint(equalTo: topAnchor, constant: 12).isActive = true
+		counterName.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
 		
-		visibleContainerView.addSubview(projectImage)
-		projectImage.translatesAutoresizingMaskIntoConstraints														= false
-		projectImage.leadingAnchor.constraint(equalTo: visibleContainerView.leadingAnchor, constant: 20).isActive	= true
-		projectImage.topAnchor.constraint(equalTo: visibleContainerView.topAnchor, constant: 20).isActive			= true
-		projectImage.heightAnchor.constraint(equalTo: visibleContainerView.heightAnchor, constant: -40).isActive	= true
-		projectImage.widthAnchor.constraint(equalTo: projectImage.heightAnchor).isActive							= true
+		addSubview(currentRows)
+		currentRows.translatesAutoresizingMaskIntoConstraints = false
+		currentRows.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+		currentRows.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
 		
-		visibleContainerView.addSubview(projectName)
-		projectName.translatesAutoresizingMaskIntoConstraints														= false
-		projectName.leadingAnchor.constraint(equalTo: projectImage.trailingAnchor, constant: 20).isActive			= true
-		projectName.centerYAnchor.constraint(equalTo: visibleContainerView.centerYAnchor).isActive					= true
-		projectName.trailingAnchor.constraint(equalTo: visibleContainerView.trailingAnchor, constant: -20).isActive	= true
-		projectName.heightAnchor.constraint(equalToConstant: 26).isActive											= true
+		addSubview(plusButton)
+		plusButton.translatesAutoresizingMaskIntoConstraints = false
+		plusButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -50).isActive = true
+		plusButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
 		
-		hiddenContainerView.addSubview(deleteImageView)
-		deleteImageView.translatesAutoresizingMaskIntoConstraints 													= false
-		deleteImageView.centerXAnchor.constraint(equalTo: hiddenContainerView.centerXAnchor).isActive 				= true
-		deleteImageView.centerYAnchor.constraint(equalTo: hiddenContainerView.centerYAnchor).isActive 				= true
-		deleteImageView.widthAnchor.constraint(equalToConstant: 25).isActive 										= true
-		deleteImageView.heightAnchor.constraint(equalToConstant: 30).isActive 										= true
+		addSubview(minusButton)
+		minusButton.translatesAutoresizingMaskIntoConstraints = false
+		minusButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 50).isActive = true
+		minusButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
 	}
 }

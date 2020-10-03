@@ -34,7 +34,7 @@ class EntryVC: UIViewController {
 		super.viewWillAppear(animated)
 		Auth.auth().addStateDidChangeListener { (auth, user) in
 			if user != nil {
-//				self.pushMainVC()
+				self.pushMainVC()
 			}
 		}
 	}
@@ -92,7 +92,7 @@ extension EntryVC {
 		//Navigation Bar scould be invisible
 		guard let navigationController = navigationController else { return }
 		navigationController.navigationBar.barTintColor		= .white
-		navigationController.navigationBar.isTranslucent	= false
+		navigationController.navigationBar.isTranslucent	= true
 		navigationController.navigationBar.shadowImage		= UIImage()
 		navigationController.navigationBar.setBackgroundImage(UIImage(), for: .default)
 		

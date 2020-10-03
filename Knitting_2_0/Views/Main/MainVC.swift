@@ -105,6 +105,9 @@ extension MainVC {
 					snapShot.appendItems(self.sections[0].projects)
 					self.dataSourse?.apply(snapShot, animatingDifferences: true)
 					self.collectionView.reloadData()
+//					UIView.animate(withDuration: 2) {
+//						 self.dataSource.apply(snapshot, animatingDifferences: true)
+//				   }
 				}
 			}
 			self.collectionView.reloadData()

@@ -27,7 +27,7 @@ struct MProject : Hashable, Comparable {
     }
     
     init(snapshot: DataSnapshot) {
-        let snapshotValue		= snapshot.value				as! [String: AnyObject]
+        let snapshotValue		= snapshot.value				as! [String	: AnyObject]
         image					= snapshotValue["image"]		as! String
         name					= snapshotValue["name"]			as! String
         userID					= snapshotValue["userID"]		as! String

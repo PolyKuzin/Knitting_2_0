@@ -24,6 +24,7 @@ class SectionHeader: UICollectionReusableView {
 	var profileImage		: UIImageView = {
 		let imageView		= UIImageView()
 		imageView.isUserInteractionEnabled = true
+		imageView.layer.cornerRadius = 20
 		
 		return imageView
 	}()

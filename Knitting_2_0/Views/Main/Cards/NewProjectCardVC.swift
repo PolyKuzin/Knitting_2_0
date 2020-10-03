@@ -67,9 +67,20 @@ class NewProjectVC					: UIViewController, CardViewControllerProtocol, UINavigat
 			let projectUniqueID = Int(Date().timeIntervalSince1970)
 			guard let imageData = image?.toString() else { return }
 			guard let name		= projectName.text	else { return }
+			
 			let project = MProject(userID: user.uid, name: name, image: imageData, date: "\(projectUniqueID)")
 			let referenceForProject = self.ref.child("projects").child("\(projectUniqueID)")
 			referenceForProject.setValue(project.projectToDictionary())
+			
+			let faceCounter = MCounter(name: "knitting-f824f", rows: 0, rowsMax: -1, date: "000000000")
+			let referenceForCounter = self.ref.child("projects").child("\(projectUniqueID)").child("counters").child("knitting-f824f")
+			referenceForCounter.setValue(faceCounter.counterToDictionary())
+			
+			if addCounter {
+				let counter = MCounter(name: name, rows: 0, rowsMax: -1, date: "999999999")
+				let referenceForCounter = self.ref.child("projects").child("\(projectUniqueID)").child("counters").child("\(name)")
+				referenceForCounter.setValue(counter.counterToDictionary())
+			}
 			NotificationCenter.default.post(name: Notification.Name(rawValue: "disconnectNewProjectVC"), object: nil)
 		}
 	}

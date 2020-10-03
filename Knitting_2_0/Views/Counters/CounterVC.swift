@@ -74,12 +74,13 @@ class CountersVC	: UIViewController {
 extension CountersVC {
 	
 	func setupSections() {
-//		let currentUser		= Auth.auth().currentUser
-//		let user 			= MUser(user: currentUser!)
+		let currentUser		= Auth.auth().currentUser
+		let user 			= MUser(user: currentUser!)
 		guard let reference		= currentProject.ref?.child("counters") else { return }
+		print(reference)
 		self.sections.append(MCounterSection(type: "counters", title: "\(currentProject.name)", image: UIImageView(image: currentProject.image.toImage()!), buttom: UIButton(), counters: []))
 		reference.observe(.value) { (snapshot) in
-//			self.sections[0].counters.removeAll()
+			self.sections[0].counters.removeAll()
 			for item in snapshot.children {
 				let counter = MCounter(snapshot: item as! DataSnapshot)
 				if !self.sections[0].counters.contains(counter) {
@@ -167,8 +168,17 @@ extension CountersVC {
 				let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CounterCell.reuseId, for: indexPath) as! CounterCell
 				cell.delegate = self
 				cell.configurу(with: counter)
+
+				cell.plusButton.tag = indexPath.row
+				cell.minusButton.tag = indexPath.row
+				cell.plusButton.addTarget(self, action: #selector(self.plusBtnTaped(_:)), for: .touchUpInside)
+				cell.minusButton.addTarget(self, action: #selector(self.minusBtnTaped(_:)), for: .touchUpInside)
+				cell.plusButton.isUserInteractionEnabled = true
+				cell.minusButton.isUserInteractionEnabled = true
+				cell.isSelected = false
+				
 				if project.name == "knitting-f824f" {
-					cell.isHidden = true
+//					cell.isHidden = true
 				} else {
 					cell.isHidden = false
 				}
@@ -192,9 +202,39 @@ extension CountersVC {
 		}
 	}
 	
+	@objc func plusBtnTaped (_ sender: UIButton) {
+		let tag = sender.tag
+		let indexPath = IndexPath(row: tag, section: 0)
+		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CounterCell.reuseId, for: indexPath) as! CounterCell
+		let currentCounter = sections[0].counters[indexPath.row]
+		cell.currentRows.text = String(currentCounter.rows + 1)
+		currentCounter.ref?.updateChildValues(["rows": Int(cell.currentRows.text!)!])
+//		if Int(cell.currentRows.text!)! == currentCounter.rowsMax && currentCounter.congratulations == false {
+//			congatulatuionsIn()
+//			currentCounter.ref?.updateChildValues(["congratulations" : true])
+//		}
+		collectionView.reloadData()
+	}
+	@objc func minusBtnTaped(_ sender: UIButton){
+		let tag = sender.tag
+		let indexPath = IndexPath(row: tag, section: 0)
+		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CounterCell.reuseId, for: indexPath) as! CounterCell
+		let currentCounter = sections[0].counters[indexPath.row]
+		cell.currentRows.text = String(currentCounter.rows - 1)
+		currentCounter.ref?.updateChildValues(["rows": Int(cell.currentRows.text!)!])
+		if currentCounter.rows <= 0 {
+			currentCounter.ref?.updateChildValues(["rows": 0])
+		}
+		
+		var snapShot = NSDiffableDataSourceSnapshot<MCounterSection, MCounter>()
+		snapShot.reloadSections(sections)
+		self.dataSourse?.apply(snapShot, animatingDifferences: true)
+		self.collectionView.reloadData()
+	}
+	
 	func reloadData() {
 		if self.sections[0].counters.isEmpty {
-			let counter = MCounter(userID: "123", projectID: "123", name: "DO NOT DO ANYTHING!", rows: 123, rowsMax: 123, date: "123")
+			let counter = MCounter(name: "knitting-f824f", rows: 123, rowsMax: 123, date: "123")
 			self.sections[0].counters.append(counter)
 		}
 		var snapShot = NSDiffableDataSourceSnapshot<MCounterSection, MCounter>()

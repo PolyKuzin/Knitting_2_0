@@ -39,6 +39,8 @@ class ProjectCell: SwipeableCollectionViewCell {
 		projectImage.image 						= project.image.toImage()
 		projectName.text						= project.name
 		
+		visibleContainerView.roundCorners([.topLeft, .bottomLeft], radius: 20)
+		hiddenContainerView.roundCorners([.topRight, .bottomRight], radius: 20)
 		layer.cornerRadius						= 20
 		layer.borderWidth						= 0.0
 		layer.shadowColor						= UIColor(red: 0, green: 0, blue: 0, alpha: 0.12).cgColor
