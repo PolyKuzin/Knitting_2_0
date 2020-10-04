@@ -68,20 +68,31 @@ class CountersVC	: UIViewController, UICollectionViewDelegate, UICollectionViewD
 		let layout = UICollectionViewFlowLayout()
 		layout.scrollDirection = .vertical
 		layout.itemSize = CGSize(width: UIScreen.main.bounds.width - 40, height: UIScreen.main.bounds.height / 6)
+		layout.headerReferenceSize = CGSize(width: UIScreen.main.bounds.width, height: 200)
 		let cv = UICollectionView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), collectionViewLayout: layout)
-		cv.backgroundColor = .lightGray
+		cv.backgroundColor = .white
 		cv.alwaysBounceVertical = true
 		cv.register(CounterCell.self, forCellWithReuseIdentifier: CounterCell.reuseId)
-			return cv
+		cv.register(SectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeader.reusedId)
+		return cv
 		}()
 
-		func setupCollectionConstraints() {
-			collectionView.translatesAutoresizingMaskIntoConstraints = false
-			collectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-			collectionView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-			collectionView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-			collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-		}
+	func setupCollectionConstraints() {
+		collectionView.translatesAutoresizingMaskIntoConstraints = false
+		collectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+		collectionView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+		collectionView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+		collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+	}
+	
+	func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+		let reusableview = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeader.reusedId, for: indexPath) as! SectionHeader
+
+		reusableview.frame = CGRect(x: 0 , y: 0, width: self.view.frame.width, height: 200)
+		reusableview.profileImage.image = currentProject.image.toImage()
+		reusableview.title.text			= currentProject.name
+		return reusableview
+	}
 	
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		return counters.count
@@ -102,7 +113,7 @@ class CountersVC	: UIViewController, UICollectionViewDelegate, UICollectionViewD
 		cell.isSelected = false
 		
 		if counter.name == "knitting-f824f" {
-//					cell.isHidden = true
+					cell.isHidden = true
 		} else {
 			cell.isHidden = false
 		}
