@@ -78,8 +78,8 @@ extension CountersVC {
 		let user 			= MUser(user: currentUser!)
 		guard let reference		= currentProject.ref?.child("counters") else { return }
 		print(reference)
-		self.sections.append(MCounterSection(type: "counters", title: "\(currentProject.name)", image: UIImageView(image: currentProject.image.toImage()!), buttom: UIButton(), counters: []))
 		reference.observe(.value) { (snapshot) in
+			self.sections.append(MCounterSection(type: "counters", title: "\(self.currentProject.name)", image: UIImageView(image: self.currentProject.image.toImage()!), buttom: UIButton(), counters: []))
 			self.sections[0].counters.removeAll()
 			for item in snapshot.children {
 				let counter = MCounter(snapshot: item as! DataSnapshot)
@@ -215,24 +215,29 @@ extension CountersVC {
 //		}
 		collectionView.reloadData()
 	}
-	@objc func minusBtnTaped(_ sender: UIButton){
+	@objc
+	func minusBtnTaped(_ sender: UIButton){
 		let tag = sender.tag
 		let indexPath = IndexPath(row: tag, section: 0)
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CounterCell.reuseId, for: indexPath) as! CounterCell
 		let currentCounter = sections[0].counters[indexPath.row]
 		cell.currentRows.text = String(currentCounter.rows - 1)
+		
+		var snapShot = NSDiffableDataSourceSnapshot<MCounterSection, MCounter>()
+		snapShot.deleteSections(sections)
+//		sections[0].counters.remove(at: indexPath.row)
+		self.dataSourse?.apply(snapShot, animatingDifferences: true)
+		
 		currentCounter.ref?.updateChildValues(["rows": Int(cell.currentRows.text!)!])
 		if currentCounter.rows <= 0 {
 			currentCounter.ref?.updateChildValues(["rows": 0])
 		}
-		
-		var snapShot = NSDiffableDataSourceSnapshot<MCounterSection, MCounter>()
-		snapShot.reloadSections(sections)
-		self.dataSourse?.apply(snapShot, animatingDifferences: true)
-		self.collectionView.reloadData()
 	}
 	
 	func reloadData() {
+		if sections.isEmpty {
+			self.sections.append(MCounterSection(type: "counters", title: "\(self.currentProject.name)", image: UIImageView(image: self.currentProject.image.toImage()!), buttom: UIButton(), counters: []))
+		}
 		if self.sections[0].counters.isEmpty {
 			let counter = MCounter(name: "knitting-f824f", rows: 123, rowsMax: 123, date: "123")
 			self.sections[0].counters.append(counter)

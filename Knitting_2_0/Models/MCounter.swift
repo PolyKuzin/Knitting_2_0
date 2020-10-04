@@ -9,7 +9,7 @@
 import Foundation
 import FirebaseDatabase
 
-struct MCounter : Hashable, Comparable {
+struct MCounter 				: Hashable, Comparable {
     
     let ref						: DatabaseReference?
 	
