@@ -346,9 +346,11 @@ extension MainVC: SwipeableCollectionViewCellDelegate {
 		
 		let vc = CountersVC()
 		vc.currentProject = project
+		vc.modalPresentationStyle = .fullScreen
 		
-		guard let navigationController = navigationController else { return }
-		navigationController.pushViewController(vc, animated: true)
+		presentDetail(vc)
+//		guard let navigationController = navigationController else { return }
+//		navigationController.pushViewController(vc, animated: true)
 		collectionView.deselectItem(at: indexPath, animated: true)
 	}
 }
