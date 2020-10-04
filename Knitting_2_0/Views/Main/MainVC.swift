@@ -100,11 +100,14 @@ extension MainVC {
 						return
 								($0.date) > ($1.date)
 					})
-					var snapShot = NSDiffableDataSourceSnapshot<MSection, MProject>()
-					snapShot.appendSections(self.sections)
-					snapShot.appendItems(self.sections[0].projects)
-					self.dataSourse?.apply(snapShot, animatingDifferences: true)
-					self.collectionView.reloadData()
+					if self.reloadMainVc {
+						var snapShot = NSDiffableDataSourceSnapshot<MSection, MProject>()
+						snapShot.appendSections(self.sections)
+						snapShot.appendItems(self.sections[0].projects)
+						self.dataSourse?.apply(snapShot, animatingDifferences: true)
+						self.collectionView.reloadData()
+					}
+					
 //					UIView.animate(withDuration: 2) {
 //						 self.dataSource.apply(snapshot, animatingDifferences: true)
 //				   }
@@ -348,9 +351,9 @@ extension MainVC: SwipeableCollectionViewCellDelegate {
 		vc.currentProject = project
 		vc.modalPresentationStyle = .fullScreen
 		
-		presentDetail(vc)
-//		guard let navigationController = navigationController else { return }
-//		navigationController.pushViewController(vc, animated: true)
+		self.reloadMainVc = false
+		guard let navigationController = navigationController else { return }
+		navigationController.pushViewController(vc, animated: true)
 		collectionView.deselectItem(at: indexPath, animated: true)
 	}
 }

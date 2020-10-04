@@ -21,13 +21,11 @@ class CountersVC	: UIViewController, UICollectionViewDelegate, UICollectionViewD
 	//MARK:VARIABLES: Supporting Stuff
 	
 	let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-//	private var collectionView				: UICollectionView!
 	private var counters					: [MCounter] = []
 	private var dataSourse					: UICollectionViewDiffableDataSource<MCounterSection, MCounter>?
 	
 	//MARK:VARIABLES: UI Elements
 
-	//Animations stuff
 	open var runningAnimations 				= [UIViewPropertyAnimator]()
 	open var cardViewController      		: CardViewControllerProtocol!
 	open var visualEffectView				: UIVisualEffectView!
