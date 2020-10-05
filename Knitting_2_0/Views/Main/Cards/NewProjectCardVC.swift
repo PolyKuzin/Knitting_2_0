@@ -45,7 +45,7 @@ class NewProjectVC					: UIViewController, CardViewControllerProtocol, UINavigat
 			self.projectImage.addGestureRecognizer(singleTap)
 			
 			globalCounterSwitch.addTarget(self, action: #selector(didChangeGlobalCounterSwitch), for: .valueChanged)
-			createButton.addTarget(self, action: #selector(saveProject), for: .touchUpInside)
+			createButton.addTarget(self, action: #selector(saveCounter), for: .touchUpInside)
 		}
 	}
 	
@@ -55,7 +55,7 @@ class NewProjectVC					: UIViewController, CardViewControllerProtocol, UINavigat
 	}
 	
 	@objc
-	func saveProject() {
+	func saveCounter() {
 		let error = validateFields()
 		if error != nil {  setErrorDesign(error!) } else {
 			var image: UIImage?

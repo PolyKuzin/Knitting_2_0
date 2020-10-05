@@ -18,6 +18,9 @@ enum CardState {
 
 let newprojectNotificationKey				= "ru.polykuzin.newproject"
 let profileImageInSectionNotificationKey	= "ru.polykuzin.profileImage"
+let createCounterInSectionNotificationKey	= "ru.polykuzin.createCounter"
+//let profileImageInSectionNotificationKey	= "ru.polykuzin.profileImage"
+
 
 class MainVC	: UIViewController {
 	
@@ -59,13 +62,13 @@ class MainVC	: UIViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(true)
 		setupNormalNavBar()
+		reloadMainVc = true
 	}
 
     override func viewDidLoad() {
         super.viewDidLoad()
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(hideViewWithDeinit), name: Notification.Name(rawValue: "disconnectNewProjectVC"), object: nil)
-		view.backgroundColor = .white
 		viewModel = MainVM()
 		setupVisualEffect	()
 		setupSections		()
@@ -315,7 +318,7 @@ extension MainVC {
 	@objc
 	func hideViewWithDeinit() {
 		let seconds = 0.3
-		animateTransitionIfNeeded(state: nextState, duration: 0.3)
+			self.animateTransitionIfNeeded(state: nextState, duration: 0.3)
 		DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
 			NotificationCenter.default.removeObserver(self, name: self.profileImageTaped, object: nil)
 			NotificationCenter.default.removeObserver(self, name: self.newprojectViewTaped, object: nil)

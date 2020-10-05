@@ -12,7 +12,7 @@ import UIKit
 extension CountersVC {
 
 	func animateTransitionIfNeeded (state:CardState, duration:TimeInterval) {
-		if runningAnimations.isEmpty {
+		if runningAnimations.isEmpty && self.cardViewController != nil {
 			let frameAnimator = UIViewPropertyAnimator(duration: duration, dampingRatio: 1) {
 				switch state {
 				case .expanded	:
@@ -35,7 +35,6 @@ extension CountersVC {
 					self.cardViewController.view.layer.cornerRadius = 0
 				}
 			}
-			
 		
 			let blurAnimator = UIViewPropertyAnimator(duration: duration, dampingRatio: 1) {
 				switch state {
@@ -81,7 +80,7 @@ extension CountersVC {
 		}
 		let seconds = 0.3
 		DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
-			NotificationCenter.default.removeObserver(self, name: self.profileImageTaped, object: nil)
+			NotificationCenter.default.removeObserver(self, name: self.creeateCounterTaped, object: nil)
 			NotificationCenter.default.removeObserver(self, name: self.newprojectViewTaped, object: nil)
 			self.teardownCardView()
 		}

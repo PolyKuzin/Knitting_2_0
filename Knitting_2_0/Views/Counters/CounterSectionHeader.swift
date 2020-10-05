@@ -31,7 +31,10 @@ class SectionHeader: UICollectionReusableView {
 	
 	var createCounter		: UIButton = {
 		let button			= UIButton()
-		
+		button.frame = CGRect(x: 0, y: 0, width: 155, height: 40)
+		button.setTitle("Create counter", for: .normal)
+		button.setTitleColor(UIColor(red: 0.682, green: 0.682, blue: 0.698, alpha: 1), for: .normal)
+		button.titleLabel?.font = UIFont(name: "SFProText-Medium", size: 17)
 		
 		return button
 	}()
@@ -64,8 +67,14 @@ extension SectionHeader {
 		title.translatesAutoresizingMaskIntoConstraints											= false
 		title.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 8).isActive	= true
 		title.centerXAnchor.constraint(equalTo: centerXAnchor).isActive							= true
-//		title.trailingAnchor.constraint(equalTo: trailingAnchor).isActive						= true
 		title.heightAnchor.constraint(equalToConstant: 35).isActive								= true
+		
+		addSubview(createCounter)
+		createCounter.translatesAutoresizingMaskIntoConstraints									= false
+		createCounter.centerXAnchor.constraint(equalTo: centerXAnchor).isActive					= true
+		createCounter.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 5).isActive	= true
+		createCounter.heightAnchor.constraint(equalToConstant: 20).isActive						= true
+		createCounter.trailingAnchor.constraint(equalTo: trailingAnchor,constant: -16).isActive = true
 	}
 }
 

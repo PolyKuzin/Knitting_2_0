@@ -39,6 +39,8 @@ class ProjectCell: SwipeableCollectionViewCell {
 		projectImage.image 						= project.image.toImage()
 		projectName.text						= project.name
 		
+		projectName.font						= Fonts.displaySemibold22
+		
 		visibleContainerView.roundCorners([.topLeft, .bottomLeft], radius: 20)
 		hiddenContainerView.roundCorners([.topRight, .bottomRight], radius: 20)
 		layer.cornerRadius						= 20

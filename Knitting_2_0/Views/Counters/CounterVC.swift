@@ -15,7 +15,7 @@ class CountersVC	: UIViewController, UICollectionViewDelegate, UICollectionViewD
 	
 	var currentProject						: MProject!
 	
-	let profileImageTaped					= Notification.Name(rawValue: profileImageInSectionNotificationKey)
+	let creeateCounterTaped					= Notification.Name(rawValue: createCounterInSectionNotificationKey)
 	let newprojectViewTaped					= Notification.Name(rawValue: newprojectNotificationKey)
 	
 	//MARK:VARIABLES: Supporting Stuff
@@ -32,7 +32,6 @@ class CountersVC	: UIViewController, UICollectionViewDelegate, UICollectionViewD
 	open var animationProgressWhenStopped	: CGFloat!
 	open var cardHeight						: CGFloat!
 	
-	private var reloadMainVc				: Bool = false
 	open var cardVisible					: Bool = false
 	open var nextState						: CardState {
 		return cardVisible 	? 	.collapsed	: .expanded
@@ -41,57 +40,57 @@ class CountersVC	: UIViewController, UICollectionViewDelegate, UICollectionViewD
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(true)
 		setupNormalNavBar()
-		
-
+	}
+	
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewWillAppear(true)
+		collectionView.reloadData()
 	}
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		NotificationCenter.default.addObserver(self, selector: #selector(hideViewWithDeinit), name: Notification.Name(rawValue: "disconnectNewProjectVC"), object: nil)
-		view.backgroundColor = .white
 		setupVisualEffect	()
 		setupSections		()
 
-		view.addSubview(collectionView)
-		collectionView.delegate = self
-		collectionView.dataSource = self
-		collectionView.register(UICollectionViewCell.self,
-		forCellWithReuseIdentifier: "cell")
+		collectionView.delegate		= self
+		collectionView.dataSource	= self
 		setupCollectionConstraints()
 		
 		self.view.sendSubviewToBack(self.collectionView)
 		self.view.sendSubviewToBack(self.visualEffectView)
-		self.reloadMainVc = true
+	}
+	
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(true)
+		self.dismiss(animated: true, completion: nil)
 	}
 	
 	let collectionView: UICollectionView = {
-		let layout = UICollectionViewFlowLayout()
-		layout.scrollDirection = .vertical
-		layout.itemSize = CGSize(width: UIScreen.main.bounds.width - 40, height: UIScreen.main.bounds.height / 6)
-		layout.headerReferenceSize = CGSize(width: UIScreen.main.bounds.width, height: 200)
+		let layout					= UICollectionViewFlowLayout()
+		layout.scrollDirection		= .vertical
+		layout.itemSize				= CGSize(width: UIScreen.main.bounds.width - 40,	height: UIScreen.main.bounds.height / 6)
+		layout.headerReferenceSize	= CGSize(width: UIScreen.main.bounds.width, 		height: 200)
+		
 		let cv = UICollectionView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), collectionViewLayout: layout)
 		cv.backgroundColor = .white
 		cv.alwaysBounceVertical = true
-		cv.register(CounterCell.self, forCellWithReuseIdentifier: CounterCell.reuseId)
+		cv.register(CounterCell.self, 	forCellWithReuseIdentifier: CounterCell.reuseId)
 		cv.register(SectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeader.reusedId)
+		
 		return cv
 		}()
-
-	func setupCollectionConstraints() {
-		collectionView.translatesAutoresizingMaskIntoConstraints = false
-		collectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-		collectionView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-		collectionView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-		collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-	}
 	
 	func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-		let reusableview = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeader.reusedId, for: indexPath) as! SectionHeader
+		let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeader.reusedId, for: indexPath) as! SectionHeader
 
-		reusableview.frame = CGRect(x: 0 , y: 0, width: self.view.frame.width, height: 200)
-		reusableview.profileImage.image = currentProject.image.toImage()
-		reusableview.title.text			= currentProject.name
-		return reusableview
+		header.frame = CGRect(x: 0 , y: 0, width: self.view.frame.width, height: 200)
+		header.profileImage.image = currentProject.image.toImage()
+		header.title.text			= currentProject.name
+		header.isUserInteractionEnabled = true
+		let tap = UITapGestureRecognizer(target: self, action: #selector(CountersVC.handleCardTap(recognizer:)))
+		header.createCounter.addGestureRecognizer(tap)
+		return header
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -99,21 +98,21 @@ class CountersVC	: UIViewController, UICollectionViewDelegate, UICollectionViewD
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		let counter = counters[indexPath.row]
-		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CounterCell.reuseId, for: indexPath) as! CounterCell
-		cell.delegate = self
+		let counter 	= counters[indexPath.row]
+		let cell		= collectionView.dequeueReusableCell(withReuseIdentifier: CounterCell.reuseId, for: indexPath) as! CounterCell
+		
 		cell.configurу(with: counter)
-
-		cell.plusButton.tag = indexPath.row
+		cell.plusButton	.tag = indexPath.row
 		cell.minusButton.tag = indexPath.row
-		cell.plusButton.addTarget(self, action: #selector(self.plusBtnTaped(_:)), for: .touchUpInside)
+		cell.plusButton	.addTarget(self, action: #selector(self.plusBtnTaped(_:)),	for: .touchUpInside)
 		cell.minusButton.addTarget(self, action: #selector(self.minusBtnTaped(_:)), for: .touchUpInside)
-		cell.plusButton.isUserInteractionEnabled = true
+		cell.plusButton	.isUserInteractionEnabled = true
 		cell.minusButton.isUserInteractionEnabled = true
+		cell.delegate 	= self
 		cell.isSelected = false
 		
 		if counter.name == "knitting-f824f" {
-					cell.isHidden = true
+			cell.isHidden = true
 		} else {
 			cell.isHidden = false
 		}
@@ -127,8 +126,6 @@ class CountersVC	: UIViewController, UICollectionViewDelegate, UICollectionViewD
 
 //MARK: CollectionView Creating
 extension CountersVC {
-	
-	
 	
 	func setupSections() {
 		guard let reference		= currentProject.ref?.child("counters") else { return }
@@ -145,7 +142,6 @@ extension CountersVC {
 					self.collectionView.reloadData()
 				}
 			}
-			self.collectionView.reloadData()
 		}
 	}
 }
@@ -155,14 +151,16 @@ extension CountersVC {
 	
 	@objc
 	func updateCardViewControllerWithProfileVC(notification: NSNotification) {
-		cardHeight = 320
-		setupCardViewController(ProfileCardVC())
+		cardHeight = 350
+		let vc = NewCounterVC()
+		vc.currentProject = currentProject
+		setupCardViewController(vc)
 	}
 	
 	@objc
 	func updateCardViewControllerWithNewProjectVC(notification: NSNotification) {
 		cardHeight = 500
-		setupCardViewController(NewProjectVC())
+		setupCardViewController(NewCounterVC())
 	}
 	
 	func setupVisualEffect() {
@@ -170,7 +168,7 @@ extension CountersVC {
 		visualEffectView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
 		self.view.addSubview(visualEffectView)
 		self.view.sendSubviewToBack(visualEffectView)
-		let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MainVC.visualEffectTaped(recognzier:)))
+		let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(CountersVC.visualEffectTaped(recognzier:)))
 		tapGestureRecognizer.numberOfTapsRequired = 1
 		visualEffectView.addGestureRecognizer(tapGestureRecognizer)
 	}
@@ -181,7 +179,7 @@ extension CountersVC {
 		self.view.insertSubview(cardViewController.view, at: 3)
 		cardViewController.view.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.bounds.width, height: cardHeight)
 		cardViewController.view.clipsToBounds = true
-		let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(MainVC.handleCardPan(recognizer:)))
+		let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(CountersVC.handleCardPan(recognizer:)))
 		cardViewController.handle.addGestureRecognizer	(panGestureRecognizer)
 	}
 }
@@ -221,7 +219,7 @@ extension CountersVC {
 	
 	@objc
 	func newProjectTaped	(recognizer: UITapGestureRecognizer) {
-		NotificationCenter.default.addObserver(self, selector: #selector(MainVC.updateCardViewControllerWithNewProjectVC(notification:)), name: newprojectViewTaped, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(CountersVC.updateCardViewControllerWithNewProjectVC(notification:)), name: newprojectViewTaped, object: nil)
 		let name = Notification.Name(rawValue: newprojectNotificationKey)
 		NotificationCenter.default.post(name: name, object: nil)
 		switch recognizer.state {
@@ -235,8 +233,8 @@ extension CountersVC {
 	@objc
 	func handleCardTap		(recognizer: UITapGestureRecognizer) {
 		
-		NotificationCenter.default.addObserver(self, selector: #selector(MainVC.updateCardViewControllerWithProfileVC(notification:)), name: profileImageTaped, object: nil)
-		let name = Notification.Name(rawValue: profileImageInSectionNotificationKey)
+		NotificationCenter.default.addObserver(self, selector: #selector(CountersVC.updateCardViewControllerWithProfileVC(notification:)), name: creeateCounterTaped, object: nil)
+		let name = Notification.Name(rawValue: createCounterInSectionNotificationKey)
 		NotificationCenter.default.post(name: name, object: nil)
 		switch recognizer.state {
 		case .ended		:
@@ -268,7 +266,7 @@ extension CountersVC {
 		let seconds = 0.3
 		animateTransitionIfNeeded(state: nextState, duration: 0.3)
 		DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
-			NotificationCenter.default.removeObserver(self, name: self.profileImageTaped, object: nil)
+			NotificationCenter.default.removeObserver(self, name: self.creeateCounterTaped, object: nil)
 			NotificationCenter.default.removeObserver(self, name: self.newprojectViewTaped, object: nil)
 			self.teardownCardView()
 		}
@@ -301,7 +299,9 @@ extension CountersVC {
 		navigationController.navigationBar.backIndicatorImage														= backIcon
 		navigationController.navigationBar.backIndicatorTransitionMaskImage											= backIcon
 		navigationController.navigationBar.topItem?.title 															= ""
-		navigationController.navigationBar.tintColor 																= Colors.backIcon		
+		navigationController.navigationBar.tintColor 																= Colors.backIcon
+		navigationController.view.backgroundColor			= .white
+		navigationController.navigationBar.isTranslucent	= false
 	}
 	
 	func setUpClearNavBar() {
@@ -313,15 +313,14 @@ extension CountersVC {
 		navigationController.navigationBar.setBackgroundImage(UIImage(), for: .default)
 	}
 	
-	func setUpLayout() {
-		//Projects collection View Layout
+	func setupCollectionConstraints() {
 		view.addSubview(collectionView)
 		view.insertSubview(collectionView, at: 0)
-		collectionView.translatesAutoresizingMaskIntoConstraints										= false
-		collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive 				= true
-		collectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive 							= true
-		collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive 					= true
-		collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive					= true
+		collectionView.translatesAutoresizingMaskIntoConstraints = false
+		collectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+		collectionView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+		collectionView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+		collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
 	}
 	
 	func teardownCardView() {

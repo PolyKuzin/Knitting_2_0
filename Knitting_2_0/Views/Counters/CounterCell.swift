@@ -69,6 +69,9 @@ class CounterCell: SwipeableCollectionViewCell {
 		counterName.text = counter.name
 		currentRows.text = String(counter.rows)
 		
+		visibleContainerView.roundCorners([.topLeft, .bottomLeft], radius: 20)
+		hiddenContainerView.roundCorners([.topRight, .bottomRight], radius: 20)
+		
 		layer.cornerRadius						= 20
 		layer.borderWidth						= 0.0
 		layer.shadowColor						= UIColor(red: 0, green: 0, blue: 0, alpha: 0.12).cgColor
@@ -89,24 +92,31 @@ extension CounterCell	{
 	func setupLayout()	{
 		sendSubviewToBack(visibleContainerView)
 
-		addSubview(counterName)
+		visibleContainerView.addSubview(counterName)
 		counterName.translatesAutoresizingMaskIntoConstraints = false
-		counterName.topAnchor.constraint(equalTo: topAnchor, constant: 12).isActive = true
-		counterName.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+		counterName.topAnchor.constraint(equalTo: visibleContainerView.topAnchor, constant: 12).isActive = true
+		counterName.centerXAnchor.constraint(equalTo: visibleContainerView.centerXAnchor).isActive = true
 		
-		addSubview(currentRows)
+		visibleContainerView.addSubview(currentRows)
 		currentRows.translatesAutoresizingMaskIntoConstraints = false
-		currentRows.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-		currentRows.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+		currentRows.centerXAnchor.constraint(equalTo: visibleContainerView.centerXAnchor).isActive = true
+		currentRows.centerYAnchor.constraint(equalTo: visibleContainerView.centerYAnchor).isActive = true
 		
-		addSubview(plusButton)
+		visibleContainerView.addSubview(plusButton)
 		plusButton.translatesAutoresizingMaskIntoConstraints = false
-		plusButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -50).isActive = true
-		plusButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+		plusButton.trailingAnchor.constraint(equalTo: visibleContainerView.trailingAnchor, constant: -50).isActive = true
+		plusButton.centerYAnchor.constraint(equalTo: visibleContainerView.centerYAnchor).isActive = true
 		
-		addSubview(minusButton)
+		visibleContainerView.addSubview(minusButton)
 		minusButton.translatesAutoresizingMaskIntoConstraints = false
-		minusButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 50).isActive = true
-		minusButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+		minusButton.leadingAnchor.constraint(equalTo: visibleContainerView.leadingAnchor, constant: 50).isActive = true
+		minusButton.centerYAnchor.constraint(equalTo: visibleContainerView.centerYAnchor).isActive = true
+		
+		hiddenContainerView.addSubview(deleteImageView)
+		deleteImageView.translatesAutoresizingMaskIntoConstraints 													= false
+		deleteImageView.centerXAnchor.constraint(equalTo: hiddenContainerView.centerXAnchor).isActive 				= true
+		deleteImageView.centerYAnchor.constraint(equalTo: hiddenContainerView.centerYAnchor).isActive 				= true
+		deleteImageView.widthAnchor.constraint(equalToConstant: 25).isActive 										= true
+		deleteImageView.heightAnchor.constraint(equalToConstant: 30).isActive 										= true
 	}
 }

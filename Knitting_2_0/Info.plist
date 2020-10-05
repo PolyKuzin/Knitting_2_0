@@ -26,6 +26,7 @@
 	<string>If you want to add a picture to a project from your library, please give us permission)</string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>SF-Pro-Text-Medium.otf</string>
 		<string>SF-Pro-Display-Medium.otf</string>
 		<string>SF-Pro-Text-Semibold.otf</string>
 		<string>SF-Pro-Text-Regular.otf</string>
