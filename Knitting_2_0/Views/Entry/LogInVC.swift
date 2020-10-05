@@ -153,9 +153,9 @@ extension LogInVC: UITextFieldDelegate {
         
         if notification.name == UIResponder.keyboardWillShowNotification ||
            notification.name == UIResponder.keyboardWillChangeFrameNotification {
-			view.frame.origin.y = -keyboardRect.height + 110
+//			view.frame.origin.y == emailTextField.frame.origin.y
         } else {
-			view.frame.origin.y += keyboardRect.height - keyboardBlackArea
+//			view.frame.origin.y == UIScreen.main.bounds.height
         }
     }
 		

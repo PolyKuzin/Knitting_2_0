@@ -11,12 +11,12 @@ import FirebaseAuth
 import FirebaseDatabase
 import FirebaseFirestore
 
-class CountersVC	: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class CountersVC	: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIGestureRecognizerDelegate {
 	
 	var currentProject						: MProject!
 	
 	let creeateCounterTaped					= Notification.Name(rawValue: createCounterInSectionNotificationKey)
-	let newprojectViewTaped					= Notification.Name(rawValue: newprojectNotificationKey)
+	let editCounterTaped					= Notification.Name(rawValue: editCounterNotificationKey)
 	
 	//MARK:VARIABLES: Supporting Stuff
 	
@@ -88,7 +88,7 @@ class CountersVC	: UIViewController, UICollectionViewDelegate, UICollectionViewD
 		header.profileImage.image = currentProject.image.toImage()
 		header.title.text			= currentProject.name
 		header.isUserInteractionEnabled = true
-		let tap = UITapGestureRecognizer(target: self, action: #selector(CountersVC.handleCardTap(recognizer:)))
+		let tap = UITapGestureRecognizer(target: self, action: #selector(CountersVC.creeateCounterTaped(recognizer:)))
 		header.createCounter.addGestureRecognizer(tap)
 		return header
 	}
@@ -111,6 +111,12 @@ class CountersVC	: UIViewController, UICollectionViewDelegate, UICollectionViewD
 		cell.delegate 	= self
 		cell.isSelected = false
 		
+		let lpgr = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(recognizer:)))
+		lpgr.minimumPressDuration = 1
+		lpgr.delaysTouchesBegan = true
+		lpgr.delegate = self
+		cell.visibleContainerView.addGestureRecognizer(lpgr)
+		
 		if counter.name == "knitting-f824f" {
 			cell.isHidden = true
 		} else {
@@ -122,6 +128,8 @@ class CountersVC	: UIViewController, UICollectionViewDelegate, UICollectionViewD
 	deinit {
 		NotificationCenter.default.removeObserver(self)
 	}
+	
+	let alert = UIAlertController(title: "Alert", message: "Message", preferredStyle: .alert)
 }
 
 //MARK: CollectionView Creating
@@ -151,7 +159,7 @@ extension CountersVC {
 	
 	@objc
 	func updateCardViewControllerWithProfileVC(notification: NSNotification) {
-		cardHeight = 350
+		cardHeight = 400
 		let vc = NewCounterVC()
 		vc.currentProject = currentProject
 		setupCardViewController(vc)
@@ -218,9 +226,9 @@ extension CountersVC {
 	}
 	
 	@objc
-	func newProjectTaped	(recognizer: UITapGestureRecognizer) {
-		NotificationCenter.default.addObserver(self, selector: #selector(CountersVC.updateCardViewControllerWithNewProjectVC(notification:)), name: newprojectViewTaped, object: nil)
-		let name = Notification.Name(rawValue: newprojectNotificationKey)
+	func handleLongPress	(recognizer: UILongPressGestureRecognizer) {
+		NotificationCenter.default.addObserver(self, selector: #selector(CountersVC.updateCardViewControllerWithNewProjectVC(notification:)), name: editCounterTaped, object: nil)
+		let name = Notification.Name(rawValue: editCounterNotificationKey)
 		NotificationCenter.default.post(name: name, object: nil)
 		switch recognizer.state {
 		case .ended		:
@@ -231,8 +239,7 @@ extension CountersVC {
 	}
 	
 	@objc
-	func handleCardTap		(recognizer: UITapGestureRecognizer) {
-		
+	func creeateCounterTaped(recognizer: UITapGestureRecognizer) {
 		NotificationCenter.default.addObserver(self, selector: #selector(CountersVC.updateCardViewControllerWithProfileVC(notification:)), name: creeateCounterTaped, object: nil)
 		let name = Notification.Name(rawValue: createCounterInSectionNotificationKey)
 		NotificationCenter.default.post(name: name, object: nil)
@@ -267,7 +274,7 @@ extension CountersVC {
 		animateTransitionIfNeeded(state: nextState, duration: 0.3)
 		DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
 			NotificationCenter.default.removeObserver(self, name: self.creeateCounterTaped, object: nil)
-			NotificationCenter.default.removeObserver(self, name: self.newprojectViewTaped, object: nil)
+			NotificationCenter.default.removeObserver(self, name: self.editCounterTaped, object: nil)
 			self.teardownCardView()
 		}
 	}

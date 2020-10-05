@@ -10,8 +10,8 @@ import UIKit
 
 class SwipeableCollectionViewCell: UICollectionViewCell {
     
+	let deleteContainerView		= UIView()
     let visibleContainerView	= UIView()
-    let hiddenContainerView		= UIView()
 	
     private let scrollView							: UIScrollView = {
         let scrollView								= UIScrollView(frame: .zero)
@@ -40,23 +40,22 @@ class SwipeableCollectionViewCell: UICollectionViewCell {
         stackView.axis			= .horizontal
         stackView.distribution 	= .fillEqually
         stackView.addArrangedSubview(visibleContainerView)
-        stackView.addArrangedSubview(hiddenContainerView)
+        stackView.addArrangedSubview(deleteContainerView)
         
         addSubview(scrollView)
         scrollView.pinEdgesToSuperView()
         scrollView.addSubview(stackView)
         stackView.pinEdgesToSuperView()
         stackView.heightAnchor.constraint(equalTo: scrollView.heightAnchor).isActive				= true
-        stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 2).isActive	= true
+		stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 2).isActive	= true
     }
     
     private func setupGestureRecognizer() {
         let hiddenContainerTapGestureRecognizer		= UITapGestureRecognizer(target: self, action: #selector(hiddenContainerViewTapped))
-        hiddenContainerView.addGestureRecognizer	(hiddenContainerTapGestureRecognizer)
+        deleteContainerView.addGestureRecognizer	(hiddenContainerTapGestureRecognizer)
         
         let visibleContainerTapGestureRecognizer	= UITapGestureRecognizer(target: self, action: #selector(visibleContainerViewTapped))
         visibleContainerView.addGestureRecognizer	(visibleContainerTapGestureRecognizer)
-        
     }
     
     @objc
@@ -72,7 +71,7 @@ class SwipeableCollectionViewCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         if scrollView.contentOffset.x > 0 {
-            scrollView.contentOffset.x = scrollView.frame.width
+            scrollView.contentOffset.x = scrollView.frame.width / 4
         }
     }
 }

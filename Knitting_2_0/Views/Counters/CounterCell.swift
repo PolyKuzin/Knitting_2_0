@@ -61,7 +61,7 @@ class CounterCell: SwipeableCollectionViewCell {
 		self.clipsToBounds						= true
 		
 		visibleContainerView.backgroundColor 	= Colors.whiteColor
-		hiddenContainerView.backgroundColor 	= Colors.hiddenContainerView
+		deleteContainerView.backgroundColor 	= Colors.hiddenContainerView
 	}
 	
 	func configurу(with counter: MCounter) {
@@ -70,7 +70,7 @@ class CounterCell: SwipeableCollectionViewCell {
 		currentRows.text = String(counter.rows)
 		
 		visibleContainerView.roundCorners([.topLeft, .bottomLeft], radius: 20)
-		hiddenContainerView.roundCorners([.topRight, .bottomRight], radius: 20)
+		deleteContainerView.roundCorners([.topRight, .bottomRight], radius: 20)
 		
 		layer.cornerRadius						= 20
 		layer.borderWidth						= 0.0
@@ -112,10 +112,10 @@ extension CounterCell	{
 		minusButton.leadingAnchor.constraint(equalTo: visibleContainerView.leadingAnchor, constant: 50).isActive = true
 		minusButton.centerYAnchor.constraint(equalTo: visibleContainerView.centerYAnchor).isActive = true
 		
-		hiddenContainerView.addSubview(deleteImageView)
+		deleteContainerView.addSubview(deleteImageView)
 		deleteImageView.translatesAutoresizingMaskIntoConstraints 													= false
-		deleteImageView.centerXAnchor.constraint(equalTo: hiddenContainerView.centerXAnchor).isActive 				= true
-		deleteImageView.centerYAnchor.constraint(equalTo: hiddenContainerView.centerYAnchor).isActive 				= true
+		deleteImageView.centerXAnchor.constraint(equalTo: deleteContainerView.centerXAnchor).isActive 				= true
+		deleteImageView.centerYAnchor.constraint(equalTo: deleteContainerView.centerYAnchor).isActive 				= true
 		deleteImageView.widthAnchor.constraint(equalToConstant: 25).isActive 										= true
 		deleteImageView.heightAnchor.constraint(equalToConstant: 30).isActive 										= true
 	}

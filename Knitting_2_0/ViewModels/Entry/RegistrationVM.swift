@@ -98,7 +98,7 @@ class RegistrationVM {
 		tF.leftViewMode 				= .always
 		
 		tF.autocorrectionType			= UITextAutocorrectionType.no
-		tF.keyboardType					= UIKeyboardType.default
+		tF.keyboardType					= UIKeyboardType.emailAddress
 		tF.returnKeyType 				= UIReturnKeyType.continue
 		tF.clearButtonMode 				= UITextField.ViewMode.whileEditing
 		tF.autocapitalizationType 		= .none
@@ -119,7 +119,7 @@ class RegistrationVM {
 		tF.leftViewMode 				= .always
 		
 		tF.autocorrectionType			= UITextAutocorrectionType.no
-		tF.keyboardType					= UIKeyboardType.emailAddress
+		tF.keyboardType					= UIKeyboardType.default
 		tF.returnKeyType 				= UIReturnKeyType.done
 		tF.clearButtonMode 				= UITextField.ViewMode.whileEditing
 		tF.isSecureTextEntry 			= true

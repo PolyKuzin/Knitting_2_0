@@ -19,7 +19,7 @@ enum CardState {
 let newprojectNotificationKey				= "ru.polykuzin.newproject"
 let profileImageInSectionNotificationKey	= "ru.polykuzin.profileImage"
 let createCounterInSectionNotificationKey	= "ru.polykuzin.createCounter"
-//let profileImageInSectionNotificationKey	= "ru.polykuzin.profileImage"
+let editCounterNotificationKey				= "ru.polykuzin.editCounter"
 
 
 class MainVC	: UIViewController {
@@ -286,7 +286,7 @@ extension MainVC {
 	@objc
     func handleCardTap		(recognizer: UITapGestureRecognizer) {
 		
-		NotificationCenter.default.addObserver(self, selector: #selector(MainVC.updateCardViewControllerWithProfileVC(notification:)), name: profileImageTaped, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(MainVC.updateCardViewControllerWithNewCounterVC(notification:)), name: profileImageTaped, object: nil)
 		let name = Notification.Name(rawValue: profileImageInSectionNotificationKey)
 		NotificationCenter.default.post(name: name, object: nil)
 		addView.accessibilityElementsHidden = true

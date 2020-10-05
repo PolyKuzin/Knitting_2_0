@@ -99,14 +99,14 @@ extension SignUpVC: UITextFieldDelegate {
     
     @objc
 	func keyboardWillChange(notification: Notification){
-        guard let userInfo = notification.userInfo else {return}
-              let keyboardRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+//        guard let userInfo = notification.userInfo else {return}
+//              let keyboardRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
         if notification.name == UIResponder.keyboardWillShowNotification ||
            notification.name == UIResponder.keyboardWillChangeFrameNotification {
-			view.frame.origin.y = -keyboardRect.height + 110
+//			view.frame.origin.y = -keyboardRect.height + 110
         } else {
-			view.frame.origin.y += keyboardRect.height - keyboardBlackArea
+//			view.frame.origin.y += keyboardRect.height - keyboardBlackArea
         }
     }
 	

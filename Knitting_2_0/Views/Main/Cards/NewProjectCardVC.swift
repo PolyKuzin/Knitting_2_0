@@ -49,6 +49,20 @@ class NewProjectVC					: UIViewController, CardViewControllerProtocol, UINavigat
 		}
 	}
 	
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		viewModel = NewProjectCardVM()
+		setupNewProjectView()
+		
+		guard let currentUser = Auth.auth().currentUser else { return }
+		user	= MUser(user: currentUser)
+		ref		= Database.database().reference(withPath: "users").child(String(user.uid))
+		
+		setingUpKeyboardHiding()
+		let tap : UITapGestureRecognizer	= UITapGestureRecognizer(target: self, action: #selector(hideKeyboardWhenTapped))
+		view.addGestureRecognizer(tap)
+	}
+	
 	@objc
 	func didChangeGlobalCounterSwitch() {
 			addCounter = !addCounter
@@ -85,38 +99,24 @@ class NewProjectVC					: UIViewController, CardViewControllerProtocol, UINavigat
 		}
 	}
 	
-    override func viewDidLoad() {
-        super.viewDidLoad()
-		viewModel = NewProjectCardVM()
-		setupNewProjectView()
-		
-		guard let currentUser = Auth.auth().currentUser else { return }
-		user	= MUser(user: currentUser)
-        ref		= Database.database().reference(withPath: "users").child(String(user.uid))
-		
-		setingUpKeyboardHiding()
-		let tap : UITapGestureRecognizer	= UITapGestureRecognizer(target: self, action: #selector(hideKeyboardWhenTapped))
-		view.addGestureRecognizer(tap)
-    }
-	
 	@objc
 	func projectImageTapped(recognizer: UIGestureRecognizer) {
 		let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-		let camera = UIAlertAction(title: "Camera", style: .default) { _ in
-			self.chooesImagePicker(sourse: .camera)
-		}
+//		let camera = UIAlertAction(title: "Camera", style: .default) { _ in
+//			self.chooesImagePicker(sourse: .camera)
+//		}
 		let photo = UIAlertAction(title: "Library", style: .default) { _ in
 			self.chooesImagePicker(sourse: .photoLibrary)
 		}
 		let cancel = UIAlertAction(title: "Cancel", style: .cancel)
-		actionSheet.addAction(camera)
+//		actionSheet.addAction(camera)
 		actionSheet.addAction(photo)
 		actionSheet.addAction(cancel)
 		present(actionSheet, animated: true)
 	}
 }
 
-// MARK: Work with IMAGE
+//MARK: Work with IMAGE
 extension NewProjectVC: UIImagePickerControllerDelegate {
     
     func chooesImagePicker (sourse: UIImagePickerController.SourceType){
@@ -260,7 +260,7 @@ extension NewProjectVC {
 		view.addSubview(createButton)
 		createButton.translatesAutoresizingMaskIntoConstraints										= false
 		createButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive					= true
-		createButton.topAnchor.constraint(equalTo: projectName.bottomAnchor, constant: 135).isActive		= true
+		createButton.topAnchor.constraint(equalTo: projectName.bottomAnchor, constant: 100).isActive		= true
 		createButton.widthAnchor.constraint(equalToConstant: 155).isActive							= true
 		createButton.heightAnchor.constraint(equalToConstant: 50).isActive							= true
 	}

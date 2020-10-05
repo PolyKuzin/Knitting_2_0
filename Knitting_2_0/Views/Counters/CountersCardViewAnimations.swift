@@ -81,7 +81,7 @@ extension CountersVC {
 		let seconds = 0.3
 		DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
 			NotificationCenter.default.removeObserver(self, name: self.creeateCounterTaped, object: nil)
-			NotificationCenter.default.removeObserver(self, name: self.newprojectViewTaped, object: nil)
+			NotificationCenter.default.removeObserver(self, name: self.editCounterTaped, object: nil)
 			self.teardownCardView()
 		}
 	}
