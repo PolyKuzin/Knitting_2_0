@@ -92,7 +92,6 @@ class NewCounterVC					: UIViewController, CardViewControllerProtocol, UINavigat
 		guard let currentUser = Auth.auth().currentUser else { return }
 		user	= MUser(user: currentUser)
 		ref		= currentProject.ref?.child("counters")
-		
 		setingUpKeyboardHiding()
 		let tap : UITapGestureRecognizer	= UITapGestureRecognizer(target: self, action: #selector(hideKeyboardWhenTapped))
 		view.addGestureRecognizer(tap)

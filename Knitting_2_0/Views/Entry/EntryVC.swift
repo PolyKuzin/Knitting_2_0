@@ -30,7 +30,7 @@ class EntryVC: UIViewController {
 		}
 	}
 	
-	override func viewWillAppear(_ animated: Bool)	 {
+	override func viewWillAppear(_ animated: Bool)		{
 		super.viewWillAppear(animated)
 		Auth.auth().addStateDidChangeListener { (auth, user) in
 			if user != nil {
@@ -39,7 +39,7 @@ class EntryVC: UIViewController {
 		}
 	}
 	
-	override func viewDidAppear(_ animated: Bool)	 {
+	override func viewDidAppear(_ animated: Bool)		{
 		super.viewDidAppear(animated)
 		UIView.animate(withDuration: 0.5) {
 			self.signUpButton.alpha		= 1.0
@@ -47,14 +47,14 @@ class EntryVC: UIViewController {
 		}
 	}
 	
-    override func viewDidLoad() 					{
+    override func viewDidLoad()							{
         super.viewDidLoad()
 		view.backgroundColor			= .white
 		viewModel 						= EntryVM()
 		setUpLayout()
     }
 	
-    override func viewDidDisappear(_ animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool)	{
         super.viewWillDisappear(animated)
 		guard let navigationController = navigationController else { return }
         navigationController.viewControllers.removeAll(where: { self === $0 })
@@ -65,20 +65,20 @@ class EntryVC: UIViewController {
 extension EntryVC {
 	
 	@objc
-	func pushLogInVC() {
+	func pushLogInVC()	{
 		let vc = LogInVC()
 		guard let navigationController = navigationController else { return }
 		navigationController.pushViewController(vc, animated: true)
 	}
 	
 	@objc
-	func pushSignUpVC() {
+	func pushSignUpVC()	{
 		let vc = SignUpVC()
 		guard let navigationController = navigationController else { return }
 		navigationController.pushViewController(vc, animated: true)
 	}
 	
-	func pushMainVC() {
+	func pushMainVC()	{
 		let vc = MainVC()
 		guard let navigationController = navigationController else { return }
 		navigationController.pushViewController(vc, animated: true)
@@ -88,7 +88,7 @@ extension EntryVC {
 //MARK: Layout
 extension EntryVC {
 	
-	func setUpLayout() {
+	func setUpLayout()	{
 		//Navigation Bar scould be invisible
 		guard let navigationController = navigationController else { return }
 		navigationController.navigationBar.barTintColor		= .white
