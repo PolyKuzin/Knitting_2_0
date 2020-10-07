@@ -39,11 +39,16 @@ class SwipeableCollectionViewCell: UICollectionViewCell {
     private func setupSubviews() {
         let stackView			= UIStackView()
         stackView.axis			= .horizontal
-        stackView.distribution 	= .fillEqually
+        stackView.distribution 	= .fill
         stackView.addArrangedSubview(visibleContainerView)
         stackView.addArrangedSubview(deleteContainerView)
 		stackView.addArrangedSubview(editContainerView)
         
+		stackView.isUserInteractionEnabled = true
+		editContainerView.isUserInteractionEnabled = true
+		deleteContainerView.isUserInteractionEnabled = true
+		visibleContainerView.isUserInteractionEnabled = true
+		
         addSubview(scrollView)
         scrollView.pinEdgesToSuperView()
         scrollView.addSubview(stackView)
@@ -56,10 +61,10 @@ class SwipeableCollectionViewCell: UICollectionViewCell {
     }
     
     private func setupGestureRecognizer() {
-		let editContainerTapGestureRecognizer		= UITapGestureRecognizer(target: self, action: #selector(hiddenContainerViewTapped))
-		deleteContainerView.addGestureRecognizer	(editContainerTapGestureRecognizer)
+		let editContainerTapGestureRecognizer		= UITapGestureRecognizer(target: self, action: #selector(editContainerViewTapped))
+		editContainerView.addGestureRecognizer	(editContainerTapGestureRecognizer)
 		
-        let deleteContainerTapGestureRecognizer		= UITapGestureRecognizer(target: self, action: #selector(hiddenContainerViewTapped))
+        let deleteContainerTapGestureRecognizer		= UITapGestureRecognizer(target: self, action: #selector(deleteContainerViewTapped))
         deleteContainerView.addGestureRecognizer	(deleteContainerTapGestureRecognizer)
         
         let visibleContainerTapGestureRecognizer	= UITapGestureRecognizer(target: self, action: #selector(visibleContainerViewTapped))
@@ -72,7 +77,7 @@ class SwipeableCollectionViewCell: UICollectionViewCell {
 	}
 	
 	@objc
-	private func hiddenContainerViewTapped() {
+	private func deleteContainerViewTapped() {
 		delegate?.deleteContainerViewTapped(inCell: self)
 	}
     

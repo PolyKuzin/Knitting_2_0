@@ -19,6 +19,7 @@ enum CardState {
 let newprojectNotificationKey				= "ru.polykuzin.newproject"
 let profileImageInSectionNotificationKey	= "ru.polykuzin.profileImage"
 let createCounterInSectionNotificationKey	= "ru.polykuzin.createCounter"
+let editProjectNotificationKey				= "ru.polykuzin.editProject"
 let editCounterNotificationKey				= "ru.polykuzin.editCounter"
 
 
@@ -26,6 +27,7 @@ class MainVC	: UIViewController {
 	
 	let profileImageTaped					= Notification.Name(rawValue: profileImageInSectionNotificationKey)
 	let newprojectViewTaped					= Notification.Name(rawValue: newprojectNotificationKey)
+	let editprojectViewTaped					= Notification.Name(rawValue: editProjectNotificationKey)
 	
 	//MARK:VARIABLES: Supporting Stuff
 	
@@ -235,6 +237,12 @@ extension MainVC {
 		setupCardViewController(ProfileCardVC())
     }
 	
+	@objc
+	func updateCardViewControllerWithEditProjectVC(notification: NSNotification) {
+		cardHeight = 500
+		setupCardViewController(EditProjectVC())
+	}
+	
     @objc
 	func updateCardViewControllerWithNewProjectVC(notification: NSNotification) {
 		cardHeight = 500
@@ -317,7 +325,7 @@ extension MainVC {
 	@objc
 	func hideViewWithDeinit() {
 		let seconds = 0.3
-			self.animateTransitionIfNeeded(state: nextState, duration: 0.3)
+		self.animateTransitionIfNeeded(state: nextState, duration: 0.3)
 		DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
 			NotificationCenter.default.removeObserver(self, name: self.profileImageTaped, object: nil)
 			NotificationCenter.default.removeObserver(self, name: self.newprojectViewTaped, object: nil)
@@ -328,8 +336,26 @@ extension MainVC {
 
 //MARK: Swipeable Collection View Cell Delegate
 extension MainVC: SwipeableCollectionViewCellDelegate {
+	
 	func editContainerViewTapped(inCell cell: UICollectionViewCell) {
+		guard let indexPath = collectionView.indexPath(for: cell) else { return }
+		let project = sections[0].projects[indexPath.row]
 		
+		let recognizer = UITapGestureRecognizer()
+		recognizer.state = .ended
+		
+		let vc = EditProjectVC()
+		vc.currentProject = project
+		
+		NotificationCenter.default.addObserver(self, selector: #selector(MainVC.updateCardViewControllerWithEditProjectVC(notification:)), name: editprojectViewTaped, object: nil)
+		let name = Notification.Name(rawValue: editProjectNotificationKey)
+		NotificationCenter.default.post(name: name, object: nil)
+		switch recognizer.state {
+		case .ended		:
+			animateTransitionIfNeeded(state: nextState, duration: 0.9)
+		default			:
+			break
+		}
 	}
 	
 	func deleteContainerViewTapped(inCell cell: UICollectionViewCell) {
@@ -435,7 +461,7 @@ extension MainVC {
 		runningAnimations.removeAll()
 		cardViewController.removeFromParent()
 		cardViewController.view.removeFromSuperview()
-		self.collectionView.reloadData()
+		cardViewController = nil
 		self.view.insertSubview(self.visualEffectView, at: 0)
 	}
 }
