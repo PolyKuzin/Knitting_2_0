@@ -85,24 +85,26 @@ class NewCounterCardVM {
 		button.setTitleColor			(Colors.whiteColor, for: .normal)
 		button.setGradientBackground	(colorOne: Colors.backgroundUpButton,
 										 colorTwo: Colors.backgroundDownButton)
-			
+		
 		return button
 	}()
 	
 	let plusButton								: UIButton = {
-		let imageView							= UIButton()
-		imageView.setImage(UIImage(named: "addProject"), for: .normal)
-		imageView.frame							= CGRect(x: 0, y: 0, width: 49, height: 49)
+		let button							= UIButton()
+		button.setImage(UIImage(named: "addProject"), for: .normal)
+		button.frame							= CGRect(x: 0, y: 0, width: 49, height: 49)
+		button.isEnabled = false
 		
-		return imageView
+		return button
 	}()
 	
 	let minusButton								: UIButton = {
-		let imageView							= UIButton()
-		imageView.setImage(UIImage(named: "minus"), for: .normal)
-		imageView.frame							= CGRect(x: 0, y: 0, width: 32, height: 5)
-		
-		return imageView
+		let button							= UIButton()
+		button.setImage(UIImage(named: "minus"), for: .normal)
+		button.frame							= CGRect(x: 0, y: 0, width: 32, height: 5)
+		button.isEnabled = false
+
+		return button
 	}()
 	
 	private lazy var countersRowsMax	: UITextField = {
@@ -126,7 +128,7 @@ class NewCounterCardVM {
 		textField.keyboardType			= UIKeyboardType.numberPad
 		textField.returnKeyType 		= UIReturnKeyType.done
 		textField.clearButtonMode 		= UITextField.ViewMode.whileEditing
-		
+		textField.isEnabled = false
 		return textField
 	}()
 	

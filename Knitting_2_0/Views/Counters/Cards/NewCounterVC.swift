@@ -51,12 +51,40 @@ class NewCounterVC					: UIViewController, CardViewControllerProtocol, UINavigat
 			
 			globalCounterSwitch.addTarget(self, action: #selector(didChangeGlobalCounterSwitch), for: .valueChanged)
 			createButton.addTarget(self, action: #selector(saveCounter), for: .touchUpInside)
+			
+			plusButton.addTarget(self, action: #selector(addNumberToTextField), for: .touchUpInside)
+			minusButton.addTarget(self, action: #selector(removeNumberFromTextField), for: .touchUpInside)
+		}
+	}
+	
+	@objc
+	func addNumberToTextField() {
+		var number = Int(rowsMaxTF.text!)!
+		number += 1
+		rowsMaxTF.text = String(number)
+	}
+	
+	@objc
+	func removeNumberFromTextField() {
+		if Int(rowsMaxTF.text!)! != 0 {
+			var number = Int(rowsMaxTF.text!)!
+			number -= 1
+			rowsMaxTF.text = String(number)
 		}
 	}
 	
 	@objc
 	func didChangeGlobalCounterSwitch() {
-			addCounter = !addCounter
+		addCounter = !addCounter
+		if addCounter {
+			plusButton.isEnabled = true
+			minusButton.isEnabled = true
+			rowsMaxTF.isEnabled = true
+		} else {
+			plusButton.isEnabled = false
+			minusButton.isEnabled = false
+			rowsMaxTF.isEnabled = false
+		}
 	}
 	
 	@objc
