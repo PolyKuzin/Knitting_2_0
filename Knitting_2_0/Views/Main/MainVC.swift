@@ -71,10 +71,6 @@ class MainVC	: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-		
-		NotificationCenter.default.addObserver(self, selector: #selector(hideViewWithDeinit), name: Notification.Name(rawValue: "disconnectNewProjectVC"), object: nil)
-		NotificationCenter.default.addObserver(self, selector: #selector(hideViewWithDeinit), name: Notification.Name(rawValue: "disconnectEditProjectVC"), object: nil)
-
 		viewModel = MainVM()
 		setupVisualEffect	()
 		setupSections		()
@@ -116,9 +112,6 @@ extension MainVC {
 						self.dataSourse?.apply(snapShot, animatingDifferences: true)
 						self.collectionView.reloadData()
 					}
-//					UIView.animate(withDuration: 2) {
-//						 self.dataSource.apply(snapshot, animatingDifferences: true)
-//				   }
 				}
 			}
 			self.collectionView.reloadData()
@@ -246,12 +239,14 @@ extension MainVC {
 		cardHeight = 500
 		let vc = EditProjectVC()
 		vc.currentProject = self.currentProject
+		NotificationCenter.default.addObserver(self, selector: #selector(hideViewWithDeinit), name: Notification.Name(rawValue: "disconnectEditProjectVC"), object: nil)
 		setupCardViewController(vc)
 	}
 	
     @objc
 	func updateCardViewControllerWithNewProjectVC(notification: NSNotification) {
 		cardHeight = 500
+		NotificationCenter.default.addObserver(self, selector: #selector(hideViewWithDeinit), name: Notification.Name(rawValue: "disconnectNewProjectVC"), object: nil)
 		setupCardViewController(NewProjectVC())
     }
 	

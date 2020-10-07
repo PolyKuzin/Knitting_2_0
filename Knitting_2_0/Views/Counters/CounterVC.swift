@@ -16,7 +16,7 @@ class CountersVC	: UIViewController, UICollectionViewDelegate, UICollectionViewD
 	var currentProject						: MProject!
 	
 	let creeateCounterTaped					= Notification.Name(rawValue: createCounterInSectionNotificationKey)
-	let editCounterTaped					= Notification.Name(rawValue: editCounterNotificationKey)
+	let editCounterViewTaped				= Notification.Name(rawValue: editCounterNotificationKey)
 	
 	//MARK:VARIABLES: Supporting Stuff
 	
@@ -37,6 +37,8 @@ class CountersVC	: UIViewController, UICollectionViewDelegate, UICollectionViewD
 		return cardVisible 	? 	.collapsed	: .expanded
 	}
 	
+	var currentCounter : MCounter?
+	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(true)
 		setupNormalNavBar()
@@ -49,7 +51,7 @@ class CountersVC	: UIViewController, UICollectionViewDelegate, UICollectionViewD
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		NotificationCenter.default.addObserver(self, selector: #selector(hideViewWithDeinit), name: Notification.Name(rawValue: "disconnectNewProjectVC"), object: nil)
+
 		setupVisualEffect	()
 		setupSections		()
 
@@ -111,12 +113,6 @@ class CountersVC	: UIViewController, UICollectionViewDelegate, UICollectionViewD
 		cell.delegate 	= self
 		cell.isSelected = false
 		
-		let lpgr = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(recognizer:)))
-		lpgr.minimumPressDuration = 1
-		lpgr.delaysTouchesBegan = true
-		lpgr.delegate = self
-		cell.visibleContainerView.addGestureRecognizer(lpgr)
-		
 		if counter.name == "knitting-f824f" {
 			cell.isHidden = true
 		} else {
@@ -150,6 +146,7 @@ extension CountersVC {
 					self.collectionView.reloadData()
 				}
 			}
+			self.collectionView.reloadData()
 		}
 	}
 }
@@ -162,13 +159,17 @@ extension CountersVC {
 		cardHeight = 400
 		let vc = NewCounterVC()
 		vc.currentProject = currentProject
+		NotificationCenter.default.addObserver(self, selector: #selector(hideViewWithDeinit), name: Notification.Name(rawValue: "disconnectNewCounterVC"), object: nil)
 		setupCardViewController(vc)
 	}
 	
 	@objc
-	func updateCardViewControllerWithNewProjectVC(notification: NSNotification) {
+	func updateCardViewControllerWithEditCountertVC(notification: NSNotification) {
 		cardHeight = 500
-		setupCardViewController(NewCounterVC())
+		let vc = EditCounterVC()
+		vc.currentCounter = self.currentCounter
+		NotificationCenter.default.addObserver(self, selector: #selector(hideViewWithDeinit), name: Notification.Name(rawValue: "disconnectEditCounterVC"), object: nil)
+		setupCardViewController(vc)
 	}
 	
 	func setupVisualEffect() {
@@ -226,19 +227,6 @@ extension CountersVC {
 	}
 	
 	@objc
-	func handleLongPress	(recognizer: UILongPressGestureRecognizer) {
-		NotificationCenter.default.addObserver(self, selector: #selector(CountersVC.updateCardViewControllerWithNewProjectVC(notification:)), name: editCounterTaped, object: nil)
-		let name = Notification.Name(rawValue: editCounterNotificationKey)
-		NotificationCenter.default.post(name: name, object: nil)
-		switch recognizer.state {
-		case .ended		:
-			animateTransitionIfNeeded(state: nextState, duration: 0.9)
-		default			:
-			break
-		}
-	}
-	
-	@objc
 	func creeateCounterTaped(recognizer: UITapGestureRecognizer) {
 		NotificationCenter.default.addObserver(self, selector: #selector(CountersVC.updateCardViewControllerWithProfileVC(notification:)), name: creeateCounterTaped, object: nil)
 		let name = Notification.Name(rawValue: createCounterInSectionNotificationKey)
@@ -274,7 +262,7 @@ extension CountersVC {
 		animateTransitionIfNeeded(state: nextState, duration: 0.3)
 		DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
 			NotificationCenter.default.removeObserver(self, name: self.creeateCounterTaped, object: nil)
-			NotificationCenter.default.removeObserver(self, name: self.editCounterTaped, object: nil)
+			NotificationCenter.default.removeObserver(self, name: self.editCounterViewTaped, object: nil)
 			self.teardownCardView()
 		}
 	}
@@ -284,7 +272,25 @@ extension CountersVC {
 extension CountersVC: SwipeableCollectionViewCellDelegate {
 	
 	func editContainerViewTapped(inCell cell: SwipeableCollectionViewCell) {
+		guard let indexPath = collectionView.indexPath(for: cell) else { return }
+		let counter = counters[indexPath.row]
 		
+		let recognizer = UITapGestureRecognizer()
+		recognizer.state = .ended
+		
+		self.currentCounter = counter
+		
+		NotificationCenter.default.addObserver(self, selector: #selector(CountersVC.updateCardViewControllerWithEditCountertVC(notification:)), name: editCounterViewTaped, object: nil)
+		let name = Notification.Name(rawValue: editCounterNotificationKey)
+		NotificationCenter.default.post(name: name, object: nil)
+		switch recognizer.state {
+		case .ended		:
+			animateTransitionIfNeeded(state: nextState, duration: 0.9)
+		default			:
+			break
+		}
+		let leftOffset = CGPoint(x: 0, y: 0)
+		cell.scrollView.setContentOffset(leftOffset, animated: true)
 	}
 	
 	func deleteContainerViewTapped(inCell cell: SwipeableCollectionViewCell) {
@@ -292,7 +298,8 @@ extension CountersVC: SwipeableCollectionViewCellDelegate {
 		let project = counters[indexPath.row]
 		project.ref?.removeValue()
 		self.collectionView.reloadData()
-
+		let leftOffset = CGPoint(x: 0, y: 0)
+		cell.scrollView.setContentOffset(leftOffset, animated: true)
 	}
 	
 	func visibleContainerViewTapped(inCell cell: SwipeableCollectionViewCell) {
@@ -339,7 +346,7 @@ extension CountersVC {
 		runningAnimations.removeAll()
 		cardViewController.removeFromParent()
 		cardViewController.view.removeFromSuperview()
-		self.collectionView.reloadData()
+		NotificationCenter.default.removeObserver(self)
 		self.view.insertSubview(self.visualEffectView, at: 0)
 	}
 }
