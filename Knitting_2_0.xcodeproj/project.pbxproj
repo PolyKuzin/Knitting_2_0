@@ -194,7 +194,6 @@
 			children = (
 				9959471F250AD91F00D0E273 /* MainVC.swift */,
 				998B9F8E250D817000C0C52F /* ProjectCell.swift */,
-				998B9F90250D81BE00C0C52F /* SwipeableCell.swift */,
 				994EF7132514B423009AA35B /* MainSetionHeader.swift */,
 				99EFB56925177805003A5D07 /* MainCardViewAnimations.swift */,
 				99EFB56D25178D89003A5D07 /* Cards */,
@@ -312,6 +311,7 @@
 				99AFBA4624F80D9E00E71FD6 /* AppDelegate.swift */,
 				99AFBA4824F80D9E00E71FD6 /* SceneDelegate.swift */,
 				99AFBA7924F9667F00E71FD6 /* Constants.swift */,
+				998B9F90250D81BE00C0C52F /* SwipeableCell.swift */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";

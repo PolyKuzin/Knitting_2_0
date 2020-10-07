@@ -10,6 +10,7 @@ import UIKit
 
 class SwipeableCollectionViewCell: UICollectionViewCell {
     
+	let editContainerView		= UIView()
 	let deleteContainerView		= UIView()
     let visibleContainerView	= UIView()
 	
@@ -18,7 +19,7 @@ class SwipeableCollectionViewCell: UICollectionViewCell {
         scrollView.isPagingEnabled					= true
         scrollView.showsVerticalScrollIndicator 	= false
         scrollView.showsHorizontalScrollIndicator	= false
-        scrollView.layer.cornerRadius = 20
+        scrollView.layer.cornerRadius				= 20
 		
         return scrollView
     }()
@@ -27,8 +28,8 @@ class SwipeableCollectionViewCell: UICollectionViewCell {
         
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupSubviews()
-        setupGestureRecognizer()
+        setupSubviews			()
+        setupGestureRecognizer	()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -41,31 +42,43 @@ class SwipeableCollectionViewCell: UICollectionViewCell {
         stackView.distribution 	= .fillEqually
         stackView.addArrangedSubview(visibleContainerView)
         stackView.addArrangedSubview(deleteContainerView)
+		stackView.addArrangedSubview(editContainerView)
         
         addSubview(scrollView)
         scrollView.pinEdgesToSuperView()
         scrollView.addSubview(stackView)
         stackView.pinEdgesToSuperView()
+		editContainerView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.25).isActive					= true
+		deleteContainerView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.25).isActive				= true
+		visibleContainerView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 1).isActive				= true
         stackView.heightAnchor.constraint(equalTo: scrollView.heightAnchor).isActive				= true
-		stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 2).isActive	= true
+		stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 1.5).isActive	= true
     }
     
     private func setupGestureRecognizer() {
-        let hiddenContainerTapGestureRecognizer		= UITapGestureRecognizer(target: self, action: #selector(hiddenContainerViewTapped))
-        deleteContainerView.addGestureRecognizer	(hiddenContainerTapGestureRecognizer)
+		let editContainerTapGestureRecognizer		= UITapGestureRecognizer(target: self, action: #selector(hiddenContainerViewTapped))
+		deleteContainerView.addGestureRecognizer	(editContainerTapGestureRecognizer)
+		
+        let deleteContainerTapGestureRecognizer		= UITapGestureRecognizer(target: self, action: #selector(hiddenContainerViewTapped))
+        deleteContainerView.addGestureRecognizer	(deleteContainerTapGestureRecognizer)
         
         let visibleContainerTapGestureRecognizer	= UITapGestureRecognizer(target: self, action: #selector(visibleContainerViewTapped))
         visibleContainerView.addGestureRecognizer	(visibleContainerTapGestureRecognizer)
     }
+	
+	@objc
+	private func editContainerViewTapped() {
+		delegate?.editContainerViewTapped(inCell: self)
+	}
+	
+	@objc
+	private func hiddenContainerViewTapped() {
+		delegate?.deleteContainerViewTapped(inCell: self)
+	}
     
     @objc
 	private func visibleContainerViewTapped() {
         delegate?.visibleContainerViewTapped(inCell: self)
-    }
-    
-    @objc
-	private func hiddenContainerViewTapped() {
-        delegate?.hiddenContainerViewTapped(inCell: self)
     }
 
     override func layoutSubviews() {

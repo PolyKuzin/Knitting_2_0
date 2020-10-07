@@ -29,6 +29,7 @@ class ProjectCell: SwipeableCollectionViewCell {
         projectImage.layer.cornerRadius         = 10
 		self.clipsToBounds						= true
         projectImage.clipsToBounds              = true
+		editContainerView.backgroundColor		= .orange
 		visibleContainerView.backgroundColor 	= Colors.whiteColor
 		deleteContainerView.backgroundColor 	= Colors.hiddenContainerView
 	}
@@ -42,7 +43,7 @@ class ProjectCell: SwipeableCollectionViewCell {
 		projectName.font						= Fonts.displaySemibold22
 		
 		visibleContainerView.roundCorners([.topLeft, .bottomLeft], radius: 20)
-		deleteContainerView.roundCorners([.topRight, .bottomRight], radius: 20)
+		editContainerView.roundCorners([.topRight, .bottomRight], radius: 20)
 		layer.cornerRadius						= 20
 		layer.borderWidth						= 0.0
 		layer.shadowColor						= UIColor(red: 0, green: 0, blue: 0, alpha: 0.12).cgColor

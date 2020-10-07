@@ -59,7 +59,7 @@ class CounterCell: SwipeableCollectionViewCell {
 		
 		self.layer.cornerRadius					= 20
 		self.clipsToBounds						= true
-		
+		editContainerView.backgroundColor		= .orange
 		visibleContainerView.backgroundColor 	= Colors.whiteColor
 		deleteContainerView.backgroundColor 	= Colors.hiddenContainerView
 	}
@@ -70,7 +70,7 @@ class CounterCell: SwipeableCollectionViewCell {
 		currentRows.text = String(counter.rows)
 		
 		visibleContainerView.roundCorners([.topLeft, .bottomLeft], radius: 20)
-		deleteContainerView.roundCorners([.topRight, .bottomRight], radius: 20)
+		editContainerView.roundCorners([.topRight, .bottomRight], radius: 20)
 		
 		layer.cornerRadius						= 20
 		layer.borderWidth						= 0.0

@@ -285,8 +285,7 @@ extension MainVC {
 	
 	@objc
     func handleCardTap		(recognizer: UITapGestureRecognizer) {
-		
-		NotificationCenter.default.addObserver(self, selector: #selector(MainVC.updateCardViewControllerWithNewCounterVC(notification:)), name: profileImageTaped, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(MainVC.updateCardViewControllerWithProfileVC(notification:)), name: profileImageTaped, object: nil)
 		let name = Notification.Name(rawValue: profileImageInSectionNotificationKey)
 		NotificationCenter.default.post(name: name, object: nil)
 		addView.accessibilityElementsHidden = true
@@ -329,8 +328,11 @@ extension MainVC {
 
 //MARK: Swipeable Collection View Cell Delegate
 extension MainVC: SwipeableCollectionViewCellDelegate {
+	func editContainerViewTapped(inCell cell: UICollectionViewCell) {
+		
+	}
 	
-	func hiddenContainerViewTapped(inCell cell: UICollectionViewCell) {
+	func deleteContainerViewTapped(inCell cell: UICollectionViewCell) {
 		guard let indexPath = collectionView.indexPath(for: cell) else { return }
 		let project = sections[0].projects[indexPath.row]
 		project.ref?.removeValue()

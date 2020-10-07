@@ -282,8 +282,11 @@ extension CountersVC {
 
 //MARK: Swipeable Collection View Cell Delegate
 extension CountersVC: SwipeableCollectionViewCellDelegate {
+	func editContainerViewTapped(inCell cell: UICollectionViewCell) {
+		
+	}
 	
-	func hiddenContainerViewTapped(inCell cell: UICollectionViewCell) {
+	func deleteContainerViewTapped(inCell cell: UICollectionViewCell) {
 		guard let indexPath = collectionView.indexPath(for: cell) else { return }
 		let project = counters[indexPath.row]
 		project.ref?.removeValue()
