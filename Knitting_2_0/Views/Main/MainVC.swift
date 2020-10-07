@@ -27,7 +27,7 @@ class MainVC	: UIViewController {
 	
 	let profileImageTaped					= Notification.Name(rawValue: profileImageInSectionNotificationKey)
 	let newprojectViewTaped					= Notification.Name(rawValue: newprojectNotificationKey)
-	let editprojectViewTaped					= Notification.Name(rawValue: editProjectNotificationKey)
+	let editprojectViewTaped				= Notification.Name(rawValue: editProjectNotificationKey)
 	
 	//MARK:VARIABLES: Supporting Stuff
 	
@@ -52,6 +52,8 @@ class MainVC	: UIViewController {
 	open var nextState						: CardState {
 		return cardVisible 	? 	.collapsed	: .expanded
 	}
+	
+	var currentProject : MProject?
 
 	private var viewModel					: MainVM! {
 		didSet {
@@ -71,6 +73,8 @@ class MainVC	: UIViewController {
         super.viewDidLoad()
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(hideViewWithDeinit), name: Notification.Name(rawValue: "disconnectNewProjectVC"), object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(hideViewWithDeinit), name: Notification.Name(rawValue: "disconnectEditProjectVC"), object: nil)
+
 		viewModel = MainVM()
 		setupVisualEffect	()
 		setupSections		()
@@ -240,7 +244,9 @@ extension MainVC {
 	@objc
 	func updateCardViewControllerWithEditProjectVC(notification: NSNotification) {
 		cardHeight = 500
-		setupCardViewController(EditProjectVC())
+		let vc = EditProjectVC()
+		vc.currentProject = self.currentProject
+		setupCardViewController(vc)
 	}
 	
     @objc
@@ -337,15 +343,14 @@ extension MainVC {
 //MARK: Swipeable Collection View Cell Delegate
 extension MainVC: SwipeableCollectionViewCellDelegate {
 	
-	func editContainerViewTapped(inCell cell: UICollectionViewCell) {
+	func editContainerViewTapped(inCell cell: SwipeableCollectionViewCell) {
 		guard let indexPath = collectionView.indexPath(for: cell) else { return }
 		let project = sections[0].projects[indexPath.row]
 		
 		let recognizer = UITapGestureRecognizer()
 		recognizer.state = .ended
 		
-		let vc = EditProjectVC()
-		vc.currentProject = project
+		self.currentProject = project
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(MainVC.updateCardViewControllerWithEditProjectVC(notification:)), name: editprojectViewTaped, object: nil)
 		let name = Notification.Name(rawValue: editProjectNotificationKey)
@@ -356,22 +361,23 @@ extension MainVC: SwipeableCollectionViewCellDelegate {
 		default			:
 			break
 		}
+		let leftOffset = CGPoint(x: 0, y: 0)
+		cell.scrollView.setContentOffset(leftOffset, animated: true)
 	}
 	
-	func deleteContainerViewTapped(inCell cell: UICollectionViewCell) {
+	func deleteContainerViewTapped(inCell cell: SwipeableCollectionViewCell) {
 		guard let indexPath = collectionView.indexPath(for: cell) else { return }
 		let project = sections[0].projects[indexPath.row]
 		project.ref?.removeValue()
 		var snap = dataSourse?.snapshot()
 		snap?.deleteItems([sections[0].projects[indexPath.row]])
 		sections[0].projects.remove(at: indexPath.row)
-
 		dataSourse?.apply(snap!, animatingDifferences: true)
 		self.collectionView.reloadData()
 
 	}
 	
-	func visibleContainerViewTapped(inCell cell: UICollectionViewCell) {
+	func visibleContainerViewTapped(inCell cell: SwipeableCollectionViewCell) {
 		guard let indexPath = collectionView.indexPath(for: cell) else { return }
 		collectionView.selectItem(at: indexPath, animated: true, scrollPosition: UICollectionView.ScrollPosition())
 
@@ -461,7 +467,7 @@ extension MainVC {
 		runningAnimations.removeAll()
 		cardViewController.removeFromParent()
 		cardViewController.view.removeFromSuperview()
-		cardViewController = nil
+		NotificationCenter.default.removeObserver(self)
 		self.view.insertSubview(self.visualEffectView, at: 0)
 	}
 }

@@ -29,7 +29,7 @@ class EditProjectVC					: UIViewController, CardViewControllerProtocol, UINaviga
 	private var createButton		= UIButton()
 	private var warning				= UILabel()
 
-	private var viewModel			: NewProjectCardVM! {
+	private var viewModel			: EditProjectCardVM! {
 		didSet {
 			self.createLabel		= viewModel.createLabel()
 			self.projectImage		= viewModel.profileImage()
@@ -46,7 +46,7 @@ class EditProjectVC					: UIViewController, CardViewControllerProtocol, UINaviga
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		viewModel = NewProjectCardVM()
+		viewModel = EditProjectCardVM()
 		setupNewProjectView()
 		
 		guard let currentUser = Auth.auth().currentUser else { return }
@@ -56,6 +56,10 @@ class EditProjectVC					: UIViewController, CardViewControllerProtocol, UINaviga
 		setingUpKeyboardHiding()
 		let tap : UITapGestureRecognizer	= UITapGestureRecognizer(target: self, action: #selector(hideKeyboardWhenTapped))
 		view.addGestureRecognizer(tap)
+		
+		
+		projectImage.image = currentProject?.image.toImage()
+		projectName.text	= currentProject?.name
 	}
 	
 	@objc
@@ -73,24 +77,16 @@ class EditProjectVC					: UIViewController, CardViewControllerProtocol, UINaviga
 			} else {
 				image = #imageLiteral(resourceName: "empty")
 			}
-			let projectUniqueID = Int(Date().timeIntervalSince1970)
+			let projectUniqueID = String(Int(Date().timeIntervalSince1970))
 			guard let imageData = image?.toString() else { return }
 			guard let name		= projectName.text	else { return }
 			
-			let project = MProject(userID: user.uid, name: name, image: imageData, date: "\(projectUniqueID)")
-			let referenceForProject = self.ref.child("projects").child("\(projectUniqueID)")
-			referenceForProject.setValue(project.projectToDictionary())
-			
-			let faceCounter = MCounter(name: "knitting-f824f", rows: 0, rowsMax: -1, date: "000000000")
-			let referenceForCounter = self.ref.child("projects").child("\(projectUniqueID)").child("counters").child("knitting-f824f")
-			referenceForCounter.setValue(faceCounter.counterToDictionary())
-			
-			if addCounter {
-				let counter = MCounter(name: name, rows: 0, rowsMax: -1, date: "999999999")
-				let referenceForCounter = self.ref.child("projects").child("\(projectUniqueID)").child("counters").child("\(name)")
-				referenceForCounter.setValue(counter.counterToDictionary())
-			}
-			NotificationCenter.default.post(name: Notification.Name(rawValue: "disconnectNewProjectVC"), object: nil)
+			let referenceForProject = self.currentProject?.ref
+			referenceForProject?.updateChildValues(["name" : name,
+												   "image" : imageData,
+												   "date": projectUniqueID])
+
+			NotificationCenter.default.post(name: Notification.Name(rawValue: "disconnectEditProjectVC"), object: nil)
 		}
 	}
 	

@@ -16,6 +16,7 @@
 		994300B5252B11090065EF5C /* SF-Pro-Text-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 994300B4252B11090065EF5C /* SF-Pro-Text-Medium.otf */; };
 		994300B9252B156A0065EF5C /* NewCounterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994300B8252B156A0065EF5C /* NewCounterVC.swift */; };
 		9949F8BB252DD35B00D12F50 /* EditProjectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9949F8BA252DD35B00D12F50 /* EditProjectVC.swift */; };
+		9949F8BF252DE21F00D12F50 /* EditProjectVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9949F8BE252DE21F00D12F50 /* EditProjectVM.swift */; };
 		994EF7142514B424009AA35B /* MainSetionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994EF7132514B423009AA35B /* MainSetionHeader.swift */; };
 		994EF7162514ECFF009AA35B /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 994EF7152514ECFF009AA35B /* SF-Pro-Display-Bold.otf */; };
 		9959471E250A582B00D0E273 /* MUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9959471D250A582B00D0E273 /* MUser.swift */; };
@@ -93,6 +94,7 @@
 		994300B4252B11090065EF5C /* SF-Pro-Text-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Medium.otf"; sourceTree = "<group>"; };
 		994300B8252B156A0065EF5C /* NewCounterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCounterVC.swift; sourceTree = "<group>"; };
 		9949F8BA252DD35B00D12F50 /* EditProjectVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProjectVC.swift; sourceTree = "<group>"; };
+		9949F8BE252DE21F00D12F50 /* EditProjectVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProjectVM.swift; sourceTree = "<group>"; };
 		994EF7132514B423009AA35B /* MainSetionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSetionHeader.swift; sourceTree = "<group>"; };
 		994EF7152514ECFF009AA35B /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
 		9959471D250A582B00D0E273 /* MUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MUser.swift; sourceTree = "<group>"; };
@@ -408,6 +410,7 @@
 			isa = PBXGroup;
 			children = (
 				99EFB56525168AF5003A5D07 /* ProfileCardVM.swift */,
+				9949F8BE252DE21F00D12F50 /* EditProjectVM.swift */,
 				99EF88B7251821F900C77181 /* NewProjectCardVM.swift */,
 				9964A863252B799D00D35398 /* NewCounterCardVM.swift */,
 			);
@@ -418,8 +421,8 @@
 			isa = PBXGroup;
 			children = (
 				99EFB56325168A7E003A5D07 /* ProfileCardVC.swift */,
-				99EFB56B25178D77003A5D07 /* NewProjectCardVC.swift */,
 				9949F8BA252DD35B00D12F50 /* EditProjectVC.swift */,
+				99EFB56B25178D77003A5D07 /* NewProjectCardVC.swift */,
 			);
 			path = Cards;
 			sourceTree = "<group>";
@@ -635,6 +638,7 @@
 				99AFBA4724F80D9E00E71FD6 /* AppDelegate.swift in Sources */,
 				99EFB56625168AF5003A5D07 /* ProfileCardVM.swift in Sources */,
 				996FAF2C2508245D00209228 /* EntryVM.swift in Sources */,
+				9949F8BF252DE21F00D12F50 /* EditProjectVM.swift in Sources */,
 				998B9F8F250D817000C0C52F /* ProjectCell.swift in Sources */,
 				99AFBA4924F80D9E00E71FD6 /* SceneDelegate.swift in Sources */,
 				9964A868252B82A600D35398 /* addDoneCancelToolBar.swift in Sources */,

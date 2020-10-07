@@ -14,7 +14,7 @@ class SwipeableCollectionViewCell: UICollectionViewCell {
 	let deleteContainerView		= UIView()
     let visibleContainerView	= UIView()
 	
-    private let scrollView							: UIScrollView = {
+    let scrollView							: UIScrollView = {
         let scrollView								= UIScrollView(frame: .zero)
         scrollView.isPagingEnabled					= true
         scrollView.showsVerticalScrollIndicator 	= false
