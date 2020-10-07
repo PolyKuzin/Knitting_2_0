@@ -59,9 +59,9 @@ class CounterCell: SwipeableCollectionViewCell {
 		
 		self.layer.cornerRadius					= 20
 		self.clipsToBounds						= true
-		editContainerView.backgroundColor		= .orange
+		editContainerView.backgroundColor		= UIColor(red: 0.616, green: 0.733, blue: 0.875, alpha: 1)
 		visibleContainerView.backgroundColor 	= Colors.whiteColor
-		deleteContainerView.backgroundColor 	= Colors.hiddenContainerView
+		deleteContainerView.backgroundColor 	= UIColor(red: 0.984, green: 0.682, blue: 0.827, alpha: 1)
 	}
 	
 	func configurу(with counter: MCounter) {
