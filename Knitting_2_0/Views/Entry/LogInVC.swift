@@ -32,9 +32,9 @@ class LogInVC: UIViewController {
 			self.logInButton		 	= viewModel.logIn			()
 			self.questionToRegButton	= viewModel.questionBtn		()
 			self.questionToRegLabel		= viewModel.questionLbl		()
-			forgotPass			.addTarget(self, action: #selector(pushForgotPassVC),	for: .touchUpInside)
 			logInButton			.addTarget(self, action: #selector(logInTapped),		for: .touchUpInside)
 			questionToRegButton	.addTarget(self, action: #selector(pushSignUpVC),		for: .touchUpInside)
+			forgotPass			.addTarget(self, action: #selector(pushForgotPassVC),	for: .touchUpInside)
 		}
 	}
 	
@@ -63,8 +63,8 @@ extension LogInVC {
 		let error = validateFields()
 		if error != nil { showError(error!) }
 		else {
-			let email		= emailTextField.text!.trimmingCharacters	(in: .whitespacesAndNewlines)
-			let password	= passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+			guard let email		= emailTextField	.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
+			guard let password	= passwordTextField	.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
 			Auth.auth().signIn(withEmail: email, password: password) { (user, err) in
 				if let error = err as NSError? {
 				  switch AuthErrorCode(rawValue: error.code) {
@@ -148,15 +148,15 @@ extension LogInVC: UITextFieldDelegate {
     
     @objc
 	func keyboardWillChange(notification: Notification){
-        guard let userInfo = notification.userInfo else {return}
-              let keyboardRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-        
-        if notification.name == UIResponder.keyboardWillShowNotification ||
-           notification.name == UIResponder.keyboardWillChangeFrameNotification {
+//        guard let userInfo = notification.userInfo else {return}
+//              let keyboardRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+//        
+//        if notification.name == UIResponder.keyboardWillShowNotification ||
+//           notification.name == UIResponder.keyboardWillChangeFrameNotification {
 //			view.frame.origin.y == emailTextField.frame.origin.y
-        } else {
+//        } else {
 //			view.frame.origin.y == UIScreen.main.bounds.height
-        }
+//        }
     }
 		
     @objc

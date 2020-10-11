@@ -115,12 +115,14 @@ extension ProfileCardVC {
 		signoutBtn.topAnchor.constraint(equalTo: email.bottomAnchor, constant: 45).isActive			= true
 		signoutBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive					= true
 		signoutBtn.widthAnchor.constraint(equalToConstant: 150).isActive							= true
+		signoutBtn.isHidden = true
 		
 		view.addSubview(deleteAccountBtn)
 		deleteAccountBtn.translatesAutoresizingMaskIntoConstraints									= false
 		deleteAccountBtn.topAnchor.constraint(equalTo: signoutBtn.bottomAnchor, constant: 5).isActive	= true
 		deleteAccountBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive				= true
 		deleteAccountBtn.widthAnchor.constraint(equalToConstant: 150).isActive						= true
+		deleteAccountBtn.isHidden = true
        
 		self.view.addSubview(close)
         close.translatesAutoresizingMaskIntoConstraints												= false

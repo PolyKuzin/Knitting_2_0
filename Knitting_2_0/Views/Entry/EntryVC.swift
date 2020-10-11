@@ -49,7 +49,6 @@ class EntryVC: UIViewController {
 	
     override func viewDidLoad()							{
         super.viewDidLoad()
-		view.backgroundColor			= .white
 		viewModel 						= EntryVM()
 		setUpLayout()
     }
@@ -89,6 +88,9 @@ extension EntryVC {
 extension EntryVC {
 	
 	func setUpLayout()	{
+		
+		view.backgroundColor			= .white
+
 		//Navigation Bar scould be invisible
 		guard let navigationController = navigationController else { return }
 		navigationController.navigationBar.barTintColor		= .white
@@ -96,28 +98,33 @@ extension EntryVC {
 		navigationController.navigationBar.shadowImage		= UIImage()
 		navigationController.navigationBar.setBackgroundImage(UIImage(), for: .default)
 		
-		//Image or Gif constraints in a cell
 		view.addSubview(logoIcon)
-		logoIcon.translatesAutoresizingMaskIntoConstraints													= false
-		logoIcon.centerXAnchor		.constraint(equalTo: view.centerXAnchor)					.isActive	= true
-		logoIcon.heightAnchor		.constraint(equalToConstant: 219)							.isActive	= true
-		logoIcon.widthAnchor		.constraint(equalToConstant: 202)							.isActive	= true
-		
-		//A place for registration buttom
+		logoIcon.translatesAutoresizingMaskIntoConstraints	= false
 		view.addSubview(logInButton)
-		logInButton.translatesAutoresizingMaskIntoConstraints												= false
-		logInButton.centerXAnchor	.constraint(equalTo: view.centerXAnchor)					.isActive	= true
-		logInButton.heightAnchor	.constraint(equalToConstant: 21)							.isActive	= true
-		logInButton.trailingAnchor	.constraint(equalTo: view.trailingAnchor,	constant: -120)	.isActive	= true
-		logInButton.bottomAnchor	.constraint(equalTo: view.bottomAnchor,		constant: -48)	.isActive	= true
-		
-		//A place for registration buttom
+		logInButton.translatesAutoresizingMaskIntoConstraints = false
 		view.addSubview(signUpButton)
-		signUpButton.translatesAutoresizingMaskIntoConstraints												= false
-		signUpButton.topAnchor		.constraint(equalTo: logoIcon.bottomAnchor,	constant: 163)	.isActive	= true
-		signUpButton.centerXAnchor	.constraint(equalTo: view.centerXAnchor)					.isActive	= true
-		signUpButton.bottomAnchor	.constraint(equalTo: logInButton.topAnchor, constant: -24)	.isActive	= true
-		signUpButton.heightAnchor	.constraint(equalToConstant: 53)							.isActive	= true
-		signUpButton.widthAnchor	.constraint(equalToConstant: 152)							.isActive	= true
+		signUpButton.translatesAutoresizingMaskIntoConstraints	= false
+		
+		NSLayoutConstraint.activate([
+			
+			//Image or Gif constraints in a cell
+			logoIcon		.centerXAnchor		.constraint(equalTo: view.centerXAnchor),
+			logoIcon		.heightAnchor		.constraint(equalToConstant: 219),
+			logoIcon		.widthAnchor		.constraint(equalToConstant: 202),
+			
+			//A place for login buttom
+			logInButton		.centerXAnchor		.constraint(equalTo: view.centerXAnchor),
+			logInButton		.heightAnchor		.constraint(equalToConstant: 21),
+			logInButton		.trailingAnchor		.constraint(equalTo: view.trailingAnchor,	constant: -120),
+			logInButton		.bottomAnchor		.constraint(equalTo: view.bottomAnchor,		constant: -48),
+			
+			//A place for signup buttom
+			signUpButton	.topAnchor			.constraint(equalTo: logoIcon.bottomAnchor,	constant: 163),
+			signUpButton	.centerXAnchor		.constraint(equalTo: view.centerXAnchor),
+			signUpButton	.bottomAnchor		.constraint(equalTo: logInButton.topAnchor, constant: -24),
+			signUpButton	.heightAnchor		.constraint(equalToConstant: 53),
+			signUpButton	.widthAnchor		.constraint(equalToConstant: 152),
+			
+									])
 	}
 }

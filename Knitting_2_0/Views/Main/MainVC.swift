@@ -205,7 +205,8 @@ extension MainVC {
 				else { return nil}
 			if section.title.isEmpty { return nil}
 			sectionHeader.title.text	= section.title
-			let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MainVC.handleCardTap(recognizer:)))
+			let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MainVC.profileImageTap(recognizer:)))
+			
 			sectionHeader.profileImage.addGestureRecognizer(tapGestureRecognizer)
 			return sectionHeader
 		}
@@ -230,7 +231,7 @@ extension MainVC {
 	
     @objc
 	func updateCardViewControllerWithProfileVC(notification: NSNotification) {
-		cardHeight = 320
+		cardHeight = 500
 		setupCardViewController(ProfileCardVC())
     }
 	
@@ -261,6 +262,7 @@ extension MainVC {
 	}
 	
 	func setupCardViewController(_ cardVC: CardViewControllerProtocol) {
+		collectionView.supplementaryView(forElementKind: "header", at: IndexPath(item: 0, section: 0))?.isHidden = true
 		cardViewController	= cardVC
         self.addChild(cardViewController)
 		self.view.insertSubview(cardViewController.view, at: 3)
@@ -281,36 +283,47 @@ extension MainVC {
 	
 	@objc
 	func newProjectTaped	(recognizer: UITapGestureRecognizer) {
+		view.isUserInteractionEnabled = false
 		NotificationCenter.default.addObserver(self, selector: #selector(MainVC.updateCardViewControllerWithNewProjectVC(notification:)), name: newprojectViewTaped, object: nil)
 		let name = Notification.Name(rawValue: newprojectNotificationKey)
 		NotificationCenter.default.post(name: name, object: nil)
+
         switch recognizer.state {
         case .ended		:
-            animateTransitionIfNeeded(state: nextState, duration: 0.9)
+            animateTransitionIfNeeded(state: nextState, duration: 0.3)
         default			:
             break
         }
+		let seconds = 0.3
+		DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+			self.view.isUserInteractionEnabled = true
+		}
     }
 	
 	@objc
-    func handleCardTap		(recognizer: UITapGestureRecognizer) {
+    func profileImageTap	(recognizer: UITapGestureRecognizer) {
+		view.isUserInteractionEnabled = false
 		NotificationCenter.default.addObserver(self, selector: #selector(MainVC.updateCardViewControllerWithProfileVC(notification:)), name: profileImageTaped, object: nil)
 		let name = Notification.Name(rawValue: profileImageInSectionNotificationKey)
 		NotificationCenter.default.post(name: name, object: nil)
 		addView.accessibilityElementsHidden = true
         switch recognizer.state {
         case .ended		:
-            animateTransitionIfNeeded(state: nextState, duration: 0.9)
+            animateTransitionIfNeeded(state: nextState, duration: 0.3)
         default			:
             break
         }
-    }
+		let seconds = 0.3
+		DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+			self.view.isUserInteractionEnabled = true
+		}
+	}
     
     @objc
     func handleCardPan		(recognizer: UIPanGestureRecognizer) {
         switch recognizer.state {
         case .began		:
-            startInteractiveTransition(state: nextState, duration: 0.9)
+            startInteractiveTransition(state: nextState, duration: 0.3)
         case .changed	:
             let translation			= recognizer.translation(in: self.cardViewController.handle)
             var fractionComplete	= translation.y / cardHeight
@@ -328,8 +341,9 @@ extension MainVC {
 		let seconds = 0.3
 		self.animateTransitionIfNeeded(state: nextState, duration: 0.3)
 		DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
-			NotificationCenter.default.removeObserver(self, name: self.profileImageTaped, object: nil)
-			NotificationCenter.default.removeObserver(self, name: self.newprojectViewTaped, object: nil)
+			NotificationCenter.default.removeObserver(self, name: self.profileImageTaped,		object: nil)
+			NotificationCenter.default.removeObserver(self, name: self.newprojectViewTaped,		object: nil)
+			NotificationCenter.default.removeObserver(self, name: self.editprojectViewTaped,	object: nil)
 			self.teardownCardView()
 		}
 	}
@@ -339,6 +353,7 @@ extension MainVC {
 extension MainVC: SwipeableCollectionViewCellDelegate {
 	
 	func editContainerViewTapped(inCell cell: SwipeableCollectionViewCell) {
+		self.view.isUserInteractionEnabled = false
 		guard let indexPath = collectionView.indexPath(for: cell) else { return }
 		let project = sections[0].projects[indexPath.row]
 		
@@ -352,12 +367,16 @@ extension MainVC: SwipeableCollectionViewCellDelegate {
 		NotificationCenter.default.post(name: name, object: nil)
 		switch recognizer.state {
 		case .ended		:
-			animateTransitionIfNeeded(state: nextState, duration: 0.9)
+			animateTransitionIfNeeded(state: nextState, duration: 0.3)
 		default			:
 			break
 		}
 		let leftOffset = CGPoint(x: 0, y: 0)
 		cell.scrollView.setContentOffset(leftOffset, animated: true)
+		let seconds = 0.3
+		DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+			self.view.isUserInteractionEnabled = true
+		}
 	}
 	
 	func deleteContainerViewTapped(inCell cell: SwipeableCollectionViewCell) {
@@ -369,7 +388,6 @@ extension MainVC: SwipeableCollectionViewCellDelegate {
 		sections[0].projects.remove(at: indexPath.row)
 		dataSourse?.apply(snap!, animatingDifferences: true)
 		self.collectionView.reloadData()
-
 	}
 	
 	func visibleContainerViewTapped(inCell cell: SwipeableCollectionViewCell) {
@@ -428,6 +446,8 @@ extension MainVC {
 
 		addView.isUserInteractionEnabled = true
 		addImage.isUserInteractionEnabled = true
+		addView.isMultipleTouchEnabled = false
+		addImage.isMultipleTouchEnabled = false
 		addView.addGestureRecognizer(tapToCreateNewProject1)
 		addImage.addGestureRecognizer(tapToCreateNewProject2)
 		view.addSubview(addView)

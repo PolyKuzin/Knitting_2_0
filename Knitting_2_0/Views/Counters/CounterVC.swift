@@ -92,6 +92,7 @@ class CountersVC	: UIViewController, UICollectionViewDelegate, UICollectionViewD
 		header.isUserInteractionEnabled = true
 		let tap = UITapGestureRecognizer(target: self, action: #selector(CountersVC.creeateCounterTaped(recognizer:)))
 		header.createCounter.addGestureRecognizer(tap)
+		header.createCounter.isMultipleTouchEnabled = false
 		return header
 	}
 	
@@ -228,6 +229,7 @@ extension CountersVC {
 	
 	@objc
 	func creeateCounterTaped(recognizer: UITapGestureRecognizer) {
+		self.view.isUserInteractionEnabled = false
 		NotificationCenter.default.addObserver(self, selector: #selector(CountersVC.updateCardViewControllerWithProfileVC(notification:)), name: creeateCounterTaped, object: nil)
 		let name = Notification.Name(rawValue: createCounterInSectionNotificationKey)
 		NotificationCenter.default.post(name: name, object: nil)
@@ -236,6 +238,10 @@ extension CountersVC {
 			animateTransitionIfNeeded(state: nextState, duration: 0.9)
 		default			:
 			break
+		}
+		let seconds = 0.3
+		DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+			self.view.isUserInteractionEnabled = true
 		}
 	}
 	
@@ -272,6 +278,7 @@ extension CountersVC {
 extension CountersVC: SwipeableCollectionViewCellDelegate {
 	
 	func editContainerViewTapped(inCell cell: SwipeableCollectionViewCell) {
+		self.view.isUserInteractionEnabled = false
 		guard let indexPath = collectionView.indexPath(for: cell) else { return }
 		let counter = counters[indexPath.row]
 		
@@ -291,6 +298,10 @@ extension CountersVC: SwipeableCollectionViewCellDelegate {
 		}
 		let leftOffset = CGPoint(x: 0, y: 0)
 		cell.scrollView.setContentOffset(leftOffset, animated: true)
+		let seconds = 0.3
+		DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+			self.view.isUserInteractionEnabled = true
+		}
 	}
 	
 	func deleteContainerViewTapped(inCell cell: SwipeableCollectionViewCell) {

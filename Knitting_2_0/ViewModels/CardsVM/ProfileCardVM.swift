@@ -52,7 +52,7 @@ class ProfileCardVM {
 	
 	let fullname				: UILabel = {
 		let label					= UILabel()
-		label.text 					= "Kostya The Knitter"
+		label.text 					= "Your nickName"
 		label.textAlignment 		= .center
 		label.font 					= Fonts.displaySemibold22
 		label.textColor 			= UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)

@@ -59,9 +59,13 @@ class NewCounterVC					: UIViewController, CardViewControllerProtocol, UINavigat
 	
 	@objc
 	func addNumberToTextField() {
-		var number = Int(rowsMaxTF.text!)!
-		number += 1
-		rowsMaxTF.text = String(number)
+		if !rowsMaxTF.text!.isEmpty{
+			var number = Int(rowsMaxTF.text!)!
+			number += 1
+			rowsMaxTF.text = String(number)
+		} else {
+			rowsMaxTF.text = "1"
+		}
 	}
 	
 	@objc
