@@ -195,15 +195,15 @@ extension NewProjectVC: UITextFieldDelegate {
     
     @objc
 	func keyboardWillChange(notification: Notification){
-        guard let userInfo = notification.userInfo else {return}
-              let keyboardRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-        
-        if notification.name == UIResponder.keyboardWillShowNotification ||
-           notification.name == UIResponder.keyboardWillChangeFrameNotification {
-			self.view.frame.origin.y -= keyboardRect.height - 200
-        } else {
+		guard let userInfo = notification.userInfo else {return}
+			  let keyboardRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+
+		if notification.name == UIResponder.keyboardWillShowNotification ||
+		   notification.name == UIResponder.keyboardWillChangeFrameNotification {
+			self.view.frame.origin.y -= keyboardRect.height - 150
+		} else {
 			self.view.frame.origin.y =  keyboardReturnDistance
-        }
+		}
     }
 }
 

@@ -240,7 +240,7 @@ extension SignUpVC {
         //Image or Gif constraints in a cell
         imageContainer.addSubview(logoIcon)
         logoIcon.translatesAutoresizingMaskIntoConstraints															= false
-        logoIcon.centerXAnchor.constraint(equalTo: imageContainer.centerXAnchor, constant: -10)			.isActive	= true
+        logoIcon.centerXAnchor.constraint(equalTo: imageContainer.centerXAnchor)			.isActive	= true
         logoIcon.centerYAnchor.constraint(equalTo: imageContainer.centerYAnchor, constant: 10)			.isActive	= true
 		logoIcon.heightAnchor.constraint(lessThanOrEqualToConstant: 154.89)								.isActive	= true
 		logoIcon.widthAnchor.constraint(lessThanOrEqualToConstant: 129.39)								.isActive	= true

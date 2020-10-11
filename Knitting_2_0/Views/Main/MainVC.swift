@@ -16,6 +16,8 @@ enum CardState {
 	case collapsed
 }
 
+let animationDuration = 0.7
+
 let newprojectNotificationKey				= "ru.polykuzin.newproject"
 let profileImageInSectionNotificationKey	= "ru.polykuzin.profileImage"
 let createCounterInSectionNotificationKey	= "ru.polykuzin.createCounter"
@@ -24,6 +26,8 @@ let editCounterNotificationKey				= "ru.polykuzin.editCounter"
 
 
 class MainVC	: UIViewController {
+	
+	var activityView: UIActivityIndicatorView?
 	
 	let profileImageTaped					= Notification.Name(rawValue: profileImageInSectionNotificationKey)
 	let newprojectViewTaped					= Notification.Name(rawValue: newprojectNotificationKey)
@@ -95,6 +99,7 @@ extension MainVC {
 		let user 			= MUser(user: currentUser!)
 		let reference		= Database.database().reference(withPath: "users").child(String(user.uid)).child("projects")
 		self.sections.append(MSection(type: "projects", title: "Working on this?", projects: []))
+		self.showActivityIndicator()
 		reference.observe(.value) { (snapshot) in
 			self.sections[0].projects.removeAll()
 			for item in snapshot.children {
@@ -115,6 +120,7 @@ extension MainVC {
 				}
 			}
 			self.collectionView.reloadData()
+			self.hideActivityIndicator()
 		}
 	}
 	
@@ -150,7 +156,7 @@ extension MainVC {
 	
 	func createProjectsSection() -> NSCollectionLayoutSection {
 		let itemSize				= NSCollectionLayoutSize			(widthDimension	:	.fractionalWidth(1.0),
-																		 heightDimension:	.fractionalHeight(UIScreen.main.bounds.height / 6))
+																		 heightDimension:	.fractionalHeight(UIScreen.main.bounds.height / 5.5))
 		let item					= NSCollectionLayoutItem			(layoutSize		:	itemSize)
 		let groupSize				= NSCollectionLayoutSize			(widthDimension	:	.fractionalWidth(1.0),
 																		 heightDimension:	.estimated(1.0))
@@ -231,13 +237,16 @@ extension MainVC {
 	
     @objc
 	func updateCardViewControllerWithProfileVC(notification: NSNotification) {
-		cardHeight = 500
+		cardHeight = 250
 		setupCardViewController(ProfileCardVC())
     }
 	
 	@objc
 	func updateCardViewControllerWithEditProjectVC(notification: NSNotification) {
-		cardHeight = 500
+		switch UIDevice().type {
+			case .iPhoneX, .iPhoneXS, .iPhoneXSMax, .iPhoneXR, .iPhone11, .iPhone11Pro, .iPhone11ProMax: cardHeight = 400
+			default: cardHeight = 375
+		}
 		let vc = EditProjectVC()
 		vc.currentProject = self.currentProject
 		NotificationCenter.default.addObserver(self, selector: #selector(hideViewWithDeinit), name: Notification.Name(rawValue: "disconnectEditProjectVC"), object: nil)
@@ -246,7 +255,10 @@ extension MainVC {
 	
     @objc
 	func updateCardViewControllerWithNewProjectVC(notification: NSNotification) {
-		cardHeight = 500
+		switch UIDevice().type {
+			case .iPhoneX, .iPhoneXS, .iPhoneXSMax, .iPhoneXR, .iPhone11, .iPhone11Pro, .iPhone11ProMax: cardHeight = 500
+			default: cardHeight = 475
+		}
 		NotificationCenter.default.addObserver(self, selector: #selector(hideViewWithDeinit), name: Notification.Name(rawValue: "disconnectNewProjectVC"), object: nil)
 		setupCardViewController(NewProjectVC())
     }
@@ -290,12 +302,11 @@ extension MainVC {
 
         switch recognizer.state {
         case .ended		:
-            animateTransitionIfNeeded(state: nextState, duration: 0.3)
+            animateTransitionIfNeeded(state: nextState, duration: animationDuration)
         default			:
             break
         }
-		let seconds = 0.3
-		DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+		DispatchQueue.main.asyncAfter(deadline: .now() + animationDuration) {
 			self.view.isUserInteractionEnabled = true
 		}
     }
@@ -309,12 +320,11 @@ extension MainVC {
 		addView.accessibilityElementsHidden = true
         switch recognizer.state {
         case .ended		:
-            animateTransitionIfNeeded(state: nextState, duration: 0.3)
+            animateTransitionIfNeeded(state: nextState, duration: animationDuration)
         default			:
             break
         }
-		let seconds = 0.3
-		DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+		DispatchQueue.main.asyncAfter(deadline: .now() + animationDuration) {
 			self.view.isUserInteractionEnabled = true
 		}
 	}
@@ -323,7 +333,7 @@ extension MainVC {
     func handleCardPan		(recognizer: UIPanGestureRecognizer) {
         switch recognizer.state {
         case .began		:
-            startInteractiveTransition(state: nextState, duration: 0.3)
+            startInteractiveTransition(state: nextState, duration: animationDuration)
         case .changed	:
             let translation			= recognizer.translation(in: self.cardViewController.handle)
             var fractionComplete	= translation.y / cardHeight
@@ -338,9 +348,8 @@ extension MainVC {
 	
 	@objc
 	func hideViewWithDeinit() {
-		let seconds = 0.3
-		self.animateTransitionIfNeeded(state: nextState, duration: 0.3)
-		DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+		self.animateTransitionIfNeeded(state: nextState, duration: animationDuration)
+		DispatchQueue.main.asyncAfter(deadline: .now() + animationDuration) {
 			NotificationCenter.default.removeObserver(self, name: self.profileImageTaped,		object: nil)
 			NotificationCenter.default.removeObserver(self, name: self.newprojectViewTaped,		object: nil)
 			NotificationCenter.default.removeObserver(self, name: self.editprojectViewTaped,	object: nil)
@@ -367,14 +376,13 @@ extension MainVC: SwipeableCollectionViewCellDelegate {
 		NotificationCenter.default.post(name: name, object: nil)
 		switch recognizer.state {
 		case .ended		:
-			animateTransitionIfNeeded(state: nextState, duration: 0.3)
+			animateTransitionIfNeeded(state: nextState, duration: animationDuration)
 		default			:
 			break
 		}
 		let leftOffset = CGPoint(x: 0, y: 0)
 		cell.scrollView.setContentOffset(leftOffset, animated: true)
-		let seconds = 0.3
-		DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+		DispatchQueue.main.asyncAfter(deadline: .now() + animationDuration) {
 			self.view.isUserInteractionEnabled = true
 		}
 	}
@@ -456,7 +464,7 @@ extension MainVC {
 		addView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive 					= true
 		addView.widthAnchor.constraint(equalToConstant: 110).isActive							= true
 		addView.heightAnchor.constraint(equalToConstant: 60).isActive							= true
-		addView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -28).isActive		= true
+		addView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40).isActive		= true
 		
 		addView.backgroundColor		= .white
 		addView.layer.shadowColor	= UIColor(red: 0, green: 0, blue: 0, alpha: 0.12).cgColor  				//TO CONSTANTS
@@ -484,5 +492,18 @@ extension MainVC {
 		cardViewController.view.removeFromSuperview()
 		NotificationCenter.default.removeObserver(self)
 		self.view.insertSubview(self.visualEffectView, at: 0)
+	}
+	
+	func showActivityIndicator() {
+		activityView = UIActivityIndicatorView(style: .large)
+		activityView?.center = self.view.center
+		self.view.addSubview(activityView!)
+		activityView?.startAnimating()
+	}
+
+	func hideActivityIndicator(){
+		if (activityView != nil){
+			activityView?.stopAnimating()
+		}
 	}
 }

@@ -62,7 +62,7 @@ class ForgotPassVM  {
 		textField.placeholder			= Placeholder.enterEmail
 		textField.layer.cornerRadius	= CornerRadius.forTextField
 		textField.backgroundColor		= Colors.normalTextField
-		textField.font					= Fonts.displayMedium20
+		textField.font					= Fonts.displayRegular18
 		textField.layer.borderWidth		= BorderWidth.forTextField
 		textField.layer.borderColor		= Colors.normalBorderTextField.cgColor
 		textField.leftView				= UIView(frame: CGRect(x: 0, y: 0, width: 16, height: 62))
@@ -95,8 +95,8 @@ class ForgotPassVM  {
 	private lazy var resetButton		: UIButton = {
 		let button						= UIButton(type: .system)
 		button.frame 					= CGRect(x: 0, y: 0, width: 500, height: 50)
-		button.titleLabel?.font			= Fonts.textSemibold17
-		button.layer.cornerRadius		= CornerRadius.forButton
+		button.titleLabel?.font			= Fonts.displayMedium18
+		button.layer.cornerRadius		= button.frame.height / 2
 		button.layer.masksToBounds		= true
 		button.setTitle					(Placeholder.resetPassword,	for: .normal)
 		button.setTitleColor			(Colors.whiteColor,		for: .normal)

@@ -216,7 +216,7 @@ extension LogInVC {
 		//Image or Gif constraints in a cell
 		imageContainer.addSubview(logoIcon)
 		logoIcon.translatesAutoresizingMaskIntoConstraints															= false
-		logoIcon.centerXAnchor.constraint(equalTo: imageContainer.centerXAnchor, constant: -10).isActive		= true
+		logoIcon.centerXAnchor.constraint(equalTo: imageContainer.centerXAnchor).isActive		= true
 		logoIcon.centerYAnchor.constraint(equalTo: imageContainer.centerYAnchor, constant: 10).isActive		= true
 		logoIcon.heightAnchor.constraint(lessThanOrEqualToConstant: 154.89).isActive								= true
 		logoIcon.widthAnchor.constraint(lessThanOrEqualToConstant: 129.39).isActive									= true
@@ -240,10 +240,10 @@ extension LogInVC {
 		//A palce for "forgot your password" button
 		view.addSubview(forgotPass)
 		forgotPass.translatesAutoresizingMaskIntoConstraints														= false
-		forgotPass.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 16).isActive					= true
+		forgotPass.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive					= true
 		forgotPass.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 8).isActive				= true
 		forgotPass.heightAnchor.constraint(equalToConstant: 17).isActive											= true
-		forgotPass.leadingAnchor.constraint(lessThanOrEqualTo: view.centerXAnchor).isActive							= true
+//		forgotPass.leadingAnchor.constraint(lessThanOrEqualTo: view.centerXAnchor).isActive							= true
 		
 		//A palce for warning label
 		view.addSubview(warning)

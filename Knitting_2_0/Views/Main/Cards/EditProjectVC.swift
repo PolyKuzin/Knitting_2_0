@@ -59,6 +59,8 @@ class EditProjectVC					: UIViewController, CardViewControllerProtocol, UINaviga
 		
 		
 		projectImage.image = currentProject?.image.toImage()
+		projectImage.layer.cornerRadius = 20
+		projectImage.layer.masksToBounds = true
 		projectName.text	= currentProject?.name
 	}
 	
@@ -188,12 +190,16 @@ extension EditProjectVC: UITextFieldDelegate {
 	func keyboardWillChange(notification: Notification){
 		guard let userInfo = notification.userInfo else {return}
 			  let keyboardRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-		
+		let returnValue : CGFloat?
+		switch UIDevice().type {
+			case .iPhoneX, .iPhoneXS, .iPhoneXSMax, .iPhoneXR, .iPhone11, .iPhone11Pro, .iPhone11ProMax: returnValue = 100
+			default: returnValue = 150
+		}
 		if notification.name == UIResponder.keyboardWillShowNotification ||
 		   notification.name == UIResponder.keyboardWillChangeFrameNotification {
-			self.view.frame.origin.y -= keyboardRect.height - 200
+			self.view.frame.origin.y -= keyboardRect.height - 150
 		} else {
-			self.view.frame.origin.y =  keyboardReturnDistance
+			self.view.frame.origin.y =  keyboardReturnDistance + returnValue!
 		}
 	}
 }
@@ -240,7 +246,7 @@ extension EditProjectVC {
 		view.addSubview(createButton)
 		createButton.translatesAutoresizingMaskIntoConstraints										= false
 		createButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive					= true
-		createButton.topAnchor.constraint(equalTo: projectName.bottomAnchor, constant: 100).isActive		= true
+		createButton.topAnchor.constraint(equalTo: projectName.bottomAnchor, constant: 20).isActive		= true
 		createButton.widthAnchor.constraint(equalToConstant: 155).isActive							= true
 		createButton.heightAnchor.constraint(equalToConstant: 50).isActive							= true
 	}

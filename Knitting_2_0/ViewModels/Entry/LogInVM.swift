@@ -89,7 +89,7 @@ class LogInVM	: LogInComposition {
 		textField.placeholder				= Placeholder.enterEmail
 		textField.layer.cornerRadius		= CornerRadius.forTextField
 		textField.backgroundColor			= Colors.normalTextField
-		textField.font						= Fonts.displayMedium20
+		textField.font						= Fonts.displayRegular18
 		textField.layer.borderWidth			= BorderWidth.forTextField
 		textField.layer.borderColor			= Colors.normalBorderTextField.cgColor
 		textField.leftView					= UIView(frame: CGRect(x: 0, y: 0, width: 16, height: 62))
@@ -115,7 +115,7 @@ class LogInVM	: LogInComposition {
 		textField.placeholder				= Placeholder.createPassword
 		textField.layer.cornerRadius		= CornerRadius.forTextField
 		textField.backgroundColor			= Colors.normalTextField
-		textField.font						= Fonts.displayMedium20
+		textField.font						= Fonts.displayRegular18
 		textField.layer.borderWidth			= BorderWidth.forTextField
 		textField.layer.borderColor			= Colors.normalBorderTextField.cgColor
 		textField.leftView					= UIView(frame: CGRect(x: 0, y: 0, width: 16, height: 62))
@@ -139,8 +139,9 @@ class LogInVM	: LogInComposition {
 		button.layer.masksToBounds			= true
 		button.setTitle						(Placeholder.forgotPassword,	for: .normal)
 		button.setTitleColor				(Colors.questionText, 		for: .normal)
-			
-			return button
+		button.titleLabel?.textAlignment	= .right
+		
+		return button
 		}()
 	
 	private lazy var warningLabel			: UILabel = {
@@ -159,8 +160,8 @@ class LogInVM	: LogInComposition {
 	private lazy var logInButton			: UIButton = {
 		let button							= UIButton(type: .system)
 		button.frame 						= CGRect(x: 0, y: 0, width: 500, height: 53)
-		button.titleLabel?.font				= Fonts.textSemibold17
-		button.layer.cornerRadius			= CornerRadius.forButton
+		button.titleLabel?.font				= Fonts.displayMedium18
+		button.layer.cornerRadius			= button.frame.height / 2
 		button.layer.masksToBounds			= true
 		button.setTitle						(Placeholder.logIn,	for: .normal)
 		button.setTitleColor				(Colors.whiteColor,		for: .normal)
@@ -186,7 +187,7 @@ class LogInVM	: LogInComposition {
 	private lazy var questionButton			: UIButton = {
 		let button							= UIButton(type: .system)
 		button.frame 						= CGRect(x: 0, y: 0, width: 40, height: 20)
-		button.titleLabel?.font				= Fonts.textRegular17
+		button.titleLabel?.font				= Fonts.textSemibold17
 		button.layer.masksToBounds			= true
 		button.setTitle						(Placeholder.signupWithSpace,	for: .normal)
 		button.setTitleColor				(Colors.blackColor, 		for: .normal)

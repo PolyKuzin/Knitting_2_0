@@ -70,7 +70,7 @@ class RegistrationVM {
 		tF.placeholder					= Placeholder.createNickname
 		tF.layer.cornerRadius			= CornerRadius.forTextField
 		tF.backgroundColor				= Colors.normalTextField
-		tF.font							= Fonts.displayMedium20
+		tF.font							= Fonts.displayRegular18
 		tF.layer.borderWidth			= BorderWidth.forTextField
 		tF.layer.borderColor			= Colors.normalBorderTextField.cgColor
 		tF.leftView						= UIView(frame: CGRect(x: 0, y: 0, width: 16, height: 62))
@@ -91,7 +91,7 @@ class RegistrationVM {
 		tF.placeholder					= Placeholder.enterEmail
 		tF.layer.cornerRadius			= CornerRadius.forTextField
 		tF.backgroundColor				= Colors.normalTextField
-		tF.font							= Fonts.displayMedium20
+		tF.font							= Fonts.displayRegular18
 		tF.layer.borderWidth			= BorderWidth.forTextField
 		tF.layer.borderColor			= Colors.normalBorderTextField.cgColor
 		tF.leftView						= UIView(frame: CGRect(x: 0, y: 0, width: 16, height: 51))
@@ -112,7 +112,7 @@ class RegistrationVM {
 		tF.placeholder					= Placeholder.createPassword
 		tF.layer.cornerRadius			= CornerRadius.forTextField
 		tF.backgroundColor				= Colors.normalTextField
-		tF.font							= Fonts.displayMedium20
+		tF.font							= Fonts.displayRegular18
 		tF.layer.borderWidth			= BorderWidth.forTextField
 		tF.layer.borderColor			= Colors.normalBorderTextField.cgColor
 		tF.leftView						= UIView(frame: CGRect(x: 0, y: 0, width: 16, height: 62))
@@ -142,8 +142,8 @@ class RegistrationVM {
 	private lazy var signUpButton		: UIButton = {
 		let button						= UIButton(type: .system)
 		button.frame 					= CGRect(x: 0, y: 0, width: 500, height: 53)
-		button.titleLabel?.font			= Fonts.textSemibold17
-		button.layer.cornerRadius		= CornerRadius.forButton
+		button.titleLabel?.font			= Fonts.displayMedium18
+		button.layer.cornerRadius		= button.frame.height / 2
         button.layer.masksToBounds		= true
 		button.setTitle					(Placeholder.createNewAccount, for: .normal)
 		button.setTitleColor			(Colors.whiteColor, for: .normal)
@@ -167,7 +167,7 @@ class RegistrationVM {
 	private lazy var questionButton		: UIButton = {
 		let button						= UIButton(type: .system)
 		button.frame 					= CGRect(x: 0, y: 0, width: 40, height: 20)
-		button.titleLabel?.font			= Fonts.textRegular17
+		button.titleLabel?.font			= Fonts.textSemibold17
 		button.layer.masksToBounds		= true
 		button.setTitle					(Placeholder.loginWithSpace,	for: .normal)
 		button.setTitleColor			(Colors.blackColor, 		for: .normal)

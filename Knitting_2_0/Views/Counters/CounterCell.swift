@@ -12,13 +12,6 @@ class CounterCell: SwipeableCollectionViewCell {
 	
 	static var reuseId 							= "counterCell"
 	
-	let deleteImageView: UIImageView = {
-		guard let image							= Icons.delete?.withRenderingMode(.alwaysTemplate) else { return UIImageView() }
-		let imageView							= UIImageView(image: image)
-		imageView.tintColor						= .white
-		return imageView
-	}()
-	
 	let counterName								: UILabel = {
 		let label 								= UILabel()
 		label.font								= Fonts.textSemibold17
@@ -111,12 +104,5 @@ extension CounterCell	{
 		minusButton.translatesAutoresizingMaskIntoConstraints = false
 		minusButton.leadingAnchor.constraint(equalTo: visibleContainerView.leadingAnchor, constant: 50).isActive = true
 		minusButton.centerYAnchor.constraint(equalTo: visibleContainerView.centerYAnchor).isActive = true
-		
-		deleteContainerView.addSubview(deleteImageView)
-		deleteImageView.translatesAutoresizingMaskIntoConstraints 													= false
-		deleteImageView.centerXAnchor.constraint(equalTo: deleteContainerView.centerXAnchor).isActive 				= true
-		deleteImageView.centerYAnchor.constraint(equalTo: deleteContainerView.centerYAnchor).isActive 				= true
-		deleteImageView.widthAnchor.constraint(equalToConstant: 25).isActive 										= true
-		deleteImageView.heightAnchor.constraint(equalToConstant: 30).isActive 										= true
 	}
 }

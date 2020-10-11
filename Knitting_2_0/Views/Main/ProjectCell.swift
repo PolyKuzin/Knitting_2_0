@@ -14,12 +14,6 @@ class ProjectCell: SwipeableCollectionViewCell {
 	
 	let projectName								= UILabel()
 	var projectImage 							= UIImageView()
-    let deleteImageView: UIImageView = {
-		guard let image							= Icons.delete?.withRenderingMode(.alwaysTemplate) else { return UIImageView() }
-        let imageView							= UIImageView(image: image)
-        imageView.tintColor						= .white
-        return imageView
-    }()
 	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -77,12 +71,5 @@ extension ProjectCell {
 		projectName.centerYAnchor.constraint(equalTo: visibleContainerView.centerYAnchor).isActive					= true
 		projectName.trailingAnchor.constraint(equalTo: visibleContainerView.trailingAnchor, constant: -20).isActive	= true
 		projectName.heightAnchor.constraint(equalToConstant: 26).isActive											= true
-		
-        deleteContainerView.addSubview(deleteImageView)
-        deleteImageView.translatesAutoresizingMaskIntoConstraints 													= false
-        deleteImageView.centerXAnchor.constraint(equalTo: deleteContainerView.centerXAnchor).isActive 				= true
-        deleteImageView.centerYAnchor.constraint(equalTo: deleteContainerView.centerYAnchor).isActive 				= true
-        deleteImageView.widthAnchor.constraint(equalToConstant: 25).isActive 										= true
-        deleteImageView.heightAnchor.constraint(equalToConstant: 30).isActive 										= true
 	}
 }

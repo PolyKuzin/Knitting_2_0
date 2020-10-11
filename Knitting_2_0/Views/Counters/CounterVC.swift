@@ -13,6 +13,8 @@ import FirebaseFirestore
 
 class CountersVC	: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIGestureRecognizerDelegate {
 	
+	var activityView: UIActivityIndicatorView?
+	
 	var currentProject						: MProject!
 	
 	let creeateCounterTaped					= Notification.Name(rawValue: createCounterInSectionNotificationKey)
@@ -71,7 +73,7 @@ class CountersVC	: UIViewController, UICollectionViewDelegate, UICollectionViewD
 	let collectionView: UICollectionView = {
 		let layout					= UICollectionViewFlowLayout()
 		layout.scrollDirection		= .vertical
-		layout.itemSize				= CGSize(width: UIScreen.main.bounds.width - 40,	height: UIScreen.main.bounds.height / 6)
+		layout.itemSize				= CGSize(width: UIScreen.main.bounds.width - 40,	height: UIScreen.main.bounds.height / 5.5)
 		layout.headerReferenceSize	= CGSize(width: UIScreen.main.bounds.width, 		height: 200)
 		
 		let cv = UICollectionView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), collectionViewLayout: layout)
@@ -88,6 +90,8 @@ class CountersVC	: UIViewController, UICollectionViewDelegate, UICollectionViewD
 
 		header.frame = CGRect(x: 0 , y: 0, width: self.view.frame.width, height: 200)
 		header.profileImage.image = currentProject.image.toImage()
+		header.profileImage.layer.cornerRadius = 20
+		header.profileImage.layer.masksToBounds = true
 		header.title.text			= currentProject.name
 		header.isUserInteractionEnabled = true
 		let tap = UITapGestureRecognizer(target: self, action: #selector(CountersVC.creeateCounterTaped(recognizer:)))
@@ -133,6 +137,7 @@ class CountersVC	: UIViewController, UICollectionViewDelegate, UICollectionViewD
 extension CountersVC {
 	
 	func setupSections() {
+		self.showActivityIndicator()
 		guard let reference		= currentProject.ref?.child("counters") else { return }
 		reference.observe(.value) { (snapshot) in
 			self.counters.removeAll()
@@ -148,6 +153,7 @@ extension CountersVC {
 				}
 			}
 			self.collectionView.reloadData()
+			self.hideActivityIndicator()
 		}
 	}
 }
@@ -157,7 +163,10 @@ extension CountersVC {
 	
 	@objc
 	func updateCardViewControllerWithProfileVC(notification: NSNotification) {
-		cardHeight = 400
+		switch UIDevice().type {
+			case .iPhoneX, .iPhoneXS, .iPhoneXSMax, .iPhoneXR, .iPhone11, .iPhone11Pro, .iPhone11ProMax: cardHeight = 400
+			default: cardHeight = 375
+		}
 		let vc = NewCounterVC()
 		vc.currentProject = currentProject
 		NotificationCenter.default.addObserver(self, selector: #selector(hideViewWithDeinit), name: Notification.Name(rawValue: "disconnectNewCounterVC"), object: nil)
@@ -166,7 +175,10 @@ extension CountersVC {
 	
 	@objc
 	func updateCardViewControllerWithEditCountertVC(notification: NSNotification) {
-		cardHeight = 500
+		switch UIDevice().type {
+			case .iPhoneX, .iPhoneXS, .iPhoneXSMax, .iPhoneXR, .iPhone11, .iPhone11Pro, .iPhone11ProMax: cardHeight = 400
+			default: cardHeight = 375
+		}
 		let vc = EditCounterVC()
 		vc.currentCounter = self.currentCounter
 		NotificationCenter.default.addObserver(self, selector: #selector(hideViewWithDeinit), name: Notification.Name(rawValue: "disconnectEditCounterVC"), object: nil)
@@ -205,6 +217,11 @@ extension CountersVC {
 		let currentCounter = counters[indexPath.row]
 		cell.currentRows.text = String(currentCounter.rows + 1)
 		currentCounter.ref?.updateChildValues(["rows": Int(cell.currentRows.text!)!])
+		if Int(cell.currentRows.text!) == currentCounter.rowsMax {
+			let alert = UIAlertController(title: "Congratulations!", message: "The Counter is done!", preferredStyle: UIAlertController.Style.alert)
+			alert.addAction(UIAlertAction(title: "Hooray)", style: UIAlertAction.Style.default, handler: nil))
+			self.present(alert, animated: true, completion: nil)
+		}
 		collectionView.reloadData()
 	}
 	@objc
@@ -235,12 +252,11 @@ extension CountersVC {
 		NotificationCenter.default.post(name: name, object: nil)
 		switch recognizer.state {
 		case .ended		:
-			animateTransitionIfNeeded(state: nextState, duration: 0.9)
+			animateTransitionIfNeeded(state: nextState, duration: animationDuration)
 		default			:
 			break
 		}
-		let seconds = 0.3
-		DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+		DispatchQueue.main.asyncAfter(deadline: .now() + animationDuration) {
 			self.view.isUserInteractionEnabled = true
 		}
 	}
@@ -249,7 +265,7 @@ extension CountersVC {
 	func handleCardPan		(recognizer: UIPanGestureRecognizer) {
 		switch recognizer.state {
 		case .began		:
-			startInteractiveTransition(state: nextState, duration: 0.9)
+			startInteractiveTransition(state: nextState, duration: animationDuration)
 		case .changed	:
 			let translation			= recognizer.translation(in: self.cardViewController.handle)
 			var fractionComplete	= translation.y / cardHeight
@@ -264,9 +280,8 @@ extension CountersVC {
 	
 	@objc
 	func hideViewWithDeinit() {
-		let seconds = 0.3
-		animateTransitionIfNeeded(state: nextState, duration: 0.3)
-		DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+		animateTransitionIfNeeded(state: nextState, duration: animationDuration)
+		DispatchQueue.main.asyncAfter(deadline: .now() + animationDuration) {
 			NotificationCenter.default.removeObserver(self, name: self.creeateCounterTaped, object: nil)
 			NotificationCenter.default.removeObserver(self, name: self.editCounterViewTaped, object: nil)
 			self.teardownCardView()
@@ -292,14 +307,13 @@ extension CountersVC: SwipeableCollectionViewCellDelegate {
 		NotificationCenter.default.post(name: name, object: nil)
 		switch recognizer.state {
 		case .ended		:
-			animateTransitionIfNeeded(state: nextState, duration: 0.9)
+			animateTransitionIfNeeded(state: nextState, duration: animationDuration)
 		default			:
 			break
 		}
 		let leftOffset = CGPoint(x: 0, y: 0)
 		cell.scrollView.setContentOffset(leftOffset, animated: true)
-		let seconds = 0.3
-		DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+		DispatchQueue.main.asyncAfter(deadline: .now() + animationDuration) {
 			self.view.isUserInteractionEnabled = true
 		}
 	}
@@ -359,5 +373,18 @@ extension CountersVC {
 		cardViewController.view.removeFromSuperview()
 		NotificationCenter.default.removeObserver(self)
 		self.view.insertSubview(self.visualEffectView, at: 0)
+	}
+	
+	func showActivityIndicator() {
+		activityView = UIActivityIndicatorView(style: .large)
+		activityView?.center = self.view.center
+		self.view.addSubview(activityView!)
+		activityView?.startAnimating()
+	}
+
+	func hideActivityIndicator(){
+		if (activityView != nil){
+			activityView?.stopAnimating()
+		}
 	}
 }

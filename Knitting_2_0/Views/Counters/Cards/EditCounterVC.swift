@@ -52,7 +52,6 @@ class EditCounterVC					: UIViewController, CardViewControllerProtocol, UINaviga
 			
 			globalCounterSwitch.addTarget(self, action: #selector(didChangeGlobalCounterSwitch), for: .valueChanged)
 			createButton.addTarget(self, action: #selector(saveCounter), for: .touchUpInside)
-			
 			plusButton.addTarget(self, action: #selector(addNumberToTextField), for: .touchUpInside)
 			minusButton.addTarget(self, action: #selector(removeNumberFromTextField), for: .touchUpInside)
 		}
@@ -60,7 +59,7 @@ class EditCounterVC					: UIViewController, CardViewControllerProtocol, UINaviga
 	
 	@objc
 	func addNumberToTextField() {
-		if !rowsMaxTF.text!.isEmpty{
+		if !rowsMaxTF.text!.isEmpty {
 			var number = Int(rowsMaxTF.text!)!
 			number += 1
 			rowsMaxTF.text = String(number)
@@ -72,7 +71,7 @@ class EditCounterVC					: UIViewController, CardViewControllerProtocol, UINaviga
 	@objc
 	func removeNumberFromTextField() {
 		if !rowsMaxTF.text!.isEmpty {
-			if Int(rowsMaxTF.text!)! == -1 || Int(rowsMaxTF.text!)! == 0 {
+			if rowsMaxTF.text! != "-1" || rowsMaxTF.text! != "0" {
 				var number = Int(rowsMaxTF.text!)!
 				number -= 1
 				rowsMaxTF.text = String(number)
@@ -109,7 +108,7 @@ class EditCounterVC					: UIViewController, CardViewControllerProtocol, UINaviga
 			let referenceForCounter = self.currentCounter?.ref
 			referenceForCounter?.updateChildValues(["name" : name,
 													"rowsMax" : rowsMax,
-												   "date" : date])
+													"date" : date])
 			NotificationCenter.default.post(name: Notification.Name(rawValue: "disconnectEditCounterVC"), object: nil)
 		}
 	}
@@ -139,6 +138,7 @@ class EditCounterVC					: UIViewController, CardViewControllerProtocol, UINaviga
 			rowsMaxTF.text = String(rowsMaxx)
 		}
 		setingUpKeyboardHiding()
+		createButton.titleLabel?.text = "Save"
 		let tap : UITapGestureRecognizer	= UITapGestureRecognizer(target: self, action: #selector(hideKeyboardWhenTapped))
 		view.addGestureRecognizer(tap)
 	}
@@ -202,12 +202,16 @@ extension EditCounterVC: UITextFieldDelegate {
 	func keyboardWillChange(notification: Notification){
 		guard let userInfo = notification.userInfo else {return}
 			  let keyboardRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-		
+		let returnValue : CGFloat?
+		switch UIDevice().type {
+			case .iPhoneX, .iPhoneXS, .iPhoneXSMax, .iPhoneXR, .iPhone11, .iPhone11Pro, .iPhone11ProMax: returnValue = 100
+			default: returnValue = 150
+		}
 		if notification.name == UIResponder.keyboardWillShowNotification ||
 		   notification.name == UIResponder.keyboardWillChangeFrameNotification {
-			self.view.frame.origin.y -= keyboardRect.height - 200
+			self.view.frame.origin.y -= keyboardRect.height - 150
 		} else {
-			self.view.frame.origin.y =  keyboardReturnDistance + 150
+			self.view.frame.origin.y =  keyboardReturnDistance + returnValue!
 		}
 	}
 }

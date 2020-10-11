@@ -73,9 +73,9 @@ struct Placeholder {
 	static let resetPassword			= "Reset"
 	static let resetPasswordForm		= "We will send you an E-mail. Click the link in the E-mail and reset your password."
 	
-	static let logIn					= "Log in"
+	static let logIn					= "Log In"
 	static let loginWithSpace			= " Log in"
-	static let signUp					= "Sign up"
+	static let signUp					= "Sign Up"
 	static let signupWithSpace			= " Sign up"
 	static let createNewAccount			= "Create new account"
 	static let loginIntoAccount			= "Log in to your account"
@@ -101,4 +101,5 @@ struct Fonts {
 	static let displayBold28			= UIFont(name: "SFProDisplay-Bold", 	size: 28)
 	static let textBold17				= UIFont(name: "SFProText-Bold", 		size: 17)
 	static let displayRegular17			= UIFont(name: "SFProDisplay-Regular", size: 17)
+	static let displayRegular18			= UIFont(name: "SFProDisplay-Regular", size: 18)
 }

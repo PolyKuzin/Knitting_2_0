@@ -31,8 +31,8 @@ class EntryVM {
 	
 	func setupKeyboardReturnDistance() -> CGFloat {
 		switch UIDevice().type {
-		case .iPhoneX, .iPhoneXS, .iPhoneXSMax, .iPhoneXR, .iPhone11, .iPhone11Pro, .iPhone11ProMax: return UIScreen.main.nativeScale < UIScreen.main.scale ? 350 :  400
-		default: return UIScreen.main.nativeScale < UIScreen.main.scale ? 150 : 200
+		case .iPhoneX, .iPhoneXS, .iPhoneXSMax, .iPhoneXR, .iPhone11, .iPhone11Pro, .iPhone11ProMax: return 350
+		default: return 150
 		}
 	}
 	
@@ -50,7 +50,7 @@ class EntryVM {
 		button.frame 					= CGRect(x: 0, y: 0, width: 152, height: 53)
 		button.titleLabel?.font			= Fonts.displayMedium18
 		button.alpha					= 0
-		button.layer.cornerRadius		= 26.5
+		button.layer.cornerRadius		= button.frame.height / 2
 		button.layer.masksToBounds		= true
 		button.setTitle					(Placeholder.signUp, for: .normal)
 		button.setTitleColor			(Colors.whiteColor, for: .normal)

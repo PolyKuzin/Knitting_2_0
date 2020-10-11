@@ -24,6 +24,23 @@ class SwipeableCollectionViewCell: UICollectionViewCell {
         return scrollView
     }()
     
+	let deleteLabel : UILabel = {
+		let label = UILabel()
+		label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+		label.font = UIFont(name: "SFProDisplay-Medium", size: 18)
+		label.text = "Delete"
+		return label
+	}()
+	
+	let editLabel : UILabel = {
+		let label = UILabel()
+		label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+		label.font = UIFont(name: "SFProDisplay-Medium", size: 18)
+		label.text = "Edit"
+		
+		return label
+	}()
+	
     weak var delegate: SwipeableCollectionViewCellDelegate?
         
     override init(frame: CGRect) {
@@ -58,6 +75,16 @@ class SwipeableCollectionViewCell: UICollectionViewCell {
 		visibleContainerView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 1).isActive				= true
         stackView.heightAnchor.constraint(equalTo: scrollView.heightAnchor).isActive				= true
 		stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 1.5).isActive	= true
+		
+		deleteContainerView.addSubview(deleteLabel)
+		deleteLabel.translatesAutoresizingMaskIntoConstraints = false
+		deleteLabel.centerYAnchor.constraint(equalTo: deleteContainerView.centerYAnchor).isActive = true
+		deleteLabel.centerXAnchor.constraint(equalTo: deleteContainerView.centerXAnchor).isActive = true
+		
+		editContainerView.addSubview(editLabel)
+		editLabel.translatesAutoresizingMaskIntoConstraints = false
+		editLabel.centerYAnchor.constraint(equalTo: editContainerView.centerYAnchor).isActive = true
+		editLabel.centerXAnchor.constraint(equalTo: editContainerView.centerXAnchor).isActive = true
     }
     
     private func setupGestureRecognizer() {
