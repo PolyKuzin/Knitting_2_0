@@ -106,7 +106,6 @@ extension EntryVC {
 		signUpButton.translatesAutoresizingMaskIntoConstraints	= false
 		
 		NSLayoutConstraint.activate([
-			
 			//Image or Gif constraints in a cell
 			logoIcon		.centerXAnchor		.constraint(equalTo: view.centerXAnchor),
 			logoIcon		.heightAnchor		.constraint(equalToConstant: 219),
@@ -119,12 +118,11 @@ extension EntryVC {
 			logInButton		.bottomAnchor		.constraint(equalTo: view.bottomAnchor,		constant: -48),
 			
 			//A place for signup buttom
+			signUpButton	.widthAnchor		.constraint(equalToConstant: 152),
+			signUpButton	.heightAnchor		.constraint(equalToConstant: 53),
 			signUpButton	.topAnchor			.constraint(equalTo: logoIcon.bottomAnchor,	constant: 163),
 			signUpButton	.centerXAnchor		.constraint(equalTo: view.centerXAnchor),
 			signUpButton	.bottomAnchor		.constraint(equalTo: logInButton.topAnchor, constant: -24),
-			signUpButton	.heightAnchor		.constraint(equalToConstant: 53),
-			signUpButton	.widthAnchor		.constraint(equalToConstant: 152),
-			
-									])
+		])
 	}
 }

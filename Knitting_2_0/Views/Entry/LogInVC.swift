@@ -148,15 +148,14 @@ extension LogInVC: UITextFieldDelegate {
     
     @objc
 	func keyboardWillChange(notification: Notification){
-//        guard let userInfo = notification.userInfo else {return}
-//              let keyboardRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-//        
-//        if notification.name == UIResponder.keyboardWillShowNotification ||
-//           notification.name == UIResponder.keyboardWillChangeFrameNotification {
-//			view.frame.origin.y == emailTextField.frame.origin.y
-//        } else {
-//			view.frame.origin.y == UIScreen.main.bounds.height
-//        }
+		guard let userInfo = notification.userInfo else {return}
+			  let keyboardRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+		if notification.name == UIResponder.keyboardWillShowNotification ||
+		   notification.name == UIResponder.keyboardWillChangeFrameNotification {
+			view.frame.origin.y = -keyboardRect.height + 150
+		} else {
+			view.frame.origin.y += keyboardRect.height - 150
+		}
     }
 		
     @objc

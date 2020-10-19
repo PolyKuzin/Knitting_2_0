@@ -76,9 +76,10 @@ class CountersVC	: UIViewController, UICollectionViewDelegate, UICollectionViewD
 		layout.itemSize				= CGSize(width: UIScreen.main.bounds.width - 40,	height: UIScreen.main.bounds.height / 5.5)
 		layout.headerReferenceSize	= CGSize(width: UIScreen.main.bounds.width, 		height: 200)
 		
-		let cv = UICollectionView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), collectionViewLayout: layout)
+		let cv = UICollectionView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 3), collectionViewLayout: layout)
 		cv.backgroundColor = .white
 		cv.alwaysBounceVertical = true
+		
 		cv.register(CounterCell.self, 	forCellWithReuseIdentifier: CounterCell.reuseId)
 		cv.register(SectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeader.reusedId)
 		
