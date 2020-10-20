@@ -25,17 +25,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		nav1.navigationBar.isTranslucent	= false
 		nav1.navigationBar.shadowImage		= UIImage()
 		nav1.navigationBar.setBackgroundImage(UIImage(), for: .default)
-		
 		let nav2				= UINavigationController()
 		let logInView			= LogInVC(nibName: nil, bundle: nil)
 		nav2.viewControllers	= [logInView]
-		
 		let nav3				= UINavigationController()
 		let mainView			= MainVC(nibName: nil, bundle: nil)
 		nav3.viewControllers	= [mainView]
 		
-		self.window!.rootViewController = nav1
-		self.window?.makeKeyAndVisible()
+		if !UserDefaults.standard.bool(forKey: "didSee") {
+			 UserDefaults.standard.set(true, forKey: "didSee")
+
+			 let storyboard = UIStoryboard(name: "Main", bundle: nil)
+			 let viewController = storyboard.instantiateViewController(withIdentifier: "YourViewController")
+			 self.window?.rootViewController = viewController
+			 self.window?.makeKeyAndVisible()
+		} else {
+			self.window!.rootViewController = nav1
+			self.window?.makeKeyAndVisible()
+		}
     }
 }
 

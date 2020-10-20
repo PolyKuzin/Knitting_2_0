@@ -13,7 +13,6 @@ struct MCounter 				: Hashable, Comparable {
     
     let ref						: DatabaseReference?
 	
-    
     var name					: String
     var rows					: Int
     var rowsMax					: Int
