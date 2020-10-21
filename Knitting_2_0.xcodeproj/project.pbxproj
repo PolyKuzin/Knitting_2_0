@@ -28,8 +28,6 @@
 		996FAF2E2508249400209228 /* EntryVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996FAF2D2508249400209228 /* EntryVCTests.swift */; };
 		996FAF30250824A300209228 /* EntryVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996FAF2F250824A300209228 /* EntryVMTests.swift */; };
 		996FAF322508FB6D00209228 /* SF-Pro-Display-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 996FAF312508FB6C00209228 /* SF-Pro-Display-Semibold.otf */; };
-		9978DDCF253E125200659DC1 /* SwipingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9978DDCE253E125200659DC1 /* SwipingController.swift */; };
-		9978DDD3253E129A00659DC1 /* SwipingPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9978DDD2253E129A00659DC1 /* SwipingPageCell.swift */; };
 		9978DDD7253E12C200659DC1 /* MPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9978DDD6253E12C200659DC1 /* MPage.swift */; };
 		998B9F85250BCAFA00C0C52F /* UIWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B9F84250BCAFA00C0C52F /* UIWindow.swift */; };
 		998B9F87250C1E2B00C0C52F /* MainVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B9F86250C1E2B00C0C52F /* MainVM.swift */; };
@@ -110,8 +108,6 @@
 		996FAF2D2508249400209228 /* EntryVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryVCTests.swift; sourceTree = "<group>"; };
 		996FAF2F250824A300209228 /* EntryVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryVMTests.swift; sourceTree = "<group>"; };
 		996FAF312508FB6C00209228 /* SF-Pro-Display-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Semibold.otf"; sourceTree = "<group>"; };
-		9978DDCE253E125200659DC1 /* SwipingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipingController.swift; sourceTree = "<group>"; };
-		9978DDD2253E129A00659DC1 /* SwipingPageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipingPageCell.swift; sourceTree = "<group>"; };
 		9978DDD6253E12C200659DC1 /* MPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPage.swift; sourceTree = "<group>"; };
 		998B9F84250BCAFA00C0C52F /* UIWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindow.swift; sourceTree = "<group>"; };
 		998B9F86250C1E2B00C0C52F /* MainVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVM.swift; sourceTree = "<group>"; };
@@ -237,15 +233,6 @@
 			path = Entry;
 			sourceTree = "<group>";
 		};
-		9978DDCB253E0F8E00659DC1 /* OnBoarding */ = {
-			isa = PBXGroup;
-			children = (
-				9978DDD2253E129A00659DC1 /* SwipingPageCell.swift */,
-				9978DDCE253E125200659DC1 /* SwipingController.swift */,
-			);
-			path = OnBoarding;
-			sourceTree = "<group>";
-		};
 		99AFBA3A24F80D9E00E71FD6 = {
 			isa = PBXGroup;
 			children = (
@@ -310,7 +297,6 @@
 		99AFBA6924F8102A00E71FD6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				9978DDCB253E0F8E00659DC1 /* OnBoarding */,
 				996FAF332508FC8200209228 /* Entry */,
 				994EF71725153490009AA35B /* Main */,
 				99B956F425248E5900AC5438 /* Counters */,
@@ -657,7 +643,6 @@
 				99B206742504DDF700FA6C50 /* LogInVM.swift in Sources */,
 				99AFBA4724F80D9E00E71FD6 /* AppDelegate.swift in Sources */,
 				99EFB56625168AF5003A5D07 /* ProfileCardVM.swift in Sources */,
-				9978DDD3253E129A00659DC1 /* SwipingPageCell.swift in Sources */,
 				996FAF2C2508245D00209228 /* EntryVM.swift in Sources */,
 				9949F8C5252DEC7900D12F50 /* EditCounterVC.swift in Sources */,
 				9949F8BF252DE21F00D12F50 /* EditProjectVM.swift in Sources */,
@@ -670,7 +655,6 @@
 				994300B9252B156A0065EF5C /* NewCounterVC.swift in Sources */,
 				99B956FE25249AFE00AC5438 /* CounterSectionHeader.swift in Sources */,
 				998B9F8B250C2FA100C0C52F /* ForgotPassVC.swift in Sources */,
-				9978DDCF253E125200659DC1 /* SwipingController.swift in Sources */,
 				99AFBA7A24F9667F00E71FD6 /* Constants.swift in Sources */,
 				99EFB56C25178D77003A5D07 /* NewProjectCardVC.swift in Sources */,
 				998B9F8D250C2FBB00C0C52F /* ForgotPassVM.swift in Sources */,
