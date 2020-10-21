@@ -31,6 +31,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		let nav3				= UINavigationController()
 		let mainView			= MainVC(nibName: nil, bundle: nil)
 		nav3.viewControllers	= [mainView]
+		self.window!.rootViewController = nav1
+		self.window?.makeKeyAndVisible()
     }
 }
 

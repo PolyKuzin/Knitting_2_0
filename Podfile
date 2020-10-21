@@ -10,7 +10,6 @@ target 'Knitting_2_0' do
   pod 'Firebase/Analytics'
   pod 'Firebase/Firestore'
   pod 'FirebaseFirestoreSwift'
-  
   target 'Knitting_2_0Tests' do
     inherit! :search_paths
     # Pods for testing
