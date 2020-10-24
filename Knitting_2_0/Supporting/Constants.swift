@@ -95,11 +95,11 @@ struct Fonts {
 	static let displaySemibold22		= UIFont(name: "SFProDisplay-Semibold", size: 22)
 	static let displaySemibold28		= UIFont(name: "SFProDisplay-Semibold", size: 28)
 	static let textRegular17			= UIFont(name: "SFProText-Regular", 	size: 17)
-	static let textRegular14			= UIFont(name: "SFProText-Regular", 	size: 14) // to test
+	static let textRegular14			= UIFont(name: "SFProText-Regular", 	size: 14)
 	static let textSemibold17			= UIFont(name: "SFProText-Semibold",	size: 17)
-	static let textSemibold14			= UIFont(name: "SFProText-Semibold",	size: 14) // to test
+	static let textSemibold14			= UIFont(name: "SFProText-Semibold",	size: 14)
 	static let displayBold28			= UIFont(name: "SFProDisplay-Bold", 	size: 28)
 	static let textBold17				= UIFont(name: "SFProText-Bold", 		size: 17)
-	static let displayRegular17			= UIFont(name: "SFProDisplay-Regular", size: 17)
-	static let displayRegular18			= UIFont(name: "SFProDisplay-Regular", size: 18)
+	static let displayRegular17			= UIFont(name: "SFProDisplay-Regular",  size: 17)
+	static let displayRegular18			= UIFont(name: "SFProDisplay-Regular",  size: 18)
 }

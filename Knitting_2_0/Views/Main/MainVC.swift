@@ -18,16 +18,9 @@ enum CardState {
 
 let animationDuration = 0.7
 
-let newprojectNotificationKey				= "ru.polykuzin.newproject"
-let profileImageInSectionNotificationKey	= "ru.polykuzin.profileImage"
-let createCounterInSectionNotificationKey	= "ru.polykuzin.createCounter"
-let editProjectNotificationKey				= "ru.polykuzin.editProject"
-let editCounterNotificationKey				= "ru.polykuzin.editCounter"
-
-
-class MainVC	: UIViewController {
+class MainVC								: UIViewController {
 	
-	var activityView: UIActivityIndicatorView?
+	var activityView						: UIActivityIndicatorView?
 	
 	let profileImageTaped					= Notification.Name(rawValue: profileImageInSectionNotificationKey)
 	let newprojectViewTaped					= Notification.Name(rawValue: newprojectNotificationKey)
@@ -35,8 +28,7 @@ class MainVC	: UIViewController {
 	
 	//MARK:VARIABLES: Supporting Stuff
 	
-	private var collectionView				: UICollectionView!
-	private var sections					: Array<MSection> = [MSection(type: "projects", title: "Working on this?", projects: [MProject(userID: "123", name: "knitting-f824f", image: "", date: "0")])]
+	private var sections					: Array<MSection> = [MSection(type: "projects", title: "Working on this?", projects: [])]
 	private var dataSourse					: UICollectionViewDiffableDataSource<MSection, MProject>?
 	
 	//MARK:VARIABLES: UI Elements
@@ -67,6 +59,21 @@ class MainVC	: UIViewController {
 		}
 	}
 	
+	let collectionView: UICollectionView = {
+		let layout					= UICollectionViewFlowLayout()
+		layout.scrollDirection		= .vertical
+		layout.itemSize				= CGSize(width: UIScreen.main.bounds.width - 40,	height: UIScreen.main.bounds.height / 5.5)
+		layout.headerReferenceSize	= CGSize(width: UIScreen.main.bounds.width, 		height: 55)
+		
+		let cv = UICollectionView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 3), collectionViewLayout: layout)
+		cv.backgroundColor = .white
+		cv.alwaysBounceVertical = true
+		cv.register(ProjectCell.self, 	forCellWithReuseIdentifier: ProjectCell.reuseId)
+		cv.register(MainSectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MainSectionHeader.reusedId)
+		
+		return cv
+	}()
+	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(true)
 		setupNormalNavBar()
@@ -76,9 +83,11 @@ class MainVC	: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		viewModel = MainVM()
+		collectionView.dataSource	= self
+		collectionView.delegate		= self
 		setupVisualEffect	()
 		setupSections		()
-		self.setupCollectionView		()
+		setUpLayout		()
 		self.collectionView.reloadData	()
 		self.view.sendSubviewToBack(self.addView)
 		self.view.sendSubviewToBack(self.collectionView)
@@ -103,78 +112,21 @@ extension MainVC {
 			self.sections[0].projects.removeAll()
 			for item in snapshot.children {
 				let project = MProject(snapshot: item as! DataSnapshot)
-				if !self.sections[0].projects.contains(project) {
-					self.sections[0].projects.append(project)
-					self.sections[0].projects.sort(by: {
-						return
-								($0.date) > ($1.date)
-					})
-					if self.reloadMainVc {
-						var snapShot = NSDiffableDataSourceSnapshot<MSection, MProject>()
-						snapShot.appendSections(self.sections)
-						snapShot.appendItems(self.sections[0].projects)
-						self.dataSourse?.apply(snapShot, animatingDifferences: true)
-						self.collectionView.reloadData()
-					}
-				}
+				print(project.name)
+				self.sections[0].projects.append(project)
+				self.sections[0].projects.sort(by: {
+					return
+							($0.date) > ($1.date)
+				})
+				WatchManager.shared.sendParamsToWatch(dict: [
+					"name" : project.name,
+					"image": project.image
+				])
+				self.collectionView.reloadData()
 			}
 			self.collectionView.reloadData()
 			self.hideActivityIndicator()
 		}
-	}
-	
-	func setupCollectionView() {
-		collectionView						= UICollectionView(frame: view.bounds,
-															   collectionViewLayout: createCompositionalLayout())
-		collectionView.autoresizingMask		= [.flexibleWidth, .flexibleHeight]
-		collectionView.backgroundColor		= .white
-		collectionView.alwaysBounceVertical	= true
-		
-		collectionView.register(MainSectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,withReuseIdentifier: MainSectionHeader.reusedId)
-		collectionView.register(ProjectCell.self, forCellWithReuseIdentifier	: ProjectCell.reuseId)
-		collectionView.dataSource	= self
-		collectionView.delegate		= self
-
-		setUpLayout		()
-
-	}
-	
-	func createCompositionalLayout() -> UICollectionViewLayout {
-		let layout = UICollectionViewCompositionalLayout { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
-			let section = self.sections[sectionIndex]
-			switch section.type {
-//			A place for adding a new section
-				default:
-			return self.createProjectsSection()
-			}
-		}
-		return layout
-	}
-	
-	func createProjectsSection() -> NSCollectionLayoutSection {
-		let itemSize				= NSCollectionLayoutSize			(widthDimension	:	.fractionalWidth(1.0),
-																		 heightDimension:	.fractionalHeight(UIScreen.main.bounds.height / 5.5))
-		let item					= NSCollectionLayoutItem			(layoutSize		:	itemSize)
-		let groupSize				= NSCollectionLayoutSize			(widthDimension	:	.fractionalWidth(1.0),
-																		 heightDimension:	.estimated(1.0))
-		let group					= NSCollectionLayoutGroup.vertical	(layoutSize		: groupSize, subitems: [item])
-		let section					= NSCollectionLayoutSection			(group: group)
-		item.contentInsets			= NSDirectionalEdgeInsets.init		(top: 20,	leading: 0,		bottom: 20,	trailing: 0)
-		section.contentInsets		= NSDirectionalEdgeInsets.init		(top: 20,	leading: 20,	bottom: 20,	trailing: 20)
-		group.interItemSpacing		= .fixed(20)
-		section.interGroupSpacing	= 15
-		let header 					= createSectionHeader()
-		section.boundarySupplementaryItems = [header]
-		return section
-	}
-	
-	func createSectionHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
-		let layoutSectionHeaderSize = NSCollectionLayoutSize(widthDimension	:	.fractionalWidth(1),
-															 heightDimension:	.estimated(1))
-		let layoutSectionHeader		= NSCollectionLayoutBoundarySupplementaryItem(layoutSize	:	layoutSectionHeaderSize,
-																				  elementKind	:	UICollectionView.elementKindSectionHeader,
-																				  alignment		:	.top)
-		return layoutSectionHeader
 	}
 }
 
@@ -182,7 +134,7 @@ extension MainVC {
 extension MainVC : UICollectionViewDataSource, UICollectionViewDelegate {
 	
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return sections.count
+		return sections[0].projects.count
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -194,6 +146,7 @@ extension MainVC : UICollectionViewDataSource, UICollectionViewDelegate {
 			cell.isHidden = true
 		} else {
 			cell.isHidden = false
+			cell.alpha = 1
 		}
 		return cell
 	}
@@ -207,54 +160,6 @@ extension MainVC : UICollectionViewDataSource, UICollectionViewDelegate {
 		
 		sectionHeader.profileImage.addGestureRecognizer(tapGestureRecognizer)
 		return sectionHeader
-	}
-	
-	
-	func createDataSourse() {
-		dataSourse = UICollectionViewDiffableDataSource<MSection, MProject>(collectionView: collectionView,
-																			cellProvider: { (collectionView, indexPath, project) -> UICollectionViewCell? in
-			switch self.sections[indexPath.section].type {
-//				A place for adding a stories
-			default:
-				let project = self.sections[0].projects[indexPath.row]
-				let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProjectCell.reuseId, for: indexPath) as! ProjectCell
-				cell.delegate = self
-				cell.configurу(with: project)
-				if project.name == "knitting-f824f" {
-					cell.isHidden = true
-				} else {
-					cell.isHidden = false
-				}
-				return cell
-			}
-		})
-		dataSourse?.supplementaryViewProvider = { [weak self] collectionView, kind, indexPath in
-			guard let sectionHeader		= collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: MainSectionHeader.reusedId, for: indexPath) as? MainSectionHeader
-				else { return nil }
-			guard let firstProject		= self?.dataSourse?.itemIdentifier(for: indexPath)
-				else { return nil }
-			guard let section			= self?.dataSourse?.snapshot().sectionIdentifier(containingItem: firstProject)
-				else { return nil}
-			if section.title.isEmpty { return nil}
-			sectionHeader.title.text	= section.title
-			let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MainVC.profileImageTap(recognizer:)))
-			
-			sectionHeader.profileImage.addGestureRecognizer(tapGestureRecognizer)
-			return sectionHeader
-		}
-	}
-	
-	func reloadData() {
-		if self.sections[0].projects.isEmpty {
-			let project = MProject(userID: "123", name: "knitting-f824f", image: "", date: "0")
-			self.sections[0].projects.append(project)
-		}
-		var snapShot = NSDiffableDataSourceSnapshot<MSection, MProject>()
-		snapShot.appendSections(sections)
-		for section in sections {
-			snapShot.appendItems(section.projects, toSection: section)
-		}
-		dataSourse?.apply(snapShot, animatingDifferences: true)
 	}
 }
 
@@ -523,6 +428,7 @@ extension MainVC {
 		cardViewController.view.removeFromSuperview()
 		NotificationCenter.default.removeObserver(self)
 		self.view.insertSubview(self.visualEffectView, at: 0)
+		collectionView.reloadData()
 	}
 	
 	func showActivityIndicator() {
@@ -536,5 +442,6 @@ extension MainVC {
 		if (activityView != nil){
 			activityView?.stopAnimating()
 		}
+		collectionView.reloadData()
 	}
 }

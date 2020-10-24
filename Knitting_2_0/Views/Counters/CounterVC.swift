@@ -88,7 +88,6 @@ class CountersVC	: UIViewController, UICollectionViewDelegate, UICollectionViewD
 	
 	func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
 		let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeader.reusedId, for: indexPath) as! SectionHeader
-
 		header.frame = CGRect(x: 0 , y: 0, width: self.view.frame.width, height: 200)
 		header.profileImage.image = currentProject.image.toImage()
 		header.profileImage.layer.cornerRadius = 20

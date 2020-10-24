@@ -42,17 +42,23 @@ extension MainSectionHeader {
 	
 	private func setupLayout() {
 		addSubview(profileImage)
-		profileImage.translatesAutoresizingMaskIntoConstraints									= false
-		profileImage.topAnchor.constraint(equalTo: topAnchor).isActive							= true
-		profileImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive	= true
-		profileImage.heightAnchor.constraint(equalToConstant: 40).isActive						= true
-		profileImage.widthAnchor.constraint(equalToConstant: 40).isActive						= true
+		profileImage.translatesAutoresizingMaskIntoConstraints	= false
+		NSLayoutConstraint.activate([
+			profileImage.topAnchor.constraint(equalTo: topAnchor),
+			profileImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+			profileImage.heightAnchor.constraint(equalToConstant: 40),
+			profileImage.widthAnchor.constraint(equalToConstant: 40),
+			profileImage.bottomAnchor.constraint(equalTo: bottomAnchor,constant: -15)
+		])
+		
 
 		addSubview(title)
-		title.translatesAutoresizingMaskIntoConstraints											= false
-		title.topAnchor.constraint(equalTo: topAnchor).isActive									= true
-		title.leadingAnchor.constraint(equalTo: leadingAnchor).isActive							= true
-		title.trailingAnchor.constraint(equalTo: profileImage.trailingAnchor).isActive			= true
-		title.bottomAnchor.constraint(equalTo: bottomAnchor).isActive							= true
+		title.translatesAutoresizingMaskIntoConstraints			= false
+		NSLayoutConstraint.activate([
+			title.topAnchor.constraint(equalTo: topAnchor),
+			title.leadingAnchor.constraint(equalTo: leadingAnchor,constant: 20),
+			title.trailingAnchor.constraint(equalTo: profileImage.trailingAnchor),
+			title.bottomAnchor.constraint(equalTo: bottomAnchor,constant: -15)
+		])
 	}
 }

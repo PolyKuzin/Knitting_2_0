@@ -71,6 +71,19 @@
 		99EFB56625168AF5003A5D07 /* ProfileCardVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EFB56525168AF5003A5D07 /* ProfileCardVM.swift */; };
 		99EFB56A25177805003A5D07 /* MainCardViewAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EFB56925177805003A5D07 /* MainCardViewAnimations.swift */; };
 		99EFB56C25178D77003A5D07 /* NewProjectCardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EFB56B25178D77003A5D07 /* NewProjectCardVC.swift */; };
+		99F268032544AD20009DDDD8 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99F268012544AD20009DDDD8 /* Interface.storyboard */; };
+		99F268052544AD23009DDDD8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99F268042544AD23009DDDD8 /* Assets.xcassets */; };
+		99F2680C2544AD23009DDDD8 /* Knit it Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 99F2680B2544AD23009DDDD8 /* Knit it Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		99F268112544AD23009DDDD8 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F268102544AD23009DDDD8 /* InterfaceController.swift */; };
+		99F268132544AD23009DDDD8 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F268122544AD23009DDDD8 /* ExtensionDelegate.swift */; };
+		99F268152544AD23009DDDD8 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F268142544AD23009DDDD8 /* NotificationController.swift */; };
+		99F268172544AD23009DDDD8 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F268162544AD23009DDDD8 /* ComplicationController.swift */; };
+		99F268192544AD24009DDDD8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99F268182544AD24009DDDD8 /* Assets.xcassets */; };
+		99F2681E2544AD24009DDDD8 /* Knit it.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 99F267FF2544AD20009DDDD8 /* Knit it.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		99F268302544BF24009DDDD8 /* NotificationKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F2682F2544BF24009DDDD8 /* NotificationKeys.swift */; };
+		99F268372544C00C009DDDD8 /* WatchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F268362544C00C009DDDD8 /* WatchManager.swift */; };
+		99F268412544C6F6009DDDD8 /* MProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F268402544C6F6009DDDD8 /* MProject.swift */; };
+		99F268472544CC70009DDDD8 /* ProjectsRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F268462544CC70009DDDD8 /* ProjectsRowController.swift */; };
 		F923C35C687FA08E942E54EC /* Pods_Knitting_2_0.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9AB0322FBAB47D7907630EB /* Pods_Knitting_2_0.framework */; };
 /* End PBXBuildFile section */
 
@@ -82,7 +95,46 @@
 			remoteGlobalIDString = 99AFBA4224F80D9E00E71FD6;
 			remoteInfo = Knitting_2_0;
 		};
+		99F2680D2544AD23009DDDD8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 99AFBA3B24F80D9E00E71FD6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 99F2680A2544AD23009DDDD8;
+			remoteInfo = "Knit it Extension";
+		};
+		99F2681C2544AD24009DDDD8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 99AFBA3B24F80D9E00E71FD6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 99F267FE2544AD20009DDDD8;
+			remoteInfo = "Knit it";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		99F268222544AD24009DDDD8 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				99F2680C2544AD23009DDDD8 /* Knit it Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		99F268262544AD24009DDDD8 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				99F2681E2544AD24009DDDD8 /* Knit it.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		3557FE70DD594785E40DB604 /* Pods_Knitting_2_0Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Knitting_2_0Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -155,6 +207,22 @@
 		99EFB56525168AF5003A5D07 /* ProfileCardVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardVM.swift; sourceTree = "<group>"; };
 		99EFB56925177805003A5D07 /* MainCardViewAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCardViewAnimations.swift; sourceTree = "<group>"; };
 		99EFB56B25178D77003A5D07 /* NewProjectCardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProjectCardVC.swift; sourceTree = "<group>"; };
+		99F267FF2544AD20009DDDD8 /* Knit it.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Knit it.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		99F268022544AD20009DDDD8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		99F268042544AD23009DDDD8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		99F268062544AD23009DDDD8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		99F2680B2544AD23009DDDD8 /* Knit it Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Knit it Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		99F268102544AD23009DDDD8 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		99F268122544AD23009DDDD8 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		99F268142544AD23009DDDD8 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		99F268162544AD23009DDDD8 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		99F268182544AD24009DDDD8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		99F2681A2544AD24009DDDD8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		99F2681B2544AD24009DDDD8 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		99F2682F2544BF24009DDDD8 /* NotificationKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationKeys.swift; sourceTree = "<group>"; };
+		99F268362544C00C009DDDD8 /* WatchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchManager.swift; sourceTree = "<group>"; };
+		99F268402544C6F6009DDDD8 /* MProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MProject.swift; sourceTree = "<group>"; };
+		99F268462544CC70009DDDD8 /* ProjectsRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsRowController.swift; sourceTree = "<group>"; };
 		A9AB0322FBAB47D7907630EB /* Pods_Knitting_2_0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Knitting_2_0.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B63AB392BD94FD626BC5C223 /* Pods-Knitting_2_0Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Knitting_2_0Tests.release.xcconfig"; path = "Target Support Files/Pods-Knitting_2_0Tests/Pods-Knitting_2_0Tests.release.xcconfig"; sourceTree = "<group>"; };
 		E1676BB02479D45F64F22B54 /* Pods-Knitting_2_0Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Knitting_2_0Tests.debug.xcconfig"; path = "Target Support Files/Pods-Knitting_2_0Tests/Pods-Knitting_2_0Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -174,6 +242,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				1310C4F491031D53BD835BDE /* Pods_Knitting_2_0Tests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		99F268082544AD23009DDDD8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,6 +313,8 @@
 			children = (
 				99AFBA4524F80D9E00E71FD6 /* Knitting_2_0 */,
 				99AFBA5C24F80DA000E71FD6 /* Knitting_2_0Tests */,
+				99F268002544AD20009DDDD8 /* Knit it */,
+				99F2680F2544AD23009DDDD8 /* Knit it Extension */,
 				99AFBA4424F80D9E00E71FD6 /* Products */,
 				D41AB12B2FDCE20E3F502767 /* Pods */,
 				08A18B26175CFE69233B92F8 /* Frameworks */,
@@ -250,6 +327,8 @@
 			children = (
 				99AFBA4324F80D9E00E71FD6 /* Knitting_2_0.app */,
 				99AFBA5924F80DA000E71FD6 /* Knitting_2_0Tests.xctest */,
+				99F267FF2544AD20009DDDD8 /* Knit it.app */,
+				99F2680B2544AD23009DDDD8 /* Knit it Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -257,6 +336,7 @@
 		99AFBA4524F80D9E00E71FD6 /* Knitting_2_0 */ = {
 			isa = PBXGroup;
 			children = (
+				99F268352544BFF2009DDDD8 /* WatchManager */,
 				99AFBA4F24F80DA000E71FD6 /* Assets.xcassets */,
 				99AFBA6D24F8111500E71FD6 /* Extensions */,
 				99C31FDB251F2D3900A1F75D /* Protocols */,
@@ -322,6 +402,7 @@
 				99AFBA4824F80D9E00E71FD6 /* SceneDelegate.swift */,
 				99AFBA7924F9667F00E71FD6 /* Constants.swift */,
 				998B9F90250D81BE00C0C52F /* SwipeableCell.swift */,
+				99F2682F2544BF24009DDDD8 /* NotificationKeys.swift */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
@@ -433,6 +514,40 @@
 			path = Cards;
 			sourceTree = "<group>";
 		};
+		99F268002544AD20009DDDD8 /* Knit it */ = {
+			isa = PBXGroup;
+			children = (
+				99F268012544AD20009DDDD8 /* Interface.storyboard */,
+				99F268042544AD23009DDDD8 /* Assets.xcassets */,
+				99F268062544AD23009DDDD8 /* Info.plist */,
+			);
+			path = "Knit it";
+			sourceTree = "<group>";
+		};
+		99F2680F2544AD23009DDDD8 /* Knit it Extension */ = {
+			isa = PBXGroup;
+			children = (
+				99F268402544C6F6009DDDD8 /* MProject.swift */,
+				99F268102544AD23009DDDD8 /* InterfaceController.swift */,
+				99F268462544CC70009DDDD8 /* ProjectsRowController.swift */,
+				99F268122544AD23009DDDD8 /* ExtensionDelegate.swift */,
+				99F268142544AD23009DDDD8 /* NotificationController.swift */,
+				99F268162544AD23009DDDD8 /* ComplicationController.swift */,
+				99F268182544AD24009DDDD8 /* Assets.xcassets */,
+				99F2681A2544AD24009DDDD8 /* Info.plist */,
+				99F2681B2544AD24009DDDD8 /* PushNotificationPayload.apns */,
+			);
+			path = "Knit it Extension";
+			sourceTree = "<group>";
+		};
+		99F268352544BFF2009DDDD8 /* WatchManager */ = {
+			isa = PBXGroup;
+			children = (
+				99F268362544C00C009DDDD8 /* WatchManager.swift */,
+			);
+			path = WatchManager;
+			sourceTree = "<group>";
+		};
 		D41AB12B2FDCE20E3F502767 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -456,10 +571,12 @@
 				99AFBA4024F80D9E00E71FD6 /* Frameworks */,
 				99AFBA4124F80D9E00E71FD6 /* Resources */,
 				A8FD8A1C7BA1C565C058E271 /* [CP] Embed Pods Frameworks */,
+				99F268262544AD24009DDDD8 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				99F2681D2544AD24009DDDD8 /* PBXTargetDependency */,
 			);
 			name = Knitting_2_0;
 			productName = Knitting_2_0;
@@ -485,13 +602,47 @@
 			productReference = 99AFBA5924F80DA000E71FD6 /* Knitting_2_0Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		99F267FE2544AD20009DDDD8 /* Knit it */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 99F268232544AD24009DDDD8 /* Build configuration list for PBXNativeTarget "Knit it" */;
+			buildPhases = (
+				99F267FD2544AD20009DDDD8 /* Resources */,
+				99F268222544AD24009DDDD8 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				99F2680E2544AD23009DDDD8 /* PBXTargetDependency */,
+			);
+			name = "Knit it";
+			productName = "Knit it";
+			productReference = 99F267FF2544AD20009DDDD8 /* Knit it.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		99F2680A2544AD23009DDDD8 /* Knit it Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 99F2681F2544AD24009DDDD8 /* Build configuration list for PBXNativeTarget "Knit it Extension" */;
+			buildPhases = (
+				99F268072544AD23009DDDD8 /* Sources */,
+				99F268082544AD23009DDDD8 /* Frameworks */,
+				99F268092544AD23009DDDD8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Knit it Extension";
+			productName = "Knit it Extension";
+			productReference = 99F2680B2544AD23009DDDD8 /* Knit it Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		99AFBA3B24F80D9E00E71FD6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1150;
+				LastSwiftUpdateCheck = 1210;
 				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Павел Кузин";
 				TargetAttributes = {
@@ -501,6 +652,12 @@
 					99AFBA5824F80DA000E71FD6 = {
 						CreatedOnToolsVersion = 11.5;
 						TestTargetID = 99AFBA4224F80D9E00E71FD6;
+					};
+					99F267FE2544AD20009DDDD8 = {
+						CreatedOnToolsVersion = 12.1;
+					};
+					99F2680A2544AD23009DDDD8 = {
+						CreatedOnToolsVersion = 12.1;
 					};
 				};
 			};
@@ -519,6 +676,8 @@
 			targets = (
 				99AFBA4224F80D9E00E71FD6 /* Knitting_2_0 */,
 				99AFBA5824F80DA000E71FD6 /* Knitting_2_0Tests */,
+				99F267FE2544AD20009DDDD8 /* Knit it */,
+				99F2680A2544AD23009DDDD8 /* Knit it Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -547,6 +706,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		99F267FD2544AD20009DDDD8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				99F268052544AD23009DDDD8 /* Assets.xcassets in Resources */,
+				99F268032544AD20009DDDD8 /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		99F268092544AD23009DDDD8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				99F268192544AD24009DDDD8 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -623,6 +799,7 @@
 			files = (
 				9959471E250A582B00D0E273 /* MUser.swift in Sources */,
 				998B9F89250C255600C0C52F /* MProject.swift in Sources */,
+				99F268372544C00C009DDDD8 /* WatchManager.swift in Sources */,
 				994300B1252A27FF0065EF5C /* UIViewController.swift in Sources */,
 				99594720250AD91F00D0E273 /* MainVC.swift in Sources */,
 				9949F8BB252DD35B00D12F50 /* EditProjectVC.swift in Sources */,
@@ -653,6 +830,7 @@
 				99EFB56A25177805003A5D07 /* MainCardViewAnimations.swift in Sources */,
 				9978DDD7253E12C200659DC1 /* MPage.swift in Sources */,
 				994300B9252B156A0065EF5C /* NewCounterVC.swift in Sources */,
+				99F268302544BF24009DDDD8 /* NotificationKeys.swift in Sources */,
 				99B956FE25249AFE00AC5438 /* CounterSectionHeader.swift in Sources */,
 				998B9F8B250C2FA100C0C52F /* ForgotPassVC.swift in Sources */,
 				99AFBA7A24F9667F00E71FD6 /* Constants.swift in Sources */,
@@ -682,6 +860,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		99F268072544AD23009DDDD8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				99F268152544AD23009DDDD8 /* NotificationController.swift in Sources */,
+				99F268412544C6F6009DDDD8 /* MProject.swift in Sources */,
+				99F268172544AD23009DDDD8 /* ComplicationController.swift in Sources */,
+				99F268132544AD23009DDDD8 /* ExtensionDelegate.swift in Sources */,
+				99F268472544CC70009DDDD8 /* ProjectsRowController.swift in Sources */,
+				99F268112544AD23009DDDD8 /* InterfaceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -689,6 +880,16 @@
 			isa = PBXTargetDependency;
 			target = 99AFBA4224F80D9E00E71FD6 /* Knitting_2_0 */;
 			targetProxy = 99AFBA5A24F80DA000E71FD6 /* PBXContainerItemProxy */;
+		};
+		99F2680E2544AD23009DDDD8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 99F2680A2544AD23009DDDD8 /* Knit it Extension */;
+			targetProxy = 99F2680D2544AD23009DDDD8 /* PBXContainerItemProxy */;
+		};
+		99F2681D2544AD24009DDDD8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 99F267FE2544AD20009DDDD8 /* Knit it */;
+			targetProxy = 99F2681C2544AD24009DDDD8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -699,6 +900,14 @@
 				99AFBA5224F80DA000E71FD6 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		99F268012544AD20009DDDD8 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				99F268022544AD20009DDDD8 /* Base */,
+			);
+			name = Interface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -908,6 +1117,90 @@
 			};
 			name = Release;
 		};
+		99F268202544AD24009DDDD8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JJC3HHT8LN;
+				INFOPLIST_FILE = "Knit it Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "ru.polykuzin.Knitting-2-0.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
+			};
+			name = Debug;
+		};
+		99F268212544AD24009DDDD8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JJC3HHT8LN;
+				INFOPLIST_FILE = "Knit it Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "ru.polykuzin.Knitting-2-0.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
+			};
+			name = Release;
+		};
+		99F268242544AD24009DDDD8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JJC3HHT8LN;
+				IBSC_MODULE = Knit_it_Extension;
+				INFOPLIST_FILE = "Knit it/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "ru.polykuzin.Knitting-2-0.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
+			};
+			name = Debug;
+		};
+		99F268252544AD24009DDDD8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JJC3HHT8LN;
+				IBSC_MODULE = Knit_it_Extension;
+				INFOPLIST_FILE = "Knit it/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "ru.polykuzin.Knitting-2-0.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -934,6 +1227,24 @@
 			buildConfigurations = (
 				99AFBA6624F80DA100E71FD6 /* Debug */,
 				99AFBA6724F80DA100E71FD6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		99F2681F2544AD24009DDDD8 /* Build configuration list for PBXNativeTarget "Knit it Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				99F268202544AD24009DDDD8 /* Debug */,
+				99F268212544AD24009DDDD8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		99F268232544AD24009DDDD8 /* Build configuration list for PBXNativeTarget "Knit it" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				99F268242544AD24009DDDD8 /* Debug */,
+				99F268252544AD24009DDDD8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
