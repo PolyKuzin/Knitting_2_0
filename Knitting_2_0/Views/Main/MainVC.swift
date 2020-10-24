@@ -36,7 +36,7 @@ class MainVC	: UIViewController {
 	//MARK:VARIABLES: Supporting Stuff
 	
 	private var collectionView				: UICollectionView!
-	private var sections					: Array<MSection> = []
+	private var sections					: Array<MSection> = [MSection(type: "projects", title: "Working on this?", projects: [MProject(userID: "123", name: "knitting-f824f", image: "", date: "0")])]
 	private var dataSourse					: UICollectionViewDiffableDataSource<MSection, MProject>?
 	
 	//MARK:VARIABLES: UI Elements
@@ -98,7 +98,6 @@ extension MainVC {
 		let currentUser		= Auth.auth().currentUser
 		let user 			= MUser(user: currentUser!)
 		let reference		= Database.database().reference(withPath: "users").child(String(user.uid)).child("projects")
-		self.sections.append(MSection(type: "projects", title: "Working on this?", projects: []))
 		self.showActivityIndicator()
 		reference.observe(.value) { (snapshot) in
 			self.sections[0].projects.removeAll()
@@ -131,13 +130,11 @@ extension MainVC {
 		collectionView.backgroundColor		= .white
 		collectionView.alwaysBounceVertical	= true
 		
-		collectionView.register(MainSectionHeader.self,
-								forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-								withReuseIdentifier			: MainSectionHeader.reusedId)
-		collectionView.register(ProjectCell.self,
-								forCellWithReuseIdentifier	: ProjectCell.reuseId)
-		createDataSourse()
-		reloadData		()
+		collectionView.register(MainSectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,withReuseIdentifier: MainSectionHeader.reusedId)
+		collectionView.register(ProjectCell.self, forCellWithReuseIdentifier	: ProjectCell.reuseId)
+		collectionView.dataSource	= self
+		collectionView.delegate		= self
+
 		setUpLayout		()
 
 	}
@@ -182,7 +179,36 @@ extension MainVC {
 }
 
 //MARK: CollectionView DataSourse
-extension MainVC {
+extension MainVC : UICollectionViewDataSource, UICollectionViewDelegate {
+	
+	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+		return sections.count
+	}
+	
+	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+		let project = self.sections[0].projects[indexPath.row]
+		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProjectCell.reuseId, for: indexPath) as! ProjectCell
+		cell.delegate = self
+		cell.configurу(with: project)
+		if project.name == "knitting-f824f" {
+			cell.isHidden = true
+		} else {
+			cell.isHidden = false
+		}
+		return cell
+	}
+	
+	func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+		guard let sectionHeader		= collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: MainSectionHeader.reusedId, for: indexPath) as? MainSectionHeader
+		else { return UICollectionReusableView() }
+		if sections[0].title.isEmpty { return UICollectionReusableView() }
+		sectionHeader.title.text	= sections[0].title
+		let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MainVC.profileImageTap(recognizer:)))
+		
+		sectionHeader.profileImage.addGestureRecognizer(tapGestureRecognizer)
+		return sectionHeader
+	}
+	
 	
 	func createDataSourse() {
 		dataSourse = UICollectionViewDiffableDataSource<MSection, MProject>(collectionView: collectionView,
@@ -396,6 +422,11 @@ extension MainVC: SwipeableCollectionViewCellDelegate {
 		sections[0].projects.remove(at: indexPath.row)
 		dataSourse?.apply(snap!, animatingDifferences: true)
 		self.collectionView.reloadData()
+		let leftOffset = CGPoint(x: 0, y: 0)
+		cell.scrollView.setContentOffset(leftOffset, animated: true)
+		DispatchQueue.main.asyncAfter(deadline: .now() + animationDuration) {
+			self.view.isUserInteractionEnabled = true
+		}
 	}
 	
 	func visibleContainerViewTapped(inCell cell: SwipeableCollectionViewCell) {
