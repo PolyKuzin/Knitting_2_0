@@ -28,7 +28,21 @@ class MainVC								: UIViewController {
 	
 	//MARK:VARIABLES: Supporting Stuff
 	
-	private var sections					: Array<MSection> = [MSection(type: "projects", title: "Working on this?", projects: [])]
+	private var projects					: [MProject] = [
+		MProject(userID: "1", name: "", image: "", date: ""),
+		MProject(userID: "1", name: "", image: "", date: ""),
+		MProject(userID: "1", name: "", image: "", date: ""),
+		MProject(userID: "1", name: "", image: "", date: ""),
+		MProject(userID: "1", name: "", image: "", date: ""),
+		MProject(userID: "1", name: "", image: "", date: ""),
+		MProject(userID: "1", name: "", image: "", date: ""),
+		MProject(userID: "1", name: "", image: "", date: ""),
+		MProject(userID: "1", name: "", image: "", date: ""),
+		MProject(userID: "1", name: "", image: "", date: ""),
+		MProject(userID: "1", name: "", image: "", date: ""),
+		MProject(userID: "1", name: "", image: "", date: ""),
+	]
+//	private var sections					: Array<MSection> = [MSection(type: "projects", title: "Working on this?", projects: [])]
 	private var dataSourse					: UICollectionViewDiffableDataSource<MSection, MProject>?
 	
 	//MARK:VARIABLES: UI Elements
@@ -109,12 +123,12 @@ extension MainVC {
 		let reference		= Database.database().reference(withPath: "users").child(String(user.uid)).child("projects")
 		self.showActivityIndicator()
 		reference.observe(.value) { (snapshot) in
-			self.sections[0].projects.removeAll()
+			self.projects.removeAll()
 			for item in snapshot.children {
 				let project = MProject(snapshot: item as! DataSnapshot)
 				print(project.name)
-				self.sections[0].projects.append(project)
-				self.sections[0].projects.sort(by: {
+				self.projects.append(project)
+				self.projects.sort(by: {
 					return
 							($0.date) > ($1.date)
 				})
@@ -134,11 +148,11 @@ extension MainVC {
 extension MainVC : UICollectionViewDataSource, UICollectionViewDelegate {
 	
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return sections[0].projects.count
+		return projects.count
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		let project = self.sections[0].projects[indexPath.row]
+		let project = projects[indexPath.row]
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProjectCell.reuseId, for: indexPath) as! ProjectCell
 		cell.delegate = self
 		cell.configurу(with: project)
@@ -154,8 +168,7 @@ extension MainVC : UICollectionViewDataSource, UICollectionViewDelegate {
 	func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
 		guard let sectionHeader		= collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: MainSectionHeader.reusedId, for: indexPath) as? MainSectionHeader
 		else { return UICollectionReusableView() }
-		if sections[0].title.isEmpty { return UICollectionReusableView() }
-		sectionHeader.title.text	= sections[0].title
+		sectionHeader.title.text	= "Working on this?"
 		let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MainVC.profileImageTap(recognizer:)))
 		
 		sectionHeader.profileImage.addGestureRecognizer(tapGestureRecognizer)
@@ -295,7 +308,7 @@ extension MainVC: SwipeableCollectionViewCellDelegate {
 	func editContainerViewTapped(inCell cell: SwipeableCollectionViewCell) {
 		self.view.isUserInteractionEnabled = false
 		guard let indexPath = collectionView.indexPath(for: cell) else { return }
-		let project = sections[0].projects[indexPath.row]
+		let project = projects[indexPath.row]
 		
 		let recognizer = UITapGestureRecognizer()
 		recognizer.state = .ended
@@ -320,11 +333,11 @@ extension MainVC: SwipeableCollectionViewCellDelegate {
 	
 	func deleteContainerViewTapped(inCell cell: SwipeableCollectionViewCell) {
 		guard let indexPath = collectionView.indexPath(for: cell) else { return }
-		let project = sections[0].projects[indexPath.row]
+		let project = projects[indexPath.row]
 		project.ref?.removeValue()
 		var snap = dataSourse?.snapshot()
-		snap?.deleteItems([sections[0].projects[indexPath.row]])
-		sections[0].projects.remove(at: indexPath.row)
+		snap?.deleteItems([projects[indexPath.row]])
+		projects.remove(at: indexPath.row)
 		dataSourse?.apply(snap!, animatingDifferences: true)
 		self.collectionView.reloadData()
 		let leftOffset = CGPoint(x: 0, y: 0)
@@ -338,7 +351,7 @@ extension MainVC: SwipeableCollectionViewCellDelegate {
 		guard let indexPath = collectionView.indexPath(for: cell) else { return }
 		collectionView.selectItem(at: indexPath, animated: true, scrollPosition: UICollectionView.ScrollPosition())
 
-		let project = sections[0].projects[indexPath.row]
+		let project = projects[indexPath.row]
 		
 		let vc = CountersVC()
 		vc.currentProject = project
