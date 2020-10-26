@@ -40,7 +40,7 @@ class MainVC								: UIViewController {
 		MProject(userID: "1", name: "", image: "", date: ""),
 		MProject(userID: "1", name: "", image: "", date: ""),
 		MProject(userID: "1", name: "", image: "", date: ""),
-		MProject(userID: "1", name: "", image: "", date: ""),
+		MProject(userID: "1", name: "", image: "", date: "")
 	]
 //	private var sections					: Array<MSection> = [MSection(type: "projects", title: "Working on this?", projects: [])]
 	private var dataSourse					: UICollectionViewDiffableDataSource<MSection, MProject>?
@@ -189,7 +189,7 @@ extension MainVC {
 	func updateCardViewControllerWithEditProjectVC(notification: NSNotification) {
 		switch UIDevice().type {
 			case .iPhoneX, .iPhoneXS, .iPhoneXSMax, .iPhoneXR, .iPhone11, .iPhone11Pro, .iPhone11ProMax: cardHeight = 400
-			default: cardHeight = 375
+			default: cardHeight = 475
 		}
 		let vc = EditProjectVC()
 		vc.currentProject = self.currentProject

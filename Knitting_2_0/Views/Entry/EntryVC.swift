@@ -12,7 +12,7 @@ import FirebaseAuth
 var keyboardBlackArea					: CGFloat = 0.0
 var keyboardReturnDistance				: CGFloat = 0.0
 
-class EntryVC: UIViewController {
+class EntryVC							: UIViewController {
 	
 	private var logoIcon				= UIImageView		()
 	private var signUpButton			= UIButton			()

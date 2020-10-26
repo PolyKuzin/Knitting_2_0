@@ -14,7 +14,7 @@ class MainSectionHeader: UICollectionReusableView {
 	
 	let title			: UILabel = {
 		let label		= UILabel()
-		label.textColor = .black							//TO CONSTANTS
+		label.textColor = .black
 		label.font		= Fonts.displayBold28
 		
 		return label
@@ -22,7 +22,7 @@ class MainSectionHeader: UICollectionReusableView {
 	
 	let profileImage	: UIImageView = {
 		let imageView	= UIImageView()
-		imageView.image = UIImage(named: "emptyProfile") 	//TO CONSTANTS
+		imageView.image = UIImage(named: "emptyProfile")
         imageView.isUserInteractionEnabled = true
 		
 		return imageView

@@ -200,9 +200,9 @@ extension NewProjectVC: UITextFieldDelegate {
 
 		if notification.name == UIResponder.keyboardWillShowNotification ||
 		   notification.name == UIResponder.keyboardWillChangeFrameNotification {
-			self.view.frame.origin.y -= keyboardRect.height - 150
+			view.frame.origin.y = keyboardRect.height - 150
 		} else {
-			self.view.frame.origin.y =  keyboardReturnDistance
+			view.frame.origin.y += keyboardRect.height + keyboardBlackArea
 		}
     }
 }

@@ -189,16 +189,11 @@ extension NewCounterVC: UITextFieldDelegate {
 		guard let userInfo = notification.userInfo else {return}
 			  let keyboardRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
 
-		let returnValue : CGFloat?
-		switch UIDevice().type {
-			case .iPhoneX, .iPhoneXS, .iPhoneXSMax, .iPhoneXR, .iPhone11, .iPhone11Pro, .iPhone11ProMax: returnValue = 100
-			default: returnValue = 150
-		}
 		if notification.name == UIResponder.keyboardWillShowNotification ||
 		   notification.name == UIResponder.keyboardWillChangeFrameNotification {
-			self.view.frame.origin.y -= keyboardRect.height - 150
+			view.frame.origin.y = keyboardRect.height - 50
 		} else {
-			self.view.frame.origin.y =  keyboardReturnDistance + returnValue!
+			view.frame.origin.y += keyboardRect.height + keyboardBlackArea
 		}
 	}
 }
