@@ -23,9 +23,10 @@ class ProjectCell: SwipeableCollectionViewCell {
         projectImage.layer.cornerRadius         = 10
 		self.clipsToBounds						= true
         projectImage.clipsToBounds              = true
-		editContainerView.backgroundColor		= UIColor(red: 0.616, green: 0.733, blue: 0.875, alpha: 1)
 		visibleContainerView.backgroundColor 	= Colors.whiteColor
+		editContainerView.backgroundColor		= UIColor(red: 0.616, green: 0.733, blue: 0.875, alpha: 1)
 		deleteContainerView.backgroundColor 	= UIColor(red: 0.984, green: 0.682, blue: 0.827, alpha: 1)
+		duplicateContainerView.backgroundColor  = UIColor(red: 0.745, green: 0.616, blue: 0.875, alpha: 1)
 	}
 	
 	func configurу(with project: MProject) {
@@ -36,13 +37,13 @@ class ProjectCell: SwipeableCollectionViewCell {
 		
 		projectName.font						= Fonts.displaySemibold22
 		
-		visibleContainerView.roundCorners([.topLeft, .bottomLeft], radius: 20)
-		editContainerView.roundCorners([.topRight, .bottomRight], radius: 20)
+		visibleContainerView	.roundCorners([.topLeft, .bottomLeft], radius: 20)
+		duplicateContainerView	.roundCorners([.topRight, .bottomRight], radius: 20)
 		layer.cornerRadius						= 20
 		layer.borderWidth						= 0.0
 		layer.shadowColor						= UIColor(red: 0, green: 0, blue: 0, alpha: 0.12).cgColor
 		layer.shadowOffset						= CGSize(width: 0, height: 8)
-		layer.shadowRadius						= 30.0
+		layer.shadowRadius						= 10
 		layer.shadowOpacity						= 1
 		layer.masksToBounds						= false
 	}

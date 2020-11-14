@@ -25,7 +25,7 @@ class EntryVM {
 	func setupKeyboardBlackArea() -> CGFloat {
 		switch UIDevice().type {
 			case .iPhoneX, .iPhoneXS, .iPhoneXSMax, .iPhoneXR, .iPhone11, .iPhone11Pro, .iPhone11ProMax: return 46
-			default: return 22
+			default: return 46
 		}
 	}
 	

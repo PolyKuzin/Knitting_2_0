@@ -16,6 +16,7 @@ class CountersVC	: UIViewController, UICollectionViewDelegate, UICollectionViewD
 	var activityView: UIActivityIndicatorView?
 	
 	var currentProject						: MProject!
+	private var ref             	: DatabaseReference!
 	
 	let creeateCounterTaped					= Notification.Name(rawValue: createCounterInSectionNotificationKey)
 	let editCounterViewTaped				= Notification.Name(rawValue: editCounterNotificationKey)
@@ -53,7 +54,7 @@ class CountersVC	: UIViewController, UICollectionViewDelegate, UICollectionViewD
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-
+		ref		= currentProject.ref?.child("counters")
 		setupVisualEffect	()
 		setupSections		()
 
@@ -291,6 +292,26 @@ extension CountersVC {
 
 //MARK: Swipeable Collection View Cell Delegate
 extension CountersVC: SwipeableCollectionViewCellDelegate {
+	
+	func duplicateContainerViewTapped(inCell cell: SwipeableCollectionViewCell) {
+		self.view.isUserInteractionEnabled = false
+		guard let indexPath = collectionView.indexPath(for: cell) else { return }
+		let counter = counters[indexPath.row]
+		
+		let date = Int(Date().timeIntervalSince1970)
+		let name = counter.name
+		
+		let rowsMax = counter.rowsMax
+		
+		let counterToSave = MCounter(name: name, rows: 0, rowsMax: rowsMax, date: "\(date)")
+		ref.child("\(date)").setValue(counterToSave.counterToDictionary())
+		let leftOffset = CGPoint(x: 0, y: 0)
+		cell.scrollView.setContentOffset(leftOffset, animated: true)
+		collectionView.reloadData()
+		DispatchQueue.main.asyncAfter(deadline: .now() + animationDuration) {
+			self.view.isUserInteractionEnabled = true
+		}
+	}
 	
 	func editContainerViewTapped(inCell cell: SwipeableCollectionViewCell) {
 		self.view.isUserInteractionEnabled = false

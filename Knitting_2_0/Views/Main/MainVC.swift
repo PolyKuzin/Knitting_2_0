@@ -50,6 +50,9 @@ class MainVC								: UIViewController {
 	private var addView						= UIView()
 	private var addImage					= UIImageView()
     
+	private var user           		: MUser!
+	private var ref             	: DatabaseReference!
+	
 	//Animations stuff
     open var runningAnimations 				= [UIViewPropertyAnimator]()
 	open var cardViewController      		: CardViewControllerProtocol!
@@ -97,6 +100,9 @@ class MainVC								: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		viewModel = MainVM()
+		guard let currentUser = Auth.auth().currentUser else { return }
+		user	= MUser(user: currentUser)
+		ref		= Database.database().reference(withPath: "users").child(String(user.uid))
 		collectionView.dataSource	= self
 		collectionView.delegate		= self
 		setupVisualEffect	()
@@ -168,7 +174,7 @@ extension MainVC : UICollectionViewDataSource, UICollectionViewDelegate {
 	func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
 		guard let sectionHeader		= collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: MainSectionHeader.reusedId, for: indexPath) as? MainSectionHeader
 		else { return UICollectionReusableView() }
-		sectionHeader.title.text	= "Working on this?"
+		sectionHeader.title.text	= "Working on this?".localized()
 		let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MainVC.profileImageTap(recognizer:)))
 		
 		sectionHeader.profileImage.addGestureRecognizer(tapGestureRecognizer)
@@ -305,6 +311,44 @@ extension MainVC {
 //MARK: Swipeable Collection View Cell Delegate
 extension MainVC: SwipeableCollectionViewCellDelegate {
 	
+	func duplicateContainerViewTapped(inCell cell: SwipeableCollectionViewCell) {
+		self.view.isUserInteractionEnabled = false
+		guard let indexPath = collectionView.indexPath(for: cell) else { return }
+		let project = projects[indexPath.row]
+		let image = project.image
+		let projectUniqueID = Int(Date().timeIntervalSince1970)
+		let name = project.name
+		let projectToSave = MProject(userID: user.uid, name: name, image: image, date: "\(projectUniqueID)")
+		let referenceForProject = self.ref.child("projects").child("\(projectUniqueID)")
+		referenceForProject.setValue(projectToSave.projectToDictionary())
+		let fakeCounter = MCounter(name: "knitting-f824f", rows: 0, rowsMax: -1, date: "000000000")
+		var referenceForCounter = self.ref.child("projects").child("\(projectUniqueID)").child("counters").child("knitting-f824f")
+		referenceForCounter.setValue(fakeCounter.counterToDictionary())
+		
+		var counters : [MCounter] = []
+		project.ref!.child("counters").observeSingleEvent(of: .value) { (snapshot) in
+			for item in snapshot.children {
+				let counter = MCounter(snapshot: item as! DataSnapshot)
+				let date = Int(Date().timeIntervalSince1970)
+				let name = counter.name
+				let rowsMax = counter.rowsMax
+				let counterToSave = MCounter(name: name, rows: 0, rowsMax: rowsMax, date: "\(date)")
+				counters.append(counterToSave)
+			}
+		}
+		
+		for counter in counters {
+			let counterUniqueID = Int(Date().timeIntervalSince1970)
+			referenceForCounter = self.ref.child("projects").child("\(projectUniqueID)").child("counters").child("\(counterUniqueID)")
+			referenceForCounter.setValue(counter.counterToDictionary())
+		}
+		let leftOffset = CGPoint(x: 0, y: 0)
+		cell.scrollView.setContentOffset(leftOffset, animated: true)
+		DispatchQueue.main.asyncAfter(deadline: .now() + animationDuration) {
+			self.view.isUserInteractionEnabled = true
+		}
+	}
+	
 	func editContainerViewTapped(inCell cell: SwipeableCollectionViewCell) {
 		self.view.isUserInteractionEnabled = false
 		guard let indexPath = collectionView.indexPath(for: cell) else { return }
@@ -361,6 +405,8 @@ extension MainVC: SwipeableCollectionViewCellDelegate {
 		guard let navigationController = navigationController else { return }
 		navigationController.pushViewController(vc, animated: true)
 		collectionView.deselectItem(at: indexPath, animated: true)
+		let leftOffset = CGPoint(x: 0, y: 0)
+		cell.scrollView.setContentOffset(leftOffset, animated: false)
 	}
 }
 

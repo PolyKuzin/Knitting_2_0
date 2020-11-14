@@ -86,9 +86,9 @@ class NewProjectVC					: UIViewController, CardViewControllerProtocol, UINavigat
 			let referenceForProject = self.ref.child("projects").child("\(projectUniqueID)")
 			referenceForProject.setValue(project.projectToDictionary())
 			
-			let faceCounter = MCounter(name: "knitting-f824f", rows: 0, rowsMax: -1, date: "000000000")
+			let fakeCounter = MCounter(name: "knitting-f824f", rows: 0, rowsMax: -1, date: "000000000")
 			let referenceForCounter = self.ref.child("projects").child("\(projectUniqueID)").child("counters").child("knitting-f824f")
-			referenceForCounter.setValue(faceCounter.counterToDictionary())
+			referenceForCounter.setValue(fakeCounter.counterToDictionary())
 			
 			if addCounter {
 				let counter = MCounter(name: name, rows: 0, rowsMax: -1, date: "999999999")
@@ -202,7 +202,7 @@ extension NewProjectVC: UITextFieldDelegate {
 		   notification.name == UIResponder.keyboardWillChangeFrameNotification {
 			view.frame.origin.y = keyboardRect.height - 150
 		} else {
-			view.frame.origin.y += keyboardRect.height + keyboardBlackArea
+			view.frame.origin.y += keyboardRect.height - keyboardBlackArea
 		}
     }
 }

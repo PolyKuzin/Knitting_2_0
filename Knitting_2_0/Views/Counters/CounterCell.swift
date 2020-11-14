@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CounterCell: SwipeableCollectionViewCell {
+class CounterCell								: SwipeableCollectionViewCell {
 	
 	static var reuseId 							= "counterCell"
 	
@@ -33,16 +33,12 @@ class CounterCell: SwipeableCollectionViewCell {
 	let plusButton								: UIButton = {
 		let imageView							= UIButton()
 		imageView.setImage(UIImage(named: "addProject"), for: .normal)
-		imageView.frame							= CGRect(x: 0, y: 0, width: 49, height: 49)
-		
 		return imageView
 	}()
 	
 	let minusButton								: UIButton = {
 		let imageView							= UIButton()
 		imageView.setImage(UIImage(named: "minus"), for: .normal)
-		imageView.frame							= CGRect(x: 0, y: 0, width: 32, height: 5)
-		
 		return imageView
 	}()
 	
@@ -55,6 +51,8 @@ class CounterCell: SwipeableCollectionViewCell {
 		editContainerView.backgroundColor		= UIColor(red: 0.616, green: 0.733, blue: 0.875, alpha: 1)
 		visibleContainerView.backgroundColor 	= Colors.whiteColor
 		deleteContainerView.backgroundColor 	= UIColor(red: 0.984, green: 0.682, blue: 0.827, alpha: 1)
+		duplicateContainerView.backgroundColor  = UIColor(red: 0.745, green: 0.616, blue: 0.875, alpha: 1)
+
 	}
 	
 	func configurу(with counter: MCounter) {
@@ -63,13 +61,13 @@ class CounterCell: SwipeableCollectionViewCell {
 		currentRows.text = String(counter.rows)
 		
 		visibleContainerView.roundCorners([.topLeft, .bottomLeft], radius: 20)
-		editContainerView.roundCorners([.topRight, .bottomRight], radius: 20)
-		
+		duplicateContainerView	.roundCorners([.topRight, .bottomRight], radius: 20)
+
 		layer.cornerRadius						= 20
 		layer.borderWidth						= 0.0
 		layer.shadowColor						= UIColor(red: 0, green: 0, blue: 0, alpha: 0.12).cgColor
 		layer.shadowOffset						= CGSize(width: 0, height: 8)
-		layer.shadowRadius						= 30.0
+		layer.shadowRadius						= 7
 		layer.shadowOpacity						= 1
 		layer.masksToBounds						= false
 	}
@@ -87,22 +85,32 @@ extension CounterCell	{
 
 		visibleContainerView.addSubview(counterName)
 		counterName.translatesAutoresizingMaskIntoConstraints = false
-		counterName.topAnchor.constraint(equalTo: visibleContainerView.topAnchor, constant: 12).isActive = true
-		counterName.centerXAnchor.constraint(equalTo: visibleContainerView.centerXAnchor).isActive = true
-		
+
 		visibleContainerView.addSubview(currentRows)
 		currentRows.translatesAutoresizingMaskIntoConstraints = false
-		currentRows.centerXAnchor.constraint(equalTo: visibleContainerView.centerXAnchor).isActive = true
-		currentRows.centerYAnchor.constraint(equalTo: visibleContainerView.centerYAnchor).isActive = true
-		
+
 		visibleContainerView.addSubview(plusButton)
 		plusButton.translatesAutoresizingMaskIntoConstraints = false
-		plusButton.trailingAnchor.constraint(equalTo: visibleContainerView.trailingAnchor, constant: -50).isActive = true
-		plusButton.centerYAnchor.constraint(equalTo: visibleContainerView.centerYAnchor).isActive = true
-		
+
 		visibleContainerView.addSubview(minusButton)
 		minusButton.translatesAutoresizingMaskIntoConstraints = false
-		minusButton.leadingAnchor.constraint(equalTo: visibleContainerView.leadingAnchor, constant: 50).isActive = true
-		minusButton.centerYAnchor.constraint(equalTo: visibleContainerView.centerYAnchor).isActive = true
+
+		NSLayoutConstraint.activate([
+			counterName.topAnchor.constraint(equalTo: visibleContainerView.topAnchor, constant: 12),
+			counterName.centerXAnchor.constraint(equalTo: visibleContainerView.centerXAnchor),
+			
+			currentRows.centerXAnchor.constraint(equalTo: visibleContainerView.centerXAnchor),
+			currentRows.centerYAnchor.constraint(equalTo: visibleContainerView.centerYAnchor),
+			
+			plusButton.trailingAnchor.constraint(equalTo: visibleContainerView.trailingAnchor, constant: -10),
+			plusButton.centerYAnchor.constraint(equalTo: visibleContainerView.centerYAnchor),
+			plusButton.heightAnchor.constraint(equalToConstant: self.frame.height - 20),
+			plusButton.widthAnchor.constraint(equalTo: heightAnchor),
+			
+			minusButton.leadingAnchor.constraint(equalTo: visibleContainerView.leadingAnchor, constant: 10),
+			minusButton.centerYAnchor.constraint(equalTo: visibleContainerView.centerYAnchor),
+			minusButton.heightAnchor.constraint(equalToConstant: self.frame.height - 20),
+			minusButton.widthAnchor.constraint(equalTo: heightAnchor)
+		])
 	}
 }

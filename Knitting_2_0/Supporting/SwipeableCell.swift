@@ -10,9 +10,10 @@ import UIKit
 
 class SwipeableCollectionViewCell: UICollectionViewCell {
     
-	let editContainerView		= UIView()
+	let visibleContainerView	= UIView()
 	let deleteContainerView		= UIView()
-    let visibleContainerView	= UIView()
+	let editContainerView		= UIView()
+	let duplicateContainerView	= UIView()
 	
     let scrollView							: UIScrollView = {
         let scrollView								= UIScrollView(frame: .zero)
@@ -20,7 +21,6 @@ class SwipeableCollectionViewCell: UICollectionViewCell {
         scrollView.showsVerticalScrollIndicator 	= false
         scrollView.showsHorizontalScrollIndicator	= false
         scrollView.layer.cornerRadius				= 20
-		
         return scrollView
     }()
     
@@ -37,7 +37,14 @@ class SwipeableCollectionViewCell: UICollectionViewCell {
 		label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
 		label.font = UIFont(name: "SFProDisplay-Medium", size: 18)
 		label.text = "Edit"
-		
+		return label
+	}()
+	
+	let duplicateLabel : UILabel = {
+		let label = UILabel()
+		label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+		label.font = UIFont(name: "SFProDisplay-Medium", size: 18)
+		label.text = "Duplicate"
 		return label
 	}()
 	
@@ -60,21 +67,27 @@ class SwipeableCollectionViewCell: UICollectionViewCell {
         stackView.addArrangedSubview(visibleContainerView)
         stackView.addArrangedSubview(deleteContainerView)
 		stackView.addArrangedSubview(editContainerView)
-        
+		stackView.addArrangedSubview(duplicateContainerView)
+
 		stackView.isUserInteractionEnabled = true
-		editContainerView.isUserInteractionEnabled = true
-		deleteContainerView.isUserInteractionEnabled = true
 		visibleContainerView.isUserInteractionEnabled = true
-		
+		deleteContainerView.isUserInteractionEnabled = true
+		editContainerView.isUserInteractionEnabled = true
+		duplicateContainerView.isUserInteractionEnabled = true
+
         addSubview(scrollView)
         scrollView.pinEdgesToSuperView()
         scrollView.addSubview(stackView)
         stackView.pinEdgesToSuperView()
-		editContainerView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.25).isActive					= true
-		deleteContainerView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.25).isActive				= true
-		visibleContainerView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 1).isActive				= true
-        stackView.heightAnchor.constraint(equalTo: scrollView.heightAnchor).isActive				= true
-		stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 1.5).isActive	= true
+		
+		stackView.heightAnchor.constraint(equalTo: scrollView.heightAnchor)								.isActive				= true
+		stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 1.75)				.isActive	= true
+		
+		visibleContainerView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 1)		.isActive				= true
+		editContainerView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.25)		.isActive					= true
+		deleteContainerView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.25)	.isActive				= true
+		duplicateContainerView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.25).isActive				= true
+
 		
 		deleteContainerView.addSubview(deleteLabel)
 		deleteLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -85,6 +98,11 @@ class SwipeableCollectionViewCell: UICollectionViewCell {
 		editLabel.translatesAutoresizingMaskIntoConstraints = false
 		editLabel.centerYAnchor.constraint(equalTo: editContainerView.centerYAnchor).isActive = true
 		editLabel.centerXAnchor.constraint(equalTo: editContainerView.centerXAnchor).isActive = true
+		
+		duplicateContainerView.addSubview(duplicateLabel)
+		duplicateLabel.translatesAutoresizingMaskIntoConstraints = false
+		duplicateLabel.centerYAnchor.constraint(equalTo: duplicateContainerView.centerYAnchor).isActive = true
+		duplicateLabel.centerXAnchor.constraint(equalTo: duplicateContainerView.centerXAnchor).isActive = true
     }
     
     private func setupGestureRecognizer() {
@@ -96,6 +114,9 @@ class SwipeableCollectionViewCell: UICollectionViewCell {
         
         let visibleContainerTapGestureRecognizer	= UITapGestureRecognizer(target: self, action: #selector(visibleContainerViewTapped))
         visibleContainerView.addGestureRecognizer	(visibleContainerTapGestureRecognizer)
+		
+		let duplicateContainerTapGestureRecognizer	= UITapGestureRecognizer(target: self, action: #selector(duplicateContainerViewTapped))
+		duplicateContainerView.addGestureRecognizer	(duplicateContainerTapGestureRecognizer)
     }
 	
 	@objc
@@ -112,6 +133,11 @@ class SwipeableCollectionViewCell: UICollectionViewCell {
 	private func visibleContainerViewTapped() {
         delegate?.visibleContainerViewTapped(inCell: self)
     }
+	
+	@objc
+	private func duplicateContainerViewTapped() {
+		delegate?.duplicateContainerViewTapped(inCell: self)
+	}
 
     override func layoutSubviews() {
         super.layoutSubviews()

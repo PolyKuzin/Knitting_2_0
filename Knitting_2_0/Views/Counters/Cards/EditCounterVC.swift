@@ -207,7 +207,7 @@ extension EditCounterVC: UITextFieldDelegate {
 		   notification.name == UIResponder.keyboardWillChangeFrameNotification {
 			view.frame.origin.y = keyboardRect.height - 50
 		} else {
-			view.frame.origin.y += keyboardRect.height + keyboardBlackArea
+			view.frame.origin.y += keyboardRect.height - keyboardBlackArea
 		}
 	}
 }

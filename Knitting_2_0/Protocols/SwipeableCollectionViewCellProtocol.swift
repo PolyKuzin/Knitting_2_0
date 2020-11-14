@@ -9,7 +9,8 @@
 import UIKit
 
 protocol SwipeableCollectionViewCellDelegate: class {
-	func editContainerViewTapped	(inCell cell: SwipeableCollectionViewCell)
-	func deleteContainerViewTapped	(inCell cell: SwipeableCollectionViewCell)
-    func visibleContainerViewTapped	(inCell cell: SwipeableCollectionViewCell)
+	func editContainerViewTapped		(inCell cell: SwipeableCollectionViewCell)
+	func deleteContainerViewTapped		(inCell cell: SwipeableCollectionViewCell)
+    func visibleContainerViewTapped		(inCell cell: SwipeableCollectionViewCell)
+	func duplicateContainerViewTapped	(inCell cell: SwipeableCollectionViewCell)
 }
