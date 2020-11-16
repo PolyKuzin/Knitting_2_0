@@ -1,11 +1,3 @@
-/* 
-  Localize.strings
-  Knitting_2_0
-
-  Created by Павел Кузин on 11.11.2020.
-  Copyright © 2020 Павел Кузин. All rights reserved.
-*/
-
 "E-mail" = "전자 메일";
 "Enter your password" = "비밀번호 입력";
 "Nickname" = "닉네임";
