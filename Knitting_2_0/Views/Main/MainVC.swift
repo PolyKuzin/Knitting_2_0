@@ -322,26 +322,26 @@ extension MainVC: SwipeableCollectionViewCellDelegate {
 		let referenceForProject = self.ref.child("projects").child("\(projectUniqueID)")
 		referenceForProject.setValue(projectToSave.projectToDictionary())
 		let fakeCounter = MCounter(name: "knitting-f824f", rows: 0, rowsMax: -1, date: "000000000")
-		var referenceForCounter = self.ref.child("projects").child("\(projectUniqueID)").child("counters").child("knitting-f824f")
+		let referenceForCounter = self.ref.child("projects").child("\(projectUniqueID)").child("counters").child("knitting-f824f")
 		referenceForCounter.setValue(fakeCounter.counterToDictionary())
-		
-		var counters : [MCounter] = []
-		project.ref!.child("counters").observeSingleEvent(of: .value) { (snapshot) in
-			for item in snapshot.children {
-				let counter = MCounter(snapshot: item as! DataSnapshot)
-				let date = Int(Date().timeIntervalSince1970)
-				let name = counter.name
-				let rowsMax = counter.rowsMax
-				let counterToSave = MCounter(name: name, rows: 0, rowsMax: rowsMax, date: "\(date)")
-				counters.append(counterToSave)
-			}
-		}
-		
-		for counter in counters {
-			let counterUniqueID = Int(Date().timeIntervalSince1970)
-			referenceForCounter = self.ref.child("projects").child("\(projectUniqueID)").child("counters").child("\(counterUniqueID)")
-			referenceForCounter.setValue(counter.counterToDictionary())
-		}
+//		
+//		var counters : [MCounter] = []
+//		project.ref!.child("counters").observeSingleEvent(of: .value) { (snapshot) in
+//			for item in snapshot.children {
+//				let counter = MCounter(snapshot: item as! DataSnapshot)
+//				let date = Int(Date().timeIntervalSince1970)
+//				let name = counter.name
+//				let rowsMax = counter.rowsMax
+//				let counterToSave = MCounter(name: name, rows: 0, rowsMax: rowsMax, date: "\(date)")
+//				counters.append(counterToSave)
+//			}
+//		}
+//		
+//		for counter in counters {
+//			let counterUniqueID = Int(Date().timeIntervalSince1970)
+//			referenceForCounter = self.ref.child("projects").child("\(projectUniqueID)").child("counters").child("\(counterUniqueID)")
+//			referenceForCounter.setValue(counter.counterToDictionary())
+//		}
 		let leftOffset = CGPoint(x: 0, y: 0)
 		cell.scrollView.setContentOffset(leftOffset, animated: true)
 		DispatchQueue.main.asyncAfter(deadline: .now() + animationDuration) {

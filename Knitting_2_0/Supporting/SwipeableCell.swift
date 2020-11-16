@@ -28,7 +28,7 @@ class SwipeableCollectionViewCell: UICollectionViewCell {
 		let label = UILabel()
 		label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
 		label.font = UIFont(name: "SFProDisplay-Medium", size: 18)
-		label.text = "Delete"
+		label.text = "Delete".localized()
 		return label
 	}()
 	
@@ -36,7 +36,7 @@ class SwipeableCollectionViewCell: UICollectionViewCell {
 		let label = UILabel()
 		label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
 		label.font = UIFont(name: "SFProDisplay-Medium", size: 18)
-		label.text = "Edit"
+		label.text = "Edit".localized()
 		return label
 	}()
 	
@@ -44,7 +44,7 @@ class SwipeableCollectionViewCell: UICollectionViewCell {
 		let label = UILabel()
 		label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
 		label.font = UIFont(name: "SFProDisplay-Medium", size: 18)
-		label.text = "Duplicate"
+		label.text = "Duplicate".localized()
 		return label
 	}()
 	
