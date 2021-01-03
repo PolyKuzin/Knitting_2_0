@@ -274,7 +274,7 @@ extension LogInVC {
 		
 		//Button alignment
 		questionToRegButton.translatesAutoresizingMaskIntoConstraints													= false
-		questionToRegButton.widthAnchor.constraint(lessThanOrEqualToConstant: 100).isActive								= true
+//		questionToRegButton.widthAnchor.constraint(lessThanOrEqualToConstant: 100).isActive								= true
 		questionToRegButton.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: 50).isActive	= true
 	}
 }

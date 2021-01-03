@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import StoreKit
 
 var keyboardBlackArea					: CGFloat = 0.0
 var keyboardReturnDistance				: CGFloat = 0.0
@@ -51,7 +52,25 @@ class EntryVC							: UIViewController {
         super.viewDidLoad()
 		viewModel 						= EntryVM()
 		setUpLayout()
+		switch currentCount {
+		case 5, 50:
+			requestReview()
+		case _ where currentCount%100 == 0 :
+			currentCount += 1
+			requestReview()
+		default:
+			print("############################")
+			print(currentCount)
+		}
     }
+	
+	func requestReview() {
+		if #available(iOS 10.3, *) {
+			SKStoreReviewController.requestReview()
+		}else{
+			// Review View is unvailable for lower versions. Please use your custom view.
+		}
+	}
 	
     override func viewDidDisappear(_ animated: Bool)	{
         super.viewWillDisappear(animated)
@@ -118,7 +137,7 @@ extension EntryVC {
 			logInButton		.bottomAnchor		.constraint(equalTo: view.bottomAnchor,		constant: -48),
 			
 			//A place for signup buttom
-			signUpButton	.widthAnchor		.constraint(equalToConstant: 152),
+			signUpButton	.widthAnchor		.constraint(equalToConstant: 200),
 			signUpButton	.heightAnchor		.constraint(equalToConstant: 53),
 			signUpButton	.topAnchor			.constraint(equalTo: logoIcon.bottomAnchor,	constant: 163),
 			signUpButton	.centerXAnchor		.constraint(equalTo: view.centerXAnchor),

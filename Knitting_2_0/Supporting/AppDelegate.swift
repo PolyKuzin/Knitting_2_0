@@ -8,6 +8,10 @@
 
 import UIKit
 import FirebaseCore
+import YandexMobileMetrica
+import StoreKit
+
+var currentCount = UserDefaults.standard.integer(forKey: "launchCount")
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,9 +19,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		FirebaseApp.configure()
-		let _ = WatchManager.shared
+		let configuration = YMMYandexMetricaConfiguration.init(apiKey: "710ec4a5-8503-4371-a935-2825ec321888")
+		YMMYandexMetrica.activate(with: configuration!) 
+		UserDefaults.standard.set(currentCount+1, forKey:"launchCount")
 		return true
     }
+	
+
 
 	// MARK: UISceneSession Lifecycle
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {

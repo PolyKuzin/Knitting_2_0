@@ -344,6 +344,14 @@ PODS:
   - nanopb/decode (1.30906.0)
   - nanopb/encode (1.30906.0)
   - PromisesObjC (1.2.10)
+  - YandexMobileMetrica (3.14.0):
+    - YandexMobileMetrica/Static (= 3.14.0)
+  - YandexMobileMetrica/Static (3.14.0):
+    - YandexMobileMetrica/Static/Core (= 3.14.0)
+    - YandexMobileMetrica/Static/Crashes (= 3.14.0)
+  - YandexMobileMetrica/Static/Core (3.14.0)
+  - YandexMobileMetrica/Static/Crashes (3.14.0):
+    - YandexMobileMetrica/Static/Core
 
 DEPENDENCIES:
   - Firebase/Analytics
@@ -352,6 +360,7 @@ DEPENDENCIES:
   - Firebase/Firestore
   - Firebase/Storage
   - FirebaseFirestoreSwift
+  - YandexMobileMetrica
 
 SPEC REPOS:
   trunk:
@@ -376,6 +385,7 @@ SPEC REPOS:
     - leveldb-library
     - nanopb
     - PromisesObjC
+    - YandexMobileMetrica
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
@@ -399,7 +409,8 @@ SPEC CHECKSUMS:
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
+  YandexMobileMetrica: a2dd4fd2f01ae7ae6850d786c443cb41fbbbea78
 
-PODFILE CHECKSUM: fac98c116e98677a6131aaf75d5baebca04805e7
+PODFILE CHECKSUM: b256f88fe63601ab96ab82d482add3a41ad8a1ea
 
 COCOAPODS: 1.10.0.beta.2

@@ -47,7 +47,7 @@ class EntryVM {
 	
 	private lazy var signUpButton		: UIButton		= {
 		let button						= UIButton(type: .system)
-		button.frame 					= CGRect(x: 0, y: 0, width: 152, height: 53)
+		button.frame 					= CGRect(x: 0, y: 0, width: 200, height: 53)
 		button.titleLabel?.font			= Fonts.displayMedium18
 		button.alpha					= 0
 		button.layer.cornerRadius		= button.frame.height / 2

@@ -138,10 +138,6 @@ extension MainVC {
 					return
 							($0.date) > ($1.date)
 				})
-				WatchManager.shared.sendParamsToWatch(dict: [
-					"name" : project.name,
-					"image": project.image
-				])
 				self.collectionView.reloadData()
 			}
 			self.collectionView.reloadData()
