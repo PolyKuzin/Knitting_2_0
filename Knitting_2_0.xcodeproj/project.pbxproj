@@ -286,6 +286,7 @@
 		99AFBA4524F80D9E00E71FD6 /* Knitting_2_0 */ = {
 			isa = PBXGroup;
 			children = (
+				9974DF4F25A206540036C971 /* Analytics.swift */,
 				99AFBA4F24F80DA000E71FD6 /* Assets.xcassets */,
 				99AFBA6D24F8111500E71FD6 /* Extensions */,
 				99C31FDB251F2D3900A1F75D /* Protocols */,
@@ -295,7 +296,6 @@
 				99AFBA6A24F8103600E71FD6 /* ViewModels */,
 				99AFBA5424F80DA000E71FD6 /* Info.plist */,
 				99E4A1C525091FBE003CA7C9 /* GoogleService-Info.plist */,
-				9974DF4F25A206540036C971 /* Analytics.swift */,
 			);
 			path = Knitting_2_0;
 			sourceTree = "<group>";
