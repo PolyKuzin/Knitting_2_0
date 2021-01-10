@@ -105,6 +105,7 @@ class NewCounterVC					: UIViewController, CardViewControllerProtocol, UINavigat
 			let counter = MCounter(name: name, rows: 0, rowsMax: rowsMax, date: "\(date)")
 			ref.child("\(date)").setValue(counter.counterToDictionary())
 			NotificationCenter.default.post(name: Notification.Name(rawValue: "disconnectNewCounterVC"), object: nil)
+			AnalyticsService.reportEvent(with: "New counter", parameters: ["name" : counter.name])
 		}
 	}
 	

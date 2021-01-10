@@ -55,7 +55,7 @@ class EntryVC							: UIViewController {
 		switch currentCount {
 		case 5, 50:
 			requestReview()
-		case _ where currentCount%100 == 0 :
+		case _ where currentCount%100 == 0 && currentCount != 0, 1:
 			currentCount += 1
 			requestReview()
 		default:

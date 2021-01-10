@@ -157,6 +157,7 @@ extension SignUpVC {
 					self?.dismissKeyBoard	()
 					self?.hideKeyboard()
 					self?.pushMainVC()
+					AnalyticsService.reportEvent(with: "SignedUp")
 				}
 			}
 		}

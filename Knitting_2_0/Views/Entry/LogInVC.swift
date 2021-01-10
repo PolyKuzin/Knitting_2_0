@@ -82,6 +82,7 @@ extension LogInVC {
 				} else {
 					self.dismissKeyBoard()
 					self.pushMainVC		()
+					AnalyticsService.reportEvent(with: "LogedIn")
 				}
 			}
 		}

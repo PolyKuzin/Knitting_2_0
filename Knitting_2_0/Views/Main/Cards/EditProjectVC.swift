@@ -87,7 +87,7 @@ class EditProjectVC					: UIViewController, CardViewControllerProtocol, UINaviga
 			referenceForProject?.updateChildValues(["name" : name,
 												   "image" : imageData,
 												   "date": projectUniqueID])
-
+			AnalyticsService.reportEvent(with: "Edit Project")
 			NotificationCenter.default.post(name: Notification.Name(rawValue: "disconnectEditProjectVC"), object: nil)
 		}
 	}
@@ -135,8 +135,6 @@ extension EditProjectVC: UIImagePickerControllerDelegate {
 extension EditProjectVC {
 	
 	func validateFields() -> String? {
-		
-		//check that fields are filled in
 		if	projectName	.text?.trimmingCharacters	(in: .whitespacesAndNewlines)	== "" {
 			return "Please fill in all fields"
 		}

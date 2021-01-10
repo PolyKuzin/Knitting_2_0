@@ -113,6 +113,9 @@ class MainVC								: UIViewController {
 		self.view.sendSubviewToBack(self.collectionView)
 		self.view.sendSubviewToBack(self.visualEffectView)
 		self.reloadMainVc = true
+		DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+			AnalyticsService.reportEvent(with: "Number of Projects", parameters: ["Number" : self.collectionView.numberOfSections])
+		}
     }
 	
     deinit {
@@ -164,6 +167,7 @@ extension MainVC : UICollectionViewDataSource, UICollectionViewDelegate {
 			cell.isHidden = false
 			cell.alpha = 1
 		}
+		AnalyticsService.reportEvent(with: "Project", parameters: ["name" : project.name])
 		return cell
 	}
 	
@@ -259,6 +263,7 @@ extension MainVC {
 	
 	@objc
     func profileImageTap	(recognizer: UITapGestureRecognizer) {
+		AnalyticsService.reportEvent(with: "Profile")
 		view.isUserInteractionEnabled = false
 		NotificationCenter.default.addObserver(self, selector: #selector(MainVC.updateCardViewControllerWithProfileVC(notification:)), name: profileImageTaped, object: nil)
 		let name = Notification.Name(rawValue: profileImageInSectionNotificationKey)
@@ -343,6 +348,7 @@ extension MainVC: SwipeableCollectionViewCellDelegate {
 		DispatchQueue.main.asyncAfter(deadline: .now() + animationDuration) {
 			self.view.isUserInteractionEnabled = true
 		}
+		AnalyticsService.reportEvent(with: "Duplicate project")
 	}
 	
 	func editContainerViewTapped(inCell cell: SwipeableCollectionViewCell) {
@@ -369,6 +375,7 @@ extension MainVC: SwipeableCollectionViewCellDelegate {
 		DispatchQueue.main.asyncAfter(deadline: .now() + animationDuration) {
 			self.view.isUserInteractionEnabled = true
 		}
+		AnalyticsService.reportEvent(with: "Edit project")
 	}
 	
 	func deleteContainerViewTapped(inCell cell: SwipeableCollectionViewCell) {
@@ -385,6 +392,7 @@ extension MainVC: SwipeableCollectionViewCellDelegate {
 		DispatchQueue.main.asyncAfter(deadline: .now() + animationDuration) {
 			self.view.isUserInteractionEnabled = true
 		}
+		AnalyticsService.reportEvent(with: "Delete project")
 	}
 	
 	func visibleContainerViewTapped(inCell cell: SwipeableCollectionViewCell) {

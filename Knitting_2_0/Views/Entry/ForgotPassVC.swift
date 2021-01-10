@@ -76,7 +76,6 @@ extension ForgotPassVC {
 		}
 		Auth.auth().sendPasswordReset(withEmail: email) { err in
 			if err != nil {
-			// Display error message
 				if let error = err as NSError? {
 					switch (AuthErrorCode(rawValue: error.code)) {
 					case .userNotFound:
@@ -94,6 +93,7 @@ extension ForgotPassVC {
 				}))
 				self.dismissKeyBoard()
 				self.present(alert, animated: true)
+				AnalyticsService.reportEvent(with: "ForgotPassword")
 			}
 		}
 	}

@@ -96,6 +96,7 @@ class NewProjectVC					: UIViewController, CardViewControllerProtocol, UINavigat
 				referenceForCounter.setValue(counter.counterToDictionary())
 			}
 			NotificationCenter.default.post(name: Notification.Name(rawValue: "disconnectNewProjectVC"), object: nil)
+			AnalyticsService.reportEvent(with: "New project", parameters: ["name" : project.name])
 		}
 	}
 	

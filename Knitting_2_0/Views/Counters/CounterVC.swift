@@ -64,6 +64,9 @@ class CountersVC	: UIViewController, UICollectionViewDelegate, UICollectionViewD
 		
 		self.view.sendSubviewToBack(self.collectionView)
 		self.view.sendSubviewToBack(self.visualEffectView)
+		DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+			AnalyticsService.reportEvent(with: "Number of Counters", parameters: ["Number" : self.collectionView.numberOfSections])
+		}
 	}
 	
 	override func viewWillDisappear(_ animated: Bool) {
@@ -224,6 +227,7 @@ extension CountersVC {
 			self.present(alert, animated: true, completion: nil)
 		}
 		collectionView.reloadData()
+		AnalyticsService.reportEvent(with: "Add row")
 	}
 	@objc
 	func minusBtnTaped(_ sender: UIButton){
@@ -238,6 +242,7 @@ extension CountersVC {
 			currentCounter.ref?.updateChildValues(["rows": 0])
 		}
 		collectionView.reloadData()
+		AnalyticsService.reportEvent(with: "Remove row")
 	}
 	
 	@objc
@@ -311,6 +316,7 @@ extension CountersVC: SwipeableCollectionViewCellDelegate {
 		DispatchQueue.main.asyncAfter(deadline: .now() + animationDuration) {
 			self.view.isUserInteractionEnabled = true
 		}
+		AnalyticsService.reportEvent(with: "Duplicate counter")
 	}
 	
 	func editContainerViewTapped(inCell cell: SwipeableCollectionViewCell) {
@@ -337,6 +343,7 @@ extension CountersVC: SwipeableCollectionViewCellDelegate {
 		DispatchQueue.main.asyncAfter(deadline: .now() + animationDuration) {
 			self.view.isUserInteractionEnabled = true
 		}
+		AnalyticsService.reportEvent(with: "Edit counter")
 	}
 	
 	func deleteContainerViewTapped(inCell cell: SwipeableCollectionViewCell) {
@@ -346,6 +353,7 @@ extension CountersVC: SwipeableCollectionViewCellDelegate {
 		self.collectionView.reloadData()
 		let leftOffset = CGPoint(x: 0, y: 0)
 		cell.scrollView.setContentOffset(leftOffset, animated: true)
+		AnalyticsService.reportEvent(with: "Delete counter")
 	}
 	
 	func visibleContainerViewTapped(inCell cell: SwipeableCollectionViewCell) {

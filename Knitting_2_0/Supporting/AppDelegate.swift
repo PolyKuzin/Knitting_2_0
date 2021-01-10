@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		let configuration = YMMYandexMetricaConfiguration.init(apiKey: "710ec4a5-8503-4371-a935-2825ec321888")
 		YMMYandexMetrica.activate(with: configuration!) 
 		UserDefaults.standard.set(currentCount+1, forKey:"launchCount")
+		AnalyticsService.reportEvent(with: "Launch")
 		return true
     }
 	

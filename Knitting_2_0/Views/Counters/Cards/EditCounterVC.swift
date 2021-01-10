@@ -110,6 +110,7 @@ class EditCounterVC					: UIViewController, CardViewControllerProtocol, UINaviga
 													"rowsMax" : rowsMax,
 													"date" : date])
 			NotificationCenter.default.post(name: Notification.Name(rawValue: "disconnectEditCounterVC"), object: nil)
+			AnalyticsService.reportEvent(with: "Edit counter", parameters: ["name" : name])
 		}
 	}
 	
