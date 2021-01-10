@@ -53,11 +53,11 @@ class EntryVC							: UIViewController {
 		viewModel 						= EntryVM()
 		setUpLayout()
 		switch currentCount {
-		case 5, 50:
+		case 5, 50, 100, 150, 200, 300, 400:
 			requestReview()
-		case _ where currentCount%100 == 0 && currentCount != 0, 1:
-			currentCount += 1
-			requestReview()
+//		case _ where currentCount%100 == 0 && currentCount != 0, 1:
+//			currentCount += 1
+//			requestReview()
 		default:
 			print("############################")
 			print(currentCount)

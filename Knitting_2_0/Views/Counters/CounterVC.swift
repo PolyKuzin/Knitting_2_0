@@ -78,7 +78,7 @@ class CountersVC	: UIViewController, UICollectionViewDelegate, UICollectionViewD
 		let layout					= UICollectionViewFlowLayout()
 		layout.scrollDirection		= .vertical
 		layout.itemSize				= CGSize(width: UIScreen.main.bounds.width - 40,	height: UIScreen.main.bounds.height / 5.5)
-		layout.headerReferenceSize	= CGSize(width: UIScreen.main.bounds.width, 		height: 200)
+		layout.headerReferenceSize	= CGSize(width: UIScreen.main.bounds.width, 		height: 240)
 		
 		let cv = UICollectionView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 3), collectionViewLayout: layout)
 		cv.backgroundColor = .white
@@ -92,7 +92,7 @@ class CountersVC	: UIViewController, UICollectionViewDelegate, UICollectionViewD
 	
 	func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
 		let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeader.reusedId, for: indexPath) as! SectionHeader
-		header.frame = CGRect(x: 0 , y: 0, width: self.view.frame.width, height: 200)
+		header.frame = CGRect(x: 0 , y: 0, width: self.view.frame.width, height: 240)
 		header.profileImage.image = currentProject.image.toImage()
 		header.profileImage.layer.cornerRadius = 20
 		header.profileImage.layer.masksToBounds = true

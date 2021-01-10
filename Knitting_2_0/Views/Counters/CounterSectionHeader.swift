@@ -31,11 +31,12 @@ class SectionHeader: UICollectionReusableView {
 	
 	var createCounter		: UIButton = {
 		let button			= UIButton()
+		button.backgroundColor = UIColor(red: 0.745, green: 0.616, blue: 0.875, alpha: 1)
 		button.frame = CGRect(x: 0, y: 0, width: 155, height: 40)
-		button.setTitle("Create counter", for: .normal)
-		button.setTitleColor(UIColor(red: 0.682, green: 0.682, blue: 0.698, alpha: 1), for: .normal)
+		button.setTitle("+ Create counter".localized(), for: .normal)
+		button.setTitleColor(UIColor.white, for: .normal)
 		button.titleLabel?.font = UIFont(name: "SFProText-Medium", size: 17)
-		
+		button.layer.cornerRadius = 15
 		return button
 	}()
 	
@@ -54,7 +55,7 @@ extension SectionHeader {
 	private func setupLayout() {
 		
 		translatesAutoresizingMaskIntoConstraints												= false
-		heightAnchor.constraint(equalToConstant: 200).isActive									= true
+		heightAnchor.constraint(equalToConstant: 240).isActive									= true
 		
 		addSubview(profileImage)
 		profileImage.translatesAutoresizingMaskIntoConstraints									= false
@@ -73,7 +74,7 @@ extension SectionHeader {
 		createCounter.translatesAutoresizingMaskIntoConstraints									= false
 		createCounter.centerXAnchor.constraint(equalTo: centerXAnchor).isActive					= true
 		createCounter.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 5).isActive	= true
-		createCounter.heightAnchor.constraint(equalToConstant: 20).isActive						= true
+		createCounter.heightAnchor.constraint(equalToConstant: 52).isActive						= true
 		createCounter.trailingAnchor.constraint(equalTo: trailingAnchor,constant: -16).isActive = true
 	}
 }

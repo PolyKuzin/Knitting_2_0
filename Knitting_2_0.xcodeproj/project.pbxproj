@@ -187,6 +187,12 @@
 		99EFB56525168AF5003A5D07 /* ProfileCardVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardVM.swift; sourceTree = "<group>"; };
 		99EFB56925177805003A5D07 /* MainCardViewAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCardViewAnimations.swift; sourceTree = "<group>"; };
 		99EFB56B25178D77003A5D07 /* NewProjectCardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProjectCardVC.swift; sourceTree = "<group>"; };
+		99F052F825ABAD2800CFFD88 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		99F052F925ABAD2F00CFFD88 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		99F052FC25ABB03400CFFD88 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		99F052FD25ABB03400CFFD88 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		99F052FE25ABB04400CFFD88 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		99F052FF25ABB04400CFFD88 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		99F2682F2544BF24009DDDD8 /* NotificationKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationKeys.swift; sourceTree = "<group>"; };
 		A9AB0322FBAB47D7907630EB /* Pods_Knitting_2_0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Knitting_2_0.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -549,6 +555,9 @@
 				"pt-BR",
 				es,
 				ru,
+				fr,
+				de,
+				it,
 			);
 			mainGroup = 99AFBA3A24F80D9E00E71FD6;
 			productRefGroup = 99AFBA4424F80D9E00E71FD6 /* Products */;
@@ -724,6 +733,9 @@
 				998AED61255C50EA00507F02 /* pt-BR */,
 				998AED63255C518600507F02 /* es */,
 				998AED65255C519400507F02 /* ru */,
+				99F052F925ABAD2F00CFFD88 /* fr */,
+				99F052FD25ABB03400CFFD88 /* de */,
+				99F052FF25ABB04400CFFD88 /* it */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -737,6 +749,9 @@
 				998AED60255C50EA00507F02 /* pt-BR */,
 				998AED62255C518600507F02 /* es */,
 				998AED64255C519400507F02 /* ru */,
+				99F052F825ABAD2800CFFD88 /* fr */,
+				99F052FC25ABB03400CFFD88 /* de */,
+				99F052FE25ABB04400CFFD88 /* it */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
