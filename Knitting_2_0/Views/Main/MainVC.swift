@@ -20,8 +20,9 @@ let animationDuration = 0.7
 
 class MainVC								: UIViewController {
 	
-	var activityView						: UIActivityIndicatorView?
+	let appDelegate = UIApplication.shared.delegate as? AppDelegate
 	
+	var activityView						: UIActivityIndicatorView?
 	let profileImageTaped					= Notification.Name(rawValue: profileImageInSectionNotificationKey)
 	let newprojectViewTaped					= Notification.Name(rawValue: newprojectNotificationKey)
 	let editprojectViewTaped				= Notification.Name(rawValue: editProjectNotificationKey)
@@ -99,6 +100,7 @@ class MainVC								: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+		appDelegate?.scheduleNotification()
 		viewModel = MainVM()
 		guard let currentUser = Auth.auth().currentUser else { return }
 		user	= MUser(user: currentUser)

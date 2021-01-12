@@ -149,6 +149,7 @@
 		998B9F8E250D817000C0C52F /* ProjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCell.swift; sourceTree = "<group>"; };
 		998B9F90250D81BE00C0C52F /* SwipeableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableCell.swift; sourceTree = "<group>"; };
 		998B9F92250E1CD300C0C52F /* MSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSection.swift; sourceTree = "<group>"; };
+		999D789925ABC56600CB138B /* Knitting_2_0.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Knitting_2_0.entitlements; sourceTree = "<group>"; };
 		99AFBA4324F80D9E00E71FD6 /* Knitting_2_0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Knitting_2_0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99AFBA4624F80D9E00E71FD6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		99AFBA4824F80D9E00E71FD6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -292,8 +293,11 @@
 		99AFBA4524F80D9E00E71FD6 /* Knitting_2_0 */ = {
 			isa = PBXGroup;
 			children = (
-				9974DF4F25A206540036C971 /* Analytics.swift */,
 				99AFBA4F24F80DA000E71FD6 /* Assets.xcassets */,
+				999D789925ABC56600CB138B /* Knitting_2_0.entitlements */,
+				9974DF4F25A206540036C971 /* Analytics.swift */,
+				99AFBA4624F80D9E00E71FD6 /* AppDelegate.swift */,
+				99AFBA4824F80D9E00E71FD6 /* SceneDelegate.swift */,
 				99AFBA6D24F8111500E71FD6 /* Extensions */,
 				99C31FDB251F2D3900A1F75D /* Protocols */,
 				99AFBA6B24F810B000E71FD6 /* Supporting */,
@@ -354,8 +358,6 @@
 			isa = PBXGroup;
 			children = (
 				99AFBA7B24FC295600E71FD6 /* Fonts */,
-				99AFBA4624F80D9E00E71FD6 /* AppDelegate.swift */,
-				99AFBA4824F80D9E00E71FD6 /* SceneDelegate.swift */,
 				99AFBA7924F9667F00E71FD6 /* Constants.swift */,
 				998B9F90250D81BE00C0C52F /* SwipeableCell.swift */,
 				99F2682F2544BF24009DDDD8 /* NotificationKeys.swift */,
@@ -882,6 +884,7 @@
 			baseConfigurationReference = 561858D2B68D4F8584D13FB1 /* Pods-Knitting_2_0.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Knitting_2_0/Knitting_2_0.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JJC3HHT8LN;
@@ -890,7 +893,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.00.032;
+				MARKETING_VERSION = 2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.polykuzin.Knitting-2-0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -903,6 +906,7 @@
 			baseConfigurationReference = 8257CCB6BAEED5BDB6953A6E /* Pods-Knitting_2_0.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Knitting_2_0/Knitting_2_0.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JJC3HHT8LN;
@@ -911,7 +915,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.00.032;
+				MARKETING_VERSION = 2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.polykuzin.Knitting-2-0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
