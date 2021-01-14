@@ -27,6 +27,7 @@
 		996FAF2E2508249400209228 /* EntryVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996FAF2D2508249400209228 /* EntryVCTests.swift */; };
 		996FAF30250824A300209228 /* EntryVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996FAF2F250824A300209228 /* EntryVMTests.swift */; };
 		996FAF322508FB6D00209228 /* SF-Pro-Display-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 996FAF312508FB6C00209228 /* SF-Pro-Display-Semibold.otf */; };
+		9973AC3B25AF544E003FE44F /* KnitTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9973AC3A25AF544E003FE44F /* KnitTextField.swift */; };
 		9974DF5025A206540036C971 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9974DF4F25A206540036C971 /* Analytics.swift */; };
 		9978DDD7253E12C200659DC1 /* MPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9978DDD6253E12C200659DC1 /* MPage.swift */; };
 		998AED40255C4B6800507F02 /* Localize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998AED3F255C4B6800507F02 /* Localize.swift */; };
@@ -125,6 +126,7 @@
 		996FAF2D2508249400209228 /* EntryVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryVCTests.swift; sourceTree = "<group>"; };
 		996FAF2F250824A300209228 /* EntryVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryVMTests.swift; sourceTree = "<group>"; };
 		996FAF312508FB6C00209228 /* SF-Pro-Display-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Semibold.otf"; sourceTree = "<group>"; };
+		9973AC3A25AF544E003FE44F /* KnitTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnitTextField.swift; sourceTree = "<group>"; usesTabs = 0; };
 		9974DF4F25A206540036C971 /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		9978DDD6253E12C200659DC1 /* MPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPage.swift; sourceTree = "<group>"; };
 		998AED3F255C4B6800507F02 /* Localize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localize.swift; sourceTree = "<group>"; };
@@ -269,6 +271,14 @@
 			path = Entry;
 			sourceTree = "<group>";
 		};
+		9973AC3925AF5415003FE44F /* KnitUIPod */ = {
+			isa = PBXGroup;
+			children = (
+				9973AC3A25AF544E003FE44F /* KnitTextField.swift */,
+			);
+			path = KnitUIPod;
+			sourceTree = "<group>";
+		};
 		99AFBA3A24F80D9E00E71FD6 = {
 			isa = PBXGroup;
 			children = (
@@ -293,6 +303,7 @@
 		99AFBA4524F80D9E00E71FD6 /* Knitting_2_0 */ = {
 			isa = PBXGroup;
 			children = (
+				9973AC3925AF5415003FE44F /* KnitUIPod */,
 				99AFBA4F24F80DA000E71FD6 /* Assets.xcassets */,
 				999D789925ABC56600CB138B /* Knitting_2_0.entitlements */,
 				9974DF4F25A206540036C971 /* Analytics.swift */,
@@ -669,6 +680,7 @@
 				998B9F87250C1E2B00C0C52F /* MainVM.swift in Sources */,
 				998B9F91250D81BE00C0C52F /* SwipeableCell.swift in Sources */,
 				99EF88BB25191EC400C77181 /* MCounter.swift in Sources */,
+				9973AC3B25AF544E003FE44F /* KnitTextField.swift in Sources */,
 				99B206722504DD8B00FA6C50 /* LogInVC.swift in Sources */,
 				99B206742504DDF700FA6C50 /* LogInVM.swift in Sources */,
 				99AFBA4724F80D9E00E71FD6 /* AppDelegate.swift in Sources */,

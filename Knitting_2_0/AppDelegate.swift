@@ -12,6 +12,7 @@ import FirebaseCore
 import UserNotifications
 import YandexMobileMetrica
 
+//https://apps.apple.com/us/app/knit-it/id1532396965
 var currentCount = UserDefaults.standard.integer(forKey: "launchCount")
 
 @UIApplicationMain
@@ -34,6 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func applicationDidBecomeActive(_ application: UIApplication) {
 		UIApplication.shared.applicationIconBadgeNumber = 0
 	}
+	
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
 		
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
@@ -75,10 +77,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 				print("Error \(error.localizedDescription)")
 			}
 		}
-		var i : Int = UserDefaults.standard.integer(forKey: "YearlyRowsAdded")
-		i += UserDefaults.standard.integer(forKey: "RowsAdded")
-		UserDefaults.standard.setValue(i, forKey: "YearlyRowsAdded")
-		UserDefaults.standard.setValue(0, forKey: "RowsAdded")
 	}
 }
 
