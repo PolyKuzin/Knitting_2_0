@@ -10,7 +10,6 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import FirebaseDatabase
-import FirebaseFirestore
 
 class SignUpVC	: UIViewController {
 	
@@ -146,12 +145,6 @@ extension SignUpVC {
 					guard let userRef = self?.dbReference.child((user?.user.uid)!) else { return }
 					userRef.setValue(["email"	: user!.user.email,
 									  "nickname": nickname])
-					let db = Firestore.firestore()
-					db.collection("users").addDocument(data: ["uid"			: user?.user.uid as Any,
-															  "nickname"	: nickname,
-															  "email"		: email]) { (error) in
-						if error != nil { self?.showError("Error saving user data") }
-					}
 					let project = MProject(userID: "123", name: "knitting-f824f", image: (Icons.emptyProject?.toString())!, date: "0")
 					guard let referenceForProject = self?.dbReference.child((user?.user.uid)!).child("projects").child("123") else { return }
 					referenceForProject.setValue(project.projectToDictionary())
