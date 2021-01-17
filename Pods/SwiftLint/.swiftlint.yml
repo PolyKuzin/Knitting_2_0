@@ -1,0 +1,8 @@
+disabled_rules:
+  - colon
+  - comma
+  - control_statement
+  - vertical_whitespace
+  - comment_spacing
+  - comment_spacing
+  - control_statemet

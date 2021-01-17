@@ -25,6 +25,8 @@ class SignUpVC	: UIViewController {
 	private var questionToLogInButton	= UIButton		()
 	private var questionToLogInLabel	= UILabel		()
 		
+	var nick = KnitTextField()
+
 	private var viewModel				: RegistrationVM! {
 		didSet {
 			self.logoIcon				= viewModel.logoIcon	()
@@ -50,6 +52,7 @@ class SignUpVC	: UIViewController {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+		
 		view.backgroundColor			= .white
 		viewModel 						= RegistrationVM()
         dbReference						= Database.database().reference(withPath: "users")

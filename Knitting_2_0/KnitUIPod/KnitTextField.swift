@@ -8,17 +8,29 @@
 
 import UIKit
 
-protocol KnitTextFields {
-    func setRegistarionForm(on view: UIView)
+@objc
+protocol KnitUI {
+    @objc optional var nameFild     : KnitTextField { get set }
+    @objc optional var emailFild    : KnitTextField { get set }
+    @objc optional var passwordFild : KnitTextField { get set }
+    @objc optional var resetFild    : KnitTextField { get set }
+}
+
+@objc
+protocol KnitFild {
+    @objc optional func set(font: UIFont)
+    @objc optional func set(frame: CGRect)
+    @objc optional func set(cornerRadius: CGFloat)
+    @objc optional func set(keyboardType: UIKeyboardType)
+    @objc optional func set(clearButtonMode: UITextField.ViewMode)
+    @objc optional func set(autocorrectionType: UITextAutocorrectionType)
 }
 
 @IBDesignable
-public class KnitTextField : UITextField {
+public class KnitTextField : UITextField, KnitFild {
     
-	init(frame: CGRect, _ p: String?, _ t: UITextAutocapitalizationType?) {
+	init() {
 		super.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 32, height: 51))
-		(t != nil) ? (autocapitalizationType = t!) : (autocapitalizationType = .none)
-		(p != nil) ? (placeholder = p!) : (placeholder = "")
 		self.backgroundColor = Colors.normalTextField
 		font                 = Fonts.displayRegular18
 		layer.cornerRadius   = CornerRadius.forTextField
@@ -35,4 +47,10 @@ public class KnitTextField : UITextField {
 	required public init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 	}
+    
+    func set(font: UIFont) { self.font = font }
+    
+    func set(frame: CGRect) { self.frame = frame }
+    
+    
 }
