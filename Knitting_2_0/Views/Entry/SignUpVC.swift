@@ -24,8 +24,6 @@ class SignUpVC	: UIViewController {
 	private var signUpButton			= UIButton		()
 	private var questionToLogInButton	= UIButton		()
 	private var questionToLogInLabel	= UILabel		()
-		
-	var nick = KnitTextField()
 
 	private var viewModel				: RegistrationVM! {
 		didSet {

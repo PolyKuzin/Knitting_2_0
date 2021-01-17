@@ -11,6 +11,7 @@ import StoreKit
 import FirebaseCore
 import UserNotifications
 import YandexMobileMetrica
+import YandexMobileMetricaPush
 
 //https://apps.apple.com/us/app/knit-it/id1532396965
 var currentCount = UserDefaults.standard.integer(forKey: "launchCount")
@@ -29,6 +30,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		notificationCenter.delegate = self
 		scheduleNotification()
 		UIApplication.shared.applicationIconBadgeNumber = 0
+		
+		if #available(iOS 10.0, *) {
+			let delegate = YMPYandexMetricaPush.userNotificationCenterDelegate()
+			UNUserNotificationCenter.current().delegate = delegate
+		}
+		YMPYandexMetricaPush.setExtensionAppGroup("group.ru.polykuzin.Knitting-2-0")
+		YMPYandexMetricaPush.handleApplicationDidFinishLaunching(options: launchOptions)
 		return true
     }
 	
@@ -40,6 +48,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
+	
+	func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+		// If the AppMetrica SDK library was not initialized before this step,
+		// calling the method causes the app to crash.
+		#if DEBUG
+			let pushEnvironment = YMPYandexMetricaPushEnvironment.development
+		#else
+			let pushEnvironment = YMPYandexMetricaPushEnvironment.production
+		#endif
+		YMPYandexMetricaPush.setDeviceTokenFrom(deviceToken, pushEnvironment: pushEnvironment)
+	}
+	
+	func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
+		self.handlePushNotification(userInfo)
+	}
+
+	func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+		self.handlePushNotification(userInfo)
+		completionHandler(.newData)
+	}
+
+	func handlePushNotification(_ userInfo: [AnyHashable : Any]) {
+		// Track received remote notification.
+		// Method [YMMYandexMetrica activateWithApiKey:] should be called before using this method.
+		let userData = YMPYandexMetricaPush.userData(forNotification: userInfo)
+		let isRelatedToAppMetricaSDK = YMPYandexMetricaPush.isNotificationRelated(toSDK: userInfo)
+		YMPYandexMetricaPush.handleRemoteNotification(userInfo)
+	}
 	
 	//MARK: - Notifications
 	let notificationCenter = UNUserNotificationCenter.current()

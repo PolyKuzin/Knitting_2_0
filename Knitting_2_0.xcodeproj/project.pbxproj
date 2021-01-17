@@ -7,10 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E4FC79B6C184EEB98BCC6EB /* Pods_KnitNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FE08093BE0A3B949E7EAC46 /* Pods_KnitNotifications.framework */; };
 		9905ABE225024F5A0055B138 /* SF-Pro-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9905ABE125024F5A0055B138 /* SF-Pro-Text-Semibold.otf */; };
 		9905ABE4250254B80055B138 /* SF-Pro-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9905ABE3250254B80055B138 /* SF-Pro-Text-Regular.otf */; };
 		99192D57251FC208001C6720 /* CounterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99192D56251FC208001C6720 /* CounterVC.swift */; };
 		991AD5682529268D008A6E8D /* SF-Pro-Rounded-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 991AD5672529268D008A6E8D /* SF-Pro-Rounded-Medium.otf */; };
+		993BC15C25B4DC7C00890696 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993BC15B25B4DC7C00890696 /* NotificationService.swift */; };
+		993BC16025B4DC7C00890696 /* KnitNotifications.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 993BC15925B4DC7C00890696 /* KnitNotifications.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		994300B1252A27FF0065EF5C /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994300B0252A27FF0065EF5C /* UIViewController.swift */; };
 		994300B5252B11090065EF5C /* SF-Pro-Text-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 994300B4252B11090065EF5C /* SF-Pro-Text-Medium.otf */; };
 		994300B9252B156A0065EF5C /* NewCounterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994300B8252B156A0065EF5C /* NewCounterVC.swift */; };
@@ -27,7 +30,6 @@
 		996FAF2E2508249400209228 /* EntryVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996FAF2D2508249400209228 /* EntryVCTests.swift */; };
 		996FAF30250824A300209228 /* EntryVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996FAF2F250824A300209228 /* EntryVMTests.swift */; };
 		996FAF322508FB6D00209228 /* SF-Pro-Display-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 996FAF312508FB6C00209228 /* SF-Pro-Display-Semibold.otf */; };
-		9973AC3B25AF544E003FE44F /* KnitTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9973AC3A25AF544E003FE44F /* KnitTextField.swift */; };
 		9974DF5025A206540036C971 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9974DF4F25A206540036C971 /* Analytics.swift */; };
 		9978DDD7253E12C200659DC1 /* MPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9978DDD6253E12C200659DC1 /* MPage.swift */; };
 		998AED40255C4B6800507F02 /* Localize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998AED3F255C4B6800507F02 /* Localize.swift */; };
@@ -81,6 +83,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		993BC15E25B4DC7C00890696 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 99AFBA3B24F80D9E00E71FD6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 993BC15825B4DC7C00890696;
+			remoteInfo = KnitNotifications;
+		};
 		99AFBA5A24F80DA000E71FD6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 99AFBA3B24F80D9E00E71FD6 /* Project object */;
@@ -91,6 +100,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		993BC16125B4DC7C00890696 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				993BC16025B4DC7C00890696 /* KnitNotifications.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		99F268262544AD24009DDDD8 /* Embed Watch Content */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -104,12 +124,19 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		006BF2B84E86384C70DEEFD5 /* Pods-KnitNotifications.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KnitNotifications.release.xcconfig"; path = "Target Support Files/Pods-KnitNotifications/Pods-KnitNotifications.release.xcconfig"; sourceTree = "<group>"; };
+		2FE08093BE0A3B949E7EAC46 /* Pods_KnitNotifications.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KnitNotifications.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		561858D2B68D4F8584D13FB1 /* Pods-Knitting_2_0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Knitting_2_0.debug.xcconfig"; path = "Target Support Files/Pods-Knitting_2_0/Pods-Knitting_2_0.debug.xcconfig"; sourceTree = "<group>"; };
+		7698782C536C99851F899950 /* Pods-KnitNotifications.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KnitNotifications.debug.xcconfig"; path = "Target Support Files/Pods-KnitNotifications/Pods-KnitNotifications.debug.xcconfig"; sourceTree = "<group>"; };
 		8257CCB6BAEED5BDB6953A6E /* Pods-Knitting_2_0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Knitting_2_0.release.xcconfig"; path = "Target Support Files/Pods-Knitting_2_0/Pods-Knitting_2_0.release.xcconfig"; sourceTree = "<group>"; };
 		9905ABE125024F5A0055B138 /* SF-Pro-Text-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Semibold.otf"; sourceTree = "<group>"; };
 		9905ABE3250254B80055B138 /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
 		99192D56251FC208001C6720 /* CounterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterVC.swift; sourceTree = "<group>"; };
 		991AD5672529268D008A6E8D /* SF-Pro-Rounded-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Medium.otf"; sourceTree = "<group>"; };
+		993BC15925B4DC7C00890696 /* KnitNotifications.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = KnitNotifications.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		993BC15B25B4DC7C00890696 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		993BC15D25B4DC7C00890696 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		993BC18025B4DD4300890696 /* KnitNotifications.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KnitNotifications.entitlements; sourceTree = "<group>"; };
 		994300B0252A27FF0065EF5C /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		994300B4252B11090065EF5C /* SF-Pro-Text-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Medium.otf"; sourceTree = "<group>"; };
 		994300B8252B156A0065EF5C /* NewCounterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCounterVC.swift; sourceTree = "<group>"; };
@@ -126,7 +153,6 @@
 		996FAF2D2508249400209228 /* EntryVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryVCTests.swift; sourceTree = "<group>"; };
 		996FAF2F250824A300209228 /* EntryVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryVMTests.swift; sourceTree = "<group>"; };
 		996FAF312508FB6C00209228 /* SF-Pro-Display-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Semibold.otf"; sourceTree = "<group>"; };
-		9973AC3A25AF544E003FE44F /* KnitTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnitTextField.swift; sourceTree = "<group>"; usesTabs = 0; };
 		9974DF4F25A206540036C971 /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		9978DDD6253E12C200659DC1 /* MPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPage.swift; sourceTree = "<group>"; };
 		998AED3F255C4B6800507F02 /* Localize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localize.swift; sourceTree = "<group>"; };
@@ -201,6 +227,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		993BC15625B4DC7C00890696 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2E4FC79B6C184EEB98BCC6EB /* Pods_KnitNotifications.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		99AFBA4024F80D9E00E71FD6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -223,8 +257,19 @@
 			isa = PBXGroup;
 			children = (
 				A9AB0322FBAB47D7907630EB /* Pods_Knitting_2_0.framework */,
+				2FE08093BE0A3B949E7EAC46 /* Pods_KnitNotifications.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		993BC15A25B4DC7C00890696 /* KnitNotifications */ = {
+			isa = PBXGroup;
+			children = (
+				993BC18025B4DD4300890696 /* KnitNotifications.entitlements */,
+				993BC15B25B4DC7C00890696 /* NotificationService.swift */,
+				993BC15D25B4DC7C00890696 /* Info.plist */,
+			);
+			path = KnitNotifications;
 			sourceTree = "<group>";
 		};
 		994300BC252B15770065EF5C /* Cards */ = {
@@ -271,19 +316,12 @@
 			path = Entry;
 			sourceTree = "<group>";
 		};
-		9973AC3925AF5415003FE44F /* KnitUIPod */ = {
-			isa = PBXGroup;
-			children = (
-				9973AC3A25AF544E003FE44F /* KnitTextField.swift */,
-			);
-			path = KnitUIPod;
-			sourceTree = "<group>";
-		};
 		99AFBA3A24F80D9E00E71FD6 = {
 			isa = PBXGroup;
 			children = (
 				99AFBA4524F80D9E00E71FD6 /* Knitting_2_0 */,
 				99AFBA5C24F80DA000E71FD6 /* Knitting_2_0Tests */,
+				993BC15A25B4DC7C00890696 /* KnitNotifications */,
 				99AFBA4424F80D9E00E71FD6 /* Products */,
 				D41AB12B2FDCE20E3F502767 /* Pods */,
 				08A18B26175CFE69233B92F8 /* Frameworks */,
@@ -296,6 +334,7 @@
 			children = (
 				99AFBA4324F80D9E00E71FD6 /* Knitting_2_0.app */,
 				99AFBA5924F80DA000E71FD6 /* Knitting_2_0Tests.xctest */,
+				993BC15925B4DC7C00890696 /* KnitNotifications.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -303,7 +342,6 @@
 		99AFBA4524F80D9E00E71FD6 /* Knitting_2_0 */ = {
 			isa = PBXGroup;
 			children = (
-				9973AC3925AF5415003FE44F /* KnitUIPod */,
 				99AFBA4F24F80DA000E71FD6 /* Assets.xcassets */,
 				999D789925ABC56600CB138B /* Knitting_2_0.entitlements */,
 				9974DF4F25A206540036C971 /* Analytics.swift */,
@@ -492,6 +530,8 @@
 			children = (
 				561858D2B68D4F8584D13FB1 /* Pods-Knitting_2_0.debug.xcconfig */,
 				8257CCB6BAEED5BDB6953A6E /* Pods-Knitting_2_0.release.xcconfig */,
+				7698782C536C99851F899950 /* Pods-KnitNotifications.debug.xcconfig */,
+				006BF2B84E86384C70DEEFD5 /* Pods-KnitNotifications.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -499,6 +539,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		993BC15825B4DC7C00890696 /* KnitNotifications */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 993BC16425B4DC7C00890696 /* Build configuration list for PBXNativeTarget "KnitNotifications" */;
+			buildPhases = (
+				2359E94CBA11D6BC61F28231 /* [CP] Check Pods Manifest.lock */,
+				993BC15525B4DC7C00890696 /* Sources */,
+				993BC15625B4DC7C00890696 /* Frameworks */,
+				993BC15725B4DC7C00890696 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KnitNotifications;
+			productName = KnitNotifications;
+			productReference = 993BC15925B4DC7C00890696 /* KnitNotifications.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		99AFBA4224F80D9E00E71FD6 /* Knitting_2_0 */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 99AFBA6224F80DA100E71FD6 /* Build configuration list for PBXNativeTarget "Knitting_2_0" */;
@@ -509,10 +567,12 @@
 				99AFBA4124F80D9E00E71FD6 /* Resources */,
 				A8FD8A1C7BA1C565C058E271 /* [CP] Embed Pods Frameworks */,
 				99F268262544AD24009DDDD8 /* Embed Watch Content */,
+				993BC16125B4DC7C00890696 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				993BC15F25B4DC7C00890696 /* PBXTargetDependency */,
 			);
 			name = Knitting_2_0;
 			productName = Knitting_2_0;
@@ -543,10 +603,13 @@
 		99AFBA3B24F80D9E00E71FD6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1210;
+				LastSwiftUpdateCheck = 1220;
 				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Павел Кузин";
 				TargetAttributes = {
+					993BC15825B4DC7C00890696 = {
+						CreatedOnToolsVersion = 12.2;
+					};
 					99AFBA4224F80D9E00E71FD6 = {
 						CreatedOnToolsVersion = 11.5;
 					};
@@ -579,11 +642,19 @@
 			targets = (
 				99AFBA4224F80D9E00E71FD6 /* Knitting_2_0 */,
 				99AFBA5824F80DA000E71FD6 /* Knitting_2_0Tests */,
+				993BC15825B4DC7C00890696 /* KnitNotifications */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		993BC15725B4DC7C00890696 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		99AFBA4124F80D9E00E71FD6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -636,6 +707,28 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		2359E94CBA11D6BC61F28231 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-KnitNotifications-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		A8FD8A1C7BA1C565C058E271 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -656,6 +749,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		993BC15525B4DC7C00890696 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				993BC15C25B4DC7C00890696 /* NotificationService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		99AFBA3F24F80D9E00E71FD6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -680,7 +781,6 @@
 				998B9F87250C1E2B00C0C52F /* MainVM.swift in Sources */,
 				998B9F91250D81BE00C0C52F /* SwipeableCell.swift in Sources */,
 				99EF88BB25191EC400C77181 /* MCounter.swift in Sources */,
-				9973AC3B25AF544E003FE44F /* KnitTextField.swift in Sources */,
 				99B206722504DD8B00FA6C50 /* LogInVC.swift in Sources */,
 				99B206742504DDF700FA6C50 /* LogInVM.swift in Sources */,
 				99AFBA4724F80D9E00E71FD6 /* AppDelegate.swift in Sources */,
@@ -730,6 +830,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		993BC15F25B4DC7C00890696 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 993BC15825B4DC7C00890696 /* KnitNotifications */;
+			targetProxy = 993BC15E25B4DC7C00890696 /* PBXContainerItemProxy */;
+		};
 		99AFBA5B24F80DA000E71FD6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 99AFBA4224F80D9E00E71FD6 /* Knitting_2_0 */;
@@ -773,6 +878,50 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		993BC16225B4DC7C00890696 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7698782C536C99851F899950 /* Pods-KnitNotifications.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = KnitNotifications/KnitNotifications.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JJC3HHT8LN;
+				INFOPLIST_FILE = KnitNotifications/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "ru.polykuzin.Knitting-2-0.KnitNotifications";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		993BC16325B4DC7C00890696 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 006BF2B84E86384C70DEEFD5 /* Pods-KnitNotifications.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = KnitNotifications/KnitNotifications.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JJC3HHT8LN;
+				INFOPLIST_FILE = KnitNotifications/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "ru.polykuzin.Knitting-2-0.KnitNotifications";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		99AFBA6024F80DA100E71FD6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -895,6 +1044,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 561858D2B68D4F8584D13FB1 /* Pods-Knitting_2_0.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Knitting_2_0/Knitting_2_0.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -905,7 +1055,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1;
+				MARKETING_VERSION = 2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.polykuzin.Knitting-2-0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -917,6 +1067,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8257CCB6BAEED5BDB6953A6E /* Pods-Knitting_2_0.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Knitting_2_0/Knitting_2_0.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -927,7 +1078,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1;
+				MARKETING_VERSION = 2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.polykuzin.Knitting-2-0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -982,6 +1133,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		993BC16425B4DC7C00890696 /* Build configuration list for PBXNativeTarget "KnitNotifications" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				993BC16225B4DC7C00890696 /* Debug */,
+				993BC16325B4DC7C00890696 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		99AFBA3E24F80D9E00E71FD6 /* Build configuration list for PBXProject "Knitting_2_0" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
