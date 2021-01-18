@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import FloatingPanel
 import FirebaseDatabase
 
 enum CardState {
@@ -17,7 +18,7 @@ enum CardState {
 
 let animationDuration = 0.7
 
-class MainVC								: UIViewController {
+class MainVC								: UIViewController, FloatingPanelControllerDelegate {
 	
 	let appDelegate = UIApplication.shared.delegate as? AppDelegate
 	
@@ -114,10 +115,35 @@ class MainVC								: UIViewController {
 		self.view.sendSubviewToBack(self.collectionView)
 		self.view.sendSubviewToBack(self.visualEffectView)
 		self.reloadMainVc = true
-		DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-			AnalyticsService.reportEvent(with: "Number of Projects", parameters: ["Number" : self.collectionView.numberOfSections])
-		}
     }
+	
+	var fpc : FloatingPanelController!
+	var profileVC : ProfileCardVC!
+	
+	private func setupFloatingPanel() {
+		self.fpc = FloatingPanelController()
+		self.profileVC = ProfileCardVC()
+		fpc.delegate = self
+		fpc.surfaceView.backgroundColor = .clear
+		fpc.layout = MenuFloatingLayout()
+		
+		let appearance = SurfaceAppearance()
+		let shadow = SurfaceAppearance.Shadow()
+		shadow.color = UIColor.black
+		shadow.offset = CGSize(width: 0, height: 0)
+		shadow.radius = 30
+		shadow.spread = 30
+		shadow.opacity = 2
+		appearance.shadows = [shadow]
+		appearance.cornerRadius = 30.0
+		fpc.surfaceView.appearance = appearance
+//		setUpMenuControllerClosures()
+
+		fpc.set(contentViewController: profileVC)
+//		fpc.track(scrollView: profileVC.tableView)
+		fpc.addPanel(toParent: self, animated: true)
+		fpc.surfaceView.grabberHandleSize = .init(width: 0, height: 0)
+	}
 	
     deinit {
         NotificationCenter.default.removeObserver(self)
