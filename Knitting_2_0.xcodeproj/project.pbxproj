@@ -298,19 +298,12 @@
 			children = (
 				99AFBA5124F80DA000E71FD6 /* LaunchScreen.storyboard */,
 				99B206792504F10600FA6C50 /* EntryVC.swift */,
-				99B206712504DD8B00FA6C50 /* LogInVC.swift */,
-				99AFBA4A24F80D9E00E71FD6 /* SignUpVC.swift */,
-				998B9F8A250C2FA100C0C52F /* ForgotPassVC.swift */,
-			);
-			path = Entry;
-			sourceTree = "<group>";
-		};
-		996FAF342508FC9000209228 /* Entry */ = {
-			isa = PBXGroup;
-			children = (
 				996FAF2B2508245D00209228 /* EntryVM.swift */,
-				99AFBA6F24F8121D00E71FD6 /* RegistrationVM.swift */,
+				99B206712504DD8B00FA6C50 /* LogInVC.swift */,
 				99B206732504DDF700FA6C50 /* LogInVM.swift */,
+				99AFBA4A24F80D9E00E71FD6 /* SignUpVC.swift */,
+				99AFBA6F24F8121D00E71FD6 /* RegistrationVM.swift */,
+				998B9F8A250C2FA100C0C52F /* ForgotPassVC.swift */,
 				998B9F8C250C2FBB00C0C52F /* ForgotPassVM.swift */,
 			);
 			path = Entry;
@@ -396,7 +389,6 @@
 		99AFBA6A24F8103600E71FD6 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				996FAF342508FC9000209228 /* Entry */,
 				998B9F86250C1E2B00C0C52F /* MainVM.swift */,
 				99EF88B9251822FD00C77181 /* CardsVM */,
 			);
