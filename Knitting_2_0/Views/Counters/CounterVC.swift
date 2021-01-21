@@ -227,7 +227,6 @@ extension CountersVC {
 		}
 		collectionView.reloadData()
 		AnalyticsService.reportEvent(with: "Add row")
-		UserDefaults.standard.setValue(UserDefaults.standard.value(forKey: "RowsAdded") as! Int + 1, forKey: "RowsAdded")
 	}
 	@objc
 	func minusBtnTaped(_ sender: UIButton){
@@ -243,7 +242,6 @@ extension CountersVC {
 		}
 		collectionView.reloadData()
 		AnalyticsService.reportEvent(with: "Remove row")
-		UserDefaults.standard.setValue(UserDefaults.standard.value(forKey: "RowsAdded") as! Int - 1, forKey: "RowsAdded")
 	}
 	
 	@objc
