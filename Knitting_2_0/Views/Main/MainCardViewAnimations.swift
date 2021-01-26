@@ -81,7 +81,6 @@ extension MainVC {
         }
 		let seconds = 0.3
 		DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
-			NotificationCenter.default.removeObserver(self, name: self.profileImageTaped, object: nil)
 			NotificationCenter.default.removeObserver(self, name: self.newprojectViewTaped, object: nil)
 			self.teardownCardView()
 		}

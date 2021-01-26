@@ -7,8 +7,8 @@
 //
 
 import UIKit
+import PanModal
 import FirebaseAuth
-import FloatingPanel
 import FirebaseDatabase
 
 enum CardState {
@@ -16,14 +16,21 @@ enum CardState {
 	case collapsed
 }
 
+protocol RowPresentable {
+	var VC     : UIViewController & PanModalPresentable { get }
+}
+
+struct Profile: RowPresentable {
+	let VC     : PanModalPresentable.LayoutType = NavigationController(rootViewController: PanProfileVC(nibName: "PanProfileVC", bundle: nil))
+}
+
 let animationDuration = 0.7
 
-class MainVC								: UIViewController, FloatingPanelControllerDelegate {
+class MainVC								: UIViewController {
 	
 	let appDelegate = UIApplication.shared.delegate as? AppDelegate
 	
 	var activityView						: UIActivityIndicatorView?
-	let profileImageTaped					= Notification.Name(rawValue: profileImageInSectionNotificationKey)
 	let newprojectViewTaped					= Notification.Name(rawValue: newprojectNotificationKey)
 	let editprojectViewTaped				= Notification.Name(rawValue: editProjectNotificationKey)
 	
@@ -117,34 +124,6 @@ class MainVC								: UIViewController, FloatingPanelControllerDelegate {
 		self.reloadMainVc = true
     }
 	
-	var fpc : FloatingPanelController!
-	var profileVC : ProfileCardVC!
-	
-	private func setupFloatingPanel() {
-		self.fpc = FloatingPanelController()
-		self.profileVC = ProfileCardVC()
-		fpc.delegate = self
-		fpc.surfaceView.backgroundColor = .clear
-		fpc.layout = MenuFloatingLayout()
-		
-		let appearance = SurfaceAppearance()
-		let shadow = SurfaceAppearance.Shadow()
-		shadow.color = UIColor.black
-		shadow.offset = CGSize(width: 0, height: 0)
-		shadow.radius = 30
-		shadow.spread = 30
-		shadow.opacity = 2
-		appearance.shadows = [shadow]
-		appearance.cornerRadius = 30.0
-		fpc.surfaceView.appearance = appearance
-//		setUpMenuControllerClosures()
-
-		fpc.set(contentViewController: profileVC)
-//		fpc.track(scrollView: profileVC.tableView)
-		fpc.addPanel(toParent: self, animated: true)
-		fpc.surfaceView.grabberHandleSize = .init(width: 0, height: 0)
-	}
-	
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
@@ -211,12 +190,6 @@ extension MainVC : UICollectionViewDataSource, UICollectionViewDelegate {
 
 //MARK: Setting up cards
 extension MainVC {
-	
-    @objc
-	func updateCardViewControllerWithProfileVC(notification: NSNotification) {
-		cardHeight = 250
-		setupCardViewController(ProfileCardVC())
-    }
 	
 	@objc
 	func updateCardViewControllerWithEditProjectVC(notification: NSNotification) {
@@ -290,21 +263,7 @@ extension MainVC {
 	
 	@objc
     func profileImageTap	(recognizer: UITapGestureRecognizer) {
-		AnalyticsService.reportEvent(with: "Profile")
-		view.isUserInteractionEnabled = false
-		NotificationCenter.default.addObserver(self, selector: #selector(MainVC.updateCardViewControllerWithProfileVC(notification:)), name: profileImageTaped, object: nil)
-		let name = Notification.Name(rawValue: profileImageInSectionNotificationKey)
-		NotificationCenter.default.post(name: name, object: nil)
-		addView.accessibilityElementsHidden = true
-        switch recognizer.state {
-        case .ended		:
-            animateTransitionIfNeeded(state: nextState, duration: animationDuration)
-        default			:
-            break
-        }
-		DispatchQueue.main.asyncAfter(deadline: .now() + animationDuration) {
-			self.view.isUserInteractionEnabled = true
-		}
+		self.presentPanModal(Profile().VC)
 	}
     
     @objc
@@ -328,7 +287,6 @@ extension MainVC {
 	func hideViewWithDeinit() {
 		self.animateTransitionIfNeeded(state: nextState, duration: animationDuration)
 		DispatchQueue.main.asyncAfter(deadline: .now() + animationDuration) {
-			NotificationCenter.default.removeObserver(self, name: self.profileImageTaped,		object: nil)
 			NotificationCenter.default.removeObserver(self, name: self.newprojectViewTaped,		object: nil)
 			NotificationCenter.default.removeObserver(self, name: self.editprojectViewTaped,	object: nil)
 			self.teardownCardView()

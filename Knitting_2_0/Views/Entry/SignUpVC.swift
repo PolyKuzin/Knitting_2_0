@@ -151,6 +151,8 @@ extension SignUpVC {
 					self?.dismissKeyBoard	()
 					self?.hideKeyboard()
 					self?.pushMainVC()
+					UserDefaults.standard.setValue(email,    forKey: "UserEmail")
+					UserDefaults.standard.setValue(nickname, forKey: "UserName")
 					AnalyticsService.reportEvent(with: "SignedUp")
 				}
 			}
