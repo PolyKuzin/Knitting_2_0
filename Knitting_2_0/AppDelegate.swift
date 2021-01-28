@@ -28,6 +28,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		AnalyticsService.reportEvent(with: "Launch KnitIt")
 		requestNotification()
 		notificationCenter.delegate = self
+		if #available(iOS 10.0, *) {
+			let delegate = YMPYandexMetricaPush.userNotificationCenterDelegate()
+			UNUserNotificationCenter.current().delegate = delegate
+		}
+		YMPYandexMetricaPush.userNotificationCenterDelegate().nextDelegate = notificationCenter.delegate
 		scheduleNotification()
 		UIApplication.shared.applicationIconBadgeNumber = 0
 		
@@ -72,8 +77,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func handlePushNotification(_ userInfo: [AnyHashable : Any]) {
 		// Track received remote notification.
 		// Method [YMMYandexMetrica activateWithApiKey:] should be called before using this method.
-		let userData = YMPYandexMetricaPush.userData(forNotification: userInfo)
-		let isRelatedToAppMetricaSDK = YMPYandexMetricaPush.isNotificationRelated(toSDK: userInfo)
+		// let userData = YMPYandexMetricaPush.userData(forNotification: userInfo)
+		// let isRelatedToAppMetricaSDK = YMPYandexMetricaPush.isNotificationRelated(toSDK: userInfo)
 		YMPYandexMetricaPush.handleRemoteNotification(userInfo)
 	}
 	

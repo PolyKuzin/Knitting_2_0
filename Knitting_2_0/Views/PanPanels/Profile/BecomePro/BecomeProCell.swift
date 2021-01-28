@@ -18,6 +18,7 @@ class BecomeProCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 		purchaiseButton.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 32, height: 52)
+		purchaiseButton.roundCorners(.allCorners, radius: 15)
 		suplyLabel.text = "Try 7-days free trial, then $4/month".localized()
 		purchaiseButton.setTitle("Become PRO Knitter".localized())
     }

@@ -18,11 +18,11 @@ class PanProfileVC: BasePanVC, PanModalPresentable {
 	}
 	
 	var shortFormHeight: PanModalHeight {
-		return .contentHeight(350)
+		return .contentHeight(200) // TODO: (350)
 	}
 	
 	var longFormHeight: PanModalHeight {
-		return .maxHeightWithTopInset(70)
+		return shortFormHeight // .maxHeightWithTopInset(70)
 	}
 	
 	private var user  : MUser!

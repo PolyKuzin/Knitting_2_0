@@ -12,6 +12,7 @@ import UIKit
 class MainButton: UIButton {
 	
 	private func setup() {
+		frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 32, height: 52)
 		roundCorners(.allCorners, radius: 15)
 		setTitleColor(UIColor.white, for: .normal)
 		titleLabel?.font = UIFont(name: "SFProText-Medium", size: 17)

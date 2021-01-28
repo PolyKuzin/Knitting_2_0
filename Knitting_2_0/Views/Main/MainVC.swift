@@ -24,6 +24,10 @@ struct Profile: RowPresentable {
 	let VC     : PanModalPresentable.LayoutType = NavigationController(rootViewController: PanProfileVC(nibName: "PanProfileVC", bundle: nil))
 }
 
+//struct NewProject: RowPresentable {
+//	let VC     : PanModalPresentable.LayoutType = NavigationController(rootViewController: NewProjectVC())
+//}
+
 let animationDuration = 0.7
 
 class MainVC								: UIViewController {
@@ -434,39 +438,48 @@ extension MainVC {
 		collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive					= true
 		
 		let tapToCreateNewProject1 = UITapGestureRecognizer(target: self, action: #selector(newProjectTaped(recognizer:)))
-		let tapToCreateNewProject2 = UITapGestureRecognizer(target: self, action: #selector(newProjectTaped(recognizer:)))
-
-		addView.isUserInteractionEnabled = true
-		addImage.isUserInteractionEnabled = true
-		addView.isMultipleTouchEnabled = false
-		addImage.isMultipleTouchEnabled = false
-		addView.addGestureRecognizer(tapToCreateNewProject1)
-		addImage.addGestureRecognizer(tapToCreateNewProject2)
-		view.addSubview(addView)
-
-		addView.translatesAutoresizingMaskIntoConstraints										= false
-		addView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive 					= true
-		addView.widthAnchor.constraint(equalToConstant: 110).isActive							= true
-		addView.heightAnchor.constraint(equalToConstant: 60).isActive							= true
-		addView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40).isActive		= true
-		
-		addView.backgroundColor		= .white
-		addView.layer.shadowColor	= UIColor(red: 0, green: 0, blue: 0, alpha: 0.12).cgColor  				//TO CONSTANTS
-		addView.layer.shadowOpacity	= 1
-		addView.layer.shadowRadius	= 10
-		addView.layer.shadowOffset	= CGSize(width: 0, height: 4)
-		addView.layer.bounds		= addView.bounds
-		addView.layer.position		= addView.center
-		addView.layer.masksToBounds	= false
-		addView.layer.cornerRadius	= 30
-		
-		addView.addSubview(addImage)
-		addImage.image = UIImage(named: "addProject")
-		addImage.translatesAutoresizingMaskIntoConstraints										= false
-		addImage.bottomAnchor.constraint(equalTo: addView.bottomAnchor, constant: -12).isActive	= true
-		addImage.topAnchor.constraint(equalTo: addView.topAnchor, constant: 12).isActive		= true
-		addImage.widthAnchor.constraint(equalTo: addImage.heightAnchor).isActive				= true
-		addImage.centerXAnchor.constraint(equalTo: addView.centerXAnchor).isActive				= true
+		let addButton = MainButton()
+		self.view.insertSubview(addButton, at: 0)
+		addButton.translatesAutoresizingMaskIntoConstraints = false
+		addButton.setTitle("+ Create project".localized())
+		NSLayoutConstraint.activate([
+			addButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -48),
+			addButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+			addButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+			addButton.heightAnchor.constraint(equalToConstant: 52)
+		])
+		addButton.addGestureRecognizer(tapToCreateNewProject1) // addTarget(self, action: #selector(newProjectTaped), for: .touchUpInside)
+//		addView.isUserInteractionEnabled = true
+//		addImage.isUserInteractionEnabled = true
+//		addView.isMultipleTouchEnabled = false
+//		addImage.isMultipleTouchEnabled = false
+//		addView.addGestureRecognizer(tapToCreateNewProject1)
+//		addImage.addGestureRecognizer(tapToCreateNewProject2)
+//		view.addSubview(addView)
+//
+//		addView.translatesAutoresizingMaskIntoConstraints										= false
+//		addView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive 					= true
+//		addView.widthAnchor.constraint(equalToConstant: 110).isActive							= true
+//		addView.heightAnchor.constraint(equalToConstant: 60).isActive							= true
+//		addView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40).isActive		= true
+//
+//		addView.backgroundColor		= .white
+//		addView.layer.shadowColor	= UIColor(red: 0, green: 0, blue: 0, alpha: 0.12).cgColor  				//TO CONSTANTS
+//		addView.layer.shadowOpacity	= 1
+//		addView.layer.shadowRadius	= 10
+//		addView.layer.shadowOffset	= CGSize(width: 0, height: 4)
+//		addView.layer.bounds		= addView.bounds
+//		addView.layer.position		= addView.center
+//		addView.layer.masksToBounds	= false
+//		addView.layer.cornerRadius	= 30
+//
+//		addView.addSubview(addImage)
+//		addImage.image = UIImage(named: "addProject")
+//		addImage.translatesAutoresizingMaskIntoConstraints										= false
+//		addImage.bottomAnchor.constraint(equalTo: addView.bottomAnchor, constant: -12).isActive	= true
+//		addImage.topAnchor.constraint(equalTo: addView.topAnchor, constant: 12).isActive		= true
+//		addImage.widthAnchor.constraint(equalTo: addImage.heightAnchor).isActive				= true
+//		addImage.centerXAnchor.constraint(equalTo: addView.centerXAnchor).isActive				= true
 	}
 	
 	func teardownCardView() {
