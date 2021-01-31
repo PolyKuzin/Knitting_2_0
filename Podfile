@@ -8,8 +8,9 @@ target 'Knitting_2_0' do
   pod 'PanModal'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
-  pod 'YandexMobileMetrica'
-  pod 'YandexMobileMetricaPush', '0.8.0'
+  pod 'YandexMobileMetrica', '~> 3.4'
+  pod 'YandexMobileMetricaPush'
+  
 
 end
 
@@ -17,7 +18,7 @@ target 'KnitNotifications' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  pod 'YandexMobileMetricaPush', '0.8.0'
+  pod 'YandexMobileMetricaPush'
 
 end
 

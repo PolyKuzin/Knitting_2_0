@@ -76,16 +76,13 @@ class NewCounterCardVM {
 	}()
 	
 	private lazy var createBtn			: UIButton = {
-		let button						= UIButton(type: .system)
-		button.frame 					= CGRect(x: 0, y: 0, width: 155, height: 50)
-		button.titleLabel?.font			= Fonts.textSemibold17
-		button.layer.cornerRadius		= CornerRadius.forButton
-		button.layer.masksToBounds		= true
-		button.setTitle					("Create", for: .normal)
-		button.setTitleColor			(Colors.whiteColor, for: .normal)
-		button.setGradientBackground	(colorOne: Colors.backgroundUpButton,
-										 colorTwo: Colors.backgroundDownButton)
-		
+		let button			= UIButton()
+		button.backgroundColor = UIColor(red: 0.745, green: 0.616, blue: 0.875, alpha: 1)
+		button.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 32, height: 52)
+		button.setTitle("Create".localized(), for: .normal)
+		button.setTitleColor(UIColor.white, for: .normal)
+		button.titleLabel?.font = UIFont(name: "SFProText-Medium", size: 17)
+		button.layer.cornerRadius = 15
 		return button
 	}()
 	

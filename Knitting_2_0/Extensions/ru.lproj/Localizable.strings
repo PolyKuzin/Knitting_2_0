@@ -20,5 +20,10 @@
 "Duplicate" = "Повторить";
 "+ Create counter" = "+ Создать счетчик";
 "+ Create project" = "+ Создать проект";
-"Get some time to Knit?" = "Найдется время повязать?";
+
+"Save" = "Сохранить";
+"Create" = "Создать";
+
+// Schedule Notification
+"Get some time to Knit?" = "Есть немного времени вечером?";
 "How about you spend it on your hobby?" = "Как на счёт потратить его на хобби?";

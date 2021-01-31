@@ -296,7 +296,7 @@ extension SignUpVC {
 		view.addSubview(signUpButton)
 		signUpButton.translatesAutoresizingMaskIntoConstraints														= false
 		signUpButton.centerXAnchor		.constraint(equalTo: view.centerXAnchor)						.isActive	= true
-		signUpButton.trailingAnchor		.constraint(equalTo: view.trailingAnchor, constant: -64)		.isActive	= true
+		signUpButton.trailingAnchor		.constraint(equalTo: view.trailingAnchor, constant: -16)		.isActive	= true
 		signUpButton.bottomAnchor		.constraint(equalTo: bottomLicensSV.topAnchor, constant: -20)	.isActive	= true
 		signUpButton.heightAnchor		.constraint(equalToConstant: 53)								.isActive	= true
 		

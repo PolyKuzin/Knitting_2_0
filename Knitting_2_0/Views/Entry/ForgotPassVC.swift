@@ -204,7 +204,7 @@ extension ForgotPassVC {
 		view.addSubview(resetBtn)
 		resetBtn.translatesAutoresizingMaskIntoConstraints															= false
 		resetBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive										= true
-		resetBtn.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -120).isActive					= true
+		resetBtn.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive					= true
 		resetBtn.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -75).isActive						= true
 		resetBtn.heightAnchor.constraint(equalToConstant: 50).isActive												= true
 	}

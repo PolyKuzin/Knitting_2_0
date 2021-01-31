@@ -20,5 +20,10 @@
 "Working on this?" = "Travailler sur ce projet?";
 "+ Create counter" = "+ Créer un compteur";
 "+ Create project" = "+ Créer un projet";
-"Get some time to Knit?" = "Vous avez du temps pour tricoter?";
+
+"Save" = "Sauver";
+"Create" = "Créer";
+
+// Schedule Notification
+"Get some time to Knit?" = "Avez un peu de temps dans la soirée?";
 "How about you spend it on your hobby?" = "Que diriez-vous de le dépenser pour votre passe-temps?";

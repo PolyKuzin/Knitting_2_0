@@ -20,5 +20,10 @@
 "Working on this?" = "이 작업?";
 "+ Create counter" = "+ 카운터 만들기";
 "+ Create project" = "+ 프로젝트 만들기";
-"Get some time to Knit?" = "짤 시간 있어?";
+
+"Save" = "저장";
+"Create" = "만들기";
+
+// Schedule Notification
+"Get some time to Knit?" = "저녁에 약간의 시간이 있습니까?";
 "How about you spend it on your hobby?" = "취미에 쓰는 건 어때요?";

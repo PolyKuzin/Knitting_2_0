@@ -21,27 +21,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	
 	//MARK: - didFinishLaunching
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-		FirebaseApp.configure()
 		let configuration = YMMYandexMetricaConfiguration.init(apiKey: "710ec4a5-8503-4371-a935-2825ec321888")
-		YMMYandexMetrica.activate(with: configuration!) 
+		YMMYandexMetrica.activate(with: configuration!)
+		YMPYandexMetricaPush.setExtensionAppGroup("group.ru.polykuzin.Knitting-2-0")
+
+		notificationCenter.delegate = self
+		YMPYandexMetricaPush.userNotificationCenterDelegate().nextDelegate = notificationCenter.delegate
+
+		YMPYandexMetricaPush.handleApplicationDidFinishLaunching(options: launchOptions)
+		self.registerForPushNotificationsWithApplication(application)
+		
+		
+		FirebaseApp.configure()
+		UIApplication.shared.applicationIconBadgeNumber = 0
 		UserDefaults.standard.set(currentCount+1, forKey:"launchCount")
 		AnalyticsService.reportEvent(with: "Launch KnitIt")
 		requestNotification()
-		notificationCenter.delegate = self
-		if #available(iOS 10.0, *) {
-			let delegate = YMPYandexMetricaPush.userNotificationCenterDelegate()
-			UNUserNotificationCenter.current().delegate = delegate
-		}
-		YMPYandexMetricaPush.userNotificationCenterDelegate().nextDelegate = notificationCenter.delegate
-		scheduleNotification()
-		UIApplication.shared.applicationIconBadgeNumber = 0
-		
-		if #available(iOS 10.0, *) {
-			let delegate = YMPYandexMetricaPush.userNotificationCenterDelegate()
-			UNUserNotificationCenter.current().delegate = delegate
-		}
-		YMPYandexMetricaPush.setExtensionAppGroup("group.ru.polykuzin.Knitting-2-0")
-		YMPYandexMetricaPush.handleApplicationDidFinishLaunching(options: launchOptions)
 		return true
     }
 	
@@ -54,32 +49,71 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
 	
-	func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-		// If the AppMetrica SDK library was not initialized before this step,
-		// calling the method causes the app to crash.
-		#if DEBUG
-			let pushEnvironment = YMPYandexMetricaPushEnvironment.development
-		#else
-			let pushEnvironment = YMPYandexMetricaPushEnvironment.production
-		#endif
+	func registerForPushNotificationsWithApplication(_ application: UIApplication)
+	{
+		// Register for push notifications
+		if #available(iOS 8.0, *) {
+			if #available(iOS 10.0, *) {
+				// iOS 10.0 and above
+				let center = UNUserNotificationCenter.current()
+				let category = UNNotificationCategory(identifier: "Custom category",
+													  actions: [],
+													  intentIdentifiers: [],
+													  options:UNNotificationCategoryOptions.customDismissAction)
+				// Only for push notifications of this category dismiss action will be tracked.
+				center.setNotificationCategories(Set([category]))
+				center.requestAuthorization(options:[.badge, .alert, .sound]) { (granted, error) in
+					// Enable or disable features based on authorization.
+				}
+			} else {
+				// iOS 8 and iOS 9
+				let settings = UIUserNotificationSettings(types: [.badge, .alert, .sound], categories: nil)
+				application.registerUserNotificationSettings(settings)
+			}
+			application.registerForRemoteNotifications()
+		} else {
+			// iOS 7
+			application.registerForRemoteNotifications(matching: [.badge, .alert, .sound])
+		}
+	}
+
+	func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data)
+	{
+		// Send device token and APNs environment(based on default build configuration) to AppMetrica Push server.
+		// Method YMMYandexMetrica.activate has to be called before using this method.
+#if DEBUG
+		let pushEnvironment = YMPYandexMetricaPushEnvironment.development
+#else
+		let pushEnvironment = YMPYandexMetricaPushEnvironment.production
+#endif
 		YMPYandexMetricaPush.setDeviceTokenFrom(deviceToken, pushEnvironment: pushEnvironment)
 	}
-	
-	func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
+
+	func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any])
+	{
 		self.handlePushNotification(userInfo)
 	}
 
-	func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+	func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void)
+	{
 		self.handlePushNotification(userInfo)
 		completionHandler(.newData)
 	}
 
-	func handlePushNotification(_ userInfo: [AnyHashable : Any]) {
+	func handlePushNotification(_ userInfo: [AnyHashable : Any])
+	{
 		// Track received remote notification.
-		// Method [YMMYandexMetrica activateWithApiKey:] should be called before using this method.
-		// let userData = YMPYandexMetricaPush.userData(forNotification: userInfo)
-		// let isRelatedToAppMetricaSDK = YMPYandexMetricaPush.isNotificationRelated(toSDK: userInfo)
+		// Method YMMYandexMetrica.activate should be called before using this method.
 		YMPYandexMetricaPush.handleRemoteNotification(userInfo)
+
+		// Check if notification is related to AppMetrica (optionally)
+		if YMPYandexMetricaPush.isNotificationRelated(toSDK: userInfo) {
+			// Get user data from remote notification.
+			let userData = YMPYandexMetricaPush.userData(forNotification: userInfo)
+			print("User Data: %@", userData?.description ?? "[no data]")
+		} else {
+			print("Push is not related to AppMetrica")
+		}
 	}
 	
 	//MARK: - Notifications

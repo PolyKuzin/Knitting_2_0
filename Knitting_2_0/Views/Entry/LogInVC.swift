@@ -269,7 +269,7 @@ extension LogInVC {
 		view.addSubview(logInButton)
 		logInButton.translatesAutoresizingMaskIntoConstraints														= false
 		logInButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive									= true
-		logInButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -120).isActive				= true
+		logInButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive				= true
 		logInButton.bottomAnchor.constraint(equalTo: bottomLicensSV.topAnchor, constant: -20).isActive				= true
 		logInButton.heightAnchor.constraint(equalToConstant: 53).isActive											= true
 		

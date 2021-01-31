@@ -140,17 +140,14 @@ class RegistrationVM {
 	}()
 	
 	private lazy var signUpButton		: UIButton = {
-		let button						= UIButton(type: .system)
-		button.frame 					= CGRect(x: 0, y: 0, width: 500, height: 53)
-		button.titleLabel?.font			= Fonts.displayMedium18
-		button.layer.cornerRadius		= button.frame.height / 2
-        button.layer.masksToBounds		= true
-		button.setTitle					(Placeholder.createNewAccount, for: .normal)
-		button.setTitleColor			(Colors.whiteColor, for: .normal)
-		button.setGradientBackground	(colorOne: Colors.backgroundUpButton,
-										 colorTwo: Colors.backgroundDownButton)
-        
-        return button
+		let button			= UIButton()
+		button.backgroundColor = UIColor(red: 0.745, green: 0.616, blue: 0.875, alpha: 1)
+		button.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 32, height: 52)
+		button.setTitle(Placeholder.createNewAccount.localized(), for: .normal)
+		button.setTitleColor(UIColor.white, for: .normal)
+		button.titleLabel?.font = UIFont(name: "SFProText-Medium", size: 17)
+		button.layer.cornerRadius = 15
+		return button
 	}()
 	
 	private lazy var questionLabel		: UILabel = {

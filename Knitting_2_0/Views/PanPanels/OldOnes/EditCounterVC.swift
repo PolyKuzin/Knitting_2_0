@@ -289,7 +289,7 @@ extension EditCounterVC {
 		createButton.translatesAutoresizingMaskIntoConstraints										= false
 		createButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive					= true
 		createButton.topAnchor.constraint(equalTo: rowsMaxTF.bottomAnchor, constant: 20).isActive		= true
-		createButton.widthAnchor.constraint(equalToConstant: 155).isActive							= true
+		createButton.trailingAnchor .constraint(equalTo: view.trailingAnchor,   constant:  -16).isActive							= true
 		createButton.heightAnchor.constraint(equalToConstant: 50).isActive							= true
 	}
 }

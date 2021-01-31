@@ -20,5 +20,10 @@
 "Working on this?" = "Working on this?";
 "+ Create counter" = "+ Create counter";
 "+ Create project" = "+ Create project";
-"Get some time to Knit?" = "Get some time to Knit?";
+
+"Save" = "Save";
+"Create" = "Create";
+
+// Schedule Notification
+"Get some time to Knit?" = "Have some time in the evening?";
 "How about you spend it on your hobby?" = "How about you spend it on your hobby?";

@@ -130,13 +130,14 @@ extension EntryVC {
 			//A place for login buttom
 			logInButton	 .heightAnchor   .constraint(equalToConstant: 21          ),
 			logInButton	 .centerXAnchor  .constraint(equalTo: view.centerXAnchor  ),
-			logInButton	 .trailingAnchor .constraint(equalTo: view.trailingAnchor,	constant: -120),
+			logInButton	 .trailingAnchor .constraint(equalTo: view.trailingAnchor,	constant: -16),
 			logInButton	 .bottomAnchor   .constraint(equalTo: view.bottomAnchor,	constant:  -48),
 			
 			//A place for signup buttom
 			signUpButton .heightAnchor	 .constraint(equalToConstant: 53          ),
-			signUpButton .widthAnchor	 .constraint(equalToConstant: 200         ),
+//			signUpButton .widthAnchor	 .constraint(equalToConstant: 200         ),
 			signUpButton .centerXAnchor	 .constraint(equalTo: view.centerXAnchor  ),
+			signUpButton .trailingAnchor .constraint(equalTo: view.trailingAnchor,   constant:  -16),
 			signUpButton .topAnchor		 .constraint(equalTo: logoIcon.bottomAnchor, constant:  163),
 			signUpButton .bottomAnchor	 .constraint(equalTo: logInButton.topAnchor, constant:  -24),
 		])

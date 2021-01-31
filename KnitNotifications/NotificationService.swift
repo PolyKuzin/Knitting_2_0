@@ -21,6 +21,7 @@ class NotificationService: UNNotificationServiceExtension {
 		if let bestAttemptContent = bestAttemptContent {
 			YMPYandexMetricaPush.setExtensionAppGroup("group.ru.polykuzin.Knitting-2-0")
 			YMPYandexMetricaPush.handleDidReceive(request)
+			contentHandler(bestAttemptContent)
 		}
     }
     
