@@ -13,7 +13,6 @@ import UserNotifications
 import YandexMobileMetrica
 import YandexMobileMetricaPush
 
-//https://apps.apple.com/us/app/knit-it/id1532396965
 var currentCount = UserDefaults.standard.integer(forKey: "launchCount")
 
 @UIApplicationMain
