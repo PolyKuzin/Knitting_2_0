@@ -27,3 +27,13 @@
 // Schedule Notification
 "Get some time to Knit?" = "Tens algum tempo à noite?";
 "How about you spend it on your hobby?" = "Que tal gastá-lo no seu passatempo?";
+
+"Project name" = "Nome do projecto";
+"Counter name" = "Nome do contador";
+
+// Pan Titles
+"Settings" = "definicao";
+"Edit counter" = "Editar o contador";
+"Create new counter" = "Criar um novo contador";
+"Edit project" = "Editar projecto";
+"Create new project" = "Criar um novo projecto";

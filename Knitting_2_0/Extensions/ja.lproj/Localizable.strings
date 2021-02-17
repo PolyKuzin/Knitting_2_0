@@ -27,3 +27,13 @@
 // Schedule Notification
 "Get some time to Knit?" = "夕方にいくつかの時間を持っていますか？";
 "How about you spend it on your hobby?" = "趣味で過ごしてみてはいかがでしょうか？";
+
+"Project name" = "プロジェクト名";
+"Counter name" = "カウンター名";
+
+// Pan Titles
+"Settings" = "設定";
+"Edit counter" = "編集カウンタ";
+"Create new counter" = "新しいカウンターを作成する";
+"Edit project" = "プロジェクトの編集";
+"Create new project" = "新規プロジェクトの作成";

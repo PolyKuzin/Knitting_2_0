@@ -17,16 +17,20 @@ enum CardState {
 }
 
 protocol RowPresentable {
-	var VC     : UIViewController & PanModalPresentable { get }
+	var VC     : UIViewController & PanModalPresentable { get set }
 }
 
-struct Profile: RowPresentable {
-	let VC     : PanModalPresentable.LayoutType = NavigationController(rootViewController: PanProfileVC(nibName: "PanProfileVC", bundle: nil))
+struct Profile     : RowPresentable {
+	var VC         : PanModalPresentable.LayoutType = NavigationController(rootViewController: PanProfileVC(nibName: "PanProfileVC", bundle: nil))
 }
 
-//struct NewProject: RowPresentable {
-//	let VC     : PanModalPresentable.LayoutType = NavigationController(rootViewController: NewProjectVC())
-//}
+struct NewProject  : RowPresentable {
+	var VC         : PanModalPresentable.LayoutType = NavigationController(rootViewController: NewProjectVC())
+}
+
+struct NewCounter  : RowPresentable {
+	var VC         : PanModalPresentable.LayoutType = NavigationController(rootViewController: NewCounterVC())
+}
 
 let animationDuration = 0.7
 
@@ -64,20 +68,6 @@ class MainVC								: UIViewController {
     
 	private var user           		: MUser!
 	private var ref             	: DatabaseReference!
-	
-	//Animations stuff
-    open var runningAnimations 				= [UIViewPropertyAnimator]()
-	open var cardViewController      		: CardViewControllerProtocol!
-    open var visualEffectView				: UIVisualEffectView!
-	open var animationProgressWhenStopped	: CGFloat!
-    open var cardHeight						: CGFloat!
-	
-	private var reloadMainVc				: Bool = false
-	open var cardVisible					: Bool = false
-	open var nextState						: CardState {
-		return cardVisible 	? 	.collapsed	: .expanded
-	}
-	
 	var currentProject : MProject?
 
 	private var viewModel					: MainVM! {
@@ -106,7 +96,6 @@ class MainVC								: UIViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(true)
 		setupNormalNavBar()
-		reloadMainVc = true
 	}
 
     override func viewDidLoad() {
@@ -118,14 +107,11 @@ class MainVC								: UIViewController {
 		ref		= Database.database().reference(withPath: "users").child(String(user.uid))
 		collectionView.dataSource	= self
 		collectionView.delegate		= self
-		setupVisualEffect	()
 		setupSections		()
 		setUpLayout		()
 		self.collectionView.reloadData	()
 		self.view.sendSubviewToBack(self.addView)
 		self.view.sendSubviewToBack(self.collectionView)
-		self.view.sendSubviewToBack(self.visualEffectView)
-		self.reloadMainVc = true
     }
 	
     deinit {
@@ -192,109 +178,17 @@ extension MainVC : UICollectionViewDataSource, UICollectionViewDelegate {
 	}
 }
 
-//MARK: Setting up cards
-extension MainVC {
-	
-	@objc
-	func updateCardViewControllerWithEditProjectVC(notification: NSNotification) {
-		switch UIDevice().type {
-			case .iPhoneX, .iPhoneXS, .iPhoneXSMax, .iPhoneXR, .iPhone11, .iPhone11Pro, .iPhone11ProMax: cardHeight = 400
-			default: cardHeight = 475
-		}
-		let vc = EditProjectVC()
-		vc.currentProject = self.currentProject
-		NotificationCenter.default.addObserver(self, selector: #selector(hideViewWithDeinit), name: Notification.Name(rawValue: "disconnectEditProjectVC"), object: nil)
-		setupCardViewController(vc)
-	}
-	
-    @objc
-	func updateCardViewControllerWithNewProjectVC(notification: NSNotification) {
-		switch UIDevice().type {
-			case .iPhoneX, .iPhoneXS, .iPhoneXSMax, .iPhoneXR, .iPhone11, .iPhone11Pro, .iPhone11ProMax: cardHeight = 500
-			default: cardHeight = 475
-		}
-		NotificationCenter.default.addObserver(self, selector: #selector(hideViewWithDeinit), name: Notification.Name(rawValue: "disconnectNewProjectVC"), object: nil)
-		setupCardViewController(NewProjectVC())
-    }
-	
-	func setupVisualEffect() {
-		visualEffectView = UIVisualEffectView()
-		visualEffectView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-        self.view.addSubview(visualEffectView)
-		self.view.sendSubviewToBack(visualEffectView)
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MainVC.visualEffectTaped(recognzier:)))
-		tapGestureRecognizer.numberOfTapsRequired = 1
-        visualEffectView.addGestureRecognizer(tapGestureRecognizer)
-	}
-	
-	func setupCardViewController(_ cardVC: CardViewControllerProtocol) {
-		collectionView.supplementaryView(forElementKind: "header", at: IndexPath(item: 0, section: 0))?.isHidden = true
-		cardViewController	= cardVC
-        self.addChild(cardViewController)
-		self.view.insertSubview(cardViewController.view, at: 3)
-        cardViewController.view.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.bounds.width, height: cardHeight)
-        cardViewController.view.clipsToBounds = true
-        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(MainVC.handleCardPan(recognizer:)))
-        cardViewController.handle.addGestureRecognizer	(panGestureRecognizer)
-    }
-}
-
 //MARK: Gesture Selectors
 extension MainVC {
 	
 	@objc
-    func visualEffectTaped	(recognzier: UITapGestureRecognizer) {
-		hideViewWithDeinit()
-    }
-	
-	@objc
 	func newProjectTaped	(recognizer: UITapGestureRecognizer) {
-		view.isUserInteractionEnabled = false
-		NotificationCenter.default.addObserver(self, selector: #selector(MainVC.updateCardViewControllerWithNewProjectVC(notification:)), name: newprojectViewTaped, object: nil)
-		let name = Notification.Name(rawValue: newprojectNotificationKey)
-		NotificationCenter.default.post(name: name, object: nil)
-
-        switch recognizer.state {
-        case .ended		:
-            animateTransitionIfNeeded(state: nextState, duration: animationDuration)
-        default			:
-            break
-        }
-		DispatchQueue.main.asyncAfter(deadline: .now() + animationDuration) {
-			self.view.isUserInteractionEnabled = true
-		}
+		self.presentPanModal(NewProject().VC)
     }
 	
 	@objc
     func profileImageTap	(recognizer: UITapGestureRecognizer) {
 		self.presentPanModal(Profile().VC)
-	}
-    
-    @objc
-    func handleCardPan		(recognizer: UIPanGestureRecognizer) {
-        switch recognizer.state {
-        case .began		:
-            startInteractiveTransition(state: nextState, duration: animationDuration)
-        case .changed	:
-            let translation			= recognizer.translation(in: self.cardViewController.handle)
-            var fractionComplete	= translation.y / cardHeight
-            fractionComplete		= cardVisible ? fractionComplete : -fractionComplete
-            updateInteractiveTransition(fractionCompleted: fractionComplete)
-        case .ended		:
-            continueInteractiveTransition()
-        default			:
-            break
-        }
-    }
-	
-	@objc
-	func hideViewWithDeinit() {
-		self.animateTransitionIfNeeded(state: nextState, duration: animationDuration)
-		DispatchQueue.main.asyncAfter(deadline: .now() + animationDuration) {
-			NotificationCenter.default.removeObserver(self, name: self.newprojectViewTaped,		object: nil)
-			NotificationCenter.default.removeObserver(self, name: self.editprojectViewTaped,	object: nil)
-			self.teardownCardView()
-		}
 	}
 }
 
@@ -349,16 +243,11 @@ extension MainVC: SwipeableCollectionViewCellDelegate {
 		recognizer.state = .ended
 		
 		self.currentProject = project
+		let edit = EditProjectVC()
+		edit.currentProject = project
+		let vc : PanModalPresentable.LayoutType = NavigationController(rootViewController: edit)
+		self.presentPanModal(vc)
 		
-		NotificationCenter.default.addObserver(self, selector: #selector(MainVC.updateCardViewControllerWithEditProjectVC(notification:)), name: editprojectViewTaped, object: nil)
-		let name = Notification.Name(rawValue: editProjectNotificationKey)
-		NotificationCenter.default.post(name: name, object: nil)
-		switch recognizer.state {
-		case .ended		:
-			animateTransitionIfNeeded(state: nextState, duration: animationDuration)
-		default			:
-			break
-		}
 		let leftOffset = CGPoint(x: 0, y: 0)
 		cell.scrollView.setContentOffset(leftOffset, animated: true)
 		DispatchQueue.main.asyncAfter(deadline: .now() + animationDuration) {
@@ -394,7 +283,6 @@ extension MainVC: SwipeableCollectionViewCellDelegate {
 		vc.currentProject = project
 		vc.modalPresentationStyle = .fullScreen
 		
-		self.reloadMainVc = false
 		guard let navigationController = navigationController else { return }
 		navigationController.pushViewController(vc, animated: true)
 		collectionView.deselectItem(at: indexPath, animated: true)
@@ -448,48 +336,7 @@ extension MainVC {
 			addButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
 			addButton.heightAnchor.constraint(equalToConstant: 52)
 		])
-		addButton.addGestureRecognizer(tapToCreateNewProject1) // addTarget(self, action: #selector(newProjectTaped), for: .touchUpInside)
-//		addView.isUserInteractionEnabled = true
-//		addImage.isUserInteractionEnabled = true
-//		addView.isMultipleTouchEnabled = false
-//		addImage.isMultipleTouchEnabled = false
-//		addView.addGestureRecognizer(tapToCreateNewProject1)
-//		addImage.addGestureRecognizer(tapToCreateNewProject2)
-//		view.addSubview(addView)
-//
-//		addView.translatesAutoresizingMaskIntoConstraints										= false
-//		addView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive 					= true
-//		addView.widthAnchor.constraint(equalToConstant: 110).isActive							= true
-//		addView.heightAnchor.constraint(equalToConstant: 60).isActive							= true
-//		addView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40).isActive		= true
-//
-//		addView.backgroundColor		= .white
-//		addView.layer.shadowColor	= UIColor(red: 0, green: 0, blue: 0, alpha: 0.12).cgColor  				//TO CONSTANTS
-//		addView.layer.shadowOpacity	= 1
-//		addView.layer.shadowRadius	= 10
-//		addView.layer.shadowOffset	= CGSize(width: 0, height: 4)
-//		addView.layer.bounds		= addView.bounds
-//		addView.layer.position		= addView.center
-//		addView.layer.masksToBounds	= false
-//		addView.layer.cornerRadius	= 30
-//
-//		addView.addSubview(addImage)
-//		addImage.image = UIImage(named: "addProject")
-//		addImage.translatesAutoresizingMaskIntoConstraints										= false
-//		addImage.bottomAnchor.constraint(equalTo: addView.bottomAnchor, constant: -12).isActive	= true
-//		addImage.topAnchor.constraint(equalTo: addView.topAnchor, constant: 12).isActive		= true
-//		addImage.widthAnchor.constraint(equalTo: addImage.heightAnchor).isActive				= true
-//		addImage.centerXAnchor.constraint(equalTo: addView.centerXAnchor).isActive				= true
-	}
-	
-	func teardownCardView() {
-		self.setupNormalNavBar()
-		runningAnimations.removeAll()
-		cardViewController.removeFromParent()
-		cardViewController.view.removeFromSuperview()
-		NotificationCenter.default.removeObserver(self)
-		self.view.insertSubview(self.visualEffectView, at: 0)
-		collectionView.reloadData()
+		addButton.addGestureRecognizer(tapToCreateNewProject1)
 	}
 	
 	func showActivityIndicator() {

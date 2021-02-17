@@ -17,12 +17,12 @@ class PanProfileVC: BasePanVC, PanModalPresentable {
 		return tableView
 	}
 	
-	var shortFormHeight: PanModalHeight {
-		return .contentHeight(200) // TODO: (350)
-	}
+//	var shortFormHeight: PanModalHeight {
+//		return .contentHeight(200) // TODO: (350)
+//	}
 	
 	var longFormHeight: PanModalHeight {
-		return shortFormHeight // .maxHeightWithTopInset(70)
+		return .maxHeight // shortFormHeight // .maxHeightWithTopInset(70)
 	}
 	
 	private var user  : MUser!
@@ -63,6 +63,7 @@ class PanProfileVC: BasePanVC, PanModalPresentable {
     override func viewDidLoad() {
         super.viewDidLoad()
 		self.title = "Settings".localized()
+		tableView.isScrollEnabled = false
 		tableView.delegate = self
 		tableView.dataSource = self
 		tableView.separatorStyle = .none
@@ -111,13 +112,13 @@ class PanProfileVC: BasePanVC, PanModalPresentable {
 	
 	func makeStandartState() {
 		let info  = self.getProfileInformation()
-		let suply = ViewState.BecomePro()
-		let benefit1 = ViewState.Benefit(text: "Create unlimited projects and counters", image: UIImage(named: "Infinity")!)
-		let benefit2 = ViewState.Benefit(text: "No ads",                                 image: UIImage(named: "Stars")!)
-		let benefit3 = ViewState.Benefit(text: "Different color themes + dark theme",    image: UIImage(named: "Colors")!)
-		let benefit4 = ViewState.Benefit(text: "Cancel any time",                        image: UIImage(named: "Check")!)
+//		let suply = ViewState.BecomePro()
+//		let benefit1 = ViewState.Benefit(text: "Create unlimited projects and counters", image: UIImage(named: "Infinity")!)
+//		let benefit2 = ViewState.Benefit(text: "No ads",                                 image: UIImage(named: "Stars")!)
+//		let benefit3 = ViewState.Benefit(text: "Different color themes + dark theme",    image: UIImage(named: "Colors")!)
+//		let benefit4 = ViewState.Benefit(text: "Cancel any time",                        image: UIImage(named: "Check")!)
 
-		viewState.rows.append(contentsOf: [info, suply, benefit1, benefit2, benefit3, benefit4])
+		viewState.rows.append(contentsOf: [info]) // , suply, benefit1, benefit2, benefit3, benefit4])
 	}
 }
 

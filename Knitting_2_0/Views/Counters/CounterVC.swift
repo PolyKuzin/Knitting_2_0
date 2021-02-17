@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PanModal
 import FirebaseAuth
 import FirebaseDatabase
 
@@ -26,19 +27,6 @@ class CountersVC	: UIViewController, UICollectionViewDelegate, UICollectionViewD
 	private var counters					: [MCounter] = []
 	private var dataSourse					: UICollectionViewDiffableDataSource<MCounterSection, MCounter>?
 	
-	//MARK:VARIABLES: UI Elements
-
-	open var runningAnimations 				= [UIViewPropertyAnimator]()
-	open var cardViewController      		: CardViewControllerProtocol!
-	open var visualEffectView				: UIVisualEffectView!
-	open var animationProgressWhenStopped	: CGFloat!
-	open var cardHeight						: CGFloat!
-	
-	open var cardVisible					: Bool = false
-	open var nextState						: CardState {
-		return cardVisible 	? 	.collapsed	: .expanded
-	}
-	
 	var currentCounter : MCounter?
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -54,7 +42,6 @@ class CountersVC	: UIViewController, UICollectionViewDelegate, UICollectionViewD
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		ref		= currentProject.ref?.child("counters")
-		setupVisualEffect	()
 		setupSections		()
 
 		collectionView.delegate		= self
@@ -62,17 +49,11 @@ class CountersVC	: UIViewController, UICollectionViewDelegate, UICollectionViewD
 		setupCollectionConstraints()
 		
 		self.view.sendSubviewToBack(self.collectionView)
-		self.view.sendSubviewToBack(self.visualEffectView)
 		DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
 			AnalyticsService.reportEvent(with: "Number of Counters", parameters: ["Number" : self.collectionView.numberOfSections])
 		}
 	}
-	
-	override func viewWillDisappear(_ animated: Bool) {
-		super.viewWillDisappear(true)
-		self.dismiss(animated: true, completion: nil)
-	}
-	
+
 	let collectionView: UICollectionView = {
 		let layout					= UICollectionViewFlowLayout()
 		layout.scrollDirection		= .vertical
@@ -93,11 +74,11 @@ class CountersVC	: UIViewController, UICollectionViewDelegate, UICollectionViewD
 		let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeader.reusedId, for: indexPath) as! SectionHeader
 		header.frame = CGRect(x: 0 , y: 0, width: self.view.frame.width, height: 240)
 		header.profileImage.image = currentProject.image.toImage()
-		header.profileImage.layer.cornerRadius = 20
+		header.profileImage.layer.cornerRadius  = 20
 		header.profileImage.layer.masksToBounds = true
-		header.title.text			= currentProject.name
+		header.title.text         = currentProject.name
 		header.isUserInteractionEnabled = true
-		let tap = UITapGestureRecognizer(target: self, action: #selector(CountersVC.creeateCounterTaped(recognizer:)))
+		let tap = UITapGestureRecognizer(target: self, action: #selector(CountersVC.createCounterTaped(recognizer:)))
 		header.createCounter.addGestureRecognizer(tap)
 		header.createCounter.isMultipleTouchEnabled = false
 		return header
@@ -161,54 +142,6 @@ extension CountersVC {
 	}
 }
 
-//MARK: Setting up cards
-extension CountersVC {
-	
-	@objc
-	func updateCardViewControllerWithProfileVC(notification: NSNotification) {
-		switch UIDevice().type {
-			case .iPhoneX, .iPhoneXS, .iPhoneXSMax, .iPhoneXR, .iPhone11, .iPhone11Pro, .iPhone11ProMax: cardHeight = 400
-			default: cardHeight = 375
-		}
-		let vc = NewCounterVC()
-		vc.currentProject = currentProject
-		NotificationCenter.default.addObserver(self, selector: #selector(hideViewWithDeinit), name: Notification.Name(rawValue: "disconnectNewCounterVC"), object: nil)
-		setupCardViewController(vc)
-	}
-	
-	@objc
-	func updateCardViewControllerWithEditCountertVC(notification: NSNotification) {
-		switch UIDevice().type {
-			case .iPhoneX, .iPhoneXS, .iPhoneXSMax, .iPhoneXR, .iPhone11, .iPhone11Pro, .iPhone11ProMax: cardHeight = 400
-			default: cardHeight = 375
-		}
-		let vc = EditCounterVC()
-		vc.currentCounter = self.currentCounter
-		NotificationCenter.default.addObserver(self, selector: #selector(hideViewWithDeinit), name: Notification.Name(rawValue: "disconnectEditCounterVC"), object: nil)
-		setupCardViewController(vc)
-	}
-	
-	func setupVisualEffect() {
-		visualEffectView = UIVisualEffectView()
-		visualEffectView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-		self.view.addSubview(visualEffectView)
-		self.view.sendSubviewToBack(visualEffectView)
-		let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(CountersVC.visualEffectTaped(recognzier:)))
-		tapGestureRecognizer.numberOfTapsRequired = 1
-		visualEffectView.addGestureRecognizer(tapGestureRecognizer)
-	}
-	
-	func setupCardViewController(_ cardVC: CardViewControllerProtocol) {
-		cardViewController	= cardVC
-		self.addChild(cardViewController)
-		self.view.insertSubview(cardViewController.view, at: 3)
-		cardViewController.view.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.bounds.width, height: cardHeight)
-		cardViewController.view.clipsToBounds = true
-		let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(CountersVC.handleCardPan(recognizer:)))
-		cardViewController.handle.addGestureRecognizer	(panGestureRecognizer)
-	}
-}
-
 //MARK: Gesture Selectors
 extension CountersVC {
 	
@@ -228,8 +161,9 @@ extension CountersVC {
 		collectionView.reloadData()
 		AnalyticsService.reportEvent(with: "Add row")
 	}
+	
 	@objc
-	func minusBtnTaped(_ sender: UIButton){
+	func minusBtnTaped(_ sender: UIButton) {
 		let tag = sender.tag
 		let indexPath = IndexPath(row: tag, section: 0)
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CounterCell.reuseId, for: indexPath) as! CounterCell
@@ -245,52 +179,11 @@ extension CountersVC {
 	}
 	
 	@objc
-	func visualEffectTaped	(recognzier: UITapGestureRecognizer) {
-		hideViewWithDeinit()
-	}
-	
-	@objc
-	func creeateCounterTaped(recognizer: UITapGestureRecognizer) {
-		self.view.isUserInteractionEnabled = false
-		NotificationCenter.default.addObserver(self, selector: #selector(CountersVC.updateCardViewControllerWithProfileVC(notification:)), name: creeateCounterTaped, object: nil)
-		let name = Notification.Name(rawValue: createCounterInSectionNotificationKey)
-		NotificationCenter.default.post(name: name, object: nil)
-		switch recognizer.state {
-		case .ended		:
-			animateTransitionIfNeeded(state: nextState, duration: animationDuration)
-		default			:
-			break
-		}
-		DispatchQueue.main.asyncAfter(deadline: .now() + animationDuration) {
-			self.view.isUserInteractionEnabled = true
-		}
-	}
-	
-	@objc
-	func handleCardPan		(recognizer: UIPanGestureRecognizer) {
-		switch recognizer.state {
-		case .began		:
-			startInteractiveTransition(state: nextState, duration: animationDuration)
-		case .changed	:
-			let translation			= recognizer.translation(in: self.cardViewController.handle)
-			var fractionComplete	= translation.y / cardHeight
-			fractionComplete		= cardVisible ? fractionComplete : -fractionComplete
-			updateInteractiveTransition(fractionCompleted: fractionComplete)
-		case .ended		:
-			continueInteractiveTransition()
-		default			:
-			break
-		}
-	}
-	
-	@objc
-	func hideViewWithDeinit() {
-		animateTransitionIfNeeded(state: nextState, duration: animationDuration)
-		DispatchQueue.main.asyncAfter(deadline: .now() + animationDuration) {
-			NotificationCenter.default.removeObserver(self, name: self.creeateCounterTaped, object: nil)
-			NotificationCenter.default.removeObserver(self, name: self.editCounterViewTaped, object: nil)
-			self.teardownCardView()
-		}
+	func createCounterTaped(recognizer: UITapGestureRecognizer) {
+		let new = NewCounterVC()
+		new.currentProject = currentProject
+		let vc : PanModalPresentable.LayoutType = NavigationController(rootViewController: new)
+		self.presentPanModal(vc)
 	}
 }
 
@@ -322,21 +215,12 @@ extension CountersVC: SwipeableCollectionViewCellDelegate {
 		self.view.isUserInteractionEnabled = false
 		guard let indexPath = collectionView.indexPath(for: cell) else { return }
 		let counter = counters[indexPath.row]
-		
-		let recognizer = UITapGestureRecognizer()
-		recognizer.state = .ended
-		
+
 		self.currentCounter = counter
-		
-		NotificationCenter.default.addObserver(self, selector: #selector(CountersVC.updateCardViewControllerWithEditCountertVC(notification:)), name: editCounterViewTaped, object: nil)
-		let name = Notification.Name(rawValue: editCounterNotificationKey)
-		NotificationCenter.default.post(name: name, object: nil)
-		switch recognizer.state {
-		case .ended		:
-			animateTransitionIfNeeded(state: nextState, duration: animationDuration)
-		default			:
-			break
-		}
+		let edit = EditCounterVC()
+		edit.currentCounter = counter
+		let vc : PanModalPresentable.LayoutType = NavigationController(rootViewController: edit)
+		self.presentPanModal(vc)
 		let leftOffset = CGPoint(x: 0, y: 0)
 		cell.scrollView.setContentOffset(leftOffset, animated: true)
 		DispatchQueue.main.asyncAfter(deadline: .now() + animationDuration) {
@@ -367,10 +251,10 @@ extension CountersVC {
 		//Navigation Bar scould be invisible with back arrow
 		let backIcon = Icons.backIcon
 		guard let navigationController = navigationController else { return }
-		navigationController.navigationBar.backIndicatorImage														= backIcon
-		navigationController.navigationBar.backIndicatorTransitionMaskImage											= backIcon
-		navigationController.navigationBar.topItem?.title 															= ""
-		navigationController.navigationBar.tintColor 																= Colors.backIcon
+		navigationController.navigationBar.backIndicatorImage				= backIcon
+		navigationController.navigationBar.backIndicatorTransitionMaskImage	= backIcon
+		navigationController.navigationBar.topItem?.title 					= ""
+		navigationController.navigationBar.tintColor 						= Colors.backIcon
 		navigationController.view.backgroundColor			= .white
 		navigationController.navigationBar.isTranslucent	= false
 	}
@@ -392,15 +276,6 @@ extension CountersVC {
 		collectionView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
 		collectionView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
 		collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-	}
-	
-	func teardownCardView() {
-		self.setupNormalNavBar()
-		runningAnimations.removeAll()
-		cardViewController.removeFromParent()
-		cardViewController.view.removeFromSuperview()
-		NotificationCenter.default.removeObserver(self)
-		self.view.insertSubview(self.visualEffectView, at: 0)
 	}
 	
 	func showActivityIndicator() {

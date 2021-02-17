@@ -16,8 +16,13 @@ class EditProjectVC					: UIViewController, CardViewControllerProtocol, UINaviga
 	var panScrollable: UIScrollView? {
 		return nil
 	}
+	
+//	var shortFormHeight: PanModalHeight {
+//		return .contentHeight(200) // TODO: (350)
+//	}
+	
 	var longFormHeight: PanModalHeight {
-		return .contentHeight(300)
+		return .maxHeight // shortFormHeight // .maxHeightWithTopInset(70)
 	}
 	
 	var handle: UIView! 			= UIView()
@@ -56,7 +61,8 @@ class EditProjectVC					: UIViewController, CardViewControllerProtocol, UINaviga
 		super.viewDidLoad()
 		viewModel = EditProjectCardVM()
 		setupNewProjectView()
-		
+		self.title = "Edit project".localized()
+
 		guard let currentUser = Auth.auth().currentUser else { return }
 		user	= MUser(user: currentUser)
 		ref		= Database.database().reference(withPath: "users").child(String(user.uid))
@@ -96,7 +102,7 @@ class EditProjectVC					: UIViewController, CardViewControllerProtocol, UINaviga
 												   "image" : imageData,
 												   "date": projectUniqueID])
 			AnalyticsService.reportEvent(with: "Edit Project")
-			NotificationCenter.default.post(name: Notification.Name(rawValue: "disconnectEditProjectVC"), object: nil)
+			self.dismiss(animated: true, completion: nil)
 		}
 	}
 	
@@ -171,38 +177,20 @@ extension EditProjectVC {
 extension EditProjectVC: UITextFieldDelegate {
 	
 	func setingUpKeyboardHiding(){
-		projectName		.delegate = self
-		
-		NotificationCenter.default.addObserver(self,	selector: #selector(keyboardWillChange(notification: )),	name: UIResponder.keyboardWillShowNotification,			object: nil)
-		NotificationCenter.default.addObserver(self,	selector: #selector(keyboardWillChange(notification: )),	name: UIResponder.keyboardWillHideNotification,			object: nil)
-		NotificationCenter.default.addObserver(self,	selector: #selector(keyboardWillChange(notification: )),	name: UIResponder.keyboardWillChangeFrameNotification,	object: nil)
+		projectName.delegate = self
+		let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboardWhenTapped))
+		tap.numberOfTapsRequired = 1
+		self.view.addGestureRecognizer(tap)
 	}
 	
 	@objc
 	func hideKeyboardWhenTapped() {
-		hideKeyboard()
-	}
-	func hideKeyboard(){
-		projectName		.resignFirstResponder()
+		projectName.resignFirstResponder()
 	}
 	
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-		projectName		.resignFirstResponder()
-		NotificationCenter.default.post(name: UIResponder.keyboardDidHideNotification, object: nil)
+		projectName.resignFirstResponder()
 		return true
-	}
-	
-	@objc
-	func keyboardWillChange(notification: Notification){
-		guard let userInfo = notification.userInfo else {return}
-			  let keyboardRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-
-		if notification.name == UIResponder.keyboardWillShowNotification ||
-		   notification.name == UIResponder.keyboardWillChangeFrameNotification {
-			view.frame.origin.y = keyboardRect.height - 150
-		} else {
-			view.frame.origin.y += keyboardRect.height - keyboardBlackArea
-		}
 	}
 }
 
@@ -212,24 +200,11 @@ extension EditProjectVC {
 	func setupNewProjectView() {
 		view.backgroundColor	= .white
 
-		view.addSubview(handle)
-		handle.translatesAutoresizingMaskIntoConstraints											= false
-		handle.topAnchor.constraint(equalTo: view.topAnchor).isActive								= true
-		handle.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive						= true
-		handle.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive						= true
-		handle.heightAnchor.constraint(equalToConstant: 100).isActive								= true
-		
-		view.addSubview(createLabel)
-		createLabel.translatesAutoresizingMaskIntoConstraints										= false
-		createLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 20).isActive			= true
-		createLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive					= true
-		createLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive	= true
-		
 		view.addSubview(projectImage)
 		projectImage.translatesAutoresizingMaskIntoConstraints										= false
 		projectImage.heightAnchor.constraint(equalToConstant: 125).isActive							= true
 		projectImage.widthAnchor.constraint(equalToConstant: 125).isActive							= true
-		projectImage.topAnchor.constraint(equalTo: createLabel.bottomAnchor, constant: 20).isActive	= true
+		projectImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 20).isActive	= true
 		projectImage.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive					= true
 		
 		view.addSubview(projectName)

@@ -36,7 +36,7 @@ class EditProjectCardVM {
 												  width: UIScreen.main.bounds.width - 32,
 												  height: 44))
 		//design
-		textField.placeholder			= "Project name"
+		textField.placeholder			= "Project name".localized()
 		textField.layer.cornerRadius	= CornerRadius.forTextField
 		textField.backgroundColor		= Colors.normalTextField
 		textField.font					= Fonts.textRegular17

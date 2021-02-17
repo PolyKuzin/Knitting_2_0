@@ -68,7 +68,6 @@
 		99B206742504DDF700FA6C50 /* LogInVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B206732504DDF700FA6C50 /* LogInVM.swift */; };
 		99B2067A2504F10600FA6C50 /* EntryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B206792504F10600FA6C50 /* EntryVC.swift */; };
 		99B509BC24FDB1D60046A2B1 /* UIViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B509BB24FDB1D60046A2B1 /* UIViewExt.swift */; };
-		99B956FA25248E9D00AC5438 /* CountersCardViewAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B956F925248E9D00AC5438 /* CountersCardViewAnimations.swift */; };
 		99B956FE25249AFE00AC5438 /* CounterSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B956FD25249AFE00AC5438 /* CounterSectionHeader.swift */; };
 		99B957062524A0C900AC5438 /* CounterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B957052524A0C900AC5438 /* CounterCell.swift */; };
 		99C31FDE251F2DA200A1F75D /* CardViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C31FDC251F2DA200A1F75D /* CardViewControllerProtocol.swift */; };
@@ -81,7 +80,6 @@
 		99EFB5602515638F003A5D07 /* SF-Pro-Text-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 99EFB55F2515638F003A5D07 /* SF-Pro-Text-Bold.otf */; };
 		99EFB562251567CD003A5D07 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 99EFB561251567CD003A5D07 /* SF-Pro-Display-Regular.otf */; };
 		99EFB56625168AF5003A5D07 /* ProfileCardVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EFB56525168AF5003A5D07 /* ProfileCardVM.swift */; };
-		99EFB56A25177805003A5D07 /* MainCardViewAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EFB56925177805003A5D07 /* MainCardViewAnimations.swift */; };
 		99EFB56C25178D77003A5D07 /* NewProjectCardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EFB56B25178D77003A5D07 /* NewProjectCardVC.swift */; };
 		99F268302544BF24009DDDD8 /* NotificationKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F2682F2544BF24009DDDD8 /* NotificationKeys.swift */; };
 		E94C5CFDB12D6AF56F26B533 /* Pods_KnitNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DC982753C586016214E54B5 /* Pods_KnitNotifications.framework */; };
@@ -202,7 +200,6 @@
 		99B206732504DDF700FA6C50 /* LogInVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInVM.swift; sourceTree = "<group>"; };
 		99B206792504F10600FA6C50 /* EntryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryVC.swift; sourceTree = "<group>"; };
 		99B509BB24FDB1D60046A2B1 /* UIViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExt.swift; sourceTree = "<group>"; };
-		99B956F925248E9D00AC5438 /* CountersCardViewAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountersCardViewAnimations.swift; sourceTree = "<group>"; };
 		99B956FD25249AFE00AC5438 /* CounterSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterSectionHeader.swift; sourceTree = "<group>"; };
 		99B957052524A0C900AC5438 /* CounterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterCell.swift; sourceTree = "<group>"; };
 		99C31FDC251F2DA200A1F75D /* CardViewControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardViewControllerProtocol.swift; sourceTree = "<group>"; };
@@ -215,7 +212,6 @@
 		99EFB55F2515638F003A5D07 /* SF-Pro-Text-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Bold.otf"; sourceTree = "<group>"; };
 		99EFB561251567CD003A5D07 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
 		99EFB56525168AF5003A5D07 /* ProfileCardVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardVM.swift; sourceTree = "<group>"; };
-		99EFB56925177805003A5D07 /* MainCardViewAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCardViewAnimations.swift; sourceTree = "<group>"; };
 		99EFB56B25178D77003A5D07 /* NewProjectCardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProjectCardVC.swift; sourceTree = "<group>"; };
 		99F052F825ABAD2800CFFD88 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		99F052F925ABAD2F00CFFD88 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -329,7 +325,6 @@
 				9959471F250AD91F00D0E273 /* MainVC.swift */,
 				998B9F8E250D817000C0C52F /* ProjectCell.swift */,
 				994EF7132514B423009AA35B /* MainSetionHeader.swift */,
-				99EFB56925177805003A5D07 /* MainCardViewAnimations.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -478,7 +473,6 @@
 				99192D56251FC208001C6720 /* CounterVC.swift */,
 				99B957052524A0C900AC5438 /* CounterCell.swift */,
 				99B956FD25249AFE00AC5438 /* CounterSectionHeader.swift */,
-				99B956F925248E9D00AC5438 /* CountersCardViewAnimations.swift */,
 			);
 			path = Counters;
 			sourceTree = "<group>";
@@ -760,7 +754,6 @@
 				99AFBA4924F80D9E00E71FD6 /* SceneDelegate.swift in Sources */,
 				9964A868252B82A600D35398 /* addDoneCancelToolBar.swift in Sources */,
 				99EF88BF251D3A9F00C77181 /* UIDevice.swift in Sources */,
-				99EFB56A25177805003A5D07 /* MainCardViewAnimations.swift in Sources */,
 				998AED44255C4C2E00507F02 /* String + LocalizeBundle.swift in Sources */,
 				9978DDD7253E12C200659DC1 /* MPage.swift in Sources */,
 				994300B9252B156A0065EF5C /* NewCounterVC.swift in Sources */,
@@ -776,7 +769,6 @@
 				998B9F93250E1CD300C0C52F /* MSection.swift in Sources */,
 				998AED48255C4CA300507F02 /* String+LocalizedBundleTableName.swift in Sources */,
 				9936B9A725BCC03C008F4443 /* MainButton.swift in Sources */,
-				99B956FA25248E9D00AC5438 /* CountersCardViewAnimations.swift in Sources */,
 				9964A864252B799D00D35398 /* NewCounterCardVM.swift in Sources */,
 				99EF88BD25193F7000C77181 /* UIImage+String.swift in Sources */,
 			);
