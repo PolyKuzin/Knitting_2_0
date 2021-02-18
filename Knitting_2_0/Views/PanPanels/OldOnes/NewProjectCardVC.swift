@@ -11,13 +11,14 @@ import PanModal
 import FirebaseAuth
 import FirebaseDatabase
 
-class NewProjectVC					: UIViewController, CardViewControllerProtocol, UINavigationControllerDelegate, PanModalPresentable {
+class NewProjectVC					: UIViewController, UINavigationControllerDelegate, PanModalPresentable {
 	
 	var panScrollable: UIScrollView? {
 		return nil
 	}
+
 	var longFormHeight: PanModalHeight {
-		return .contentHeight(300)
+		return .maxHeight
 	}
 	
 	var handle: UIView! 			= UIView()
@@ -44,7 +45,6 @@ class NewProjectVC					: UIViewController, CardViewControllerProtocol, UINavigat
 			self.projectImage		= viewModel.profileImage()
 			self.projectName		= viewModel.projectName()
 			self.createButton		= viewModel.createButton()
-//			self.warning			= viewModel.
 			self.globalCounterSwitch = viewModel.globarCounterSwitch()
 			self.createGlobalCounterLabel = viewModel.createGlobalCounterLabel()
 			
@@ -61,7 +61,8 @@ class NewProjectVC					: UIViewController, CardViewControllerProtocol, UINavigat
 		super.viewDidLoad()
 		viewModel = NewProjectCardVM()
 		setupNewProjectView()
-		
+		self.title = "Create new project".localized()
+
 		guard let currentUser = Auth.auth().currentUser else { return }
 		user	= MUser(user: currentUser)
 		ref		= Database.database().reference(withPath: "users").child(String(user.uid))
@@ -103,8 +104,8 @@ class NewProjectVC					: UIViewController, CardViewControllerProtocol, UINavigat
 				let referenceForCounter = self.ref.child("projects").child("\(projectUniqueID)").child("counters").child("\(name)")
 				referenceForCounter.setValue(counter.counterToDictionary())
 			}
-			NotificationCenter.default.post(name: Notification.Name(rawValue: "disconnectNewProjectVC"), object: nil)
 			AnalyticsService.reportEvent(with: "New project", parameters: ["name" : project.name])
+			self.dismiss(animated: true, completion: nil)
 		}
 	}
 	
@@ -181,38 +182,20 @@ extension NewProjectVC {
 extension NewProjectVC: UITextFieldDelegate {
     
     func setingUpKeyboardHiding(){
-        projectName		.delegate = self
-		
-        NotificationCenter.default.addObserver(self,	selector: #selector(keyboardWillChange(notification: )),	name: UIResponder.keyboardWillShowNotification,			object: nil)
-        NotificationCenter.default.addObserver(self,	selector: #selector(keyboardWillChange(notification: )),	name: UIResponder.keyboardWillHideNotification,			object: nil)
-        NotificationCenter.default.addObserver(self,	selector: #selector(keyboardWillChange(notification: )),	name: UIResponder.keyboardWillChangeFrameNotification,	object: nil)
+        projectName.delegate = self
+		let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboardWhenTapped))
+		tap.numberOfTapsRequired = 1
+		self.view.addGestureRecognizer(tap)
     }
     
 	@objc
 	func hideKeyboardWhenTapped() {
-		hideKeyboard()
+		projectName.resignFirstResponder()
 	}
-    func hideKeyboard(){
-        projectName		.resignFirstResponder()
-    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-		projectName		.resignFirstResponder()
-		NotificationCenter.default.post(name: UIResponder.keyboardDidHideNotification, object: nil)
+		projectName.resignFirstResponder()
         return true
-    }
-    
-    @objc
-	func keyboardWillChange(notification: Notification){
-		guard let userInfo = notification.userInfo else {return}
-			  let keyboardRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-
-		if notification.name == UIResponder.keyboardWillShowNotification ||
-		   notification.name == UIResponder.keyboardWillChangeFrameNotification {
-			view.frame.origin.y = keyboardRect.height - 150
-		} else {
-			view.frame.origin.y += keyboardRect.height - keyboardBlackArea
-		}
     }
 }
 
@@ -222,24 +205,11 @@ extension NewProjectVC {
 	func setupNewProjectView() {
 		view.backgroundColor	= .white
 
-		view.addSubview(handle)
-		handle.translatesAutoresizingMaskIntoConstraints											= false
-		handle.topAnchor.constraint(equalTo: view.topAnchor).isActive								= true
-		handle.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive						= true
-		handle.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive						= true
-		handle.heightAnchor.constraint(equalToConstant: 100).isActive								= true
-		
-		view.addSubview(createLabel)
-		createLabel.translatesAutoresizingMaskIntoConstraints										= false
-		createLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 20).isActive			= true
-		createLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive					= true
-		createLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive	= true
-		
 		view.addSubview(projectImage)
 		projectImage.translatesAutoresizingMaskIntoConstraints										= false
 		projectImage.heightAnchor.constraint(equalToConstant: 125).isActive							= true
 		projectImage.widthAnchor.constraint(equalToConstant: 125).isActive							= true
-		projectImage.topAnchor.constraint(equalTo: createLabel.bottomAnchor, constant: 20).isActive	= true
+		projectImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 20).isActive	= true
 		projectImage.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive					= true
 		
 		view.addSubview(projectName)

@@ -17,7 +17,7 @@
 "Working on this?" = "Над чем работаешь?";
 "Delete" = "Удалить";
 "Edit" = "Править";
-"Duplicate" = "Повторить";
+"Duplicate" = "Дубль";
 "+ Create counter" = "+ Создать счетчик";
 "+ Create project" = "+ Создать проект";
 
@@ -27,3 +27,13 @@
 // Schedule Notification
 "Get some time to Knit?" = "Есть немного времени вечером?";
 "How about you spend it on your hobby?" = "Как на счёт потратить его на хобби?";
+
+"Project name" = "Название проекта";
+"Counter name" = "Название счётчика";
+
+// Pan Titles
+"Settings" = "Настройки";
+"Edit counter" = "Изменяем счетчик";
+"Create new counter" = "Создать новый счетчик";
+"Edit project" = "Изменяем проект";
+"Create new project" = "Создать новый проект";

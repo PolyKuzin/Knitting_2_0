@@ -19,12 +19,12 @@ class NavigationController: UINavigationController, PanModalPresentable {
 		return true
 	}
 	
-	var shortFormHeight: PanModalHeight {
-		return .contentHeight(200) // TODO:(350)
-	}
+//	var shortFormHeight: PanModalHeight {
+//		return .contentHeight(200) // TODO:(350)
+//	}
 
 	var longFormHeight: PanModalHeight {
-		return shortFormHeight // .maxHeightWithTopInset(70)
+		return .maxHeight // shortFormHeight // .maxHeightWithTopInset(70)
 	}
 	
 	var panScrollable: UIScrollView? {

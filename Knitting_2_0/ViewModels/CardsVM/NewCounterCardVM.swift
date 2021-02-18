@@ -27,7 +27,7 @@ class NewCounterCardVM {
 												  width: UIScreen.main.bounds.width - 32,
 												  height: 44))
 		//design
-		textField.placeholder			= "Counter name"
+		textField.placeholder			= "Counter name".localized()
 		textField.layer.cornerRadius	= CornerRadius.forTextField
 		textField.backgroundColor		= Colors.normalTextField
 		textField.font					= Fonts.textRegular17

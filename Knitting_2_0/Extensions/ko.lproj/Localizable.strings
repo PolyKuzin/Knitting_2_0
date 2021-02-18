@@ -27,3 +27,13 @@
 // Schedule Notification
 "Get some time to Knit?" = "저녁에 약간의 시간이 있습니까?";
 "How about you spend it on your hobby?" = "취미에 쓰는 건 어때요?";
+
+"Project name" = "프로젝트 이름";
+"Counter name" = "카운터 이름";
+
+// Pan Titles
+"Settings" = "설정";
+"Edit counter" = "카운터 편집";
+"Create new counter" = "새 카운터 만들기";
+"Edit project" = "편집 프로젝트";
+"Create new project" = "새 프로젝트 만들기";

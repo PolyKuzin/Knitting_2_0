@@ -13,13 +13,18 @@ import PanModal
 import FirebaseAuth
 import FirebaseDatabase
 
-class EditCounterVC					: UIViewController, CardViewControllerProtocol, UINavigationControllerDelegate {
+class EditCounterVC : UIViewController, CardViewControllerProtocol, UINavigationControllerDelegate, PanModalPresentable {
 	
 	var panScrollable: UIScrollView? {
 		return nil
 	}
+	
+//	var shortFormHeight: PanModalHeight {
+//		return .contentHeight(200) // TODO: (350)
+//	}
+	
 	var longFormHeight: PanModalHeight {
-		return .contentHeight(300)
+		return .maxHeight // shortFormHeight // .maxHeightWithTopInset(70)
 	}
 	
 	var editCounter 				: Bool = false
@@ -33,7 +38,7 @@ class EditCounterVC					: UIViewController, CardViewControllerProtocol, UINaviga
 	private var addCounter			: Bool = false
 
 	private var createLabel			= UILabel()
-	private var countersName		= UITextField()
+	private var counterName		= UITextField()
 	private var setRowsMaxLabel = UILabel()
 	private var globalCounterSwitch = UISwitch()
 
@@ -50,7 +55,7 @@ class EditCounterVC					: UIViewController, CardViewControllerProtocol, UINaviga
 	private var viewModel			: NewCounterCardVM! {
 		didSet {
 			self.createLabel			= viewModel.createLabel()
-			self.countersName			= viewModel.projectName()
+			self.counterName			= viewModel.projectName()
 			self.createButton			= viewModel.createButton()
 			self.globalCounterSwitch	= viewModel.globarCounterSwitch()
 			self.setRowsMaxLabel 		= viewModel.createGlobalCounterLabel()
@@ -107,7 +112,7 @@ class EditCounterVC					: UIViewController, CardViewControllerProtocol, UINaviga
 		if error != nil {  setErrorDesign(error!) } else {
 			
 			let date = String(Int(Date().timeIntervalSince1970))
-			guard let name		= countersName.text	else { return }
+			guard let name		= counterName.text	else { return }
 			if addCounter {
 				rowsMax = validateRowsMax()
 			} else {
@@ -117,8 +122,8 @@ class EditCounterVC					: UIViewController, CardViewControllerProtocol, UINaviga
 			referenceForCounter?.updateChildValues(["name" : name,
 													"rowsMax" : rowsMax,
 													"date" : date])
-			NotificationCenter.default.post(name: Notification.Name(rawValue: "disconnectEditCounterVC"), object: nil)
 			AnalyticsService.reportEvent(with: "Edit counter", parameters: ["name" : name])
+			self.dismiss(animated: true, completion: nil)
 		}
 	}
 	
@@ -134,9 +139,8 @@ class EditCounterVC					: UIViewController, CardViewControllerProtocol, UINaviga
 		super.viewDidLoad()
 		viewModel = NewCounterCardVM()
 		setupNewProjectView()
-		
-		createLabel.text = "Edit counter"
-		countersName.text = currentCounter?.name
+		self.title = "Edit counter".localized()
+		counterName.text = currentCounter?.name
 		guard let rowsMaxx = currentCounter?.rowsMax else { return }
 		if rowsMaxx > 0 {
 			addCounter = true
@@ -158,7 +162,7 @@ extension EditCounterVC {
 	
 	func validateFields() -> String? {
 		//check that fields are filled in
-		if	countersName	.text?.trimmingCharacters	(in: .whitespacesAndNewlines)	== "" {
+		if	counterName	.text?.trimmingCharacters	(in: .whitespacesAndNewlines)	== "" {
 			return "Please fill in all fields"
 		}
 		return nil
@@ -173,9 +177,9 @@ extension EditCounterVC {
 	
 	func setErrorDesign(_ description: String) {
 		showError(description)
-		countersName.backgroundColor      = Colors.errorTextField
-		countersName.layer.borderColor    = Colors.errorTextFieldBorder.cgColor
-		countersName.shakeAnimation		()
+		counterName.backgroundColor      = Colors.errorTextField
+		counterName.layer.borderColor    = Colors.errorTextFieldBorder.cgColor
+		counterName.shakeAnimation		()
 		createLabel.shakeAnimation		()
 		createButton.shakeAnimation		()
 	}
@@ -186,38 +190,20 @@ extension EditCounterVC {
 extension EditCounterVC: UITextFieldDelegate {
 	
 	func setingUpKeyboardHiding(){
-		countersName		.delegate = self
-		
-		NotificationCenter.default.addObserver(self,	selector: #selector(keyboardWillChange(notification: )),	name: UIResponder.keyboardWillShowNotification,			object: nil)
-		NotificationCenter.default.addObserver(self,	selector: #selector(keyboardWillChange(notification: )),	name: UIResponder.keyboardWillHideNotification,			object: nil)
-		NotificationCenter.default.addObserver(self,	selector: #selector(keyboardWillChange(notification: )),	name: UIResponder.keyboardWillChangeFrameNotification,	object: nil)
+		counterName.delegate = self
+		let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboardWhenTapped))
+		tap.numberOfTapsRequired = 1
+		self.view.addGestureRecognizer(tap)
 	}
 	
 	@objc
 	func hideKeyboardWhenTapped() {
-		hideKeyboard()
-	}
-	func hideKeyboard(){
-		countersName		.resignFirstResponder()
+		counterName.resignFirstResponder()
 	}
 	
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-		countersName		.resignFirstResponder()
-		NotificationCenter.default.post(name: UIResponder.keyboardDidHideNotification, object: nil)
+		counterName.resignFirstResponder()
 		return true
-	}
-	
-	@objc
-	func keyboardWillChange(notification: Notification){
-		guard let userInfo = notification.userInfo else {return}
-			  let keyboardRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-
-		if notification.name == UIResponder.keyboardWillShowNotification ||
-		   notification.name == UIResponder.keyboardWillChangeFrameNotification {
-			view.frame.origin.y = keyboardRect.height - 50
-		} else {
-			view.frame.origin.y += keyboardRect.height - keyboardBlackArea
-		}
 	}
 }
 
@@ -227,47 +213,34 @@ extension EditCounterVC {
 	func setupNewProjectView() {
 		view.backgroundColor	= .white
 
-		view.addSubview(handle)
-		handle.translatesAutoresizingMaskIntoConstraints											= false
-		handle.topAnchor.constraint(equalTo: view.topAnchor).isActive								= true
-		handle.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive						= true
-		handle.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive						= true
-		handle.heightAnchor.constraint(equalToConstant: 100).isActive								= true
-		
-		view.addSubview(createLabel)
-		createLabel.translatesAutoresizingMaskIntoConstraints										= false
-		createLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 20).isActive			= true
-		createLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive					= true
-		createLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive	= true
-		
-		view.addSubview(countersName)
-		countersName.translatesAutoresizingMaskIntoConstraints										= false
-		countersName.topAnchor.constraint(equalTo: createLabel.bottomAnchor, constant: 20).isActive = true
-		countersName.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive					= true
-		countersName.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive	= true
-		countersName.heightAnchor.constraint(equalToConstant: 44).isActive							= true
+		view.addSubview(counterName)
+		counterName.translatesAutoresizingMaskIntoConstraints										= false
+		counterName.topAnchor.constraint(equalTo: view.topAnchor, constant: 20).isActive = true
+		counterName.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive					= true
+		counterName.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive	= true
+		counterName.heightAnchor.constraint(equalToConstant: 44).isActive							= true
 		
 		view.addSubview(warning)
 		warning.translatesAutoresizingMaskIntoConstraints											= false
-		warning.topAnchor.constraint(equalTo: countersName.bottomAnchor, constant: 7).isActive		= true
+		warning.topAnchor.constraint(equalTo: counterName.bottomAnchor, constant: 7).isActive		= true
 		warning.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive		= true
 		warning.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive		= true
 		
 		view.addSubview(globalCounterSwitch)
 		globalCounterSwitch.translatesAutoresizingMaskIntoConstraints								= false
 		globalCounterSwitch.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-		globalCounterSwitch.topAnchor.constraint(equalTo: countersName.bottomAnchor, constant: 35).isActive = true
+		globalCounterSwitch.topAnchor.constraint(equalTo: counterName.bottomAnchor, constant: 35).isActive = true
 		
 		view.addSubview(setRowsMaxLabel)
 		setRowsMaxLabel.translatesAutoresizingMaskIntoConstraints							= false
-		setRowsMaxLabel.topAnchor.constraint(equalTo: countersName.bottomAnchor, constant: 39).isActive = true
+		setRowsMaxLabel.topAnchor.constraint(equalTo: counterName.bottomAnchor, constant: 39).isActive = true
 		setRowsMaxLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
 		setRowsMaxLabel.trailingAnchor.constraint(equalTo: globalCounterSwitch.leadingAnchor, constant: 10).isActive = true
 		
 		view.addSubview(rowsMaxTF)
 		rowsMaxTF.translatesAutoresizingMaskIntoConstraints = false
 		rowsMaxTF.topAnchor.constraint(equalTo: setRowsMaxLabel.bottomAnchor, constant: 20).isActive		= true
-		rowsMaxTF.centerXAnchor.constraint(equalTo: countersName.centerXAnchor).isActive = true
+		rowsMaxTF.centerXAnchor.constraint(equalTo: counterName.centerXAnchor).isActive = true
 		rowsMaxTF.widthAnchor.constraint(equalToConstant: 100).isActive = true
 		rowsMaxTF.heightAnchor.constraint(equalToConstant: 50).isActive = true
 		
