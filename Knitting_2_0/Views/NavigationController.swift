@@ -18,13 +18,9 @@ class NavigationController: UINavigationController, PanModalPresentable {
 	var shouldRoundTopCorners: Bool {
 		return true
 	}
-	
-//	var shortFormHeight: PanModalHeight {
-//		return .contentHeight(200) // TODO:(350)
-//	}
 
 	var longFormHeight: PanModalHeight {
-		return .maxHeight // shortFormHeight // .maxHeightWithTopInset(70)
+		return .maxHeight
 	}
 	
 	var panScrollable: UIScrollView? {

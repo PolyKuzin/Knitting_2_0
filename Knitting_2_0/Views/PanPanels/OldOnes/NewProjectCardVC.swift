@@ -70,11 +70,12 @@ class NewProjectVC					: UIViewController, UINavigationControllerDelegate, PanMo
 		setingUpKeyboardHiding()
 		let tap : UITapGestureRecognizer	= UITapGestureRecognizer(target: self, action: #selector(hideKeyboardWhenTapped))
 		view.addGestureRecognizer(tap)
+		projectName.becomeFirstResponder()
 	}
 	
 	@objc
 	func didChangeGlobalCounterSwitch() {
-			addCounter = !addCounter
+		addCounter = !addCounter
 	}
 	
 	@objc

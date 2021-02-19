@@ -141,6 +141,7 @@ class NewCounterVC					: UIViewController, CardViewControllerProtocol, UINavigat
 		setingUpKeyboardHiding()
 		let tap : UITapGestureRecognizer	= UITapGestureRecognizer(target: self, action: #selector(hideKeyboardWhenTapped))
 		view.addGestureRecognizer(tap)
+		counterName.becomeFirstResponder()
 	}
 }
 

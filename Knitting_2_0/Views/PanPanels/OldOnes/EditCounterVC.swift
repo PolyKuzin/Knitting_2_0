@@ -19,12 +19,8 @@ class EditCounterVC : UIViewController, CardViewControllerProtocol, UINavigation
 		return nil
 	}
 	
-//	var shortFormHeight: PanModalHeight {
-//		return .contentHeight(200) // TODO: (350)
-//	}
-	
 	var longFormHeight: PanModalHeight {
-		return .maxHeight // shortFormHeight // .maxHeightWithTopInset(70)
+		return .maxHeight
 	}
 	
 	var editCounter 				: Bool = false
@@ -154,6 +150,7 @@ class EditCounterVC : UIViewController, CardViewControllerProtocol, UINavigation
 		createButton.titleLabel?.text = "Save"
 		let tap : UITapGestureRecognizer	= UITapGestureRecognizer(target: self, action: #selector(hideKeyboardWhenTapped))
 		view.addGestureRecognizer(tap)
+		counterName.becomeFirstResponder()
 	}
 }
 
@@ -161,7 +158,6 @@ class EditCounterVC : UIViewController, CardViewControllerProtocol, UINavigation
 extension EditCounterVC {
 	
 	func validateFields() -> String? {
-		//check that fields are filled in
 		if	counterName	.text?.trimmingCharacters	(in: .whitespacesAndNewlines)	== "" {
 			return "Please fill in all fields"
 		}

@@ -12,6 +12,8 @@
 		9905ABE4250254B80055B138 /* SF-Pro-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9905ABE3250254B80055B138 /* SF-Pro-Text-Regular.otf */; };
 		99192D57251FC208001C6720 /* CounterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99192D56251FC208001C6720 /* CounterVC.swift */; };
 		991AD5682529268D008A6E8D /* SF-Pro-Rounded-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 991AD5672529268D008A6E8D /* SF-Pro-Rounded-Medium.otf */; };
+		99207D2625E024290013DBF3 /* PanNewCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99207D2425E024290013DBF3 /* PanNewCounter.swift */; };
+		99207D2725E024290013DBF3 /* PanNewCounter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99207D2525E024290013DBF3 /* PanNewCounter.xib */; };
 		9936B96A25BC7911008F4443 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9936B96925BC7911008F4443 /* BaseVC.swift */; };
 		9936B97225BC7AB5008F4443 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9936B97125BC7AB5008F4443 /* NavigationController.swift */; };
 		9936B97D25BC92E3008F4443 /* BasePanVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9936B97C25BC92E2008F4443 /* BasePanVC.swift */; };
@@ -130,6 +132,8 @@
 		9905ABE3250254B80055B138 /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
 		99192D56251FC208001C6720 /* CounterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterVC.swift; sourceTree = "<group>"; };
 		991AD5672529268D008A6E8D /* SF-Pro-Rounded-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Medium.otf"; sourceTree = "<group>"; };
+		99207D2425E024290013DBF3 /* PanNewCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanNewCounter.swift; sourceTree = "<group>"; };
+		99207D2525E024290013DBF3 /* PanNewCounter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PanNewCounter.xib; sourceTree = "<group>"; };
 		9936B96925BC7911008F4443 /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
 		9936B97125BC7AB5008F4443 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		9936B97C25BC92E2008F4443 /* BasePanVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePanVC.swift; sourceTree = "<group>"; };
@@ -249,6 +253,15 @@
 				9724609D9DADF9EB0D44F26B /* Pods_Knitting_2_0.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		99207D2325E023B60013DBF3 /* PanNewProject */ = {
+			isa = PBXGroup;
+			children = (
+				99207D2425E024290013DBF3 /* PanNewCounter.swift */,
+				99207D2525E024290013DBF3 /* PanNewCounter.xib */,
+			);
+			path = PanNewProject;
 			sourceTree = "<group>";
 		};
 		9936B98425BC9302008F4443 /* OldOnes */ = {
@@ -500,6 +513,7 @@
 		99EFB56D25178D89003A5D07 /* PanPanels */ = {
 			isa = PBXGroup;
 			children = (
+				99207D2325E023B60013DBF3 /* PanNewProject */,
 				9936B98F25BC9452008F4443 /* Profile */,
 				9936B98425BC9302008F4443 /* OldOnes */,
 			);
@@ -628,6 +642,7 @@
 				991AD5682529268D008A6E8D /* SF-Pro-Rounded-Medium.otf in Resources */,
 				998AED4F255C4D8600507F02 /* Localizable.strings in Resources */,
 				9936B99725BC9617008F4443 /* InformationCell.xib in Resources */,
+				99207D2725E024290013DBF3 /* PanNewCounter.xib in Resources */,
 				994300B5252B11090065EF5C /* SF-Pro-Text-Medium.otf in Resources */,
 				9936B98B25BC9324008F4443 /* PanProfileVC.xib in Resources */,
 				99E4A1C625091FBE003CA7C9 /* GoogleService-Info.plist in Resources */,
@@ -751,6 +766,7 @@
 				9949F8BF252DE21F00D12F50 /* EditProjectVM.swift in Sources */,
 				998B9F8F250D817000C0C52F /* ProjectCell.swift in Sources */,
 				9936B97D25BC92E3008F4443 /* BasePanVC.swift in Sources */,
+				99207D2625E024290013DBF3 /* PanNewCounter.swift in Sources */,
 				99AFBA4924F80D9E00E71FD6 /* SceneDelegate.swift in Sources */,
 				9964A868252B82A600D35398 /* addDoneCancelToolBar.swift in Sources */,
 				99EF88BF251D3A9F00C77181 /* UIDevice.swift in Sources */,
@@ -835,7 +851,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.7;
+				MARKETING_VERSION = 2.8;
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.polykuzin.Knitting-2-0.KnitNotifications";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -859,7 +875,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.7;
+				MARKETING_VERSION = 2.8;
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.polykuzin.Knitting-2-0.KnitNotifications";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1001,7 +1017,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.7;
+				MARKETING_VERSION = 2.8;
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.polykuzin.Knitting-2-0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1024,7 +1040,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.7;
+				MARKETING_VERSION = 2.8;
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.polykuzin.Knitting-2-0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

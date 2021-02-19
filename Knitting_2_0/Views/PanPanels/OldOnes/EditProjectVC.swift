@@ -76,6 +76,7 @@ class EditProjectVC					: UIViewController, CardViewControllerProtocol, UINaviga
 		projectImage.layer.cornerRadius = 20
 		projectImage.layer.masksToBounds = true
 		projectName.text	= currentProject?.name
+		projectName.becomeFirstResponder()
 	}
 	
 	@objc
