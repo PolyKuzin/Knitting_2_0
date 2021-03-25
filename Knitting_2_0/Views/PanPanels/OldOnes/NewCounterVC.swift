@@ -19,12 +19,8 @@ class NewCounterVC					: UIViewController, CardViewControllerProtocol, UINavigat
 		return nil
 	}
 	
-//	var shortFormHeight: PanModalHeight {
-//		return .contentHeight(200) // TODO: (350)
-//	}
-	
 	var longFormHeight: PanModalHeight {
-		return .maxHeight // shortFormHeight // .maxHeightWithTopInset(70)
+		return .maxHeight
 	}
 	
 	var editCounter 				: Bool = false
@@ -94,13 +90,13 @@ class NewCounterVC					: UIViewController, CardViewControllerProtocol, UINavigat
 	func didChangeGlobalCounterSwitch() {
 		addCounter = !addCounter
 		if addCounter {
-			plusButton.isEnabled = true
+			plusButton.isEnabled  = true
 			minusButton.isEnabled = true
-			rowsMaxTF.isEnabled = true
+			rowsMaxTF.isEnabled   = true
 		} else {
-			plusButton.isEnabled = false
+			plusButton.isEnabled  = false
 			minusButton.isEnabled = false
-			rowsMaxTF.isEnabled = false
+			rowsMaxTF.isEnabled   = false
 		}
 	}
 	

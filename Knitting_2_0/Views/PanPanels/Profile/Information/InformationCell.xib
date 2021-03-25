@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -56,7 +56,7 @@
                     <constraint firstItem="bov-Xq-qmA" firstAttribute="leading" secondItem="PeF-IC-ivr" secondAttribute="leading" id="Bvb-D9-2wd"/>
                     <constraint firstItem="PeF-IC-ivr" firstAttribute="leading" secondItem="inB-HS-oYV" secondAttribute="trailing" constant="20" id="In7-zX-Z5S"/>
                     <constraint firstItem="bov-Xq-qmA" firstAttribute="top" secondItem="PeF-IC-ivr" secondAttribute="bottom" constant="6" id="bD5-lU-zKv"/>
-                    <constraint firstAttribute="bottom" secondItem="inB-HS-oYV" secondAttribute="bottom" constant="20" id="mmD-zu-2nj"/>
+                    <constraint firstAttribute="bottom" secondItem="inB-HS-oYV" secondAttribute="bottom" constant="10" id="mmD-zu-2nj"/>
                     <constraint firstItem="inB-HS-oYV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="npd-S3-L0E"/>
                     <constraint firstItem="inB-HS-oYV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="y4Y-ch-8LL"/>
                 </constraints>
@@ -72,10 +72,10 @@
     </objects>
     <resources>
         <namedColor name="GrayLabel">
-            <color red="0.5490196078431373" green="0.5490196078431373" blue="0.5490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.54900002479553223" green="0.54900002479553223" blue="0.54900002479553223" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="MainLabel">
-            <color red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

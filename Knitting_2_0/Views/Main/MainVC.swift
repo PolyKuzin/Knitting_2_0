@@ -25,7 +25,7 @@ struct Profile     : RowPresentable {
 }
 
 struct NewProject  : RowPresentable {
-	var VC         : PanModalPresentable.LayoutType = NavigationController(rootViewController: NewProjectVC())
+	var VC         : PanModalPresentable.LayoutType = NavigationController(rootViewController: PanNewProject(nibName: "PanNewProject", bundle: nil))
 }
 
 struct NewCounter  : RowPresentable {
@@ -182,7 +182,7 @@ extension MainVC : UICollectionViewDataSource, UICollectionViewDelegate {
 extension MainVC {
 	
 	@objc
-	func newProjectTaped	(recognizer: UITapGestureRecognizer) {
+	func newProjectTaped() {
 		self.presentPanModal(NewProject().VC)
     }
 	
@@ -316,7 +316,6 @@ extension MainVC {
 	}
 	
 	func setUpLayout() {
-		//Projects collection View Layout
 		view.addSubview(collectionView)
 		view.insertSubview(collectionView, at: 0)
 		collectionView.translatesAutoresizingMaskIntoConstraints										= false
@@ -325,7 +324,6 @@ extension MainVC {
 		collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive 					= true
 		collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive					= true
 		
-		let tapToCreateNewProject1 = UITapGestureRecognizer(target: self, action: #selector(newProjectTaped(recognizer:)))
 		let addButton = MainButton()
 		self.view.insertSubview(addButton, at: 0)
 		addButton.translatesAutoresizingMaskIntoConstraints = false
@@ -336,7 +334,7 @@ extension MainVC {
 			addButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
 			addButton.heightAnchor.constraint(equalToConstant: 52)
 		])
-		addButton.addGestureRecognizer(tapToCreateNewProject1)
+		addButton.addTarget(self, action: #selector(newProjectTaped), for: .touchUpInside)
 	}
 	
 	func showActivityIndicator() {

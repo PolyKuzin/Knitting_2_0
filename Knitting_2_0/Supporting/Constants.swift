@@ -14,7 +14,7 @@ struct Icons {
 	
 	static let backIcon		= UIImage(named: "arrow")
 	static let delete		= UIImage(named: "delete")
-	static let emptyProject	= UIImage(named: "empty")
+	static let emptyProject	= UIImage(named: "_0")
 	static let emptyProfile	= UIImage(named: "emptyProfile")
 	static let exit			= UIImage(named: "exit")
 

@@ -9,7 +9,27 @@
 import UIKit
 import PanModal
 
-class BasePanVC: UIViewController {
+class BasePanVC : UIViewController {
+	
+	var becomePro : (()->()) = {
+		print("BECOME PRO")
+	}
+	
+	var onPrivacy : (()->()) = {
+		print("PRIVACY")
+	}
+	
+	var onRestore : (()->()) = {
+		print("RESTORE")
+	}
+	
+	var onTerms   : (()->()) = {
+		print("TERMS")
+	}
+	
+	public func getColor() -> UIColor {
+		return UIColor(red: 0.745, green: 0.616, blue: 0.875, alpha: 1)
+	}
 
     override func viewDidLoad() {
         super.viewDidLoad()

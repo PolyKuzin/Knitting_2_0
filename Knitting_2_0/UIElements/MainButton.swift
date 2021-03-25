@@ -12,11 +12,11 @@ import UIKit
 class MainButton: UIButton {
 	
 	private func setup() {
-		frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 32, height: 52)
-		roundCorners(.allCorners, radius: 15)
-		setTitleColor(UIColor.white, for: .normal)
-		titleLabel?.font = UIFont(name: "SFProText-Medium", size: 17)
-		backgroundColor = UIColor(red: 0.745, green: 0.616, blue: 0.875, alpha: 1)
+		self.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 32, height: 52)
+		self.roundCorners(.allCorners, radius: 15)
+		self.setTitleColor(UIColor.white, for: .normal)
+		self.titleLabel?.font = UIFont(name: "SFProText-Medium", size: 17)
+		self.backgroundColor = UIColor(red: 0.745, green: 0.616, blue: 0.875, alpha: 1)
 	}
 	
 	override init(frame: CGRect) {
@@ -35,5 +35,9 @@ class MainButton: UIButton {
 	
 	public func setImage(_ image: UIImage) {
 		setImage(image, for: .normal)
+	}
+	
+	public func setColor(_ color: UIColor) {
+		self.backgroundColor = color
 	}
 }

@@ -92,7 +92,7 @@ class EditProjectVC					: UIViewController, CardViewControllerProtocol, UINaviga
 			if imageIsChanged {
 				image = projectImage.image
 			} else {
-				image = #imageLiteral(resourceName: "empty")
+				image = UIImage(named: "_0")
 			}
 			let projectUniqueID = String(Int(Date().timeIntervalSince1970))
 			guard let imageData = image?.toString() else { return }

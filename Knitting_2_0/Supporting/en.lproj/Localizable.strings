@@ -1,0 +1,48 @@
+"E-mail" = "E-mail";
+"Enter your password" = "Enter your password";
+
+"Nickname" = "Nickname";
+"Password" = "Password";
+
+"Forgot your password?" = "Forgot your password?";
+"Please fill in all fields" = "Please fill in all fields";
+
+"Reset" = "Reset";
+"We will send you an E-mail. Click the link in the E-mail and reset your password." = "We will send you an E-mail. Click the link in the E-mail and reset your password.";
+
+"Log In" = "Log In";
+" Log in" = " Log in";
+"Sign Up" = "Sign Up";
+" Sign up" = " Sign up";
+
+"Create new account" = "Create new account";
+"Log in to your account" = "Log in to your account";
+"Already have an account? " = "Already have an account? ";
+"You don't have an account? " = "You don't have an account? ";
+"Delete" = "Delete";
+"Edit" = "Edit";
+"Duplicate" = "Duplicate";
+
+"Working on this?" = "Working on this?";
+"+ Create counter" = "+ Create counter";
+"+ Create project" = "+ Create project";
+
+"Save" = "Save";
+"Create" = "Create";
+
+// Schedule Notification
+"Get some time to Knit?" = "Have some time in the evening?";
+"How about you spend it on your hobby?" = "How about you spend it on your hobby?";
+
+"Counter name" = "Counter name";
+
+// Pan Titles
+"Settings" = "Settings";
+"Edit counter" = "Edit counter";
+"Create new counter" = "Create new counter";
+"Edit project" = "Edit project";
+"Create new project" = "Create new project";
+
+// Pan New Project
+"Project name" = "Project name";
+"Create counter with project name?" = "Create counter with project name?";
