@@ -31,6 +31,7 @@ class MainButton: UIButton {
 	
 	public func setTitle(_ text: String) {
 		setTitle(text.localized(), for: .normal)
+		titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
 	}
 	
 	public func setImage(_ image: UIImage) {

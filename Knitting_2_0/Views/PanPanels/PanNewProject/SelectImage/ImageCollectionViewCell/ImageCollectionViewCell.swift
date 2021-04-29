@@ -12,7 +12,8 @@ class ImageCollectionViewCell: UICollectionViewCell {
 	
 	static let reuseId = "ImageCollectionViewCell"
 	
-	@IBOutlet weak var imageView : UIImageView!
+	@IBOutlet weak var lockerImage : UIImageView!
+	@IBOutlet weak var imageView   : UIImageView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,6 +23,7 @@ class ImageCollectionViewCell: UICollectionViewCell {
 	public func configure(with data: Any) {
 		if let data = data as? Item {
 			self.imageView.image = data.image
+			if !data.isEnabled { self.lockerImage.isHidden = false } else { self.lockerImage.isHidden = true }
 			if data.isSelected {
 				self.imageView.layer.borderWidth = 3
 				self.imageView.layer.borderColor = UIColor(red: 0.745, green: 0.616, blue: 0.875, alpha: 1).cgColor

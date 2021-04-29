@@ -11,9 +11,15 @@ import UIKit
 //MARK: String to Image
 extension String {
     func toImage() -> UIImage? {
-        if let data = Data(base64Encoded: self, options: .ignoreUnknownCharacters){
-            return UIImage(data: data)
-        }
+		switch self {
+		case "_0", "_1", "_2", "_3", "_4", "_5", "_6":
+			let str = self
+			return UIImage(named: str)
+		default:
+			if let data = Data(base64Encoded: self, options: .ignoreUnknownCharacters){
+				return UIImage(data: data)
+			}
+		}
         return nil
     }
 }

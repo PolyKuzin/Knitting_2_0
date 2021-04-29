@@ -130,8 +130,13 @@ extension MainVC {
 		reference.observe(.value) { (snapshot) in
 			self.projects.removeAll()
 			for item in snapshot.children {
-				let project = MProject(snapshot: item as! DataSnapshot)
-				print(project.name)
+				var project = MProject(snapshot: item as! DataSnapshot)
+				if project.image == defaultImage {
+					project.image = "_0"
+					if let referenceForProject = project.ref {
+						referenceForProject.setValue(project.projectToDictionary())
+					}
+				}
 				self.projects.append(project)
 				self.projects.sort(by: {
 					return
@@ -142,6 +147,10 @@ extension MainVC {
 			self.collectionView.reloadData()
 			self.hideActivityIndicator()
 		}
+	}
+	
+	private func getImage(from str: String) -> UIImage {
+		return UIImage(named: str) ?? UIImage(named: "_0")!
 	}
 }
 

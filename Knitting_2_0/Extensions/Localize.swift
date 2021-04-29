@@ -172,5 +172,3 @@ open class Localize: NSObject {
 		return String()
 	}
 }
-
-

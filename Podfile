@@ -6,6 +6,7 @@ target 'Knitting_2_0' do
   use_frameworks!
   
   pod 'PanModal'
+  pod 'OpenSSL-XM'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'YandexMobileMetrica'

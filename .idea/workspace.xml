@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="437704ce-c3c0-4e09-8fb0-96df05d6f516" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="$PROJECT_DIR$/.idea" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectId" id="1oeJkp8os4XwXaS85TulAZrJlZA" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="437704ce-c3c0-4e09-8fb0-96df05d6f516" name="Default Changelist" comment="" />
+      <created>1613641268034</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1613641268034</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Resolved conflicts">
+      <created>1613641535553</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1613641535553</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Merge branch 'dex-2-7'&#10;&#10;Conflicts:&#10;&#9;Knitting_2_0.xcodeproj/project.pbxproj">
+      <created>1613641818215</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1613641818215</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Merge branch 'dex-2-7'&#10;&#10;Conflicts:&#10;&#9;Knitting_2_0.xcodeproj/project.pbxproj&#10;&#9;&#10;Новые ячейки и многое другое">
+      <created>1616631444962</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1616631444962</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="master" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="аааааа" />
+    <MESSAGE value="Resolved conflicts" />
+    <MESSAGE value="Merge branch 'dex-2-7'&#10;&#10;Conflicts:&#10;&#9;Knitting_2_0.xcodeproj/project.pbxproj" />
+    <MESSAGE value="Merge branch 'dex-2-7'&#10;&#10;Conflicts:&#10;&#9;Knitting_2_0.xcodeproj/project.pbxproj&#10;&#9;&#10;Новые ячейки и многое другое" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'dex-2-7'&#10;&#10;Conflicts:&#10;&#9;Knitting_2_0.xcodeproj/project.pbxproj&#10;&#9;&#10;Новые ячейки и многое другое" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="136" y="92" key="CommitChangelistDialog2" timestamp="1616631443629">
+      <screen x="0" y="25" width="1680" height="972" />
+    </state>
+    <state x="136" y="92" key="CommitChangelistDialog2/0.25.1680.972@0.25.1680.972" timestamp="1616631443629" />
+    <state x="173" y="89" key="MergeDialog" timestamp="1613641803572">
+      <screen x="0" y="25" width="1680" height="972" />
+    </state>
+    <state x="173" y="89" key="MergeDialog/0.25.1680.972@0.25.1680.972" timestamp="1613641803572" />
+    <state x="555" y="211" key="MultipleFileMergeDialog" timestamp="1613641803625">
+      <screen x="0" y="25" width="1680" height="972" />
+    </state>
+    <state x="555" y="211" key="MultipleFileMergeDialog/0.25.1680.972@0.25.1680.972" timestamp="1613641803625" />
+    <state x="346" y="128" key="SettingsEditor" timestamp="1613641883937">
+      <screen x="0" y="25" width="1680" height="972" />
+    </state>
+    <state x="346" y="128" key="SettingsEditor/0.25.1680.972@0.25.1680.972" timestamp="1613641883937" />
+    <state x="444" y="228" key="Vcs.Push.Dialog.v2" timestamp="1616631453134">
+      <screen x="0" y="25" width="1680" height="972" />
+    </state>
+    <state x="444" y="228" key="Vcs.Push.Dialog.v2/0.25.1680.972@0.25.1680.972" timestamp="1616631453134" />
+  </component>
+</project>

@@ -7,3 +7,9 @@
 //
 
 import Foundation
+
+enum IAPProducts : String {
+	// Purchaise Name -> Product ID
+	case autoRenew    = "ru.polykuzin.Gliese_581" // Name of the Purchaise -> Product ID
+	case autoRenewYearly = "ru.polykuzin.Gliesee_581_Yearly1"
+}

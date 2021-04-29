@@ -18,21 +18,16 @@ class BecomeProCell : UITableViewCell {
 	
 	private var onBecomePro : (()->())?
 	
-	@IBOutlet weak var suplyLabel      : UILabel!
 	@IBOutlet weak var purchaiseButton : MainButton!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-		purchaiseButton.addTarget(self, action: #selector(self.becomePro), for: .touchUpInside)
-		purchaiseButton.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 32, height: 52)
-		purchaiseButton.roundCorners(.allCorners, radius: 15)
-		suplyLabel.text = "Try 7-days free trial, then $4/month".localized()
-		purchaiseButton.setTitle("Become PRO Knitter".localized())
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
+		self.purchaiseButton.addTarget(self, action: #selector(self.becomePro), for: .touchUpInside)
+		self.purchaiseButton.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 32, height: 52)
+		self.purchaiseButton.roundCorners(.allCorners, radius: 15)
+		self.purchaiseButton.setColor(UIColor(red: 0.552, green: 0.325, blue: 0.779, alpha: 1))
+		self.purchaiseButton.setTitle("Become PRO Knitter".localized())
+		self.purchaiseButton.setImage(UIImage(named: "Diamond")!)
     }
 	
 	@objc

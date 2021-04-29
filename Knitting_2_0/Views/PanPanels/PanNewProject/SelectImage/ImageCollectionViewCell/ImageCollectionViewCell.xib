@@ -24,18 +24,31 @@
                             <constraint firstAttribute="width" constant="98" id="uus-zo-0Rp"/>
                         </constraints>
                     </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Locker" translatesAutoresizingMaskIntoConstraints="NO" id="8Mp-lz-lGy">
+                        <rect key="frame" x="70" y="67" width="16" height="19"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="19" id="Lmc-KI-YYP"/>
+                            <constraint firstAttribute="width" constant="16" id="xlw-Jo-NGX"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="8Mp-lz-lGy" secondAttribute="bottom" constant="12" id="AWm-uQ-J8v"/>
+                <constraint firstAttribute="trailing" secondItem="8Mp-lz-lGy" secondAttribute="trailing" constant="12" id="Z2E-35-bPO"/>
                 <constraint firstItem="ZXy-D8-8tk" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="ZAD-WT-O6q"/>
                 <constraint firstItem="ZXy-D8-8tk" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="fmo-7G-MGt"/>
             </constraints>
             <size key="customSize" width="98" height="98"/>
             <connections>
                 <outlet property="imageView" destination="ZXy-D8-8tk" id="jQF-Dn-Mx8"/>
+                <outlet property="lockerImage" destination="8Mp-lz-lGy" id="Vat-u4-5tn"/>
             </connections>
-            <point key="canvasLocation" x="172.46376811594203" y="113.83928571428571"/>
+            <point key="canvasLocation" x="169.56521739130437" y="113.83928571428571"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="Locker" width="16" height="19"/>
+    </resources>
 </document>
