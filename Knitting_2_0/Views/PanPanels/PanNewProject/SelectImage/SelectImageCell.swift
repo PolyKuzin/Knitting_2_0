@@ -34,6 +34,7 @@ class SelectImageCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+		self.selectionStyle = .none
 		self.collectionView.delegate = self
 		self.collectionView.dataSource = self
 		self.collectionView.register(UINib(nibName: ImageCollectionViewCell.reuseId, bundle: nil), forCellWithReuseIdentifier: ImageCollectionViewCell.reuseId)

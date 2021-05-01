@@ -23,6 +23,7 @@ class BenefitCell : UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+		self.selectionStyle = .none
 		containerView.backgroundColor = .white
 		containerView.layer.cornerRadius  = 20
 		containerView.layer.borderWidth   = 0.0

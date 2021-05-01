@@ -18,14 +18,10 @@ class InformationCell: UITableViewCell {
 	
     override func awakeFromNib() {
         super.awakeFromNib()
+		self.selectionStyle = .none
 		profileImage.roundCorners(.allCorners, radius: profileImage.frame.height / 2)
 	}
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-    }
-	
 	func configure(with data: Any) {
 		switch data {
 		case is PanProfileVC.ViewState.Information:

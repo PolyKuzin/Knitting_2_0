@@ -25,6 +25,7 @@ class BecomeProCell : UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+		self.selectionStyle = .none
 		self.button.addTarget(self, action: #selector(self.becomePro), for: .touchUpInside)
     }
 	

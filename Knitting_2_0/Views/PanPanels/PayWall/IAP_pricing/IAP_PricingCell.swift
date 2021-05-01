@@ -20,7 +20,7 @@ class IAP_PricingCell : UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+		self.selectionStyle = .none
     }
     
 	public func configure(with data: _IAP_PricingCell) {

@@ -19,8 +19,8 @@ class CreateCounterCell: UITableViewCell {
 	
     override func awakeFromNib() {
         super.awakeFromNib()
+		self.selectionStyle = .none
 		self.label.text = "Create counter with project name?".localized()
-		
 	}
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -24,6 +24,7 @@ class MainButtonCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+		self.selectionStyle = .none
 		self.button.addTarget(self, action: #selector(self.tap), for: .touchUpInside)
 		self.button.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 32, height: 52)
     }

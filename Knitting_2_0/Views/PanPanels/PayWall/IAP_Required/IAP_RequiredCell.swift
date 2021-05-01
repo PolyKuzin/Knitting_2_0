@@ -40,7 +40,7 @@ class IAP_RequiredCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+		self.selectionStyle = .none
     }
     
 	public func configure(with data: IAP_Required) {

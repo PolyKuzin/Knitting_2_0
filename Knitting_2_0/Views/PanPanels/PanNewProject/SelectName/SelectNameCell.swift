@@ -51,14 +51,10 @@ class SelectNameCell : UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 		self.setupConstraints()
+		self.selectionStyle = .none
 		self.textField.delegate = self
 		self.textField.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: .editingChanged)
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-    }
+	}
 	
 	public func configure(with data: Any) {
 		if let data = data as? PanNewProject.ViewState.SelectName {
