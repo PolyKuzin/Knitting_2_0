@@ -29,16 +29,18 @@ class MainButton: UIButton {
 		self.setup()
 	}
 	
-	public func setTitle(_ text: String) {
+	public func setTitle(_ text: String)    {
 		setTitle(text.localized(), for: .normal)
 		titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
 	}
 	
-	public func setImage(_ image: UIImage) {
+	public func setImage(_ image: UIImage?)  {
+		guard let image = image else { return }
 		setImage(image, for: .normal)
 	}
 	
-	public func setColor(_ color: UIColor) {
+	public func setColor(_ color: UIColor?) {
+		guard let color = color else { return }
 		self.backgroundColor = color
 	}
 }

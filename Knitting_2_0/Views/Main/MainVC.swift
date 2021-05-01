@@ -11,30 +11,9 @@ import PanModal
 import FirebaseAuth
 import FirebaseDatabase
 
-enum CardState {
-	case expanded
-	case collapsed
-}
-
-protocol RowPresentable {
-	var VC     : UIViewController & PanModalPresentable { get set }
-}
-
-struct Profile     : RowPresentable {
-	var VC         : PanModalPresentable.LayoutType = NavigationController(rootViewController: PanProfileVC(nibName: "PanProfileVC", bundle: nil))
-}
-
-struct NewProject  : RowPresentable {
-	var VC         : PanModalPresentable.LayoutType = NavigationController(rootViewController: PanNewProject(nibName: "PanNewProject", bundle: nil))
-}
-
-struct NewCounter  : RowPresentable {
-	var VC         : PanModalPresentable.LayoutType = NavigationController(rootViewController: NewCounterVC())
-}
-
 let animationDuration = 0.7
 
-class MainVC								: UIViewController {
+class MainVC : BaseVC {
 	
 	let appDelegate = UIApplication.shared.delegate as? AppDelegate
 	
@@ -58,11 +37,9 @@ class MainVC								: UIViewController {
 		MProject(userID: "1", name: "", image: "", date: ""),
 		MProject(userID: "1", name: "", image: "", date: "")
 	]
-//	private var sections					: Array<MSection> = [MSection(type: "projects", title: "Working on this?", projects: [])]
 	private var dataSourse					: UICollectionViewDiffableDataSource<MSection, MProject>?
 	
 	//MARK:VARIABLES: UI Elements
-	// Add project Button
 	private var addView						= UIView()
 	private var addImage					= UIImageView()
     
@@ -254,7 +231,7 @@ extension MainVC: SwipeableCollectionViewCellDelegate {
 		self.currentProject = project
 		let edit = EditProjectVC()
 		edit.currentProject = project
-		let vc : PanModalPresentable.LayoutType = NavigationController(rootViewController: edit)
+		let vc : PanModalPresentable.LayoutType = PanelNavigation(rootViewController: edit)
 		self.presentPanModal(vc)
 		
 		let leftOffset = CGPoint(x: 0, y: 0)

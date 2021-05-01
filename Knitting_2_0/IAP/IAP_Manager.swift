@@ -89,11 +89,11 @@ extension IAPManager : SKPaymentTransactionObserver {
 			if purchase.subscriptionExpirationDate?.compare(Date()) == .some(.orderedDescending) {
 				AnalyticsService.reportEvent(with: "Purchase", parameters: ["data" : purchase.purchaseDate ?? "0000000"])
 				NotificationCenter.default.post(name: NSNotification.Name(transaction.payment.productIdentifier), object: nil)
-				UserDefaults.standard.setValue(true, forKey: "setProVersion")
+				UserDefaults.standard.setValue(true, forKey: "setPro")
 			} else {
 				AnalyticsService.reportEvent(with: "Purchase", parameters: ["data" : purchase.purchaseDate ?? "0000000"])
 				NotificationCenter.default.post(name: NSNotification.Name(transaction.payment.productIdentifier), object: nil)
-				UserDefaults.standard.setValue(false, forKey: "setProVersion")
+				UserDefaults.standard.setValue(false, forKey: "setPro")
 			}
 			return
 		case let .error(error):
@@ -106,7 +106,7 @@ extension IAPManager : SKPaymentTransactionObserver {
 		paymentQueue.finishTransaction(transaction)
 		NotificationCenter.default.post(name: NSNotification.Name(transaction.payment.productIdentifier), object: nil)
 		paymentQueue.finishTransaction(transaction)
-		UserDefaults.standard.setValue(true, forKey: "setProVersion")
+		UserDefaults.standard.setValue(true, forKey: "setPro")
 	}
 }
 

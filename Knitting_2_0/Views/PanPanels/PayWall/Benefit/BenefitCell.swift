@@ -8,7 +8,12 @@
 
 import UIKit
 
-class BenefitCell: UITableViewCell {
+protocol _Benefit {
+	var text      : String  { get set }
+	var image     : UIImage { get set }
+}
+
+class BenefitCell : UITableViewCell {
 	
 	static let reuseID = "BenefitCell"
 	
@@ -27,20 +32,9 @@ class BenefitCell: UITableViewCell {
 		containerView.layer.shadowOpacity = 1
 		containerView.layer.masksToBounds = false
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-    }
     
-	func configure(with data: Any) {
-		switch data {
-		case is PanProfileVC.ViewState.Benefit :
-			let data = data as! PanProfileVC.ViewState.Benefit
-			self.mainLabel.text  = data.text
-			self.leftImage.image = data.image
-		default:
-			break
-		}
+	public func configure(with data: _Benefit) {
+		self.mainLabel.text  = data.text
+		self.leftImage.image = data.image
 	}
 }

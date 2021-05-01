@@ -9,7 +9,7 @@
 import UIKit
 import PanModal
 
-class NavigationController: UINavigationController, PanModalPresentable {
+class PanelNavigation : UINavigationController, PanModalPresentable {
 	
 	var cornerRadius: CGFloat {
 		return 16

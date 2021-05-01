@@ -27,12 +27,10 @@ class PanNewProject : BasePanVC, PanModalPresentable {
 		return .maxHeight
 	}
 	
-	public var showPayWall : (()->())?
-	
+	private var currentName    = ""   { didSet { print(currentName)    } }
+
 	private var currentImage   = 0    { didSet { print(currentImage)   } }
 
-	private var currentName    = ""   { didSet { print(currentName)    } }
-	
 	private var currentCounter = true { didSet { print(currentCounter) } }
 	
 	private var items : [Item] = []
@@ -66,22 +64,14 @@ class PanNewProject : BasePanVC, PanModalPresentable {
 			var onSwitch       : ((Bool)->())
 		}
 		
-		struct SelectNotifications            {
-			var question       : String
-			var days           : [Int]
-		}
-		
-		struct BecomePro       : _BecomePro   {
+		struct BecomePro        : _BecomePro   {
+			var image          : UIImage?
+			var title          : String
+			var color          : UIColor?
 			var onBecomePro    : (()->())
 		}
 
-//		struct IAP_RequiredBtn : IAP_Required {
-//			var privacy        : (() -> ())
-//			var restore        : (() -> ())
-//			var terms          : (() -> ())
-//		}
-
-		struct MainButton      : _MainButton  {
+		struct MainButton       : _MainButton  {
 			var title          : String
 			var onTap          : (() -> ())
 			var color          : UIColor
@@ -99,8 +89,8 @@ class PanNewProject : BasePanVC, PanModalPresentable {
     override func viewDidLoad() {
         super.viewDidLoad()
 		guard let currentUser = Auth.auth().currentUser else { return }
-		user	= MUser(user: currentUser)
-		ref		= Database.database().reference(withPath: "users").child(String(user.uid))
+		user = MUser(user: currentUser)
+		ref	 = Database.database().reference(withPath: "users").child(String(user.uid))
 		self.makeState(with: .initial)
 		self.title = "Create new counter".localized()
 		self.tableView.delegate = self
@@ -137,14 +127,14 @@ class PanNewProject : BasePanVC, PanModalPresentable {
 	}
 	
 	private func makeState(with mode: StateMode) {
+		let payWallClosure : (()->())       = { [weak self]        in
+			guard let self = self else { return }
+			self.showPayWall()
+		}
 		let imageClosure   : ((Int)->())    = { [weak self] result in
 			guard let self = self else { return }
 			self.handleSelection (result)
 			self.currentImage   = result
-		}
-		let payWallClosure : (()->())       = { [weak self]        in
-			guard let self = self else { return }
-			self.showPayWall?()
 		}
 		let nameClosure    : ((String)->()) = { [weak self] result in
 			guard let self = self else { return }
@@ -159,14 +149,14 @@ class PanNewProject : BasePanVC, PanModalPresentable {
 			let selectImage   = ViewState.SelectImages    (items: createItems(), currentImage: 0, showPayWall: payWallClosure, selectImage: imageClosure)
 			let selectName    = ViewState.SelectName      (name : "",  selectName: nameClosure)
 			let selectCounter = ViewState.SelectCounter   (onSwitch    : coгnterClosure)
-			let becomePro     = ViewState.BecomePro       (onBecomePro : self.becomePro)
+			let becomePro     = ViewState.BecomePro       (image: UIImage(named: "Diamond")!, title: "Become PRO Knitter".localized(), color: UIColor(red: 0.552, green: 0.325, blue: 0.779, alpha: 1), onBecomePro : payWallClosure)
 			let mainButton    = ViewState.MainButton      (title       : "+ Create project".localized(), onTap: self.saveProject, color: getColor())
 			self.viewState.rows = [selectImage, selectName, selectCounter, becomePro, mainButton]
 		case .editing:
 			let selectImage   = ViewState.SelectImages    (items: self.items,  currentImage: currentImage, showPayWall: payWallClosure, selectImage: imageClosure)
 			let selectName    = ViewState.SelectName      (name : currentName, selectName: nameClosure)
 			let selectCounter = ViewState.SelectCounter   (onSwitch    : coгnterClosure)
-			let becomePro     = ViewState.BecomePro       (onBecomePro : self.becomePro)
+			let becomePro     = ViewState.BecomePro       (image: UIImage(named: "Diamond")!, title: "Become PRO Knitter".localized(), color: UIColor(red: 0.552, green: 0.325, blue: 0.779, alpha: 1), onBecomePro : payWallClosure)
 			let mainButton    = ViewState.MainButton      (title       : "+ Create project".localized(), onTap: self.saveProject, color: getColor())
 			self.viewState.rows = [selectImage, selectName, selectCounter, becomePro, mainButton]
 		}
@@ -174,9 +164,7 @@ class PanNewProject : BasePanVC, PanModalPresentable {
 }
 
 // MARK: - TableView Delegate
-extension PanNewProject : UITableViewDelegate {
-	
-}
+extension PanNewProject : UITableViewDelegate { }
 
 // MARK: - TableView DataSource
 extension PanNewProject : UITableViewDataSource {

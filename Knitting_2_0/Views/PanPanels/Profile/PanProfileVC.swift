@@ -36,15 +36,6 @@ class PanProfileVC: BasePanVC, PanModalPresentable {
 			var email : String
 		}
 		
-		struct BecomePro {
-			
-		}
-		
-		struct Benefit {
-			var text  : String
-			var image : UIImage
-		}
-		
 		static let initial = ViewState(rows: [])
 	}
 	
@@ -66,11 +57,9 @@ class PanProfileVC: BasePanVC, PanModalPresentable {
 		tableView.delegate = self
 		tableView.dataSource = self
 		tableView.separatorStyle = .none
-		tableView.register(UINib(nibName: "BenefitCell",   bundle: nil),   forCellReuseIdentifier: BenefitCell.reuseID   )
-		tableView.register(UINib(nibName: "BecomeProCell",   bundle: nil), forCellReuseIdentifier: BecomeProCell.reuseID   )
 		tableView.register(UINib(nibName: "InformationCell", bundle: nil), forCellReuseIdentifier: InformationCell.reuseID )
 		
-		UserDefaults.standard.bool(forKey: "setProVersion") ? makePremiumState() : makeStandartState()
+		UserDefaults.standard.bool(forKey: "setPro") ? makePremiumState() : makeStandartState()
     }
 	
 	func getProfileInformation() -> ViewState.Information {
@@ -113,13 +102,7 @@ class PanProfileVC: BasePanVC, PanModalPresentable {
 	
 	func makeStandartState() {
 		let info  = self.getProfileInformation()
-		let suply = ViewState.BecomePro()
-		let benefit1 = ViewState.Benefit(text: "Create unlimited projects and counters", image: UIImage(named: "Infinity")!)
-		let benefit2 = ViewState.Benefit(text: "No ads",                                 image: UIImage(named: "Stars")!)
-		let benefit3 = ViewState.Benefit(text: "Different color themes + dark theme",    image: UIImage(named: "Colors")!)
-		let benefit4 = ViewState.Benefit(text: "Cancel any time",                        image: UIImage(named: "Check")!)
-
-		viewState.rows.append(contentsOf: [info, suply, benefit1, benefit2, benefit3, benefit4])
+		self.viewState.rows = [info]
 	}
 }
 
@@ -138,18 +121,6 @@ extension PanProfileVC : UITableViewDataSource {
 		case is ViewState.Information :
 			let data = viewState.rows[indexPath.row]
 			let cell = tableView.dequeueReusableCell(withIdentifier: "InformationCell", for: indexPath) as! InformationCell
-			cell.configure(with: data)
-			cell.selectionStyle = .none
-			cell.separatorInset = .zero
-			return cell
-		case is ViewState.BecomePro  :
-			let cell = tableView.dequeueReusableCell(withIdentifier: "BecomeProCell", for: indexPath) as! BecomeProCell
-			cell.selectionStyle = .none
-			cell.separatorInset = .zero
-			return cell
-		case is ViewState.Benefit     :
-			let data = viewState.rows[indexPath.row]
-			let cell = tableView.dequeueReusableCell(withIdentifier: "BenefitCell", for: indexPath) as! BenefitCell
 			cell.configure(with: data)
 			cell.selectionStyle = .none
 			cell.separatorInset = .zero

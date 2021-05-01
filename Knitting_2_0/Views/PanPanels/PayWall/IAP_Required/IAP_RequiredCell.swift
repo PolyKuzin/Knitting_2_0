@@ -16,7 +16,7 @@ protocol IAP_Required {
 
 class IAP_RequiredCell: UITableViewCell {
 	
-	static var reuseId = "IAP_RequiredCell"
+	static var reuseID = "IAP_RequiredCell"
 	
 	private var onPrivacy : (()->())?
 	private var onRestore : (()->())?
@@ -42,13 +42,8 @@ class IAP_RequiredCell: UITableViewCell {
         super.awakeFromNib()
         
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-    }
     
-	public func configure(data: IAP_Required) {
+	public func configure(with data: IAP_Required) {
 		self.onPrivacy = data.privacy
 		self.onRestore = data.restore
 		self.onTerms   = data.terms

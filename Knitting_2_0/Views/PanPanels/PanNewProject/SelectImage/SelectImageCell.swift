@@ -57,7 +57,7 @@ extension SelectImageCell : UICollectionViewDelegate {
 			self.items[indexPath.row].isSelected = true
 			self.selectImage?(indexPath.row)
 		} else {
-//			self.showPayWall?()
+			self.showPayWall?()
 			self.selectImage?(0)
 		}
 	}

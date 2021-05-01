@@ -9,18 +9,23 @@
 import UIKit
 import PanModal
 
-class BasePanVC : UIViewController {
+class BasePanVC : BaseVC {
 	
-	var becomePro : (()->()) = {
-		print("BECOME PRO")
+	var onPurchaise : (()->()) = {
+		let iap_manager = IAPManager.shared
+		let identifire = iap_manager.products.filter({
+			$0.productIdentifier == IAPProducts.autoRenew.rawValue
+		}).first?.productIdentifier
+		iap_manager.purchase(productWith: identifire!)
 	}
-	
+		
 	var onPrivacy : (()->()) = {
 		print("PRIVACY")
 	}
 	
 	var onRestore : (()->()) = {
-		print("RESTORE")
+		let iap_manager = IAPManager.shared
+		iap_manager.restoreCompletedTransactions()
 	}
 	
 	var onTerms   : (()->()) = {

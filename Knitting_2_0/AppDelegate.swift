@@ -30,12 +30,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		YMPYandexMetricaPush.handleApplicationDidFinishLaunching(options: launchOptions)
 		self.registerForPushNotificationsWithApplication(application)
 		
-		
 		FirebaseApp.configure()
 		UIApplication.shared.applicationIconBadgeNumber = 0
 		UserDefaults.standard.set(currentCount+1, forKey:"launchCount")
 		AnalyticsService.reportEvent(with: "Launch KnitIt")
 		requestNotification()
+		let reciptValidator = ReceiptValidator()
+		let result = reciptValidator.validateReceipt()
+		switch result {
+		case let .success(reciept):
+			guard let purchase = reciept.inAppPurchaseReceipts?.filter({$0.productIdentifier == IAPProducts.autoRenew.rawValue}).first else { return true }
+			if purchase.subscriptionExpirationDate?.compare(Date()) == .some(.orderedDescending) {
+				AnalyticsService.reportEvent(with: "Purchase", parameters: ["data" : purchase.purchaseDate ?? "0000000"])
+				UserDefaults.standard.setValue(true, forKey: "setPro")
+			} else {
+				UserDefaults.standard.setValue(false, forKey: "setPro")
+			}
+		case let .error(error):
+			print(error.localizedDescription)
+		}
 		return true
     }
 	

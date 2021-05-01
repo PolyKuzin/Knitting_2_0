@@ -21,7 +21,7 @@
 		9922D123260BDB6A00960A08 /* MainButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9922D121260BDB6A00960A08 /* MainButtonCell.swift */; };
 		9922D124260BDB6A00960A08 /* MainButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9922D122260BDB6A00960A08 /* MainButtonCell.xib */; };
 		9936B96A25BC7911008F4443 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9936B96925BC7911008F4443 /* BaseVC.swift */; };
-		9936B97225BC7AB5008F4443 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9936B97125BC7AB5008F4443 /* NavigationController.swift */; };
+		9936B97225BC7AB5008F4443 /* PanelNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9936B97125BC7AB5008F4443 /* PanelNavigation.swift */; };
 		9936B97D25BC92E3008F4443 /* BasePanVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9936B97C25BC92E2008F4443 /* BasePanVC.swift */; };
 		9936B98A25BC9324008F4443 /* PanProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9936B98825BC9324008F4443 /* PanProfileVC.swift */; };
 		9936B98B25BC9324008F4443 /* PanProfileVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9936B98925BC9324008F4443 /* PanProfileVC.xib */; };
@@ -52,6 +52,7 @@
 		994EF7162514ECFF009AA35B /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 994EF7152514ECFF009AA35B /* SF-Pro-Display-Bold.otf */; };
 		9959471E250A582B00D0E273 /* MUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9959471D250A582B00D0E273 /* MUser.swift */; };
 		99594720250AD91F00D0E273 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9959471F250AD91F00D0E273 /* MainVC.swift */; };
+		9962BDDC263B416C00DD8B22 /* FullScreenNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9962BDDB263B416C00DD8B22 /* FullScreenNavigation.swift */; };
 		9964A864252B799D00D35398 /* NewCounterCardVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9964A863252B799D00D35398 /* NewCounterCardVM.swift */; };
 		9964A868252B82A600D35398 /* addDoneCancelToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9964A867252B82A600D35398 /* addDoneCancelToolBar.swift */; };
 		996FAF2C2508245D00209228 /* EntryVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996FAF2B2508245D00209228 /* EntryVM.swift */; };
@@ -74,8 +75,6 @@
 		99A0709C26123C8B00366972 /* pkcs7_union_accessors.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A0709326123BB700366972 /* pkcs7_union_accessors.m */; };
 		99A070A026123D1A00366972 /* IAP_Products.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A0709F26123D1A00366972 /* IAP_Products.swift */; };
 		99A070A426123D3200366972 /* IAP_Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A070A326123D3200366972 /* IAP_Manager.swift */; };
-		99A070AC26126CD600366972 /* IAP_ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A070AA26126CD600366972 /* IAP_ButtonCell.swift */; };
-		99A070AD26126CD600366972 /* IAP_ButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99A070AB26126CD600366972 /* IAP_ButtonCell.xib */; };
 		99A070C826130E1100366972 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A070C726130E1100366972 /* Loader.swift */; };
 		99A070CE2613184400366972 /* DefaultImageStr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A070CD2613184400366972 /* DefaultImageStr.swift */; };
 		99AFBA4724F80D9E00E71FD6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AFBA4624F80D9E00E71FD6 /* AppDelegate.swift */; };
@@ -104,6 +103,8 @@
 		99EFB56625168AF5003A5D07 /* ProfileCardVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EFB56525168AF5003A5D07 /* ProfileCardVM.swift */; };
 		99EFB56C25178D77003A5D07 /* NewProjectCardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EFB56B25178D77003A5D07 /* NewProjectCardVC.swift */; };
 		99F268302544BF24009DDDD8 /* NotificationKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F2682F2544BF24009DDDD8 /* NotificationKeys.swift */; };
+		99FC0416263DB31F00ADEEEC /* IAP_PricingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FC0414263DB31F00ADEEEC /* IAP_PricingCell.swift */; };
+		99FC0417263DB31F00ADEEEC /* IAP_PricingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99FC0415263DB31F00ADEEEC /* IAP_PricingCell.xib */; };
 		E94C5CFDB12D6AF56F26B533 /* Pods_KnitNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DC982753C586016214E54B5 /* Pods_KnitNotifications.framework */; };
 /* End PBXBuildFile section */
 
@@ -161,7 +162,7 @@
 		9922D121260BDB6A00960A08 /* MainButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButtonCell.swift; sourceTree = "<group>"; };
 		9922D122260BDB6A00960A08 /* MainButtonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainButtonCell.xib; sourceTree = "<group>"; };
 		9936B96925BC7911008F4443 /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
-		9936B97125BC7AB5008F4443 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		9936B97125BC7AB5008F4443 /* PanelNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelNavigation.swift; sourceTree = "<group>"; };
 		9936B97C25BC92E2008F4443 /* BasePanVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePanVC.swift; sourceTree = "<group>"; };
 		9936B98825BC9324008F4443 /* PanProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanProfileVC.swift; sourceTree = "<group>"; };
 		9936B98925BC9324008F4443 /* PanProfileVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PanProfileVC.xib; sourceTree = "<group>"; };
@@ -194,6 +195,7 @@
 		994EF7152514ECFF009AA35B /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
 		9959471D250A582B00D0E273 /* MUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MUser.swift; sourceTree = "<group>"; };
 		9959471F250AD91F00D0E273 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
+		9962BDDB263B416C00DD8B22 /* FullScreenNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenNavigation.swift; sourceTree = "<group>"; };
 		9964A863252B799D00D35398 /* NewCounterCardVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCounterCardVM.swift; sourceTree = "<group>"; };
 		9964A867252B82A600D35398 /* addDoneCancelToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addDoneCancelToolBar.swift; sourceTree = "<group>"; };
 		996FAF2B2508245D00209228 /* EntryVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryVM.swift; sourceTree = "<group>"; };
@@ -229,8 +231,6 @@
 		99A0709726123BD000366972 /* pkcs7_union_accessors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pkcs7_union_accessors.h; sourceTree = "<group>"; };
 		99A0709F26123D1A00366972 /* IAP_Products.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAP_Products.swift; sourceTree = "<group>"; };
 		99A070A326123D3200366972 /* IAP_Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAP_Manager.swift; sourceTree = "<group>"; };
-		99A070AA26126CD600366972 /* IAP_ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAP_ButtonCell.swift; sourceTree = "<group>"; };
-		99A070AB26126CD600366972 /* IAP_ButtonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IAP_ButtonCell.xib; sourceTree = "<group>"; };
 		99A070C726130E1100366972 /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
 		99A070CD2613184400366972 /* DefaultImageStr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultImageStr.swift; sourceTree = "<group>"; };
 		99AFBA4324F80D9E00E71FD6 /* Knitting_2_0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Knitting_2_0.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -267,6 +267,8 @@
 		99F052FE25ABB04400CFFD88 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		99F052FF25ABB04400CFFD88 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		99F2682F2544BF24009DDDD8 /* NotificationKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationKeys.swift; sourceTree = "<group>"; };
+		99FC0414263DB31F00ADEEEC /* IAP_PricingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAP_PricingCell.swift; sourceTree = "<group>"; };
+		99FC0415263DB31F00ADEEEC /* IAP_PricingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IAP_PricingCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -301,6 +303,10 @@
 		990C1887263A025F00D56949 /* PayWall */ = {
 			isa = PBXGroup;
 			children = (
+				99FC0413263DB2D000ADEEEC /* IAP_pricing */,
+				9939AA75260BC9CD0094AFC3 /* IAP_Required */,
+				9936B9A125BCBFBA008F4443 /* BecomePro */,
+				9936B9BC25BCCA87008F4443 /* Benefit */,
 				990C1888263A029B00D56949 /* PayWallVC.swift */,
 				990C1889263A029B00D56949 /* PayWallVC.xib */,
 			);
@@ -353,7 +359,6 @@
 		9936B98F25BC9452008F4443 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				9936B9BC25BCCA87008F4443 /* Benefit */,
 				9936B99325BC959D008F4443 /* Information */,
 				9936B98825BC9324008F4443 /* PanProfileVC.swift */,
 				9936B98925BC9324008F4443 /* PanProfileVC.xib */,
@@ -414,16 +419,6 @@
 				9939AA6D260BAF2F0094AFC3 /* CreateCounterCell.xib */,
 			);
 			path = CreateCounter;
-			sourceTree = "<group>";
-		};
-		9939AA74260BC9A20094AFC3 /* BasicCells */ = {
-			isa = PBXGroup;
-			children = (
-				99A070A926123E7300366972 /* IAP_Button */,
-				9939AA75260BC9CD0094AFC3 /* IAP_Required */,
-				9936B9A125BCBFBA008F4443 /* BecomePro */,
-			);
-			path = BasicCells;
 			sourceTree = "<group>";
 		};
 		9939AA75260BC9CD0094AFC3 /* IAP_Required */ = {
@@ -501,15 +496,6 @@
 			path = Validation;
 			sourceTree = "<group>";
 		};
-		99A070A926123E7300366972 /* IAP_Button */ = {
-			isa = PBXGroup;
-			children = (
-				99A070AA26126CD600366972 /* IAP_ButtonCell.swift */,
-				99A070AB26126CD600366972 /* IAP_ButtonCell.xib */,
-			);
-			path = IAP_Button;
-			sourceTree = "<group>";
-		};
 		99AFBA3A24F80D9E00E71FD6 = {
 			isa = PBXGroup;
 			children = (
@@ -570,7 +556,8 @@
 			children = (
 				9936B96925BC7911008F4443 /* BaseVC.swift */,
 				9936B97C25BC92E2008F4443 /* BasePanVC.swift */,
-				9936B97125BC7AB5008F4443 /* NavigationController.swift */,
+				9936B97125BC7AB5008F4443 /* PanelNavigation.swift */,
+				9962BDDB263B416C00DD8B22 /* FullScreenNavigation.swift */,
 				99EFB56D25178D89003A5D07 /* PanPanels */,
 				996FAF332508FC8200209228 /* Entry */,
 				994EF71725153490009AA35B /* Main */,
@@ -666,12 +653,20 @@
 			isa = PBXGroup;
 			children = (
 				990C1887263A025F00D56949 /* PayWall */,
-				9939AA74260BC9A20094AFC3 /* BasicCells */,
 				99207D2325E023B60013DBF3 /* PanNewProject */,
 				9936B98F25BC9452008F4443 /* Profile */,
 				9936B98425BC9302008F4443 /* OldOnes */,
 			);
 			path = PanPanels;
+			sourceTree = "<group>";
+		};
+		99FC0413263DB2D000ADEEEC /* IAP_pricing */ = {
+			isa = PBXGroup;
+			children = (
+				99FC0414263DB31F00ADEEEC /* IAP_PricingCell.swift */,
+				99FC0415263DB31F00ADEEEC /* IAP_PricingCell.xib */,
+			);
+			path = IAP_pricing;
 			sourceTree = "<group>";
 		};
 		D41AB12B2FDCE20E3F502767 /* Pods */ = {
@@ -797,9 +792,9 @@
 				99207D3425E067C00013DBF3 /* SelectImageCell.xib in Resources */,
 				99AFBA5024F80DA000E71FD6 /* Assets.xcassets in Resources */,
 				994EF7162514ECFF009AA35B /* SF-Pro-Display-Bold.otf in Resources */,
-				99A070AD26126CD600366972 /* IAP_ButtonCell.xib in Resources */,
 				991AD5682529268D008A6E8D /* SF-Pro-Rounded-Medium.otf in Resources */,
 				9922D124260BDB6A00960A08 /* MainButtonCell.xib in Resources */,
+				99FC0417263DB31F00ADEEEC /* IAP_PricingCell.xib in Resources */,
 				998AED4F255C4D8600507F02 /* Localizable.strings in Resources */,
 				9936B99725BC9617008F4443 /* InformationCell.xib in Resources */,
 				99207D2725E024290013DBF3 /* PanNewProject.xib in Resources */,
@@ -905,9 +900,10 @@
 				99A070C826130E1100366972 /* Loader.swift in Sources */,
 				990C188A263A029B00D56949 /* PayWallVC.swift in Sources */,
 				99192D57251FC208001C6720 /* CounterVC.swift in Sources */,
-				9936B97225BC7AB5008F4443 /* NavigationController.swift in Sources */,
+				9936B97225BC7AB5008F4443 /* PanelNavigation.swift in Sources */,
 				99EF88B8251821F900C77181 /* NewProjectCardVM.swift in Sources */,
 				998AED40255C4B6800507F02 /* Localize.swift in Sources */,
+				9962BDDC263B416C00DD8B22 /* FullScreenNavigation.swift in Sources */,
 				99B509BC24FDB1D60046A2B1 /* UIViewExt.swift in Sources */,
 				994EF7142514B424009AA35B /* MainSetionHeader.swift in Sources */,
 				99AFBA4B24F80D9E00E71FD6 /* SignUpVC.swift in Sources */,
@@ -947,11 +943,11 @@
 				998B9F8B250C2FA100C0C52F /* ForgotPassVC.swift in Sources */,
 				9939AA61260ABFCE0094AFC3 /* SelectNameCell.swift in Sources */,
 				99AFBA7A24F9667F00E71FD6 /* Constants.swift in Sources */,
+				99FC0416263DB31F00ADEEEC /* IAP_PricingCell.swift in Sources */,
 				99EFB56C25178D77003A5D07 /* NewProjectCardVC.swift in Sources */,
 				9936B9B025BCC27E008F4443 /* BecomeProCell.swift in Sources */,
 				99A0709C26123C8B00366972 /* pkcs7_union_accessors.m in Sources */,
 				998B9F8D250C2FBB00C0C52F /* ForgotPassVM.swift in Sources */,
-				99A070AC26126CD600366972 /* IAP_ButtonCell.swift in Sources */,
 				9939AA6E260BAF2F0094AFC3 /* CreateCounterCell.swift in Sources */,
 				99B957062524A0C900AC5438 /* CounterCell.swift in Sources */,
 				99A070A426123D3200366972 /* IAP_Manager.swift in Sources */,
