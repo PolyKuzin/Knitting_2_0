@@ -35,6 +35,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		UserDefaults.standard.set(currentCount+1, forKey:"launchCount")
 		AnalyticsService.reportEvent(with: "Launch KnitIt")
 		requestNotification()
+		IAPManager.shared.setupPurchases { (success) in
+			if success {
+				print("CAN MAKE PURCHAISES")
+				IAPManager.shared.getProducts()
+			}
+		}
 		let reciptValidator = ReceiptValidator()
 		let result = reciptValidator.validateReceipt()
 		switch result {

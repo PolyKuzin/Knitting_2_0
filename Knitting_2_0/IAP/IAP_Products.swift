@@ -9,5 +9,5 @@
 import Foundation
 
 enum IAPProducts : String {
-	case autoRenew    = "ru.polykuzin.KnittingMonth"
+	case autoRenew    = "KnittingMonth"
 }

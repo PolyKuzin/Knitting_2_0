@@ -91,7 +91,7 @@ class PayWallVC : BasePanVC, PanModalPresentable {
 		
 		let becomePro : (()->()) = { [weak self] in
 			guard let self = self else { return }
-			self.onPurchaise()
+			self.purchaise()
 		}
 		let pricing   = ViewState.IAP_Pricing(title: "Try 7-days free trial, then 3.99$/mounth".localized())
 		let subscribe = ViewState.BecomePro(title: "Subscribe".localized(), color: UIColor(red: 0.552, green: 0.325, blue: 0.779, alpha: 1), onBecomePro: becomePro)

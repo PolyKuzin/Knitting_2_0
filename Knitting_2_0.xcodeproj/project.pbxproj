@@ -105,6 +105,8 @@
 		99F268302544BF24009DDDD8 /* NotificationKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F2682F2544BF24009DDDD8 /* NotificationKeys.swift */; };
 		99FC0416263DB31F00ADEEEC /* IAP_PricingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FC0414263DB31F00ADEEEC /* IAP_PricingCell.swift */; };
 		99FC0417263DB31F00ADEEEC /* IAP_PricingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99FC0415263DB31F00ADEEEC /* IAP_PricingCell.xib */; };
+		99FC041D263DCB8E00ADEEEC /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99FC041C263DCB8E00ADEEEC /* StoreKit.framework */; };
+		99FC0421263DCF0400ADEEEC /* AppleIncRootCertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = 99FC0420263DCF0400ADEEEC /* AppleIncRootCertificate.cer */; };
 		E94C5CFDB12D6AF56F26B533 /* Pods_KnitNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DC982753C586016214E54B5 /* Pods_KnitNotifications.framework */; };
 /* End PBXBuildFile section */
 
@@ -269,6 +271,8 @@
 		99F2682F2544BF24009DDDD8 /* NotificationKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationKeys.swift; sourceTree = "<group>"; };
 		99FC0414263DB31F00ADEEEC /* IAP_PricingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAP_PricingCell.swift; sourceTree = "<group>"; };
 		99FC0415263DB31F00ADEEEC /* IAP_PricingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IAP_PricingCell.xib; sourceTree = "<group>"; };
+		99FC041C263DCB8E00ADEEEC /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		99FC0420263DCF0400ADEEEC /* AppleIncRootCertificate.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = AppleIncRootCertificate.cer; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -285,6 +289,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				47A37A22BDFBF3FC7386BA7A /* Pods_Knitting_2_0.framework in Frameworks */,
+				99FC041D263DCB8E00ADEEEC /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,6 +299,7 @@
 		08A18B26175CFE69233B92F8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				99FC041C263DCB8E00ADEEEC /* StoreKit.framework */,
 				0DC982753C586016214E54B5 /* Pods_KnitNotifications.framework */,
 				9724609D9DADF9EB0D44F26B /* Pods_Knitting_2_0.framework */,
 			);
@@ -535,6 +541,7 @@
 				99AFBA6A24F8103600E71FD6 /* ViewModels */,
 				99AFBA5424F80DA000E71FD6 /* Info.plist */,
 				99E4A1C525091FBE003CA7C9 /* GoogleService-Info.plist */,
+				99FC0420263DCF0400ADEEEC /* AppleIncRootCertificate.cer */,
 			);
 			path = Knitting_2_0;
 			sourceTree = "<group>";
@@ -800,6 +807,7 @@
 				99207D2725E024290013DBF3 /* PanNewProject.xib in Resources */,
 				994300B5252B11090065EF5C /* SF-Pro-Text-Medium.otf in Resources */,
 				9939AA62260ABFCE0094AFC3 /* SelectNameCell.xib in Resources */,
+				99FC0421263DCF0400ADEEEC /* AppleIncRootCertificate.cer in Resources */,
 				99454022260AB1C300F0EC3E /* ImageCollectionViewCell.xib in Resources */,
 				9936B98B25BC9324008F4443 /* PanProfileVC.xib in Resources */,
 				99E4A1C625091FBE003CA7C9 /* GoogleService-Info.plist in Resources */,

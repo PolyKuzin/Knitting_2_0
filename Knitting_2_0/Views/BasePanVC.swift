@@ -11,25 +11,30 @@ import PanModal
 
 class BasePanVC : BaseVC {
 	
-	var onPurchaise : (()->()) = {
+	func purchaise() {
 		let iap_manager = IAPManager.shared
-		let identifire = iap_manager.products.filter({
+		guard let identifire = iap_manager.products.filter({
 			$0.productIdentifier == IAPProducts.autoRenew.rawValue
-		}).first?.productIdentifier
-		iap_manager.purchase(productWith: identifire!)
-	}
-		
-	var onPrivacy : (()->()) = {
-		print("PRIVACY")
+		}).first?.productIdentifier else { return }
+		iap_manager.purchase(productWith: identifire)
 	}
 	
-	var onRestore : (()->()) = {
+	@objc
+	private func selfDismiss() {
+		self.dismiss(animated: true, completion: nil)
+	}
+		
+	func onPrivacy() {
+		self.openWeb(link: "") // TODO: вставить ссылку
+	}
+	
+	func onRestore() {
 		let iap_manager = IAPManager.shared
 		iap_manager.restoreCompletedTransactions()
 	}
 	
-	var onTerms   : (()->()) = {
-		print("TERMS")
+	func onTerms() {
+		self.openWeb(link: "")  // TODO: вставить ссылку
 	}
 	
 	public func getColor() -> UIColor {
@@ -38,6 +43,11 @@ class BasePanVC : BaseVC {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+		NotificationCenter.default.addObserver(self, selector: #selector(selfDismiss),
+											   name: NSNotification.Name(IAPProducts.autoRenew.rawValue), object: nil)
     }
+	
+	deinit {
+		NotificationCenter.default.removeObserver(self)
+	}
 }
