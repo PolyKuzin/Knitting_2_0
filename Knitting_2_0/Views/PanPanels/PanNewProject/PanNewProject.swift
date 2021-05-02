@@ -160,11 +160,11 @@ class PanNewProject : BasePanVC, PanModalPresentable {
 
 		self.viewState.rows = [selectImage, selectName]
 		if currentProject != nil {
-			let mainButton    = ViewState.MainButton      (title       : "Save".localized(), onTap: self.editProject, color: getColor())
+			let mainButton    = ViewState.MainButton      (title       : "Save".localized(), onTap: self.editProject, color: getButtonColor())
 			self.viewState.rows.append(mainButton)
 		} else {
 			let selectCounter = ViewState.SelectCounter   (onSwitch    : counterClosure)
-			let mainButton    = ViewState.MainButton      (title       : "+ Create project".localized(), onTap: self.saveProject, color: getColor())
+			let mainButton    = ViewState.MainButton      (title       : "+ Create project".localized(), onTap: self.saveProject, color: getButtonColor())
 			self.viewState.rows.append(selectCounter)
 			self.viewState.rows.append(mainButton)
 		}

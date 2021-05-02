@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="437704ce-c3c0-4e09-8fb0-96df05d6f516" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Knitting_2_0.xcworkspace/xcuserdata/pavelkuzin.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0.xcworkspace/xcuserdata/pavelkuzin.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/BaseVC.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/BaseVC.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/BasePanVC.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/BasePanVC.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PanNewProject/PanNewProject.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PanNewProject/PanNewProject.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -72,7 +73,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619952138330</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="IAPs рааботают">
+      <created>1619967365810</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1619967365810</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -109,17 +117,18 @@
     <MESSAGE value="Merge branch 'dex-2-7'&#10;&#10;Conflicts:&#10;&#9;Knitting_2_0.xcodeproj/project.pbxproj" />
     <MESSAGE value="Merge branch 'dex-2-7'&#10;&#10;Conflicts:&#10;&#9;Knitting_2_0.xcodeproj/project.pbxproj&#10;&#9;&#10;Новые ячейки и многое другое" />
     <MESSAGE value="Merge branch 'dex-2-7'&#10;&#10;Conflicts:&#10;&#9;Knitting_2_0.xcodeproj/project.pbxproj&#10;&#9;&#10;AppDelegate little refactoring" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'dex-2-7'&#10;&#10;Conflicts:&#10;&#9;Knitting_2_0.xcodeproj/project.pbxproj&#10;&#9;&#10;AppDelegate little refactoring" />
+    <MESSAGE value="IAPs рааботают" />
+    <option name="LAST_COMMIT_MESSAGE" value="IAPs рааботают" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="136" y="92" key="CommitChangelistDialog2" timestamp="1619952137927">
+    <state x="136" y="92" key="CommitChangelistDialog2" timestamp="1619967365627">
       <screen x="0" y="25" width="1680" height="972" />
     </state>
-    <state x="136" y="92" key="CommitChangelistDialog2/0.25.1680.972@0.25.1680.972" timestamp="1619952137927" />
-    <state x="428" y="258" key="IDE.errors.dialog" timestamp="1619951859687">
+    <state x="136" y="92" key="CommitChangelistDialog2/0.25.1680.972@0.25.1680.972" timestamp="1619967365626" />
+    <state x="428" y="258" key="IDE.errors.dialog" timestamp="1619968992097">
       <screen x="0" y="25" width="1680" height="972" />
     </state>
-    <state x="428" y="258" key="IDE.errors.dialog/0.25.1680.972@0.25.1680.972" timestamp="1619951859687" />
+    <state x="428" y="258" key="IDE.errors.dialog/0.25.1680.972@0.25.1680.972" timestamp="1619968992097" />
     <state x="173" y="89" key="MergeDialog" timestamp="1613641803572">
       <screen x="0" y="25" width="1680" height="972" />
     </state>
@@ -136,5 +145,9 @@
       <screen x="0" y="25" width="1680" height="972" />
     </state>
     <state x="444" y="228" key="Vcs.Push.Dialog.v2/0.25.1680.972@0.25.1680.972" timestamp="1619952154660" />
+    <state x="100" y="125" width="1480" height="772" key="com.intellij.dvcs.ui.CompareBranchesDialog" timestamp="1619965971382">
+      <screen x="0" y="25" width="1680" height="972" />
+    </state>
+    <state x="100" y="125" width="1480" height="772" key="com.intellij.dvcs.ui.CompareBranchesDialog/0.25.1680.972@0.25.1680.972" timestamp="1619965971382" />
   </component>
 </project>
