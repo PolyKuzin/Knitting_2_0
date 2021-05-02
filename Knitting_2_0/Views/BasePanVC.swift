@@ -25,7 +25,7 @@ class BasePanVC : BaseVC {
 	}
 		
 	func onPrivacy() {
-		self.openWeb(link: "") // TODO: вставить ссылку
+		self.openWeb(link: "https://github.com/PolyKuzin/Knit-it-Privacy-Policy/blob/main/PrivacyPolicy.md")
 	}
 	
 	func onRestore() {
@@ -34,7 +34,7 @@ class BasePanVC : BaseVC {
 	}
 	
 	func onTerms() {
-		self.openWeb(link: "")  // TODO: вставить ссылку
+		self.openWeb(link: "https://github.com/PolyKuzin/Knit-it-Privacy-Policy/blob/main/Terms%26Conditions.md")
 	}
 	
 	public func getColor() -> UIColor {
