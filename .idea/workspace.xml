@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="437704ce-c3c0-4e09-8fb0-96df05d6f516" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Knitting_2_0.xcworkspace/xcuserdata/pavelkuzin.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0.xcworkspace/xcuserdata/pavelkuzin.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Knitting_2_0.xcworkspace/xcuserdata/pavelkuzin.xcuserdatad/xcdebugger/Expressions.xcexplist" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0.xcworkspace/xcuserdata/pavelkuzin.xcuserdatad/xcdebugger/Expressions.xcexplist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/BasePanVC.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/BasePanVC.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/Main/MainVC.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Main/MainVC.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/OldOnes/EditProjectVC.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/OldOnes/EditProjectVC.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/BaseVC.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/BaseVC.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PanNewProject/PanNewProject.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PanNewProject/PanNewProject.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PanNewProject/SelectName/SelectNameCell.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PanNewProject/SelectName/SelectNameCell.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

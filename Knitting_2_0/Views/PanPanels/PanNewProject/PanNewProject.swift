@@ -46,13 +46,7 @@ class PanNewProject : BasePanVC, PanModalPresentable {
 	private var ref   : DatabaseReference!
 	
 	@IBOutlet weak var tableView : UITableView!
-	
-	enum StateMode {
-		case initial
-		case editing(MProject)
-		case inoutState
-	}
-	
+
 	struct ViewState {
 		
 		var rows : [Any]
@@ -111,10 +105,10 @@ class PanNewProject : BasePanVC, PanModalPresentable {
 		self.tableView.register(UINib(nibName: "SelectImageCell",   bundle: nil), forCellReuseIdentifier: "SelectImageCell")
 		self.tableView.register(UINib(nibName: "CreateCounterCell", bundle: nil), forCellReuseIdentifier: "CreateCounterCell")
 		if currentProject != nil {
-			self.makeState(with: .editing(currentProject!))
+			self.makeState()
 			self.title = "Edit project".localized()
 		} else {
-			self.makeState(with: .initial)
+			self.makeState()
 			self.title = "Create new project".localized()
 		}
     }
@@ -137,15 +131,16 @@ class PanNewProject : BasePanVC, PanModalPresentable {
 			if self.items[index].image == UIImage(named: "_\(result)") {
 				self.items.enumerated().forEach { (_index,_) in self.items[_index].isSelected = false }
 				self.items[index].isSelected = true
-				self.makeState(with: .inoutState)
+				self.makeState()
 			}
 		}
 	}
 	
-	private func makeState(with mode: StateMode) {
+	private func makeState() {
+		let defaults = UserDefaults()
 		let payWallClosure : (()->())       = { [weak self]        in
 			guard let self = self else { return }
-//			self.showPayWall()
+			self.showPayWall()
 		}
 		let imageClosure   : ((Int)->())    = { [weak self] result in
 			guard let self = self else { return }
@@ -160,23 +155,10 @@ class PanNewProject : BasePanVC, PanModalPresentable {
 			guard let self = self else { return }
 			self.currentCounter = result
 		}
-		switch mode {
-		case .initial:
-			let selectImage   = ViewState.SelectImages    (items: self.items, currentImage: self.currentImage, showPayWall: payWallClosure, selectImage: imageClosure)
-			let selectName    = ViewState.SelectName      (name : "",  selectName: nameClosure)
-			let becomePro     = ViewState.BecomePro       (image: UIImage(named: "Diamond")!, title: "Become PRO Knitter".localized(), color: UIColor(red: 0.552, green: 0.325, blue: 0.779, alpha: 1), onBecomePro : payWallClosure)
-			self.viewState.rows = [selectImage, selectName]
-		case .inoutState:
-			let selectImage   = ViewState.SelectImages    (items: self.items,  currentImage: self.currentImage, showPayWall: payWallClosure, selectImage: imageClosure)
-			let selectName    = ViewState.SelectName      (name : currentName, selectName: nameClosure)
-			let becomePro     = ViewState.BecomePro       (image: UIImage(named: "Diamond")!, title: "Become PRO Knitter".localized(), color: UIColor(red: 0.552, green: 0.325, blue: 0.779, alpha: 1), onBecomePro : payWallClosure)
-			self.viewState.rows = [selectImage, selectName]
-		case .editing :
-			let selectImage   = ViewState.SelectImages    (items: self.items,  currentImage: self.currentImage, showPayWall: payWallClosure, selectImage: imageClosure)
-			let selectName    = ViewState.SelectName      (name : currentName, selectName: nameClosure)
-			let becomePro     = ViewState.BecomePro       (image: UIImage(named: "Diamond")!, title: "Become PRO Knitter".localized(), color: UIColor(red: 0.552, green: 0.325, blue: 0.779, alpha: 1), onBecomePro : payWallClosure)
-			self.viewState.rows = [selectImage, selectName]
-		}
+		let selectImage   = ViewState.SelectImages    (items: self.items,  currentImage: self.currentImage, showPayWall: payWallClosure, selectImage: imageClosure)
+		let selectName    = ViewState.SelectName      (name : currentName, selectName: nameClosure)
+
+		self.viewState.rows = [selectImage, selectName]
 		if currentProject != nil {
 			let mainButton    = ViewState.MainButton      (title       : "Save".localized(), onTap: self.editProject, color: getColor())
 			self.viewState.rows.append(mainButton)
@@ -185,6 +167,10 @@ class PanNewProject : BasePanVC, PanModalPresentable {
 			let mainButton    = ViewState.MainButton      (title       : "+ Create project".localized(), onTap: self.saveProject, color: getColor())
 			self.viewState.rows.append(selectCounter)
 			self.viewState.rows.append(mainButton)
+		}
+		if defaults.bool(forKey: "setPro") == false {
+			let becomePro     = ViewState.BecomePro       (image: UIImage(named: "Diamond")!, title: "Become PRO Knitter".localized(), color: UIColor(red: 0.552, green: 0.325, blue: 0.779, alpha: 1), onBecomePro : payWallClosure)
+			self.viewState.rows.insert(becomePro, at: self.viewState.rows.count - 1)
 		}
 	}
 }

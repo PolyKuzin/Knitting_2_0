@@ -55,10 +55,7 @@ class BaseVC : UIViewController, MFMailComposeViewControllerDelegate {
 			mail.setToRecipients([message.to])
 			mail.setSubject(message.title)
 			mail.setMessageBody(message.body, isHTML: false)
-				
 			present(mail, animated: true)
-				
-			// Show third party email composer if default Mail app is not present
 		} else if let emailUrl = createEmailUrl(to: message.to, subject: message.title, body: message.body) {
 			UIApplication.shared.open(emailUrl)
 		}
