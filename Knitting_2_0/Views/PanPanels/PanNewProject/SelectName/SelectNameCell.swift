@@ -32,7 +32,7 @@ class SelectNameCell : UITableViewCell {
 
 		//functionality
 		textField.autocorrectionType	= UITextAutocorrectionType.no
-		textField.keyboardType			= UIKeyboardType.asciiCapable
+//		textField.keyboardType			= UIKeyboardType.asciiCapable
 		textField.returnKeyType 		= UIReturnKeyType.done
 		textField.clearButtonMode 		= UITextField.ViewMode.whileEditing
 		

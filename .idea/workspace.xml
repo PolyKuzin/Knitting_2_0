@@ -3,7 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="437704ce-c3c0-4e09-8fb0-96df05d6f516" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Knitting_2_0/AppDelegate.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/AppDelegate.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0.xcworkspace/xcuserdata/pavelkuzin.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0.xcworkspace/xcuserdata/pavelkuzin.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0.xcworkspace/xcuserdata/pavelkuzin.xcuserdatad/xcdebugger/Expressions.xcexplist" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0.xcworkspace/xcuserdata/pavelkuzin.xcuserdatad/xcdebugger/Expressions.xcexplist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/BasePanVC.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/BasePanVC.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/Main/MainVC.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Main/MainVC.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/OldOnes/EditProjectVC.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/OldOnes/EditProjectVC.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PanNewProject/PanNewProject.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PanNewProject/PanNewProject.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PanNewProject/SelectName/SelectNameCell.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PanNewProject/SelectName/SelectNameCell.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +70,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616631444962</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Merge branch 'dex-2-7'&#10;&#10;Conflicts:&#10;&#9;Knitting_2_0.xcodeproj/project.pbxproj&#10;&#9;&#10;AppDelegate little refactoring">
+      <created>1619952138330</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1619952138330</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -73,17 +86,6 @@
         <entry key="MAIN">
           <value>
             <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="master" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
               <option name="COLUMN_ORDER" />
             </State>
           </value>
@@ -111,13 +113,14 @@
     <MESSAGE value="Resolved conflicts" />
     <MESSAGE value="Merge branch 'dex-2-7'&#10;&#10;Conflicts:&#10;&#9;Knitting_2_0.xcodeproj/project.pbxproj" />
     <MESSAGE value="Merge branch 'dex-2-7'&#10;&#10;Conflicts:&#10;&#9;Knitting_2_0.xcodeproj/project.pbxproj&#10;&#9;&#10;Новые ячейки и многое другое" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'dex-2-7'&#10;&#10;Conflicts:&#10;&#9;Knitting_2_0.xcodeproj/project.pbxproj&#10;&#9;&#10;Новые ячейки и многое другое" />
+    <MESSAGE value="Merge branch 'dex-2-7'&#10;&#10;Conflicts:&#10;&#9;Knitting_2_0.xcodeproj/project.pbxproj&#10;&#9;&#10;AppDelegate little refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'dex-2-7'&#10;&#10;Conflicts:&#10;&#9;Knitting_2_0.xcodeproj/project.pbxproj&#10;&#9;&#10;AppDelegate little refactoring" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="136" y="92" key="CommitChangelistDialog2" timestamp="1616631443629">
+    <state x="136" y="92" key="CommitChangelistDialog2" timestamp="1619952137927">
       <screen x="0" y="25" width="1680" height="972" />
     </state>
-    <state x="136" y="92" key="CommitChangelistDialog2/0.25.1680.972@0.25.1680.972" timestamp="1616631443629" />
+    <state x="136" y="92" key="CommitChangelistDialog2/0.25.1680.972@0.25.1680.972" timestamp="1619952137927" />
     <state x="428" y="258" key="IDE.errors.dialog" timestamp="1619951859687">
       <screen x="0" y="25" width="1680" height="972" />
     </state>
@@ -134,9 +137,9 @@
       <screen x="0" y="25" width="1680" height="972" />
     </state>
     <state x="346" y="128" key="SettingsEditor/0.25.1680.972@0.25.1680.972" timestamp="1613641883937" />
-    <state x="444" y="228" key="Vcs.Push.Dialog.v2" timestamp="1616631453134">
+    <state x="444" y="228" key="Vcs.Push.Dialog.v2" timestamp="1619952154661">
       <screen x="0" y="25" width="1680" height="972" />
     </state>
-    <state x="444" y="228" key="Vcs.Push.Dialog.v2/0.25.1680.972@0.25.1680.972" timestamp="1616631453134" />
+    <state x="444" y="228" key="Vcs.Push.Dialog.v2/0.25.1680.972@0.25.1680.972" timestamp="1619952154660" />
   </component>
 </project>

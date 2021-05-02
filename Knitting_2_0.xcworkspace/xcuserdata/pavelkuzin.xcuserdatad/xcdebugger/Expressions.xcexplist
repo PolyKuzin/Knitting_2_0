@@ -31,6 +31,9 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "closure #1 in variable initialization expression of BasePanVC.onPurchaise:BasePanVC.swift">
+      </ContextState>
+      <ContextState
          contextName = "MainVC.refresh(sender:):MainVC.swift">
          <PersistentStrings>
             <PersistentString
@@ -45,6 +48,9 @@
                value = "sections">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "BasePanVC.purchaise():BasePanVC.swift">
       </ContextState>
       <ContextState
          contextName = "MainVC.teardownCardView():MainVC.swift">
@@ -70,6 +76,14 @@
          <PersistentStrings>
             <PersistentString
                value = "projects">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "PanNewProject.currentProject.didset:PanNewProject.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "currentImage">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

@@ -225,11 +225,7 @@ extension MainVC: SwipeableCollectionViewCellDelegate {
 		guard let indexPath = collectionView.indexPath(for: cell) else { return }
 		let project = projects[indexPath.row]
 		
-		let recognizer = UITapGestureRecognizer()
-		recognizer.state = .ended
-		
-		self.currentProject = project
-		let edit = EditProjectVC()
+		let edit = PanNewProject(nibName: "PanNewProject", bundle: nil)
 		edit.currentProject = project
 		let vc : PanModalPresentable.LayoutType = PanelNavigation(rootViewController: edit)
 		self.presentPanModal(vc)

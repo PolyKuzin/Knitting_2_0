@@ -61,7 +61,6 @@ class EditProjectVC					: UIViewController, CardViewControllerProtocol, UINaviga
 		super.viewDidLoad()
 		viewModel = EditProjectCardVM()
 		setupNewProjectView()
-		self.title = "Edit project".localized()
 
 		guard let currentUser = Auth.auth().currentUser else { return }
 		user	= MUser(user: currentUser)
