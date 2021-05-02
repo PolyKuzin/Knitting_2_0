@@ -10,29 +10,6 @@ import UIKit
 import PanModal
 
 class BasePanVC : BaseVC {
-	
-	public func getButtonColor() -> UIColor {
-		return UIColor(red: 0.745, green: 0.616, blue: 0.875, alpha: 1)
-	}
-	
-	public func getImage(_ str: String) -> Int {
-		switch str {
-		case "_1":
-			return 1
-		case "_2":
-			return 2
-		case "_3":
-			return 3
-		case "_4":
-			return 4
-		case "_5":
-			return 5
-		case "_6":
-			return 6
-		default:
-			return 0
-		}
-	}
 
     override func viewDidLoad() {
         super.viewDidLoad()

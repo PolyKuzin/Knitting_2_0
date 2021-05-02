@@ -41,7 +41,7 @@ class SelectImageCell: UITableViewCell {
     }
 	
 	public func configure(with data: Any) {
-		if let data = data as? PanNewProject.ViewState.SelectImages {
+		if let data = data as? PanProject.ViewState.SelectImages {
 			self.items = data.items
 			self.selectImage = data.selectImage
 			self.showPayWall = data.showPayWall

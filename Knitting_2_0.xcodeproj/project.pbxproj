@@ -14,8 +14,8 @@
 		990C188B263A029B00D56949 /* PayWallVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 990C1889263A029B00D56949 /* PayWallVC.xib */; };
 		99192D57251FC208001C6720 /* CounterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99192D56251FC208001C6720 /* CounterVC.swift */; };
 		991AD5682529268D008A6E8D /* SF-Pro-Rounded-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 991AD5672529268D008A6E8D /* SF-Pro-Rounded-Medium.otf */; };
-		99207D2625E024290013DBF3 /* PanNewProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99207D2425E024290013DBF3 /* PanNewProject.swift */; };
-		99207D2725E024290013DBF3 /* PanNewProject.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99207D2525E024290013DBF3 /* PanNewProject.xib */; };
+		99207D2625E024290013DBF3 /* PanProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99207D2425E024290013DBF3 /* PanProject.swift */; };
+		99207D2725E024290013DBF3 /* PanProject.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99207D2525E024290013DBF3 /* PanProject.xib */; };
 		99207D3325E067C00013DBF3 /* SelectImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99207D3125E067C00013DBF3 /* SelectImageCell.swift */; };
 		99207D3425E067C00013DBF3 /* SelectImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99207D3225E067C00013DBF3 /* SelectImageCell.xib */; };
 		9922D123260BDB6A00960A08 /* MainButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9922D121260BDB6A00960A08 /* MainButtonCell.swift */; };
@@ -45,7 +45,6 @@
 		994300B9252B156A0065EF5C /* NewCounterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994300B8252B156A0065EF5C /* NewCounterVC.swift */; };
 		99454021260AB1C300F0EC3E /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9945401F260AB1C300F0EC3E /* ImageCollectionViewCell.swift */; };
 		99454022260AB1C300F0EC3E /* ImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99454020260AB1C300F0EC3E /* ImageCollectionViewCell.xib */; };
-		9949F8BB252DD35B00D12F50 /* EditProjectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9949F8BA252DD35B00D12F50 /* EditProjectVC.swift */; };
 		9949F8BF252DE21F00D12F50 /* EditProjectVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9949F8BE252DE21F00D12F50 /* EditProjectVM.swift */; };
 		9949F8C5252DEC7900D12F50 /* EditCounterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9949F8C4252DEC7900D12F50 /* EditCounterVC.swift */; };
 		994EF7142514B424009AA35B /* MainSetionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994EF7132514B423009AA35B /* MainSetionHeader.swift */; };
@@ -101,7 +100,6 @@
 		99EFB5602515638F003A5D07 /* SF-Pro-Text-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 99EFB55F2515638F003A5D07 /* SF-Pro-Text-Bold.otf */; };
 		99EFB562251567CD003A5D07 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 99EFB561251567CD003A5D07 /* SF-Pro-Display-Regular.otf */; };
 		99EFB56625168AF5003A5D07 /* ProfileCardVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EFB56525168AF5003A5D07 /* ProfileCardVM.swift */; };
-		99EFB56C25178D77003A5D07 /* NewProjectCardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EFB56B25178D77003A5D07 /* NewProjectCardVC.swift */; };
 		99F268302544BF24009DDDD8 /* NotificationKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F2682F2544BF24009DDDD8 /* NotificationKeys.swift */; };
 		99FC0416263DB31F00ADEEEC /* IAP_PricingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FC0414263DB31F00ADEEEC /* IAP_PricingCell.swift */; };
 		99FC0417263DB31F00ADEEEC /* IAP_PricingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99FC0415263DB31F00ADEEEC /* IAP_PricingCell.xib */; };
@@ -157,8 +155,8 @@
 		990C1889263A029B00D56949 /* PayWallVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PayWallVC.xib; sourceTree = "<group>"; };
 		99192D56251FC208001C6720 /* CounterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterVC.swift; sourceTree = "<group>"; };
 		991AD5672529268D008A6E8D /* SF-Pro-Rounded-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Medium.otf"; sourceTree = "<group>"; };
-		99207D2425E024290013DBF3 /* PanNewProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanNewProject.swift; sourceTree = "<group>"; };
-		99207D2525E024290013DBF3 /* PanNewProject.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PanNewProject.xib; sourceTree = "<group>"; };
+		99207D2425E024290013DBF3 /* PanProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanProject.swift; sourceTree = "<group>"; };
+		99207D2525E024290013DBF3 /* PanProject.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PanProject.xib; sourceTree = "<group>"; };
 		99207D3125E067C00013DBF3 /* SelectImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectImageCell.swift; sourceTree = "<group>"; };
 		99207D3225E067C00013DBF3 /* SelectImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectImageCell.xib; sourceTree = "<group>"; };
 		9922D121260BDB6A00960A08 /* MainButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButtonCell.swift; sourceTree = "<group>"; };
@@ -190,7 +188,6 @@
 		994300B8252B156A0065EF5C /* NewCounterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCounterVC.swift; sourceTree = "<group>"; };
 		9945401F260AB1C300F0EC3E /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		99454020260AB1C300F0EC3E /* ImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCollectionViewCell.xib; sourceTree = "<group>"; };
-		9949F8BA252DD35B00D12F50 /* EditProjectVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProjectVC.swift; sourceTree = "<group>"; };
 		9949F8BE252DE21F00D12F50 /* EditProjectVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProjectVM.swift; sourceTree = "<group>"; };
 		9949F8C4252DEC7900D12F50 /* EditCounterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCounterVC.swift; sourceTree = "<group>"; };
 		994EF7132514B423009AA35B /* MainSetionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSetionHeader.swift; sourceTree = "<group>"; };
@@ -261,7 +258,6 @@
 		99EFB55F2515638F003A5D07 /* SF-Pro-Text-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Bold.otf"; sourceTree = "<group>"; };
 		99EFB561251567CD003A5D07 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
 		99EFB56525168AF5003A5D07 /* ProfileCardVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardVM.swift; sourceTree = "<group>"; };
-		99EFB56B25178D77003A5D07 /* NewProjectCardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProjectCardVC.swift; sourceTree = "<group>"; };
 		99F052F825ABAD2800CFFD88 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		99F052F925ABAD2F00CFFD88 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		99F052FC25ABB03400CFFD88 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -326,8 +322,8 @@
 				9939AA6B260BAF120094AFC3 /* CreateCounter */,
 				9939AA52260ABEE00094AFC3 /* SelectName */,
 				99207D3025E0676B0013DBF3 /* SelectImage */,
-				99207D2425E024290013DBF3 /* PanNewProject.swift */,
-				99207D2525E024290013DBF3 /* PanNewProject.xib */,
+				99207D2425E024290013DBF3 /* PanProject.swift */,
+				99207D2525E024290013DBF3 /* PanProject.xib */,
 			);
 			path = PanNewProject;
 			sourceTree = "<group>";
@@ -356,8 +352,6 @@
 			children = (
 				9949F8C4252DEC7900D12F50 /* EditCounterVC.swift */,
 				994300B8252B156A0065EF5C /* NewCounterVC.swift */,
-				9949F8BA252DD35B00D12F50 /* EditProjectVC.swift */,
-				99EFB56B25178D77003A5D07 /* NewProjectCardVC.swift */,
 			);
 			path = OldOnes;
 			sourceTree = "<group>";
@@ -804,7 +798,7 @@
 				99FC0417263DB31F00ADEEEC /* IAP_PricingCell.xib in Resources */,
 				998AED4F255C4D8600507F02 /* Localizable.strings in Resources */,
 				9936B99725BC9617008F4443 /* InformationCell.xib in Resources */,
-				99207D2725E024290013DBF3 /* PanNewProject.xib in Resources */,
+				99207D2725E024290013DBF3 /* PanProject.xib in Resources */,
 				994300B5252B11090065EF5C /* SF-Pro-Text-Medium.otf in Resources */,
 				9939AA62260ABFCE0094AFC3 /* SelectNameCell.xib in Resources */,
 				99FC0421263DCF0400ADEEEC /* AppleIncRootCertificate.cer in Resources */,
@@ -903,7 +897,6 @@
 				9939AA78260BCCE50094AFC3 /* IAP_RequiredCell.swift in Sources */,
 				994300B1252A27FF0065EF5C /* UIViewController.swift in Sources */,
 				99594720250AD91F00D0E273 /* MainVC.swift in Sources */,
-				9949F8BB252DD35B00D12F50 /* EditProjectVC.swift in Sources */,
 				99A0708F26123B7100366972 /* RecieptValidator.swift in Sources */,
 				99A070C826130E1100366972 /* Loader.swift in Sources */,
 				990C188A263A029B00D56949 /* PayWallVC.swift in Sources */,
@@ -937,7 +930,7 @@
 				9949F8BF252DE21F00D12F50 /* EditProjectVM.swift in Sources */,
 				998B9F8F250D817000C0C52F /* ProjectCell.swift in Sources */,
 				9936B97D25BC92E3008F4443 /* BasePanVC.swift in Sources */,
-				99207D2625E024290013DBF3 /* PanNewProject.swift in Sources */,
+				99207D2625E024290013DBF3 /* PanProject.swift in Sources */,
 				99AFBA4924F80D9E00E71FD6 /* SceneDelegate.swift in Sources */,
 				9964A868252B82A600D35398 /* addDoneCancelToolBar.swift in Sources */,
 				99EF88BF251D3A9F00C77181 /* UIDevice.swift in Sources */,
@@ -952,7 +945,6 @@
 				9939AA61260ABFCE0094AFC3 /* SelectNameCell.swift in Sources */,
 				99AFBA7A24F9667F00E71FD6 /* Constants.swift in Sources */,
 				99FC0416263DB31F00ADEEEC /* IAP_PricingCell.swift in Sources */,
-				99EFB56C25178D77003A5D07 /* NewProjectCardVC.swift in Sources */,
 				9936B9B025BCC27E008F4443 /* BecomeProCell.swift in Sources */,
 				99A0709C26123C8B00366972 /* pkcs7_union_accessors.m in Sources */,
 				998B9F8D250C2FBB00C0C52F /* ForgotPassVM.swift in Sources */,

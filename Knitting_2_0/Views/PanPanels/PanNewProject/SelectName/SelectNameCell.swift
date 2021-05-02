@@ -57,7 +57,7 @@ class SelectNameCell : UITableViewCell {
 	}
 	
 	public func configure(with data: Any) {
-		if let data = data as? PanNewProject.ViewState.SelectName {
+		if let data = data as? PanProject.ViewState.SelectName {
 			self.selectName = data.selectName
 			self.textField.text = data.name
 		}

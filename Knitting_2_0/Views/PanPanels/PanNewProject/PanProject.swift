@@ -17,7 +17,7 @@ struct Item {
 	var isSelected  : Bool
 }
 
-class PanNewProject : BasePanVC, PanModalPresentable {
+class PanProject : BasePanVC, PanModalPresentable {
 	
 	var panScrollable: UIScrollView? {
 		return self.tableView
@@ -176,10 +176,10 @@ class PanNewProject : BasePanVC, PanModalPresentable {
 }
 
 // MARK: - TableView Delegate
-extension PanNewProject : UITableViewDelegate { }
+extension PanProject : UITableViewDelegate { }
 
 // MARK: - TableView DataSource
-extension PanNewProject : UITableViewDataSource {
+extension PanProject : UITableViewDataSource {
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return self.viewState.rows.count
@@ -223,7 +223,7 @@ extension PanNewProject : UITableViewDataSource {
 }
 
 // MARK: - Saving and DB issues
-extension PanNewProject {
+extension PanProject {
 	
 	func saveProject() {
 		let imgStr = "_" + String(currentImage)

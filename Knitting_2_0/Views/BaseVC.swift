@@ -30,7 +30,7 @@ struct Profile     : RowPresentable {
 }
 
 struct NewProject  : RowPresentable {
-	var VC         : PanModalPresentable.LayoutType = PanelNavigation(rootViewController: PanNewProject(nibName: "PanNewProject", bundle: nil))
+	var VC         : PanModalPresentable.LayoutType = PanelNavigation(rootViewController: PanProject(nibName: "PanProject", bundle: nil))
 }
 
 struct NewCounter  : RowPresentable {
@@ -93,5 +93,32 @@ class BaseVC : UIViewController, MFMailComposeViewControllerDelegate {
 		safariVC.preferredBarTintColor = .white
 		safariVC.preferredControlTintColor = .white
 		return safariVC
+	}
+}
+
+// MARK: - UI Elements
+extension BaseVC {
+	
+	public func getImage(_ str: String) -> Int {
+		switch str {
+		case "_1":
+			return 1
+		case "_2":
+			return 2
+		case "_3":
+			return 3
+		case "_4":
+			return 4
+		case "_5":
+			return 5
+		case "_6":
+			return 6
+		default:
+			return 0
+		}
+	}
+	
+	public func getButtonColor() -> UIColor {
+		return UIColor(red: 0.745, green: 0.616, blue: 0.875, alpha: 1)
 	}
 }

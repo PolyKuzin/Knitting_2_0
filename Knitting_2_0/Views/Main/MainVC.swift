@@ -225,7 +225,7 @@ extension MainVC: SwipeableCollectionViewCellDelegate {
 		guard let indexPath = collectionView.indexPath(for: cell) else { return }
 		let project = projects[indexPath.row]
 		
-		let edit = PanNewProject(nibName: "PanNewProject", bundle: nil)
+		let edit = PanProject(nibName: "PanProject", bundle: nil)
 		edit.currentProject = project
 		let vc : PanModalPresentable.LayoutType = PanelNavigation(rootViewController: edit)
 		self.presentPanModal(vc)

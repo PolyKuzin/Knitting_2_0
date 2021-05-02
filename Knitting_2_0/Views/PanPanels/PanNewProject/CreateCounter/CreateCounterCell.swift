@@ -33,7 +33,7 @@ class CreateCounterCell: UITableViewCell {
 	}
 	
 	public func configure(with data: Any) {
-		if let data = data as? PanNewProject.ViewState.SelectCounter {
+		if let data = data as? PanProject.ViewState.SelectCounter {
 			self.onSwitch = data.onSwitch
 		}
 	}
