@@ -11,7 +11,7 @@ import PanModal
 import FirebaseAuth
 import FirebaseDatabase
 
-class PanProfileVC: BasePanVC, PanModalPresentable {
+class PanProfileVC : BasePanVC, PanModalPresentable {
 	
 	var panScrollable: UIScrollView? {
 		return tableView

@@ -169,7 +169,7 @@ extension MainVC {
 	
 	@objc
 	func newProjectTaped() {
-		self.presentPanModal(NewProject().VC)
+		self.presentPanModal(Project().VC)
     }
 	
 	@objc

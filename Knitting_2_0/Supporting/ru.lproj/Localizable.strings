@@ -37,3 +37,6 @@
 "Create new counter" = "Создать новый счетчик";
 "Edit project" = "Изменяем проект";
 "Create new project" = "Создать новый проект";
+
+// Pan New Counter
+"Set the number of rows?" = "Установить количество рядов?";

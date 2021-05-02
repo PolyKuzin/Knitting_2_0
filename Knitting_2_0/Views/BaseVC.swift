@@ -29,12 +29,12 @@ struct Profile     : RowPresentable {
 	var VC         : PanModalPresentable.LayoutType = PanelNavigation(rootViewController: PanProfileVC(nibName: "PanProfileVC",   bundle: nil))
 }
 
-struct NewProject  : RowPresentable {
+struct Project     : RowPresentable {
 	var VC         : PanModalPresentable.LayoutType = PanelNavigation(rootViewController: PanProject(nibName: "PanProject", bundle: nil))
 }
 
-struct NewCounter  : RowPresentable {
-	var VC         : PanModalPresentable.LayoutType = PanelNavigation(rootViewController: NewCounterVC())
+struct Counter     : RowPresentable {
+	var VC         : PanModalPresentable.LayoutType = PanelNavigation(rootViewController: PanCounter(nibName: "PanCounter", bundle: nil))
 }
 
 class BaseVC : UIViewController, MFMailComposeViewControllerDelegate {

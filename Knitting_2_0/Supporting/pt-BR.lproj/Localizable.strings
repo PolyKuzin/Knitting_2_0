@@ -37,3 +37,6 @@
 "Create new counter" = "Criar um novo contador";
 "Edit project" = "Editar projecto";
 "Create new project" = "Criar um novo projecto";
+
+// Pan New Counter
+"Set the number of rows?" = "Definir o número de linhas?";

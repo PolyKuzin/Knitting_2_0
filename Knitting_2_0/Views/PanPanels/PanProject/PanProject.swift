@@ -19,6 +19,10 @@ struct Item {
 
 class PanProject : BasePanVC, PanModalPresentable {
 	
+	private var items : [Item] = []
+	private var user  : MUser!
+	private var ref   : DatabaseReference!
+	
 	var panScrollable: UIScrollView? {
 		return self.tableView
 	}
@@ -35,15 +39,9 @@ class PanProject : BasePanVC, PanModalPresentable {
 		}
 	}
 	
-	private var currentName    = ""   { didSet { print(currentName)    } }
-
-	private var currentImage   = 0    { didSet { print(currentImage)   } }
-
-	private var currentCounter = true { didSet { print(currentCounter) } }
-	
-	private var items : [Item] = []
-	private var user  : MUser!
-	private var ref   : DatabaseReference!
+	private var currentName    = ""   { didSet { print(currentName)   } }
+	private var currentImage   = 0    { didSet { print(currentImage)  } }
+	private var currentSwitch  = true { didSet { print(currentSwitch) } }
 	
 	@IBOutlet weak var tableView : UITableView!
 
@@ -58,12 +56,13 @@ class PanProject : BasePanVC, PanModalPresentable {
 			var selectImage    : ((Int)->())
 		}
 		
-		struct SelectName                         {
+		struct SelectName       : _SelectNameCell {
 			var name           : String
 			var selectName     : ((String)->())
 		}
 		
-		struct SelectCounter                      {
+		struct SelectCounter    : _SwitcherCell   {
+			var title          : String
 			var onSwitch       : ((Bool)->())
 		}
 		
@@ -94,7 +93,6 @@ class PanProject : BasePanVC, PanModalPresentable {
 		guard let currentUser = Auth.auth().currentUser else { return }
 		user = MUser(user: currentUser)
 		ref	 = Database.database().reference(withPath: "users").child(String(user.uid))
-		print(String(user.uid))
 		self.items = self.createItems()
 		self.tableView.delegate = self
 		self.tableView.dataSource = self
@@ -153,18 +151,18 @@ class PanProject : BasePanVC, PanModalPresentable {
 		}
 		let counterClosure : ((Bool)->())   = { [weak self] result in
 			guard let self = self else { return }
-			self.currentCounter = result
+			self.currentSwitch = result
 		}
 		let selectImage   = ViewState.SelectImages    (items: self.items,  currentImage: self.currentImage, showPayWall: payWallClosure, selectImage: imageClosure)
 		let selectName    = ViewState.SelectName      (name : currentName, selectName: nameClosure)
 
 		self.viewState.rows = [selectImage, selectName]
 		if currentProject != nil {
-			let mainButton    = ViewState.MainButton      (title       : "Save".localized(), onTap: self.editProject, color: getButtonColor())
+			let mainButton    = ViewState.MainButton      (title : "Save".localized(), onTap: self.editProject, color: getButtonColor())
 			self.viewState.rows.append(mainButton)
 		} else {
-			let selectCounter = ViewState.SelectCounter   (onSwitch    : counterClosure)
-			let mainButton    = ViewState.MainButton      (title       : "+ Create project".localized(), onTap: self.saveProject, color: getButtonColor())
+			let selectCounter = ViewState.SelectCounter   (title : "Create counter with project name?".localized(), onSwitch    : counterClosure)
+			let mainButton    = ViewState.MainButton      (title : "Create".localized(), onTap: self.saveProject, color: getButtonColor())
 			self.viewState.rows.append(selectCounter)
 			self.viewState.rows.append(mainButton)
 		}
@@ -199,7 +197,7 @@ extension PanProject : UITableViewDataSource {
 			return cell
 		case is ViewState.SelectCounter   :
 			let data = self.viewState.rows[indexPath.row] as! ViewState.SelectCounter
-			let cell = tableView.dequeueReusableCell(withIdentifier: "CreateCounterCell", for: indexPath) as! CreateCounterCell
+			let cell = tableView.dequeueReusableCell(withIdentifier: "CreateCounterCell", for: indexPath) as! SwitcherCell
 			cell.configure(with: data)
 			return cell
 		case is ViewState.MainButton      :
@@ -234,7 +232,7 @@ extension PanProject {
 		let project = MProject(userID: user.uid, name: currentName, image: imgStr, date: "\(projectUniqueID)")
 		let referenceForProject = self.ref.child("projects").child("\(projectUniqueID)")
 		referenceForProject.setValue(project.projectToDictionary())
-		if currentCounter {
+		if currentSwitch {
 			let counter = MCounter(name: currentName, rows: 0, rowsMax: -1, date: "999999999")
 			let referenceForCounter = self.ref.child("projects").child("\(projectUniqueID)").child("counters").child("\(currentName)")
 			referenceForCounter.setValue(counter.counterToDictionary())

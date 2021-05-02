@@ -37,3 +37,6 @@
 "Create new counter" = "Create new counter";
 "Edit project" = "Edit project";
 "Create new project" = "Create new project";
+
+// Pan New Counter
+"Set the number of rows?" = "Impostare il numero di righe?";

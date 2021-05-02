@@ -2,18 +2,46 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="437704ce-c3c0-4e09-8fb0-96df05d6f516" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PanCounter/PanCounter.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PanCounter/PanCounter.xib" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Knitting_2_0.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/BasePanVC.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/BasePanVC.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Supporting/de.lproj/Localizable.strings" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Supporting/de.lproj/Localizable.strings" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Supporting/en.lproj/Localizable.strings" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Supporting/en.lproj/Localizable.strings" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Supporting/es.lproj/Localizable.strings" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Supporting/es.lproj/Localizable.strings" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Supporting/fr.lproj/Localizable.strings" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Supporting/fr.lproj/Localizable.strings" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Supporting/it.lproj/Localizable.strings" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Supporting/it.lproj/Localizable.strings" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Supporting/ja.lproj/Localizable.strings" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Supporting/ja.lproj/Localizable.strings" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Supporting/ko.lproj/Localizable.strings" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Supporting/ko.lproj/Localizable.strings" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Supporting/pt-BR.lproj/Localizable.strings" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Supporting/pt-BR.lproj/Localizable.strings" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Supporting/ru.lproj/Localizable.strings" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Supporting/ru.lproj/Localizable.strings" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/BaseVC.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/BaseVC.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/Counters/CounterVC.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Counters/CounterVC.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/Main/MainVC.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Main/MainVC.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/OldOnes/EditProjectVC.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/OldOnes/NewProjectCardVC.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PanNewProject/CreateCounter/CreateCounterCell.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PanNewProject/CreateCounter/CreateCounterCell.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PanNewProject/PanNewProject.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PanNewProject/PanProject.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PanNewProject/PanNewProject.xib" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PanNewProject/PanProject.xib" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PanNewProject/SelectImage/SelectImageCell.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PanNewProject/SelectImage/SelectImageCell.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PanNewProject/SelectName/SelectNameCell.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PanNewProject/SelectName/SelectNameCell.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PanNewProject/CreateCounter/CreateCounterCell.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/Cells/CreateCounter/SwitcherCell.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PanNewProject/CreateCounter/CreateCounterCell.xib" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/Cells/CreateCounter/CreateCounterCell.xib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PanNewProject/MainButton/MainButtonCell.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/Cells/MainButton/MainButtonCell.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PanNewProject/MainButton/MainButtonCell.xib" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/Cells/MainButton/MainButtonCell.xib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PanNewProject/PanProject.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PanProject/PanProject.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PanNewProject/PanProject.xib" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PanProject/PanProject.xib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PanNewProject/SelectImage/ImageCollectionViewCell/ImageCollectionViewCell.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/Cells/SelectImage/ImageCollectionViewCell/ImageCollectionViewCell.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PanNewProject/SelectImage/ImageCollectionViewCell/ImageCollectionViewCell.xib" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/Cells/SelectImage/ImageCollectionViewCell/ImageCollectionViewCell.xib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PanNewProject/SelectImage/SelectImageCell.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/Cells/SelectImage/SelectImageCell.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PanNewProject/SelectImage/SelectImageCell.xib" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/Cells/SelectImage/SelectImageCell.xib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PanNewProject/SelectName/SelectNameCell.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/Cells/SelectName/SelectNameCell.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PanNewProject/SelectName/SelectNameCell.xib" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/Cells/SelectName/SelectNameCell.xib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PayWall/BecomePro/BecomeProCell.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/Cells/BecomePro/BecomeProCell.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PayWall/BecomePro/BecomeProCell.xib" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/Cells/BecomePro/BecomeProCell.xib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PayWall/Benefit/BenefitCell.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/Cells/Benefit/BenefitCell.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PayWall/Benefit/BenefitCell.xib" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/Cells/Benefit/BenefitCell.xib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PayWall/IAP_Required/IAP_RequiredCell.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/Cells/IAP_Required/IAP_RequiredCell.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PayWall/IAP_Required/IAP_RequiredCell.xib" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/Cells/IAP_Required/IAP_RequiredCell.xib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PayWall/IAP_pricing/IAP_PricingCell.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/Cells/IAP_pricing/IAP_PricingCell.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PayWall/IAP_pricing/IAP_PricingCell.xib" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/Cells/IAP_pricing/IAP_PricingCell.xib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/Profile/Information/InformationCell.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/Cells/Information/InformationCell.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/Profile/Information/InformationCell.xib" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/Cells/Information/InformationCell.xib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/Profile/PanProfileVC.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PanProfile/PanProfileVC.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/Profile/PanProfileVC.xib" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PanProfile/PanProfileVC.xib" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +123,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619969021553</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="deleting old files">
+      <created>1619971682716</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1619971682716</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -134,13 +169,14 @@
     <MESSAGE value="Merge branch 'dex-2-7'&#10;&#10;Conflicts:&#10;&#9;Knitting_2_0.xcodeproj/project.pbxproj&#10;&#9;&#10;AppDelegate little refactoring" />
     <MESSAGE value="IAPs рааботают" />
     <MESSAGE value="BasePanVC.swift рефакторинг" />
-    <option name="LAST_COMMIT_MESSAGE" value="BasePanVC.swift рефакторинг" />
+    <MESSAGE value="deleting old files" />
+    <option name="LAST_COMMIT_MESSAGE" value="deleting old files" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="136" y="92" key="CommitChangelistDialog2" timestamp="1619969021286">
+    <state x="136" y="92" key="CommitChangelistDialog2" timestamp="1619971682422">
       <screen x="0" y="25" width="1680" height="972" />
     </state>
-    <state x="136" y="92" key="CommitChangelistDialog2/0.25.1680.972@0.25.1680.972" timestamp="1619969021286" />
+    <state x="136" y="92" key="CommitChangelistDialog2/0.25.1680.972@0.25.1680.972" timestamp="1619971682422" />
     <state x="428" y="258" key="IDE.errors.dialog" timestamp="1619968992097">
       <screen x="0" y="25" width="1680" height="972" />
     </state>

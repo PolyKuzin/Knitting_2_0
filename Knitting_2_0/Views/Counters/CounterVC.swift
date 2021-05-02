@@ -180,7 +180,7 @@ extension CountersVC {
 	
 	@objc
 	func createCounterTaped(recognizer: UITapGestureRecognizer) {
-		let new = NewCounterVC()
+		let new = PanCounter(nibName: "PanCounter", bundle: nil)
 		new.currentProject = currentProject
 		let vc : PanModalPresentable.LayoutType = PanelNavigation(rootViewController: new)
 		self.presentPanModal(vc)
@@ -217,7 +217,7 @@ extension CountersVC: SwipeableCollectionViewCellDelegate {
 		let counter = counters[indexPath.row]
 
 		self.currentCounter = counter
-		let edit = EditCounterVC()
+		let edit = PanCounter(nibName: "PanCounter", bundle: nil)
 		edit.currentCounter = counter
 		let vc : PanModalPresentable.LayoutType = PanelNavigation(rootViewController: edit)
 		self.presentPanModal(vc)

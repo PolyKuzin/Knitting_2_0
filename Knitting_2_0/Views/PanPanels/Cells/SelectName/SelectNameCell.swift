@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol _SelectNameCell {
+	var name         : String         { get set }
+	var selectName   : ((String)->()) { get set }
+}
+
 class SelectNameCell : UITableViewCell {
 	
 	static var reuseId = "SelectNameCell"
@@ -32,7 +37,6 @@ class SelectNameCell : UITableViewCell {
 
 		//functionality
 		textField.autocorrectionType	= UITextAutocorrectionType.no
-//		textField.keyboardType			= UIKeyboardType.asciiCapable
 		textField.returnKeyType 		= UIReturnKeyType.done
 		textField.clearButtonMode 		= UITextField.ViewMode.whileEditing
 		
@@ -56,11 +60,9 @@ class SelectNameCell : UITableViewCell {
 		self.textField.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: .editingChanged)
 	}
 	
-	public func configure(with data: Any) {
-		if let data = data as? PanProject.ViewState.SelectName {
-			self.selectName = data.selectName
-			self.textField.text = data.name
-		}
+	public func configure(with data: _SelectNameCell) {
+		self.selectName = data.selectName
+		self.textField.text = data.name
 	}
 }
 
@@ -82,6 +84,10 @@ extension SelectNameCell {
 
 // MARK: - Select Name
 extension SelectNameCell : UITextFieldDelegate {
+	
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+		self.endEditing(true)
+	}
 	
 	@objc
 	private func textFieldDidChange(textField: UITextField){

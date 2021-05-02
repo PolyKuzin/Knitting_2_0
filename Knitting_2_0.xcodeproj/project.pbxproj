@@ -34,7 +34,7 @@
 		9936B9B825BCCA80008F4443 /* BenefitCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9936B9B625BCCA80008F4443 /* BenefitCell.xib */; };
 		9939AA61260ABFCE0094AFC3 /* SelectNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9939AA5F260ABFCE0094AFC3 /* SelectNameCell.swift */; };
 		9939AA62260ABFCE0094AFC3 /* SelectNameCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9939AA60260ABFCE0094AFC3 /* SelectNameCell.xib */; };
-		9939AA6E260BAF2F0094AFC3 /* CreateCounterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9939AA6C260BAF2F0094AFC3 /* CreateCounterCell.swift */; };
+		9939AA6E260BAF2F0094AFC3 /* SwitcherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9939AA6C260BAF2F0094AFC3 /* SwitcherCell.swift */; };
 		9939AA6F260BAF2F0094AFC3 /* CreateCounterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9939AA6D260BAF2F0094AFC3 /* CreateCounterCell.xib */; };
 		9939AA78260BCCE50094AFC3 /* IAP_RequiredCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9939AA76260BCCE50094AFC3 /* IAP_RequiredCell.swift */; };
 		9939AA79260BCCE50094AFC3 /* IAP_RequiredCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9939AA77260BCCE50094AFC3 /* IAP_RequiredCell.xib */; };
@@ -105,6 +105,8 @@
 		99FC0417263DB31F00ADEEEC /* IAP_PricingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99FC0415263DB31F00ADEEEC /* IAP_PricingCell.xib */; };
 		99FC041D263DCB8E00ADEEEC /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99FC041C263DCB8E00ADEEEC /* StoreKit.framework */; };
 		99FC0421263DCF0400ADEEEC /* AppleIncRootCertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = 99FC0420263DCF0400ADEEEC /* AppleIncRootCertificate.cer */; };
+		99FC0434263F085900ADEEEC /* PanCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FC0432263F085900ADEEEC /* PanCounter.swift */; };
+		99FC0435263F085900ADEEEC /* PanCounter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99FC0433263F085900ADEEEC /* PanCounter.xib */; };
 		E94C5CFDB12D6AF56F26B533 /* Pods_KnitNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DC982753C586016214E54B5 /* Pods_KnitNotifications.framework */; };
 /* End PBXBuildFile section */
 
@@ -175,7 +177,7 @@
 		9936B9B625BCCA80008F4443 /* BenefitCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BenefitCell.xib; sourceTree = "<group>"; };
 		9939AA5F260ABFCE0094AFC3 /* SelectNameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectNameCell.swift; sourceTree = "<group>"; };
 		9939AA60260ABFCE0094AFC3 /* SelectNameCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectNameCell.xib; sourceTree = "<group>"; };
-		9939AA6C260BAF2F0094AFC3 /* CreateCounterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCounterCell.swift; sourceTree = "<group>"; };
+		9939AA6C260BAF2F0094AFC3 /* SwitcherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitcherCell.swift; sourceTree = "<group>"; };
 		9939AA6D260BAF2F0094AFC3 /* CreateCounterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateCounterCell.xib; sourceTree = "<group>"; };
 		9939AA76260BCCE50094AFC3 /* IAP_RequiredCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAP_RequiredCell.swift; sourceTree = "<group>"; };
 		9939AA77260BCCE50094AFC3 /* IAP_RequiredCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IAP_RequiredCell.xib; sourceTree = "<group>"; };
@@ -269,6 +271,8 @@
 		99FC0415263DB31F00ADEEEC /* IAP_PricingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IAP_PricingCell.xib; sourceTree = "<group>"; };
 		99FC041C263DCB8E00ADEEEC /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		99FC0420263DCF0400ADEEEC /* AppleIncRootCertificate.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = AppleIncRootCertificate.cer; sourceTree = "<group>"; };
+		99FC0432263F085900ADEEEC /* PanCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanCounter.swift; sourceTree = "<group>"; };
+		99FC0433263F085900ADEEEC /* PanCounter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PanCounter.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -305,27 +309,10 @@
 		990C1887263A025F00D56949 /* PayWall */ = {
 			isa = PBXGroup;
 			children = (
-				99FC0413263DB2D000ADEEEC /* IAP_pricing */,
-				9939AA75260BC9CD0094AFC3 /* IAP_Required */,
-				9936B9A125BCBFBA008F4443 /* BecomePro */,
-				9936B9BC25BCCA87008F4443 /* Benefit */,
 				990C1888263A029B00D56949 /* PayWallVC.swift */,
 				990C1889263A029B00D56949 /* PayWallVC.xib */,
 			);
 			path = PayWall;
-			sourceTree = "<group>";
-		};
-		99207D2325E023B60013DBF3 /* PanNewProject */ = {
-			isa = PBXGroup;
-			children = (
-				9922D120260BDB5000960A08 /* MainButton */,
-				9939AA6B260BAF120094AFC3 /* CreateCounter */,
-				9939AA52260ABEE00094AFC3 /* SelectName */,
-				99207D3025E0676B0013DBF3 /* SelectImage */,
-				99207D2425E024290013DBF3 /* PanProject.swift */,
-				99207D2525E024290013DBF3 /* PanProject.xib */,
-			);
-			path = PanNewProject;
 			sourceTree = "<group>";
 		};
 		99207D3025E0676B0013DBF3 /* SelectImage */ = {
@@ -356,14 +343,13 @@
 			path = OldOnes;
 			sourceTree = "<group>";
 		};
-		9936B98F25BC9452008F4443 /* Profile */ = {
+		9936B98F25BC9452008F4443 /* PanProfile */ = {
 			isa = PBXGroup;
 			children = (
-				9936B99325BC959D008F4443 /* Information */,
 				9936B98825BC9324008F4443 /* PanProfileVC.swift */,
 				9936B98925BC9324008F4443 /* PanProfileVC.xib */,
 			);
-			path = Profile;
+			path = PanProfile;
 			sourceTree = "<group>";
 		};
 		9936B99325BC959D008F4443 /* Information */ = {
@@ -415,7 +401,7 @@
 		9939AA6B260BAF120094AFC3 /* CreateCounter */ = {
 			isa = PBXGroup;
 			children = (
-				9939AA6C260BAF2F0094AFC3 /* CreateCounterCell.swift */,
+				9939AA6C260BAF2F0094AFC3 /* SwitcherCell.swift */,
 				9939AA6D260BAF2F0094AFC3 /* CreateCounterCell.xib */,
 			);
 			path = CreateCounter;
@@ -653,9 +639,11 @@
 		99EFB56D25178D89003A5D07 /* PanPanels */ = {
 			isa = PBXGroup;
 			children = (
+				99FC042D263F06D500ADEEEC /* Cells */,
 				990C1887263A025F00D56949 /* PayWall */,
-				99207D2325E023B60013DBF3 /* PanNewProject */,
-				9936B98F25BC9452008F4443 /* Profile */,
+				99FC042E263F06FA00ADEEEC /* PanProject */,
+				99FC042F263F077D00ADEEEC /* PanCounter */,
+				9936B98F25BC9452008F4443 /* PanProfile */,
 				9936B98425BC9302008F4443 /* OldOnes */,
 			);
 			path = PanPanels;
@@ -668,6 +656,40 @@
 				99FC0415263DB31F00ADEEEC /* IAP_PricingCell.xib */,
 			);
 			path = IAP_pricing;
+			sourceTree = "<group>";
+		};
+		99FC042D263F06D500ADEEEC /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				99FC0413263DB2D000ADEEEC /* IAP_pricing */,
+				9939AA75260BC9CD0094AFC3 /* IAP_Required */,
+				9936B9A125BCBFBA008F4443 /* BecomePro */,
+				9936B9BC25BCCA87008F4443 /* Benefit */,
+				9936B99325BC959D008F4443 /* Information */,
+				9922D120260BDB5000960A08 /* MainButton */,
+				9939AA6B260BAF120094AFC3 /* CreateCounter */,
+				9939AA52260ABEE00094AFC3 /* SelectName */,
+				99207D3025E0676B0013DBF3 /* SelectImage */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		99FC042E263F06FA00ADEEEC /* PanProject */ = {
+			isa = PBXGroup;
+			children = (
+				99207D2425E024290013DBF3 /* PanProject.swift */,
+				99207D2525E024290013DBF3 /* PanProject.xib */,
+			);
+			path = PanProject;
+			sourceTree = "<group>";
+		};
+		99FC042F263F077D00ADEEEC /* PanCounter */ = {
+			isa = PBXGroup;
+			children = (
+				99FC0432263F085900ADEEEC /* PanCounter.swift */,
+				99FC0433263F085900ADEEEC /* PanCounter.xib */,
+			);
+			path = PanCounter;
 			sourceTree = "<group>";
 		};
 		D41AB12B2FDCE20E3F502767 /* Pods */ = {
@@ -792,6 +814,7 @@
 				9939AA6F260BAF2F0094AFC3 /* CreateCounterCell.xib in Resources */,
 				99207D3425E067C00013DBF3 /* SelectImageCell.xib in Resources */,
 				99AFBA5024F80DA000E71FD6 /* Assets.xcassets in Resources */,
+				99FC0435263F085900ADEEEC /* PanCounter.xib in Resources */,
 				994EF7162514ECFF009AA35B /* SF-Pro-Display-Bold.otf in Resources */,
 				991AD5682529268D008A6E8D /* SF-Pro-Rounded-Medium.otf in Resources */,
 				9922D124260BDB6A00960A08 /* MainButtonCell.xib in Resources */,
@@ -909,6 +932,7 @@
 				994EF7142514B424009AA35B /* MainSetionHeader.swift in Sources */,
 				99AFBA4B24F80D9E00E71FD6 /* SignUpVC.swift in Sources */,
 				998B9F85250BCAFA00C0C52F /* UIWindow.swift in Sources */,
+				99FC0434263F085900ADEEEC /* PanCounter.swift in Sources */,
 				9936B98A25BC9324008F4443 /* PanProfileVC.swift in Sources */,
 				9936B9B725BCCA80008F4443 /* BenefitCell.swift in Sources */,
 				99AFBA7024F8121D00E71FD6 /* RegistrationVM.swift in Sources */,
@@ -948,7 +972,7 @@
 				9936B9B025BCC27E008F4443 /* BecomeProCell.swift in Sources */,
 				99A0709C26123C8B00366972 /* pkcs7_union_accessors.m in Sources */,
 				998B9F8D250C2FBB00C0C52F /* ForgotPassVM.swift in Sources */,
-				9939AA6E260BAF2F0094AFC3 /* CreateCounterCell.swift in Sources */,
+				9939AA6E260BAF2F0094AFC3 /* SwitcherCell.swift in Sources */,
 				99B957062524A0C900AC5438 /* CounterCell.swift in Sources */,
 				99A070A426123D3200366972 /* IAP_Manager.swift in Sources */,
 				99C31FDF251F2DA200A1F75D /* SwipeableCollectionViewCellProtocol.swift in Sources */,

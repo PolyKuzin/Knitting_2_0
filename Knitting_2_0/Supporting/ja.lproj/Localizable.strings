@@ -37,3 +37,6 @@
 "Create new counter" = "新しいカウンターを作成する";
 "Edit project" = "プロジェクトの編集";
 "Create new project" = "新規プロジェクトの作成";
+
+// Pan New Counter
+"Set the number of rows?" = "行の数を設定しますか？";

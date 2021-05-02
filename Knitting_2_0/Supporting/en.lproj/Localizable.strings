@@ -46,3 +46,6 @@
 // Pan New Project
 "Project name" = "Project name";
 "Create counter with project name?" = "Create counter with project name?";
+
+//Pan New Counter
+"Set the number of rows?" = "Set the number of rows?";

@@ -8,7 +8,12 @@
 
 import UIKit
 
-class CreateCounterCell: UITableViewCell {
+protocol _SwitcherCell {
+	var title      : String       { get set }
+	var onSwitch   : ((Bool)->()) { get set }
+}
+
+class SwitcherCell : UITableViewCell {
 	
 	static var reuseId = "CreateCounterCell"
 	
@@ -20,21 +25,14 @@ class CreateCounterCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 		self.selectionStyle = .none
-		self.label.text = "Create counter with project name?".localized()
 	}
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-    }
 	
 	@IBAction func onSwitch(_ sender: Any) {
 		self.onSwitch?(switcher.isOn)
 	}
 	
-	public func configure(with data: Any) {
-		if let data = data as? PanProject.ViewState.SelectCounter {
-			self.onSwitch = data.onSwitch
-		}
+	public func configure(with data: _SwitcherCell) {
+		self.onSwitch   = data.onSwitch
+		self.label.text = data.title
 	}
 }
