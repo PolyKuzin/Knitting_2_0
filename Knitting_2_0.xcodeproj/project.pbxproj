@@ -87,6 +87,8 @@
 		99B206722504DD8B00FA6C50 /* LogInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B206712504DD8B00FA6C50 /* LogInVC.swift */; };
 		99B206742504DDF700FA6C50 /* LogInVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B206732504DDF700FA6C50 /* LogInVM.swift */; };
 		99B2067A2504F10600FA6C50 /* EntryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B206792504F10600FA6C50 /* EntryVC.swift */; };
+		99B2234A264153E600FB9775 /* SelectRowsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B22348264153E600FB9775 /* SelectRowsCell.swift */; };
+		99B2234B264153E600FB9775 /* SelectRowsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99B22349264153E600FB9775 /* SelectRowsCell.xib */; };
 		99B509BC24FDB1D60046A2B1 /* UIViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B509BB24FDB1D60046A2B1 /* UIViewExt.swift */; };
 		99B956FE25249AFE00AC5438 /* CounterSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B956FD25249AFE00AC5438 /* CounterSectionHeader.swift */; };
 		99B957062524A0C900AC5438 /* CounterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B957052524A0C900AC5438 /* CounterCell.swift */; };
@@ -247,6 +249,8 @@
 		99B206712504DD8B00FA6C50 /* LogInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInVC.swift; sourceTree = "<group>"; };
 		99B206732504DDF700FA6C50 /* LogInVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInVM.swift; sourceTree = "<group>"; };
 		99B206792504F10600FA6C50 /* EntryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryVC.swift; sourceTree = "<group>"; };
+		99B22348264153E600FB9775 /* SelectRowsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectRowsCell.swift; sourceTree = "<group>"; };
+		99B22349264153E600FB9775 /* SelectRowsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectRowsCell.xib; sourceTree = "<group>"; };
 		99B509BB24FDB1D60046A2B1 /* UIViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExt.swift; sourceTree = "<group>"; };
 		99B956FD25249AFE00AC5438 /* CounterSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterSectionHeader.swift; sourceTree = "<group>"; };
 		99B957052524A0C900AC5438 /* CounterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterCell.swift; sourceTree = "<group>"; };
@@ -606,6 +610,15 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		99B2234726405F2700FB9775 /* SelectRows */ = {
+			isa = PBXGroup;
+			children = (
+				99B22348264153E600FB9775 /* SelectRowsCell.swift */,
+				99B22349264153E600FB9775 /* SelectRowsCell.xib */,
+			);
+			path = SelectRows;
+			sourceTree = "<group>";
+		};
 		99B956F425248E5900AC5438 /* Counters */ = {
 			isa = PBXGroup;
 			children = (
@@ -661,15 +674,16 @@
 		99FC042D263F06D500ADEEEC /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				99FC0413263DB2D000ADEEEC /* IAP_pricing */,
-				9939AA75260BC9CD0094AFC3 /* IAP_Required */,
 				9936B9A125BCBFBA008F4443 /* BecomePro */,
 				9936B9BC25BCCA87008F4443 /* Benefit */,
+				9939AA6B260BAF120094AFC3 /* CreateCounter */,
+				99FC0413263DB2D000ADEEEC /* IAP_pricing */,
+				9939AA75260BC9CD0094AFC3 /* IAP_Required */,
 				9936B99325BC959D008F4443 /* Information */,
 				9922D120260BDB5000960A08 /* MainButton */,
-				9939AA6B260BAF120094AFC3 /* CreateCounter */,
-				9939AA52260ABEE00094AFC3 /* SelectName */,
 				99207D3025E0676B0013DBF3 /* SelectImage */,
+				9939AA52260ABEE00094AFC3 /* SelectName */,
+				99B2234726405F2700FB9775 /* SelectRows */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -812,6 +826,7 @@
 				99AFBA5324F80DA000E71FD6 /* LaunchScreen.storyboard in Resources */,
 				9905ABE225024F5A0055B138 /* SF-Pro-Text-Semibold.otf in Resources */,
 				9939AA6F260BAF2F0094AFC3 /* CreateCounterCell.xib in Resources */,
+				99B2234B264153E600FB9775 /* SelectRowsCell.xib in Resources */,
 				99207D3425E067C00013DBF3 /* SelectImageCell.xib in Resources */,
 				99AFBA5024F80DA000E71FD6 /* Assets.xcassets in Resources */,
 				99FC0435263F085900ADEEEC /* PanCounter.xib in Resources */,
@@ -927,6 +942,7 @@
 				9936B97225BC7AB5008F4443 /* PanelNavigation.swift in Sources */,
 				99EF88B8251821F900C77181 /* NewProjectCardVM.swift in Sources */,
 				998AED40255C4B6800507F02 /* Localize.swift in Sources */,
+				99B2234A264153E600FB9775 /* SelectRowsCell.swift in Sources */,
 				9962BDDC263B416C00DD8B22 /* FullScreenNavigation.swift in Sources */,
 				99B509BC24FDB1D60046A2B1 /* UIViewExt.swift in Sources */,
 				994EF7142514B424009AA35B /* MainSetionHeader.swift in Sources */,

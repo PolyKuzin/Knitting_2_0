@@ -29,16 +29,22 @@ class PanCounter : BasePanVC, PanModalPresentable {
 		didSet {
 			guard let curr = currentCounter else { return }
 			self.currentName = curr.name
+			if curr.rowsMax == -1 {
+				self.currentSwitch = false
+			} else {
+				self.currentRowsMax = curr.rowsMax
+			}
 		}
 	}
 	
 	private var currentName    = ""   { didSet { print(currentName)    } }
 	private var currentImage   = 0    { didSet { print(currentImage)   } }
-	private var currentRowsMax = -1   { didSet { print(currentRowsMax) } }
+	private var currentRowsMax = 0    { didSet { print(currentRowsMax) } }
 	private var currentSwitch  = true {
 		didSet {
+			self.makeState()
 			print(currentSwitch)
-			if currentSwitch == false { currentRowsMax = -1 }
+			if currentSwitch == false { currentRowsMax = 0 }
 		}
 	}
 
@@ -63,6 +69,12 @@ class PanCounter : BasePanVC, PanModalPresentable {
 		struct SelectCounter    : _SwitcherCell   {
 			var title          : String
 			var onSwitch       : ((Bool)->())
+		}
+		
+		struct SelectRows       : _SelectRowsCell {
+			var isEnabled      : Bool
+			var rowsMax        : Int
+			var selectRows     : ((Int)->())
 		}
 		
 		struct BecomePro        : _BecomePro      {
@@ -96,14 +108,14 @@ class PanCounter : BasePanVC, PanModalPresentable {
 		self.tableView.dataSource = self
 		self.tableView.separatorStyle = .none
 		self.tableView.register(UINib(nibName: "BecomeProCell",     bundle: nil), forCellReuseIdentifier: "BecomeProCell")
+		self.tableView.register(UINib(nibName: "SelectRowsCell",     bundle: nil), forCellReuseIdentifier: "SelectRowsCell")
 		self.tableView.register(UINib(nibName: "MainButtonCell",    bundle: nil), forCellReuseIdentifier: "MainButtonCell")
 		self.tableView.register(UINib(nibName: "SelectNameCell",    bundle: nil), forCellReuseIdentifier: "SelectNameCell")
 		self.tableView.register(UINib(nibName: "CreateCounterCell", bundle: nil), forCellReuseIdentifier: "CreateCounterCell")
+		self.makeState()
 		if currentCounter != nil {
-			self.makeState()
 			self.title = "Edit counter".localized()
 		} else {
-			self.makeState()
 			self.title = "Create new counter".localized()
 		}
     }
@@ -120,17 +132,21 @@ class PanCounter : BasePanVC, PanModalPresentable {
 		}
 		let counterClosure : ((Bool)->())   = { [weak self] result in
 			guard let self = self else { return }
-			self.currentSwitch = result
+			self.currentSwitch  = result
+		}
+		let rowsMaxClosure : ((Int)->())    = { [weak self] result in
+			guard let self = self else { return }
+			self.currentRowsMax = result
 		}
 		let selectName    = ViewState.SelectName    (name : currentName, selectName: nameClosure)
 		let selectCounter = ViewState.SelectCounter (title : "Set the number of rows?".localized(), onSwitch    : counterClosure)
-		
-		self.viewState.rows = [selectName, selectCounter]
+		let selectRows    = ViewState.SelectRows    (isEnabled: currentSwitch, rowsMax: self.currentRowsMax, selectRows: rowsMaxClosure)
+		self.viewState.rows = [selectName, selectCounter, selectRows]
 		if currentCounter != nil {
-			let mainButton    = ViewState.MainButton      (title : "Save".localized(), onTap: self.editCounter, color: getButtonColor())
+			let mainButton    = ViewState.MainButton(title : "Save".localized(), onTap: self.editCounter, color: getButtonColor())
 			self.viewState.rows.append(mainButton)
 		} else {
-			let mainButton    = ViewState.MainButton      (title : "Create".localized(), onTap: self.saveCounter, color: getButtonColor())
+			let mainButton    = ViewState.MainButton(title : "Create".localized(), onTap: self.saveCounter, color: getButtonColor())
 			self.viewState.rows.append(mainButton)
 		}
 		if defaults.bool(forKey: "setPro") == false {
@@ -163,6 +179,11 @@ extension PanCounter : UITableViewDataSource {
 		case is ViewState.SelectCounter   :
 			let data = self.viewState.rows[indexPath.row] as! ViewState.SelectCounter
 			let cell = tableView.dequeueReusableCell(withIdentifier: "CreateCounterCell", for: indexPath) as! SwitcherCell
+			cell.configure(with: data)
+			return cell
+		case is ViewState.SelectRows      :
+			let data = self.viewState.rows[indexPath.row] as! ViewState.SelectRows
+			let cell = tableView.dequeueReusableCell(withIdentifier: "SelectRowsCell",    for: indexPath) as! SelectRowsCell
 			cell.configure(with: data)
 			return cell
 		case is ViewState.MainButton      :
