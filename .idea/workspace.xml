@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="437704ce-c3c0-4e09-8fb0-96df05d6f516" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/Cells/SelectRows/SelectRowsCell.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/Cells/SelectRows/SelectRowsCell.xib" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Knitting_2_0.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PanCounter/PanCounter.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PanCounter/PanCounter.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PayWall/PayWallVC.xib" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PayWall/PayWallVC.xib" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +100,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619997869801</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Pan CounterVC.swift">
+      <created>1620166081691</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1620166081693</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -146,10 +151,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="Pan CounterVC.swift" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="136" y="92" key="CommitChangelistDialog2" timestamp="1619997869494">
+    <state x="136" y="92" key="CommitChangelistDialog2" timestamp="1620166081454">
       <screen x="0" y="25" width="1680" height="972" />
     </state>
-    <state x="136" y="92" key="CommitChangelistDialog2/0.25.1680.972@0.25.1680.972" timestamp="1619997869494" />
+    <state x="136" y="92" key="CommitChangelistDialog2/0.25.1680.972@0.25.1680.972" timestamp="1620166081454" />
     <state x="428" y="258" key="IDE.errors.dialog" timestamp="1619968992097">
       <screen x="0" y="25" width="1680" height="972" />
     </state>
