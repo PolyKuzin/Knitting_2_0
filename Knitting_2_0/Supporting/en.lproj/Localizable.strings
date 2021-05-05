@@ -46,6 +46,12 @@
 // Pan New Project
 "Project name" = "Project name";
 "Create counter with project name?" = "Create counter with project name?";
+"Create unlimited projects and counters" = "Create unlimited projects and counters";
+"Beautiful project icons" = "Beautiful project icons";
+"Different color themes + dark theme" = "Different color themes + dark theme";
+"Cancel any time" = "Cancel any time";
+"Try 7-days free trial, then " = "Try 7-days free trial, then ";
+"/month" = "/month";
 
 //Pan New Counter
 "Set the number of rows?" = "Set the number of rows?";

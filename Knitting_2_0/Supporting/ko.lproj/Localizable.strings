@@ -40,3 +40,10 @@
 
 // Pan New Counter
 "Set the number of rows?" = "행 수를 설정 하시겠습니까?";
+"Create counter with project name?" = "프로젝트 이름으로 카운터를 만드시겠습니까?";
+"Create unlimited projects and counters" = "무제한 프로젝트 및 카운터 만들기";
+"Beautiful project icons" = "아름다운 프로젝트 아이콘";
+"Different color themes + dark theme" = "다른 색상 테마+어두운 테마";
+"Cancel any time" = "언제든지 취소";
+"Try 7-days free trial, then " = "7 일 동안 무료로 사용해 본 다음 ";
+"/month" = "/월";

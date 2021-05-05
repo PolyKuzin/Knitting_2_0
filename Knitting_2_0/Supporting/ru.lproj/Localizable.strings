@@ -40,3 +40,10 @@
 
 // Pan New Counter
 "Set the number of rows?" = "Установить количество рядов?";
+"Create counter with project name?" = "Создать счетчик с таким же именем?";
+"Create unlimited projects and counters" = "Создавай любое кол-во проектов и счетчиков";
+"Beautiful project icons" = "Красивые иконки проектов";
+"Different color themes + dark theme" = "Различные цветовые темы + темная тема";
+"Cancel any time" = "Отмените в любое время";
+"Try 7-days free trial, then " = "Попробуй 7 дней бесплатно, затем ";
+"/month" = "/месяц";

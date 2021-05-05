@@ -59,7 +59,7 @@ class PayWallVC : BasePanVC, PanModalPresentable {
 	fileprivate func setupNavigationItem() {
 		let wrapperView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 90))
 		let label = UILabel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 90))
-		label.backgroundColor = .clear
+		label.backgroundColor = self.getBackgroundColor()
 		label.numberOfLines = 2
 		label.textAlignment = .center
 		label.textColor = .black
@@ -83,17 +83,22 @@ class PayWallVC : BasePanVC, PanModalPresentable {
     }
 	
 	private func makeState() {
-
-		let benefit1 = ViewState.Benefit(text: "Create unlimited projects and counters", image: UIImage(named: "Infinity")!)
-		let benefit2 = ViewState.Benefit(text: "Beautiful project icons",                image: UIImage(named: "Squares")!)
-		let benefit3 = ViewState.Benefit(text: "Different color themes + dark theme",    image: UIImage(named: "Colors")!)
-		let benefit4 = ViewState.Benefit(text: "Cancel any time",                        image: UIImage(named: "Check")!)
+		let manager = IAPManager.shared
 		
+		let benefit1 = ViewState.Benefit(text: "Create unlimited projects and counters".localized(),
+										 image: UIImage(named: "Infinity")!)
+		let benefit2 = ViewState.Benefit(text: "Beautiful project icons".localized(),
+										 image: UIImage(named: "Squares")!)
+		let benefit3 = ViewState.Benefit(text: "Different color themes + dark theme".localized(),
+										 image: UIImage(named: "Colors")!)
+		let benefit4 = ViewState.Benefit(text: "Cancel any time".localized(),
+										 image: UIImage(named: "Check")!)
 		let becomePro : (()->()) = { [weak self] in
 			guard let self = self else { return }
 			self.purchaise()
 		}
-		let pricing   = ViewState.IAP_Pricing(title: "Try 7-days free trial, then 3.99$/mounth".localized())
+		let price = manager.products.first?.localizedPrice ?? "3.99 $"
+		let pricing   = ViewState.IAP_Pricing(title: "Try 7-days free trial, then ".localized() + price + "/month".localized())
 		let subscribe = ViewState.BecomePro(title: "Subscribe".localized(), color: UIColor(red: 0.552, green: 0.325, blue: 0.779, alpha: 1), onBecomePro: becomePro)
 		let iap_required = ViewState.IAP_RequiredBtn(privacy: self.onPrivacy, restore: self.onRestore, terms: self.onTerms)
 		self.viewState.rows = [benefit1, benefit2, benefit3, benefit4, pricing, subscribe, iap_required]
