@@ -15,8 +15,6 @@ protocol _SelectNameCell {
 
 class SelectNameCell : UITableViewCell {
 	
-	static var reuseId = "SelectNameCell"
-	
 	private var selectName : ((String)->())?
 	
 	private lazy var textField : UITextField = {
@@ -29,7 +27,7 @@ class SelectNameCell : UITableViewCell {
 		textField.placeholder			= "Project name".localized()
 		textField.layer.cornerRadius	= CornerRadius.forTextField
 		textField.backgroundColor		= Colors.normalTextField
-		textField.font					= Fonts.textRegular17
+		textField.font					= UIFont.regular_17
 		textField.layer.borderWidth		= BorderWidth.forTextField
 		textField.layer.borderColor		= Colors.normalBorderTextField.cgColor
 		textField.leftView				= UIView(frame: CGRect(x: 0, y: 0, width: 16, height: 62))
@@ -45,7 +43,7 @@ class SelectNameCell : UITableViewCell {
 	
 	private lazy var warningLabel			: UILabel = {
 		let label 							= UILabel(frame: CGRect(x: 0, y: 0, width: 180, height: 20))
-		label.font							= Fonts.textRegular14
+		label.font							= UIFont.regular_14
 		label.textColor						= Colors.errorTextFieldBorder
 		label.numberOfLines					= 0
 		label.textAlignment					= .left

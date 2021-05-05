@@ -15,14 +15,10 @@ class CountersVC	: UIViewController, UICollectionViewDelegate, UICollectionViewD
 	
 	var activityView: UIActivityIndicatorView?
 	
-	var currentProject						: MProject!
+	var currentProject				: MProject!
 	private var ref             	: DatabaseReference!
 	
-	let creeateCounterTaped					= Notification.Name(rawValue: createCounterInSectionNotificationKey)
-	let editCounterViewTaped				= Notification.Name(rawValue: editCounterNotificationKey)
-	
 	//MARK:VARIABLES: Supporting Stuff
-	
 	let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
 	private var counters					: [MCounter] = []
 	private var dataSourse					: UICollectionViewDiffableDataSource<MCounterSection, MCounter>?
@@ -218,8 +214,8 @@ extension CountersVC: SwipeableCollectionViewCellDelegate {
 
 		self.currentCounter = counter
 		let edit = PanCounter(nibName: "PanCounter", bundle: nil)
-		edit.currentCounter = counter
 		let vc : PanModalPresentable.LayoutType = PanelNavigation(rootViewController: edit)
+		edit.currentCounter = counter
 		self.presentPanModal(vc)
 		let leftOffset = CGPoint(x: 0, y: 0)
 		cell.scrollView.setContentOffset(leftOffset, animated: true)
@@ -249,7 +245,7 @@ extension CountersVC {
 	
 	func setupNormalNavBar() {
 		//Navigation Bar scould be invisible with back arrow
-		let backIcon = Icons.backIcon
+		let backIcon = UIImage.backIcon
 		guard let navigationController = navigationController else { return }
 		navigationController.navigationBar.backIndicatorImage				= backIcon
 		navigationController.navigationBar.backIndicatorTransitionMaskImage	= backIcon

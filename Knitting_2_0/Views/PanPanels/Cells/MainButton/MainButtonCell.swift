@@ -16,8 +16,6 @@ protocol _MainButton {
 
 class MainButtonCell: UITableViewCell {
 	
-	static var reuseId = "MainButtonCell"
-	
 	private var onTap : (()->())?
 
 	@IBOutlet weak var button : MainButton!

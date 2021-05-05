@@ -31,7 +31,7 @@ class ForgotPassVM  {
 	}
 	
     private lazy var logoIconView		: UIImageView = {
-        let image						= Icons.logoIcon
+        let image						= UIImage.logoIcon
         let imageView					= UIImageView(frame: CGRect(x: 135.33,
 																	y: 116.79,
 																	width: 129.39,
@@ -47,7 +47,7 @@ class ForgotPassVM  {
 		let label 						= UILabel()
 		label.text						= Placeholder.loginIntoAccount
 		label.textColor 				= Colors.labelText
-		label.font						= Fonts.displaySemibold28
+		label.font						= UIFont.semibold_28
 		
 		return label
 	}()
@@ -62,7 +62,7 @@ class ForgotPassVM  {
 		textField.placeholder			= Placeholder.enterEmail
 		textField.layer.cornerRadius	= CornerRadius.forTextField
 		textField.backgroundColor		= Colors.normalTextField
-		textField.font					= Fonts.displayRegular18
+		textField.font					= UIFont.regular_18
 		textField.layer.borderWidth		= BorderWidth.forTextField
 		textField.layer.borderColor		= Colors.normalBorderTextField.cgColor
 		textField.leftView				= UIView(frame: CGRect(x: 0, y: 0, width: 16, height: 62))
@@ -83,7 +83,7 @@ class ForgotPassVM  {
 																y: 0,
 																width: 180,
 																height: 20))
-		label.font						= Fonts.textRegular14
+		label.font						= UIFont.regular_14
 		label.textColor					= Colors.questionText
 		label.numberOfLines				= 0
 		label.textAlignment				= .left
@@ -94,11 +94,11 @@ class ForgotPassVM  {
 	
 	private lazy var resetButton		: UIButton = {
 		let button			= UIButton()
-		button.backgroundColor = UIColor(red: 0.745, green: 0.616, blue: 0.875, alpha: 1)
+		button.backgroundColor = UIColor.mainColor
 		button.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 32, height: 52)
 		button.setTitle(Placeholder.resetPassword.localized(), for: .normal)
 		button.setTitleColor(UIColor.white, for: .normal)
-		button.titleLabel?.font = UIFont(name: "SFProText-Medium", size: 17)
+		button.titleLabel?.font = UIFont.medium_17
 		button.layer.cornerRadius = 15
 		return button
 	}()

@@ -15,8 +15,8 @@ class MainButton: UIButton {
 		self.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 32, height: 52)
 		self.roundCorners(.allCorners, radius: 15)
 		self.setTitleColor(UIColor.white, for: .normal)
-		self.titleLabel?.font = UIFont(name: "SFProText-Medium", size: 17)
-		self.backgroundColor = UIColor(red: 0.745, green: 0.616, blue: 0.875, alpha: 1)
+		self.titleLabel?.font = UIFont.medium_17
+		self.backgroundColor = UIColor.mainColor
 	}
 	
 	override init(frame: CGRect) {

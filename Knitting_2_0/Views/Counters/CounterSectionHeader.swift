@@ -15,7 +15,7 @@ class SectionHeader: UICollectionReusableView {
 	var title				: UILabel = {
 		let label			= UILabel()
 		label.textColor 	= .black							//TO CONSTANTS
-		label.font			= Fonts.displayBold28
+		label.font			= UIFont.bold_28
 		label.textAlignment = .center
 		
 		return label
@@ -31,11 +31,11 @@ class SectionHeader: UICollectionReusableView {
 	
 	var createCounter		: UIButton = {
 		let button			= UIButton()
-		button.backgroundColor = UIColor(red: 0.745, green: 0.616, blue: 0.875, alpha: 1)
+		button.backgroundColor = UIColor.mainColor
 		button.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 32, height: 52)
 		button.setTitle("+ Create counter".localized(), for: .normal)
 		button.setTitleColor(UIColor.white, for: .normal)
-		button.titleLabel?.font = UIFont(name: "SFProText-Medium", size: 17)
+		button.titleLabel?.font = UIFont.medium_17
 		button.layer.cornerRadius = 15
 		return button
 	}()

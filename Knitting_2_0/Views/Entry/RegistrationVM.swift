@@ -49,7 +49,7 @@ class RegistrationVM {
     private lazy var logoIconView		: UIImageView	= {
         let imageView					= UIImageView()
 		imageView.frame 				= CGRect(x: 0, y: 0, width: 129.39, height: 154.89)
-		imageView.image					= Icons.logoIcon
+		imageView.image					= UIImage.logoIcon
         imageView.contentMode			= .scaleAspectFit
 		
         return imageView
@@ -59,7 +59,7 @@ class RegistrationVM {
 		let label 						= UILabel()
 		label.text						= Placeholder.createNewAccount
 		label.textColor 				= Colors.labelText
-		label.font						= Fonts.displaySemibold28
+		label.font						= UIFont.semibold_28
 		
 		return label
 	}()
@@ -70,7 +70,7 @@ class RegistrationVM {
 		tF.placeholder					= Placeholder.createNickname
 		tF.layer.cornerRadius			= CornerRadius.forTextField
 		tF.backgroundColor				= Colors.normalTextField
-		tF.font							= Fonts.displayRegular18
+		tF.font							= UIFont.regular_18
 		tF.layer.borderWidth			= BorderWidth.forTextField
 		tF.layer.borderColor			= Colors.normalBorderTextField.cgColor
 		tF.leftView						= UIView(frame: CGRect(x: 0, y: 0, width: 16, height: 62))
@@ -91,7 +91,7 @@ class RegistrationVM {
 		tF.placeholder					= Placeholder.enterEmail
 		tF.layer.cornerRadius			= CornerRadius.forTextField
 		tF.backgroundColor				= Colors.normalTextField
-		tF.font							= Fonts.displayRegular18
+		tF.font							= UIFont.regular_18
 		tF.layer.borderWidth			= BorderWidth.forTextField
 		tF.layer.borderColor			= Colors.normalBorderTextField.cgColor
 		tF.leftView						= UIView(frame: CGRect(x: 0, y: 0, width: 16, height: 51))
@@ -112,7 +112,7 @@ class RegistrationVM {
 		tF.placeholder					= Placeholder.createPassword
 		tF.layer.cornerRadius			= CornerRadius.forTextField
 		tF.backgroundColor				= Colors.normalTextField
-		tF.font							= Fonts.displayRegular18
+		tF.font							= UIFont.regular_18
 		tF.layer.borderWidth			= BorderWidth.forTextField
 		tF.layer.borderColor			= Colors.normalBorderTextField.cgColor
 		tF.leftView						= UIView(frame: CGRect(x: 0, y: 0, width: 16, height: 62))
@@ -131,7 +131,7 @@ class RegistrationVM {
 	private lazy var warningLabel		: UILabel = {
 		let label 						= UILabel()
 		label.frame 					= CGRect(x: 0, y: 0, width: 180, height: 20)
-		label.font						= Fonts.textRegular14
+		label.font						= UIFont.regular_14
 		label.textColor					= Colors.errorLabel
 		label.numberOfLines				= 0
 		label.textAlignment				= .left
@@ -141,11 +141,11 @@ class RegistrationVM {
 	
 	private lazy var signUpButton		: UIButton = {
 		let button			= UIButton()
-		button.backgroundColor = UIColor(red: 0.745, green: 0.616, blue: 0.875, alpha: 1)
+		button.backgroundColor = UIColor.mainColor
 		button.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 32, height: 52)
 		button.setTitle(Placeholder.createNewAccount.localized(), for: .normal)
 		button.setTitleColor(UIColor.white, for: .normal)
-		button.titleLabel?.font = UIFont(name: "SFProText-Medium", size: 17)
+		button.titleLabel?.font = UIFont.medium_17
 		button.layer.cornerRadius = 15
 		return button
 	}()
@@ -153,7 +153,7 @@ class RegistrationVM {
 	private lazy var questionLabel		: UILabel = {
 		let label 						= UILabel()
 		label.frame						= CGRect(x: 0, y: 0, width: 180, height: 20)
-		label.font						= Fonts.textRegular17
+		label.font						= UIFont.regular_17
 		label.text						= Placeholder.questionToLogInLbl
 		label.textColor					= Colors.questionText
 		label.textAlignment				= .right
@@ -164,10 +164,10 @@ class RegistrationVM {
 	private lazy var questionButton		: UIButton = {
 		let button						= UIButton(type: .system)
 		button.frame 					= CGRect(x: 0, y: 0, width: 40, height: 20)
-		button.titleLabel?.font			= Fonts.textSemibold17
+		button.titleLabel?.font			= UIFont.semibold_17
 		button.layer.masksToBounds		= true
 		button.setTitle					(Placeholder.loginWithSpace,	for: .normal)
-		button.setTitleColor			(Colors.blackColor, 		for: .normal)
+		button.setTitleColor			(UIColor.black, 		for: .normal)
 		button.contentHorizontalAlignment = .left
 		
         return button

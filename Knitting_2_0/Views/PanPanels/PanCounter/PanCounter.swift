@@ -36,13 +36,13 @@ class PanCounter : BasePanVC, PanModalPresentable {
 			}
 		}
 	}
-	
+	private var reloaded = false
 	private var currentName    = ""   { didSet { print(currentName)    } }
 	private var currentImage   = 0    { didSet { print(currentImage)   } }
 	private var currentRowsMax = 0    { didSet { print(currentRowsMax) } }
 	private var currentSwitch  = true {
 		didSet {
-			self.makeState()
+			if reloaded { self.makeState() }
 			print(currentSwitch)
 			if currentSwitch == false { currentRowsMax = 0 }
 		}
@@ -68,6 +68,7 @@ class PanCounter : BasePanVC, PanModalPresentable {
 		
 		struct SelectCounter    : _SwitcherCell   {
 			var title          : String
+			var switcher       : Bool
 			var onSwitch       : ((Bool)->())
 		}
 		
@@ -139,20 +140,21 @@ class PanCounter : BasePanVC, PanModalPresentable {
 			self.currentRowsMax = result
 		}
 		let selectName    = ViewState.SelectName    (name : currentName, selectName: nameClosure)
-		let selectCounter = ViewState.SelectCounter (title : "Set the number of rows?".localized(), onSwitch    : counterClosure)
+		let selectCounter = ViewState.SelectCounter (title : "Set the number of rows?".localized(), switcher: self.currentSwitch, onSwitch    : counterClosure)
 		let selectRows    = ViewState.SelectRows    (isEnabled: currentSwitch, rowsMax: self.currentRowsMax, selectRows: rowsMaxClosure)
 		self.viewState.rows = [selectName, selectCounter, selectRows]
 		if currentCounter != nil {
-			let mainButton    = ViewState.MainButton(title : "Save".localized(), onTap: self.editCounter, color: getButtonColor())
+			let mainButton    = ViewState.MainButton(title : "Save".localized(), onTap: self.editCounter, color: UIColor.mainColor)
 			self.viewState.rows.append(mainButton)
 		} else {
-			let mainButton    = ViewState.MainButton(title : "Create".localized(), onTap: self.saveCounter, color: getButtonColor())
+			let mainButton    = ViewState.MainButton(title : "Create".localized(), onTap: self.saveCounter, color: UIColor.mainColor)
 			self.viewState.rows.append(mainButton)
 		}
 		if defaults.bool(forKey: "setPro") == false {
 			let becomePro     = ViewState.BecomePro       (image: UIImage(named: "Diamond")!, title: "Become PRO Knitter".localized(), color: UIColor(red: 0.552, green: 0.325, blue: 0.779, alpha: 1), onBecomePro : payWallClosure)
 			self.viewState.rows.insert(becomePro, at: self.viewState.rows.count - 1)
 		}
+		reloaded = true
 	}
 }
 

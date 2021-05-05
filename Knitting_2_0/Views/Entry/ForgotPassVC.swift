@@ -152,7 +152,7 @@ extension ForgotPassVC {
 
 	func setUpLayout() {
 		//Navigation Bar scould be visible with custom "Back" Button
-		let backIcon = Icons.backIcon
+		let backIcon = UIImage.backIcon
 		guard let navigationController = navigationController else { return }
 		navigationController.navigationBar.backIndicatorImage														= backIcon
 		navigationController.navigationBar.backIndicatorTransitionMaskImage											= backIcon

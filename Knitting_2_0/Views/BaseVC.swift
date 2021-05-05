@@ -118,10 +118,6 @@ extension BaseVC {
 		}
 	}
 	
-	public func getButtonColor() -> UIColor {
-		return UIColor(red: 0.745, green: 0.616, blue: 0.875, alpha: 1)
-	}
-	
 	public func getBackgroundColor() -> UIColor {
 		return UIColor.white
 	}

@@ -39,7 +39,7 @@ class EntryVM {
     private lazy var logoIconView		: UIImageView	= {
         let imageView					= UIImageView()
 		imageView.frame 				= CGRect(x: 0, y: 0, width: 129.39, height: 154.89)
-		imageView.image					= Icons.logoIcon
+		imageView.image					= UIImage.logoIcon
         imageView.contentMode			= .scaleAspectFit
 		
         return imageView
@@ -47,11 +47,11 @@ class EntryVM {
 	
 	private lazy var signUpButton		: UIButton		= {
 		let button			= UIButton()
-		button.backgroundColor = UIColor(red: 0.745, green: 0.616, blue: 0.875, alpha: 1)
+		button.backgroundColor = UIColor.mainColor
 		button.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 32, height: 52)
 		button.setTitle(Placeholder.signUp.localized(), for: .normal)
 		button.setTitleColor(UIColor.white, for: .normal)
-		button.titleLabel?.font = UIFont(name: "SFProText-Medium", size: 17)
+		button.titleLabel?.font = UIFont.medium_17
 		button.layer.cornerRadius = 15
 		return button
 	}()
@@ -59,11 +59,11 @@ class EntryVM {
 	private lazy var logInButton		: UIButton		= {
 		let button						= UIButton(type: .system)
 		button.frame 					= CGRect(x: 0, y: 0, width: 500, height: 21)
-		button.titleLabel?.font			= Fonts.displaySemibold18
+		button.titleLabel?.font			= UIFont.semibold_18
 		button.alpha					= 0
 		button.layer.masksToBounds		= true
 		button.setTitle					(Placeholder.logIn,		for: .normal)
-		button.setTitleColor			(Colors.blackColor, for: .normal)
+		button.setTitleColor			(UIColor.black, for: .normal)
 			
 		return button
 	}()

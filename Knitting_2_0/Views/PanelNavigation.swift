@@ -74,8 +74,8 @@ class PanelNavigation : UINavigationController, PanModalPresentable {
 	}
 	
 	private func setTitleApearence() {
-		let largeTitle   = [NSAttributedString.Key.font: UIFont(name: "SFProDisplay-Bold", size: 30), NSAttributedString.Key.foregroundColor: UIColor.black]
-		let defaultTitle = [NSAttributedString.Key.font: UIFont(name: "SFProText-Bold", size: 16),    NSAttributedString.Key.foregroundColor: UIColor.black]
+		let largeTitle   = [NSAttributedString.Key.font: UIFont.bold_30, NSAttributedString.Key.foregroundColor: UIColor.black]
+		let defaultTitle = [NSAttributedString.Key.font: UIFont.bold_16, NSAttributedString.Key.foregroundColor: UIColor.black]
 		
 		if #available(iOS 13.0, *) {
 			let appereance = UINavigationBarAppearance()

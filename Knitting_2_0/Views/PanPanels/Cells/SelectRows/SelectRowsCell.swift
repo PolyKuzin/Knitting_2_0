@@ -16,11 +16,9 @@ protocol _SelectRowsCell {
 
 class SelectRowsCell : UITableViewCell {
 	
-	static let reuseId = "SelectRowsCell"
-	
 	let plusButton								: UIButton = {
 		let button							= UIButton()
-		button.setImage(UIImage(named: "addProject"), for: .normal)
+		button.setImage(UIImage.plus_btn, for: .normal)
 		button.frame							= CGRect(x: 0, y: 0, width: 49, height: 49)
 		button.isEnabled = false
 		
@@ -29,7 +27,7 @@ class SelectRowsCell : UITableViewCell {
 	
 	let minusButton								: UIButton = {
 		let button							= UIButton()
-		button.setImage(UIImage(named: "minus"), for: .normal)
+		button.setImage(UIImage.minus_btn, for: .normal)
 		button.frame							= CGRect(x: 0, y: 0, width: 32, height: 5)
 		button.isEnabled = false
 
@@ -37,7 +35,6 @@ class SelectRowsCell : UITableViewCell {
 	}()
 	
 	private lazy var textField	: UITextField = {
-		//Change the frame of the TextFfield
 		let textField = UITextField(frame: CGRect(x: 0, y: 0, width: 85, height: 50))
 		
 		//design
@@ -45,7 +42,7 @@ class SelectRowsCell : UITableViewCell {
 		textField.textAlignment			= .center
 		textField.layer.cornerRadius	= CornerRadius.forTextField
 		textField.backgroundColor		= Colors.normalTextField
-		textField.font					= Fonts.textRegular17
+		textField.font					= UIFont.regular_17
 		textField.layer.borderWidth		= BorderWidth.forTextField
 		textField.layer.borderColor		= Colors.normalBorderTextField.cgColor
 		textField.leftViewMode 			= .always

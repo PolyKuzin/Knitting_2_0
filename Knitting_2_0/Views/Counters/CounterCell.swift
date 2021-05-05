@@ -14,7 +14,7 @@ class CounterCell								: SwipeableCollectionViewCell {
 	
 	let counterName								: UILabel = {
 		let label 								= UILabel()
-		label.font								= Fonts.textSemibold17
+		label.font								= UIFont.semibold_17
 		label.frame 							= CGRect(x: 0, y: 0, width: 65, height: 20)
 		label.textColor 						= UIColor(red: 0.663, green: 0.663, blue: 0.663, alpha: 1)
 		
@@ -23,7 +23,7 @@ class CounterCell								: SwipeableCollectionViewCell {
 	
 	let currentRows								: UILabel = {
 		let label								= UILabel()
-		label.font								= UIFont(name: "SFProRounded-Medium", size: 72)
+		label.font								= UIFont.rounded
 		label.frame								= CGRect(x: 0, y: 0, width: 75, height: 86)
 		label.textColor							= UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
 		
@@ -32,13 +32,13 @@ class CounterCell								: SwipeableCollectionViewCell {
 	
 	let plusButton								: UIButton = {
 		let imageView							= UIButton()
-		imageView.setImage(UIImage(named: "addProject"), for: .normal)
+		imageView.setImage(UIImage.plus_btn, for: .normal)
 		return imageView
 	}()
 	
 	let minusButton								: UIButton = {
 		let imageView							= UIButton()
-		imageView.setImage(UIImage(named: "minus"), for: .normal)
+		imageView.setImage(UIImage.minus_btn, for: .normal)
 		return imageView
 	}()
 	
@@ -48,10 +48,10 @@ class CounterCell								: SwipeableCollectionViewCell {
 		
 		self.layer.cornerRadius					= 20
 		self.clipsToBounds						= true
-		editContainerView.backgroundColor		= UIColor(red: 0.616, green: 0.733, blue: 0.875, alpha: 1)
-		visibleContainerView.backgroundColor 	= Colors.whiteColor
-		deleteContainerView.backgroundColor 	= UIColor(red: 0.984, green: 0.682, blue: 0.827, alpha: 1)
-		duplicateContainerView.backgroundColor  = UIColor(red: 0.745, green: 0.616, blue: 0.875, alpha: 1)
+		editContainerView.backgroundColor		= UIColor.secondary
+		visibleContainerView.backgroundColor 	= UIColor.white
+		deleteContainerView.backgroundColor 	= UIColor.third
+		duplicateContainerView.backgroundColor  = UIColor.mainColor
 
 	}
 	

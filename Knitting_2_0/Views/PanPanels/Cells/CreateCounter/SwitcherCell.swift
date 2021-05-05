@@ -10,12 +10,11 @@ import UIKit
 
 protocol _SwitcherCell {
 	var title      : String       { get set }
+	var switcher   : Bool         { get set }
 	var onSwitch   : ((Bool)->()) { get set }
 }
 
 class SwitcherCell : UITableViewCell {
-	
-	static var reuseId = "CreateCounterCell"
 	
 	@IBOutlet weak var label    : UILabel!
 	@IBOutlet weak var switcher : UISwitch!

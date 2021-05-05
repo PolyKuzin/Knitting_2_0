@@ -63,6 +63,7 @@ class PanProject : BasePanVC, PanModalPresentable {
 		
 		struct SelectCounter    : _SwitcherCell   {
 			var title          : String
+			var switcher       : Bool
 			var onSwitch       : ((Bool)->())
 		}
 		
@@ -158,11 +159,11 @@ class PanProject : BasePanVC, PanModalPresentable {
 
 		self.viewState.rows = [selectImage, selectName]
 		if currentProject != nil {
-			let mainButton    = ViewState.MainButton      (title : "Save".localized(), onTap: self.editProject, color: getButtonColor())
+			let mainButton    = ViewState.MainButton      (title : "Save".localized(), onTap: self.editProject, color: UIColor.mainColor)
 			self.viewState.rows.append(mainButton)
 		} else {
-			let selectCounter = ViewState.SelectCounter   (title : "Create counter with project name?".localized(), onSwitch    : counterClosure)
-			let mainButton    = ViewState.MainButton      (title : "Create".localized(), onTap: self.saveProject, color: getButtonColor())
+			let selectCounter = ViewState.SelectCounter   (title : "Create counter with project name?".localized(), switcher: self.currentSwitch, onSwitch    : counterClosure)
+			let mainButton    = ViewState.MainButton      (title : "Create".localized(), onTap: self.saveProject, color: UIColor.mainColor)
 			self.viewState.rows.append(selectCounter)
 			self.viewState.rows.append(mainButton)
 		}

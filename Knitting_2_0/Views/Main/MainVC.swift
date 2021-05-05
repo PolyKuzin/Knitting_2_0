@@ -18,11 +18,8 @@ class MainVC : BaseVC {
 	let appDelegate = UIApplication.shared.delegate as? AppDelegate
 	
 	var activityView						: UIActivityIndicatorView?
-	let newprojectViewTaped					= Notification.Name(rawValue: newprojectNotificationKey)
-	let editprojectViewTaped				= Notification.Name(rawValue: editProjectNotificationKey)
 	
 	//MARK:VARIABLES: Supporting Stuff
-	
 	private var projects					: [MProject] = [
 		MProject(userID: "1", name: "", image: "", date: ""),
 		MProject(userID: "1", name: "", image: "", date: ""),
