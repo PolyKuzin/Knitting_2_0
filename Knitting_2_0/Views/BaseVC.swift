@@ -26,7 +26,7 @@ struct PayWall     : RowPresentable {
 }
 
 struct Profile     : RowPresentable {
-	var VC         : PanModalPresentable.LayoutType = PanelNavigation(rootViewController: PanProfileVC(nibName: "PanProfileVC",   bundle: nil))
+	var VC         : PanModalPresentable.LayoutType = PanelNavigation(rootViewController: PanProfileVC(nibName: "PanProfileVC", bundle: nil))
 }
 
 struct Project     : RowPresentable {

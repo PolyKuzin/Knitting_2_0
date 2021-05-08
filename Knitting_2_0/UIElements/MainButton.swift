@@ -43,4 +43,15 @@ class MainButton: UIButton {
 		guard let color = color else { return }
 		self.backgroundColor = color
 	}
+	
+	public func setGradient() {
+		let gradientLayer			= CAGradientLayer()
+		gradientLayer.frame			= bounds
+		gradientLayer.locations		= [0.0, 1.0]
+		gradientLayer.startPoint	= CGPoint(x: 0.5, y: 1.0)
+		gradientLayer.endPoint		= CGPoint(x: 0.5, y: 0.0)
+		gradientLayer.colors		= [UIColor(red: 0.551, green: 0.408, blue: 0.858, alpha: 1).cgColor,
+									   UIColor(red: 0.739, green: 0.577, blue: 0.900, alpha: 1).cgColor]
+		layer.insertSublayer(gradientLayer, at: 0)
+	}
 }

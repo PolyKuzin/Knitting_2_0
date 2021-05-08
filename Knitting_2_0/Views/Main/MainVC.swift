@@ -40,11 +40,11 @@ class MainVC : BaseVC {
 	private var addView						= UIView()
 	private var addImage					= UIImageView()
     
-	private var user           		: MUser!
-	private var ref             	: DatabaseReference!
+	private var user   : MUser!
+	private var ref    : DatabaseReference!
 	var currentProject : MProject?
 
-	private var viewModel					: MainVM! {
+	private var viewModel : MainVM! {
 		didSet {
 			self.addImage	= viewModel.addImageView()
 			self.addView	= viewModel.addViewBackground()

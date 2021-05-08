@@ -53,7 +53,6 @@ class PanProfileVC : BasePanVC, PanModalPresentable {
     override func viewDidLoad() {
         super.viewDidLoad()
 		self.title = "Settings".localized()
-//		tableView.isScrollEnabled = false
 		tableView.delegate = self
 		tableView.dataSource = self
 		tableView.separatorStyle = .none

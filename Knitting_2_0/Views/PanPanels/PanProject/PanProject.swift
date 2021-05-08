@@ -175,7 +175,9 @@ class PanProject : BasePanVC, PanModalPresentable {
 }
 
 // MARK: - TableView Delegate
-extension PanProject : UITableViewDelegate { }
+extension PanProject : UITableViewDelegate {
+	
+}
 
 // MARK: - TableView DataSource
 extension PanProject : UITableViewDataSource {

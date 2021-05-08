@@ -25,6 +25,7 @@ class BecomeProCell : UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+		self.button.setGradient()
 		self.selectionStyle = .none
 		self.button.addTarget(self, action: #selector(self.becomePro), for: .touchUpInside)
     }
@@ -35,9 +36,11 @@ class BecomeProCell : UITableViewCell {
 	}
 	
 	public func configure(with data: _BecomePro) {
-		self.button.setColor(data.color)
 		self.button.setTitle(data.title)
 		self.button.setImage(data.image)
+		if let imageView = self.button.imageView {
+			self.button.bringSubviewToFront(imageView)
+		}
 		self.onBecomePro = data.onBecomePro
 	}
 }
