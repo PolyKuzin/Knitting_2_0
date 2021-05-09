@@ -117,8 +117,4 @@ extension BaseVC {
 			return 0
 		}
 	}
-	
-	public func getBackgroundColor() -> UIColor {
-		return UIColor.white
-	}
 }

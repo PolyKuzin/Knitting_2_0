@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -16,7 +18,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EdE-RY-4jY" customClass="MainButton" customModule="Knitting_2_0" customModuleProvider="target">
-                        <rect key="frame" x="16" y="15" width="393" height="52"/>
+                        <rect key="frame" x="16" y="5" width="393" height="52"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="52" id="o4Q-pA-Jcy"/>
                         </constraints>
@@ -26,8 +28,8 @@
                 <constraints>
                     <constraint firstItem="EdE-RY-4jY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Vfv-XV-WnZ"/>
                     <constraint firstAttribute="trailing" secondItem="EdE-RY-4jY" secondAttribute="trailing" constant="16" id="jdF-Xq-hCh"/>
-                    <constraint firstItem="EdE-RY-4jY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="nxi-eY-R56"/>
-                    <constraint firstAttribute="bottom" secondItem="EdE-RY-4jY" secondAttribute="bottom" constant="15" id="oVM-Vo-RMm"/>
+                    <constraint firstItem="EdE-RY-4jY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="nxi-eY-R56"/>
+                    <constraint firstAttribute="bottom" secondItem="EdE-RY-4jY" secondAttribute="bottom" constant="5" id="oVM-Vo-RMm"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -37,4 +39,9 @@
             <point key="canvasLocation" x="61.594202898550726" y="114.17410714285714"/>
         </tableViewCell>
     </objects>
+    <designables>
+        <designable name="EdE-RY-4jY">
+            <size key="intrinsicContentSize" width="46" height="30"/>
+        </designable>
+    </designables>
 </document>

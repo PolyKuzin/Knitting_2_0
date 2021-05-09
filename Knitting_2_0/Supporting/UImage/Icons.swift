@@ -34,6 +34,33 @@ extension UIImage {
 		return UIImage(named: "exit")    ?? UIImage()
 	}
 	
+	public class var moon : UIImage {
+		switch UserDefaults.standard.integer(forKey: "Color_background") {
+		case 1  :
+			return UIImage(named: "Moon_Dark")   ?? UIImage()
+		default :
+			return UIImage(named: "Moon_Light")   ?? UIImage()
+		}
+	}
+	
+	public class var sun : UIImage {
+		switch UserDefaults.standard.integer(forKey: "Color_background") {
+		case 1  :
+			return UIImage(named: "Sun_Dark")   ?? UIImage()
+		default :
+			return UIImage(named: "Sun_Light")   ?? UIImage()
+		}
+	}
+	
+	public class var phone : UIImage {
+		switch UserDefaults.standard.integer(forKey: "Color_background") {
+		case 1  :
+			return UIImage(named: "Phone_Dark")   ?? UIImage()
+		default :
+			return UIImage(named: "Phone_Light")   ?? UIImage()
+		}
+	}
+	
 	/// red     - for red theme
 	/// green  - for green theme
 	/// purple - for purple theme

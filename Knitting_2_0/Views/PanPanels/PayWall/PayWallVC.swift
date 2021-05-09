@@ -59,10 +59,11 @@ class PayWallVC : BasePanVC, PanModalPresentable {
 	fileprivate func setupNavigationItem() {
 		let wrapperView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 90))
 		let label = UILabel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 90))
-		label.backgroundColor = self.getBackgroundColor()
+//		label.backgroundColor = self.getBackgroundColor()
 		label.numberOfLines = 2
 		label.textAlignment = .center
 		label.textColor = .black
+		label.backgroundColor = .white
 		label.font = UIFont.systemFont(ofSize: 30, weight: .bold)
 		label.text = "Become a PRO Knitter \nwith Premium".localized()
 		wrapperView.addSubview(label)

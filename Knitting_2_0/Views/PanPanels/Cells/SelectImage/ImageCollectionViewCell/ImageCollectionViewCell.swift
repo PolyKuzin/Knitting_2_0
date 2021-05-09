@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ImageCollectionViewCell: UICollectionViewCell {
+class ImageCollectionViewCell : UICollectionViewCell {
 	
 	static let reuseId = "ImageCollectionViewCell"
 	
@@ -20,16 +20,14 @@ class ImageCollectionViewCell: UICollectionViewCell {
 		self.imageView.layer.cornerRadius = 20
     }
 	
-	public func configure(with data: Any) {
-		if let data = data as? Item {
-			self.imageView.image = data.image
-			if !data.isEnabled { self.lockerImage.isHidden = false } else { self.lockerImage.isHidden = true }
-			if data.isSelected {
-				self.imageView.layer.borderWidth = 3
-				self.imageView.layer.borderColor = UIColor.mainColor.cgColor
-			} else {
-				self.imageView.layer.borderWidth = 0
-			}
+	public func configure(with data: Item) {
+	self.imageView.image = data.image
+		if !data.isEnabled { self.lockerImage.isHidden = false } else { self.lockerImage.isHidden = true }
+		if data.isSelected {
+			self.imageView.layer.borderWidth = 3
+			self.imageView.layer.borderColor = UIColor.mainColor.cgColor
+		} else {
+			self.imageView.layer.borderWidth = 0
 		}
 	}
 }

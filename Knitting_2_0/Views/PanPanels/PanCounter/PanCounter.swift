@@ -54,7 +54,7 @@ class PanCounter : BasePanVC, PanModalPresentable {
 		
 		var rows : [Any]
 		
-		struct SelectImages     :_SelectImageCell {
+		struct SelectImages     :_SelectCell {
 			var items          : [Item]
 			var currentImage   : Int
 			var showPayWall    : (()->())

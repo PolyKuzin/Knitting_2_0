@@ -18,7 +18,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Fd-aw-vvq" customClass="MainButton" customModule="Knitting_2_0" customModuleProvider="target">
-                        <rect key="frame" x="16" y="10" width="302" height="52"/>
+                        <rect key="frame" x="16" y="5" width="302" height="52"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="52" id="4pc-6b-0uw"/>
                         </constraints>
@@ -27,8 +27,8 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="5Fd-aw-vvq" secondAttribute="trailing" constant="16" id="3O8-eY-pTh"/>
-                    <constraint firstAttribute="bottom" secondItem="5Fd-aw-vvq" secondAttribute="bottom" constant="10" id="7hO-nr-bap"/>
-                    <constraint firstItem="5Fd-aw-vvq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="HCl-KP-f3v"/>
+                    <constraint firstAttribute="bottom" secondItem="5Fd-aw-vvq" secondAttribute="bottom" constant="5" id="7hO-nr-bap"/>
+                    <constraint firstItem="5Fd-aw-vvq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="HCl-KP-f3v"/>
                     <constraint firstItem="5Fd-aw-vvq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Nb4-h9-hOI"/>
                 </constraints>
             </tableViewCellContentView>

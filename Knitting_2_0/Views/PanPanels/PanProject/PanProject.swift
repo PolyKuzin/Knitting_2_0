@@ -49,7 +49,7 @@ class PanProject : BasePanVC, PanModalPresentable {
 		
 		var rows : [Any]
 		
-		struct SelectImages     :_SelectImageCell {
+		struct SelectImages     :_SelectCell {
 			var items          : [Item]
 			var currentImage   : Int
 			var showPayWall    : (()->())
@@ -98,11 +98,11 @@ class PanProject : BasePanVC, PanModalPresentable {
 		self.tableView.delegate = self
 		self.tableView.dataSource = self
 		self.tableView.separatorStyle = .none
-		self.tableView.register(UINib(nibName: "BecomeProCell",     bundle: nil), forCellReuseIdentifier: "BecomeProCell")
-		self.tableView.register(UINib(nibName: "MainButtonCell",    bundle: nil), forCellReuseIdentifier: "MainButtonCell")
-		self.tableView.register(UINib(nibName: "SelectNameCell",    bundle: nil), forCellReuseIdentifier: "SelectNameCell")
-		self.tableView.register(UINib(nibName: "SelectImageCell",   bundle: nil), forCellReuseIdentifier: "SelectImageCell")
-		self.tableView.register(UINib(nibName: "CreateCounterCell", bundle: nil), forCellReuseIdentifier: "CreateCounterCell")
+		self.tableView.register(SwitcherCell.nib, forCellReuseIdentifier: SwitcherCell.reuseId)
+		self.tableView.register(BecomeProCell.nib, forCellReuseIdentifier: BecomeProCell.reuseId)
+		self.tableView.register(MainButtonCell.nib, forCellReuseIdentifier: MainButtonCell.reuseId)
+		self.tableView.register(SelectNameCell.nib, forCellReuseIdentifier: SelectNameCell.reuseId)
+		self.tableView.register(SelectImageCell.nib, forCellReuseIdentifier: SelectImageCell.reuseId)
 		if currentProject != nil {
 			self.makeState()
 			self.title = "Edit project".localized()
@@ -190,27 +190,27 @@ extension PanProject : UITableViewDataSource {
 		switch self.viewState.rows[indexPath.row] {
 		case is ViewState.SelectName      :
 			let data = self.viewState.rows[indexPath.row] as! ViewState.SelectName
-			let cell = tableView.dequeueReusableCell(withIdentifier: "SelectNameCell",    for: indexPath) as! SelectNameCell
+			let cell = tableView.dequeueReusableCell(withIdentifier: SelectNameCell.reuseId,  for: indexPath) as! SelectNameCell
 			cell.configure(with: data)
 			return cell
 		case is ViewState.SelectImages    :
 			let data = self.viewState.rows[indexPath.row] as! ViewState.SelectImages
-			let cell = tableView.dequeueReusableCell(withIdentifier: "SelectImageCell",   for: indexPath) as! SelectImageCell
+			let cell = tableView.dequeueReusableCell(withIdentifier: SelectImageCell.reuseId, for: indexPath) as! SelectImageCell
 			cell.configure(with: data)
 			return cell
 		case is ViewState.SelectCounter   :
 			let data = self.viewState.rows[indexPath.row] as! ViewState.SelectCounter
-			let cell = tableView.dequeueReusableCell(withIdentifier: "CreateCounterCell", for: indexPath) as! SwitcherCell
+			let cell = tableView.dequeueReusableCell(withIdentifier: SwitcherCell.reuseId,    for: indexPath) as! SwitcherCell
 			cell.configure(with: data)
 			return cell
 		case is ViewState.MainButton      :
 			let data = self.viewState.rows[indexPath.row] as! ViewState.MainButton
-			let cell = tableView.dequeueReusableCell(withIdentifier: "MainButtonCell",    for: indexPath) as! MainButtonCell
+			let cell = tableView.dequeueReusableCell(withIdentifier: MainButtonCell.reuseId,  for: indexPath) as! MainButtonCell
 			cell.configure(with: data)
 			return cell
 		case is ViewState.BecomePro       :
 			let data = self.viewState.rows[indexPath.row] as! ViewState.BecomePro
-			let cell = tableView.dequeueReusableCell(withIdentifier: "BecomeProCell",     for: indexPath) as! BecomeProCell
+			let cell = tableView.dequeueReusableCell(withIdentifier: BecomeProCell.reuseId,   for: indexPath) as! BecomeProCell
 			cell.configure(with: data)
 			return cell
 		default:

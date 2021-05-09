@@ -8,6 +8,17 @@
 
 import UIKit
 
+enum currentBack : Int {
+	case light = 0
+	case dark  = 1
+}
+
+enum currentMain : Int {
+	case purple = 0
+	case green  = 1
+	case red    = 2
+}
+
 struct Colors {
 	
 	static let normalTextField			= UIColor(red: 0.949, green: 0.949, blue: 0.969, alpha: 1)
@@ -31,8 +42,8 @@ extension UIColor {
 	/// dark - for dark theme
 	/// light - for light theme
 	public class var background : UIColor {
-		switch UserDefaults.standard.string(forKey: "Color_background") {
-		case "dark":
+		switch UserDefaults.standard.integer(forKey: "Color_background") {
+		case 1 :
 			return UIColor.black
 		default:
 			return UIColor.white
@@ -43,34 +54,34 @@ extension UIColor {
 	/// green  - for green theme
 	/// purple - for purple theme
 	public class var mainColor  : UIColor {
-		switch UserDefaults.standard.string(forKey: "Color_main") {
-		case "red"   :
+		switch UserDefaults.standard.integer(forKey: "Color_main") {
+		case 2  :
 			return UIColor(red: 1.000, green: 0.346, blue: 0.346, alpha: 1)
-		case "green" :
+		case 1  :
 			return UIColor(red: 0.494, green: 0.875, blue: 0.624, alpha: 1)
-		default      :
+		default :
 			return UIColor(red: 0.745, green: 0.616, blue: 0.875, alpha: 1)
 		}
 	}
 	
 	public class var secondary  : UIColor {
-		switch UserDefaults.standard.string(forKey: "Color_main") {
-		case "red"   :
+		switch UserDefaults.standard.integer(forKey: "Color_main") {
+		case 2  :
 			return UIColor(red: 1.000, green: 0.533, blue: 0.533, alpha: 1)
-		case "green" :
+		case 1  :
 			return UIColor(red: 0.107, green: 0.758, blue: 0.602, alpha: 1)
-		default      :
+		default :
 			return UIColor(red: 0.616, green: 0.733, blue: 0.875, alpha: 1)
 		}
 	}
 	
 	public class var third      : UIColor {
-		switch UserDefaults.standard.string(forKey: "Color_main") {
-		case "red"   :
+		switch UserDefaults.standard.integer(forKey: "Color_main") {
+		case 2  :
 			return UIColor(red: 0.675, green: 0.675, blue: 0.675, alpha: 1)
-		case "green" :
+		case 1  :
 			return UIColor(red: 0.529, green: 0.824, blue: 0.753, alpha: 1)
-		default      :
+		default :
 			return UIColor(red: 0.984, green: 0.682, blue: 0.827, alpha: 1)
 		}
 	}
