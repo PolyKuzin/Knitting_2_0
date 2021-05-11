@@ -39,15 +39,23 @@ struct Colors {
 
 extension UIColor {
 	
+	public class var grayLabel : UIColor {
+		return UIColor(named: "GrayLabel")  ?? UIColor.gray
+	}
+	
+	public class var mainLabel : UIColor {
+		return UIColor(named: "MainLabel")  ?? UIColor.black
+	}
 	/// dark - for dark theme
 	/// light - for light theme
 	public class var background : UIColor {
-		switch UserDefaults.standard.integer(forKey: "Color_background") {
-		case 1 :
-			return UIColor.black
-		default:
-			return UIColor.white
-		}
+		return UIColor(named: "Background") ?? UIColor.white
+//		switch UserDefaults.standard.integer(forKey: "Color_background") {
+//		case 1 :
+//			return UIColor.black
+//		default:
+//			return UIColor.white
+//		}
 	}
 	
 	/// red     - for red theme

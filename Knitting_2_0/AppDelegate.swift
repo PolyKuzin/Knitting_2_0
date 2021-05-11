@@ -19,7 +19,7 @@ var currentCount = UserDefaults.standard.integer(forKey: "launchCount")
 class AppDelegate: UIResponder, UIApplicationDelegate {
 	
 	//MARK: - didFinishLaunching
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		let configuration = YMMYandexMetricaConfiguration.init(apiKey: "710ec4a5-8503-4371-a935-2825ec321888")
 		YMMYandexMetrica.activate(with: configuration!)
 		YMPYandexMetricaPush.setExtensionAppGroup("group.ru.polykuzin.Knitting-2-0")
@@ -36,16 +36,49 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		AnalyticsService.reportEvent(with: "Launch KnitIt")
 		requestNotification()
 		IAPManager.shared.setupPurchases { (success) in
-			if success {
-				print("CAN MAKE PURCHAISES")
-				IAPManager.shared.getProducts()
-			}
+			if success { IAPManager.shared.getProducts() }
 		}
+		self.checkForRenew()
+		self.setTheme()
+		return true
+    }
+	
+	private func setTheme() {
+		if let theme = UserDefaults.standard.object(forKey: "AppApereance") as? String {
+			if #available(iOS 13.0, *) {
+				guard let window = UIApplication.shared.keyWindow else { return }
+				if theme == "dark" {
+					window.overrideUserInterfaceStyle = .dark
+				} else if theme == "light" {
+					window.overrideUserInterfaceStyle = .light
+				} else {
+					window.overrideUserInterfaceStyle = .unspecified
+				}
+			}
+		} else {
+			var theme = "light"
+			if #available(iOS 12.0, *) {
+				switch UIScreen.main.traitCollection.userInterfaceStyle {
+				case .dark:
+					theme = "dark"
+				case .light:
+					theme = "light"
+				case .unspecified:
+					theme = "light"
+				@unknown default:
+					fatalError()
+				}
+			}
+			UserDefaults.standard.setValue(theme, forKey: "AppApereance")
+		}
+	}
+	
+	private func checkForRenew() {
 		let reciptValidator = ReceiptValidator()
 		let result = reciptValidator.validateReceipt()
 		switch result {
 		case let .success(reciept):
-			guard let purchase = reciept.inAppPurchaseReceipts?.filter({$0.productIdentifier == IAPProducts.autoRenew.rawValue}).first else { return true }
+			guard let purchase = reciept.inAppPurchaseReceipts?.filter({$0.productIdentifier == IAPProducts.autoRenew.rawValue}).first else { return }
 			if purchase.subscriptionExpirationDate?.compare(Date()) == .some(.orderedDescending) {
 				AnalyticsService.reportEvent(with: "Purchase", parameters: ["data" : purchase.purchaseDate ?? "0000000"])
 				UserDefaults.standard.setValue(true, forKey: "setPro")
@@ -55,8 +88,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		case let .error(error):
 			print(error.localizedDescription)
 		}
-		return true
-    }
+	}
 	
 	func applicationDidBecomeActive(_ application: UIApplication) {
 		UIApplication.shared.applicationIconBadgeNumber = 0

@@ -41,7 +41,7 @@ class BaseVC : UIViewController, MFMailComposeViewControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-		self.view.backgroundColor = .white
+		self.view.backgroundColor = .background
     }
 	
 	public func showPayWall() {
@@ -93,6 +93,18 @@ class BaseVC : UIViewController, MFMailComposeViewControllerDelegate {
 		safariVC.preferredBarTintColor = .white
 		safariVC.preferredControlTintColor = .white
 		return safariVC
+	}
+	
+	func setupNormalNavBar() {
+		//Navigation Bar scould be invisible
+		guard let navigationController = navigationController else { return }
+		navigationController.navigationBar.barTintColor		= .white
+		navigationController.view.backgroundColor			= .white
+		navigationController.navigationBar.isTranslucent	= false
+		navigationController.navigationBar.shadowImage		= UIImage()
+		navigationController.navigationBar.setBackgroundImage(UIImage(), for: .default)
+		
+		self.navigationItem.setHidesBackButton(true, animated: true)
 	}
 }
 

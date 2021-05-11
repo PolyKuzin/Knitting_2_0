@@ -11,8 +11,6 @@ import PanModal
 import FirebaseAuth
 import FirebaseDatabase
 
-let animationDuration = 0.7
-
 class MainVC : BaseVC {
 	
 	let appDelegate = UIApplication.shared.delegate as? AppDelegate
@@ -272,18 +270,6 @@ extension MainVC: SwipeableCollectionViewCellDelegate {
 
 //MARK: Layout
 extension MainVC {
-	
-	func setupNormalNavBar() {
-		//Navigation Bar scould be invisible
-		guard let navigationController = navigationController else { return }
-		navigationController.navigationBar.barTintColor		= .white
-		navigationController.view.backgroundColor			= .white
-		navigationController.navigationBar.isTranslucent	= false
-		navigationController.navigationBar.shadowImage		= UIImage()
-		navigationController.navigationBar.setBackgroundImage(UIImage(), for: .default)
-		
-		self.navigationItem.setHidesBackButton(true, animated: true)
-	}
 	
 	func setUpClearNavBar() {
 		guard let navigationController = navigationController else { return }

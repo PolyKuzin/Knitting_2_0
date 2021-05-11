@@ -24,6 +24,7 @@ class SwitcherCell : UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 		self.selectionStyle = .none
+		self.switcher.tintColor = UIColor.mainColor
 		self.label.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - 100).isActive = true
 	}
 	

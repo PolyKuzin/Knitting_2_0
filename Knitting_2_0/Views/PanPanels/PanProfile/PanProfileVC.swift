@@ -180,7 +180,7 @@ class PanProfileVC : BasePanVC, PanModalPresentable {
 		let selectTheme  = ViewState.SelectTheme(items: self.items, currentImage: UserDefaults.standard.integer(forKey: "Color_main"), showPayWall: payWallClosure, selectImage: themeClosure)
 		let appearenceHeader = ViewState.SectionTitle(title: "Appearence:".localized())
 		let currentTheme = UserDefaults.standard.integer(forKey: "Color_background")
-		let darkAppearence = ViewState.Appearence(title: "Dark".localized(), leftIcon: UIImage.moon, isSelected: currentTheme == )
+//		let darkAppearence = ViewState.Appearence(title: "Dark".localized(), leftIcon: UIImage.moon, isSelected: currentTheme == )
 		
 		self.viewState.rows.append(contentsOf: [shareApp, colorsHeader, selectTheme, appearenceHeader])
 	}

@@ -8,6 +8,8 @@
 
 import UIKit
 
+let ChangeColorNotification = "ru.polykuzin.ChangeColor"
+
 @IBDesignable
 class MainButton: UIButton {
 	
@@ -17,6 +19,13 @@ class MainButton: UIButton {
 		self.setTitleColor(UIColor.white, for: .normal)
 		self.titleLabel?.font = UIFont.medium_17
 		self.backgroundColor = UIColor.mainColor
+		NotificationCenter.default.addObserver(self, selector: #selector(updateColor),
+											   name: NSNotification.Name(rawValue: ChangeColorNotification), object: nil)
+	}
+	
+	@objc
+	private func updateColor() {
+		self.setColor(UIColor.mainColor)
 	}
 	
 	override init(frame: CGRect) {

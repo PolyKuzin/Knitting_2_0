@@ -67,6 +67,12 @@
 		99A070A426123D3200366972 /* IAP_Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A070A326123D3200366972 /* IAP_Manager.swift */; };
 		99A070C826130E1100366972 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A070C726130E1100366972 /* Loader.swift */; };
 		99A070CE2613184400366972 /* DefaultImageStr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A070CD2613184400366972 /* DefaultImageStr.swift */; };
+		99A7C55E264AF30D00FDDAEB /* NewMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A7C55C264AF30D00FDDAEB /* NewMainVC.swift */; };
+		99A7C55F264AF30D00FDDAEB /* NewMainVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99A7C55D264AF30D00FDDAEB /* NewMainVC.xib */; };
+		99A7C565264B038900FDDAEB /* LoadingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A7C563264B038900FDDAEB /* LoadingCell.swift */; };
+		99A7C566264B038900FDDAEB /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99A7C564264B038900FDDAEB /* LoadingCell.xib */; };
+		99A7C56D264B03A600FDDAEB /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A7C56C264B03A600FDDAEB /* NetworkManager.swift */; };
+		99A7C577264B0AA100FDDAEB /* DTO_User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A7C576264B0AA100FDDAEB /* DTO_User.swift */; };
 		99AFBA4724F80D9E00E71FD6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AFBA4624F80D9E00E71FD6 /* AppDelegate.swift */; };
 		99AFBA4924F80D9E00E71FD6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AFBA4824F80D9E00E71FD6 /* SceneDelegate.swift */; };
 		99AFBA4B24F80D9E00E71FD6 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AFBA4A24F80D9E00E71FD6 /* SignUpVC.swift */; };
@@ -224,6 +230,12 @@
 		99A070A326123D3200366972 /* IAP_Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAP_Manager.swift; sourceTree = "<group>"; };
 		99A070C726130E1100366972 /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
 		99A070CD2613184400366972 /* DefaultImageStr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultImageStr.swift; sourceTree = "<group>"; };
+		99A7C55C264AF30D00FDDAEB /* NewMainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMainVC.swift; sourceTree = "<group>"; };
+		99A7C55D264AF30D00FDDAEB /* NewMainVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewMainVC.xib; sourceTree = "<group>"; };
+		99A7C563264B038900FDDAEB /* LoadingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingCell.swift; sourceTree = "<group>"; };
+		99A7C564264B038900FDDAEB /* LoadingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
+		99A7C56C264B03A600FDDAEB /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		99A7C576264B0AA100FDDAEB /* DTO_User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTO_User.swift; sourceTree = "<group>"; };
 		99AFBA4324F80D9E00E71FD6 /* Knitting_2_0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Knitting_2_0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99AFBA4624F80D9E00E71FD6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		99AFBA4824F80D9E00E71FD6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -427,9 +439,12 @@
 		994EF71725153490009AA35B /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				99A7C56B264B039200FDDAEB /* Managers */,
+				99A7C562264B035300FDDAEB /* Cells */,
 				9959471F250AD91F00D0E273 /* MainVC.swift */,
 				998B9F8E250D817000C0C52F /* ProjectCell.swift */,
 				994EF7132514B423009AA35B /* MainSetionHeader.swift */,
+				99A7C57F264B0B2400FDDAEB /* NewMain */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -469,6 +484,84 @@
 				99A0709726123BD000366972 /* pkcs7_union_accessors.h */,
 			);
 			path = Validation;
+			sourceTree = "<group>";
+		};
+		99A7C562264B035300FDDAEB /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				99A7C57E264B0AFC00FDDAEB /* Project */,
+				99A7C57D264B0AEE00FDDAEB /* Error */,
+				99A7C57C264B0AE300FDDAEB /* Loading */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		99A7C56B264B039200FDDAEB /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				99A7C56C264B03A600FDDAEB /* NetworkManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		99A7C572264B0A6A00FDDAEB /* Old_Ones */ = {
+			isa = PBXGroup;
+			children = (
+				9959471D250A582B00D0E273 /* MUser.swift */,
+				998B9F92250E1CD300C0C52F /* MSection.swift */,
+				998B9F88250C255600C0C52F /* MProject.swift */,
+				99EF88BA25191EC400C77181 /* MCounter.swift */,
+				9978DDD6253E12C200659DC1 /* MPage.swift */,
+			);
+			path = Old_Ones;
+			sourceTree = "<group>";
+		};
+		99A7C57C264B0AE300FDDAEB /* Loading */ = {
+			isa = PBXGroup;
+			children = (
+				99A7C563264B038900FDDAEB /* LoadingCell.swift */,
+				99A7C564264B038900FDDAEB /* LoadingCell.xib */,
+			);
+			path = Loading;
+			sourceTree = "<group>";
+		};
+		99A7C57D264B0AEE00FDDAEB /* Error */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		99A7C57E264B0AFC00FDDAEB /* Project */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Project;
+			sourceTree = "<group>";
+		};
+		99A7C57F264B0B2400FDDAEB /* NewMain */ = {
+			isa = PBXGroup;
+			children = (
+				99A7C583264B103400FDDAEB /* View */,
+				99A7C582264B102B00FDDAEB /* Controller */,
+			);
+			path = NewMain;
+			sourceTree = "<group>";
+		};
+		99A7C582264B102B00FDDAEB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		99A7C583264B103400FDDAEB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				99A7C55C264AF30D00FDDAEB /* NewMainVC.swift */,
+				99A7C55D264AF30D00FDDAEB /* NewMainVC.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		99AFBA3A24F80D9E00E71FD6 = {
@@ -516,11 +609,8 @@
 		99AFBA6824F8101F00E71FD6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				9959471D250A582B00D0E273 /* MUser.swift */,
-				998B9F92250E1CD300C0C52F /* MSection.swift */,
-				998B9F88250C255600C0C52F /* MProject.swift */,
-				99EF88BA25191EC400C77181 /* MCounter.swift */,
-				9978DDD6253E12C200659DC1 /* MPage.swift */,
+				99A7C572264B0A6A00FDDAEB /* Old_Ones */,
+				99A7C576264B0AA100FDDAEB /* DTO_User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -855,6 +945,7 @@
 				9939AA6F260BAF2F0094AFC3 /* CreateCounterCell.xib in Resources */,
 				99B2239D2648029900FB9775 /* SelectCell.xib in Resources */,
 				99B223AD2648268C00FB9775 /* CheckCell.xib in Resources */,
+				99A7C55F264AF30D00FDDAEB /* NewMainVC.xib in Resources */,
 				99B2234B264153E600FB9775 /* SelectRowsCell.xib in Resources */,
 				99207D3425E067C00013DBF3 /* SelectImageCell.xib in Resources */,
 				99AFBA5024F80DA000E71FD6 /* Assets.xcassets in Resources */,
@@ -871,6 +962,7 @@
 				99B223962647159500FB9775 /* SectionTitleCell.xib in Resources */,
 				99454022260AB1C300F0EC3E /* ImageCollectionViewCell.xib in Resources */,
 				9936B98B25BC9324008F4443 /* PanProfileVC.xib in Resources */,
+				99A7C566264B038900FDDAEB /* LoadingCell.xib in Resources */,
 				99E4A1C625091FBE003CA7C9 /* GoogleService-Info.plist in Resources */,
 				990C188B263A029B00D56949 /* PayWallVC.xib in Resources */,
 				9936B9B125BCC27E008F4443 /* BecomeProCell.xib in Resources */,
@@ -965,6 +1057,7 @@
 				99594720250AD91F00D0E273 /* MainVC.swift in Sources */,
 				99A0708F26123B7100366972 /* RecieptValidator.swift in Sources */,
 				99A070C826130E1100366972 /* Loader.swift in Sources */,
+				99A7C55E264AF30D00FDDAEB /* NewMainVC.swift in Sources */,
 				990C188A263A029B00D56949 /* PayWallVC.swift in Sources */,
 				99192D57251FC208001C6720 /* CounterVC.swift in Sources */,
 				9936B97225BC7AB5008F4443 /* PanelNavigation.swift in Sources */,
@@ -997,6 +1090,7 @@
 				996FAF2C2508245D00209228 /* EntryVM.swift in Sources */,
 				998B9F8F250D817000C0C52F /* ProjectCell.swift in Sources */,
 				99B22385264329D900FB9775 /* Icons.swift in Sources */,
+				99A7C565264B038900FDDAEB /* LoadingCell.swift in Sources */,
 				9936B97D25BC92E3008F4443 /* BasePanVC.swift in Sources */,
 				99207D2625E024290013DBF3 /* PanProject.swift in Sources */,
 				99AFBA4924F80D9E00E71FD6 /* SceneDelegate.swift in Sources */,
@@ -1015,12 +1109,14 @@
 				99B223772642FA2300FB9775 /* Fonts.swift in Sources */,
 				9936B9B025BCC27E008F4443 /* BecomeProCell.swift in Sources */,
 				99B223952647159500FB9775 /* SectionTitleCell.swift in Sources */,
+				99A7C56D264B03A600FDDAEB /* NetworkManager.swift in Sources */,
 				99A0709C26123C8B00366972 /* pkcs7_union_accessors.m in Sources */,
 				998B9F8D250C2FBB00C0C52F /* ForgotPassVM.swift in Sources */,
 				9939AA6E260BAF2F0094AFC3 /* SwitcherCell.swift in Sources */,
 				99B957062524A0C900AC5438 /* CounterCell.swift in Sources */,
 				99A070A426123D3200366972 /* IAP_Manager.swift in Sources */,
 				99C31FDF251F2DA200A1F75D /* SwipeableCollectionViewCellProtocol.swift in Sources */,
+				99A7C577264B0AA100FDDAEB /* DTO_User.swift in Sources */,
 				99A070A026123D1A00366972 /* IAP_Products.swift in Sources */,
 				998B9F93250E1CD300C0C52F /* MSection.swift in Sources */,
 				998AED48255C4CA300507F02 /* String+LocalizedBundleTableName.swift in Sources */,
