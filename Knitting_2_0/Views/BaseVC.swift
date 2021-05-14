@@ -11,30 +11,12 @@ import PanModal
 import MessageUI
 import SafariServices
 
+let animationDuration = 0.7
+
 struct MailMessage {
 	let to    : String
 	let title : String
 	let body  : String
-}
-
-protocol RowPresentable {
-	var VC        : UIViewController & PanModalPresentable { get set }
-}
-
-struct PayWall     : RowPresentable {
-	var VC         : PanModalPresentable.LayoutType = FullScreenNavigation(rootViewController: PayWallVC(nibName: "PayWallVC", bundle: nil))
-}
-
-struct Profile     : RowPresentable {
-	var VC         : PanModalPresentable.LayoutType = PanelNavigation(rootViewController: PanProfileVC(nibName: "PanProfileVC", bundle: nil))
-}
-
-struct Project     : RowPresentable {
-	var VC         : PanModalPresentable.LayoutType = PanelNavigation(rootViewController: PanProject(nibName: "PanProject", bundle: nil))
-}
-
-struct Counter     : RowPresentable {
-	var VC         : PanModalPresentable.LayoutType = PanelNavigation(rootViewController: PanCounter(nibName: "PanCounter", bundle: nil))
 }
 
 class BaseVC : UIViewController, MFMailComposeViewControllerDelegate {
@@ -45,7 +27,9 @@ class BaseVC : UIViewController, MFMailComposeViewControllerDelegate {
     }
 	
 	public func showPayWall() {
-		self.presentPanModal(PayWall().VC)
+		let vc = PayWallVC(nibName: "PayWallVC", bundle: nil)
+		let panVc : PanModalPresentable.LayoutType = PanelNavigation(vc)
+		self.presentPanModal(panVc)
 	}
 	
 	public func openMailController(_ message: MailMessage) {
@@ -111,6 +95,7 @@ class BaseVC : UIViewController, MFMailComposeViewControllerDelegate {
 // MARK: - UI Elements
 extension BaseVC {
 	
+	// TODO: Убрать её нахуй отсюда
 	public func getImage(_ str: String) -> Int {
 		switch str {
 		case "_1":

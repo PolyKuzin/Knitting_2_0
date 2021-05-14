@@ -164,12 +164,15 @@ extension MainVC {
 	
 	@objc
 	func newProjectTaped() {
-		self.presentPanModal(Project().VC)
+//		let vc = PanProject(nibName: "PanProject", bundle: nil)
+//		let vc : PanModalPresentable.LayoutType = PanelNavigation(edit)
+//		self.presentPanModal(vc)
+//		self.presentPanModal(Project().VC)
     }
 	
 	@objc
     func profileImageTap	(recognizer: UITapGestureRecognizer) {
-		self.presentPanModal(Profile().VC)
+//		self.presentPanModal(Profile().VC)
 	}
 }
 
@@ -222,7 +225,7 @@ extension MainVC: SwipeableCollectionViewCellDelegate {
 		
 		let edit = PanProject(nibName: "PanProject", bundle: nil)
 		edit.currentProject = project
-		let vc : PanModalPresentable.LayoutType = PanelNavigation(rootViewController: edit)
+		let vc : PanModalPresentable.LayoutType = PanelNavigation(edit)
 		self.presentPanModal(vc)
 		
 		let leftOffset = CGPoint(x: 0, y: 0)

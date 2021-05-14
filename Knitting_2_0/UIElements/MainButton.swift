@@ -10,8 +10,10 @@ import UIKit
 
 let ChangeColorNotification = "ru.polykuzin.ChangeColor"
 
+// TODO: добавить функцию добавления действия
+
 @IBDesignable
-class MainButton: UIButton {
+class MainButton : UIButton {
 	
 	private func setup() {
 		self.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 32, height: 52)

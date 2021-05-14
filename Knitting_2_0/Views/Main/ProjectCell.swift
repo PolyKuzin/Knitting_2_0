@@ -8,9 +8,13 @@
 
 import UIKit
 
-class ProjectCell: SwipeableCollectionViewCell {
-    
-	static var reuseId 							= "projectCell"
+protocol _Project {
+	var project  : Project    { get set }
+	var views    : [UIView]   { get set }
+	var onSelect : [(()->())] { get set }
+}
+
+class ProjectCell : SwipeableCollectionViewCell {
 	
 	let projectName								= UILabel()
 	var projectImage 							= UIImageView()

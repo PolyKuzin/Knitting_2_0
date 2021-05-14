@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol _Loading {
+	var title : String { get set }
+}
+
 class LoadingCell : UICollectionViewCell {
 	
 	@IBOutlet weak var title    : UILabel!
@@ -15,7 +19,11 @@ class LoadingCell : UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-    }
+		self.activity.startAnimating()
+		self.activity.hidesWhenStopped = true
+	}
 
+	public func configure(with data: _Loading) {
+		self.title.text = data.title
+	}
 }

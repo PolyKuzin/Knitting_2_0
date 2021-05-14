@@ -247,10 +247,10 @@ extension PanProject {
 	func editProject() {
 		let imgStr = "_" + String(currentImage)
 		if currentName == "" { currentName = "Unnamed" }
-		guard let project = self.currentProject, let referenceForProject = self.currentProject?.ref else { return }
-		referenceForProject.updateChildValues(["name"  : self.currentName,
-											   "image" : imgStr,
-											   "date"  : project.date])
+		guard let project = self.currentProject, let ref = self.currentProject?.ref else { return }
+		ref.updateChildValues(["name"  : self.currentName,
+							   "image" : imgStr,
+							   "date"  : project.date])
 		AnalyticsService.reportEvent(with: "Edit project", parameters: ["name" : currentName])
 		self.dismiss(animated: true, completion: nil)
 	}

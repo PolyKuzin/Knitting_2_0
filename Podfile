@@ -7,6 +7,7 @@ target 'Knitting_2_0' do
   
   pod 'PanModal'
   pod 'OpenSSL-XM'
+  pod 'SwiftyJSON'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'YandexMobileMetrica'

@@ -95,33 +95,40 @@
 			<key>orderHint</key>
 			<integer>18</integer>
 		</dict>
-		<key>YandexMobileMetrica-Static_Core.xcscheme</key>
+		<key>SwiftyJSON.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>19</integer>
 		</dict>
-		<key>YandexMobileMetrica.default-Static_Core-Static_Crashes.xcscheme</key>
+		<key>YandexMobileMetrica-Static_Core.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>20</integer>
 		</dict>
-		<key>YandexMobileMetricaPush-iOS13.0.xcscheme</key>
+		<key>YandexMobileMetrica.default-Static_Core-Static_Crashes.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>21</integer>
 		</dict>
-		<key>YandexMobileMetricaPush-iOS14.2.xcscheme</key>
+		<key>YandexMobileMetricaPush-iOS13.0.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>22</integer>
+		</dict>
+		<key>YandexMobileMetricaPush-iOS14.2.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>23</integer>
 		</dict>
 		<key>leveldb-library.xcscheme</key>
 		<dict>

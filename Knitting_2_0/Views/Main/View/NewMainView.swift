@@ -7,21 +7,39 @@
 //
 
 import UIKit
-import PanModal
-import FirebaseAuth
-import FirebaseDatabase
 
-let animationDuration = 0.7
+enum SectionType {
+	case counters
+	case projects
+	case title
+	case none
+}
 
-class NewMainVC : BaseVC {
+struct Section {
+	var type     : SectionType?
+	var rows     : [Any]
+	var title    : String?
+	var onSelect : (()->())?
+}
+
+protocol _ViewState {
+	var sections : [Section] { get set }
+}
+
+class NewMainView : UIView {
 	
-	private var user   : MUser!
-	private var ref    : DatabaseReference!
+	public var onAddButtonTap         : (()->())?
+	public var onProjectTap           : (()->())?
+	public var onDeleteProjectTap     : (()->())?
+	public var onEditProjectTap       : (()->())?
+	public var onDuplicateProjectTap  : (()->())?
 	
 	@IBOutlet weak var addButton      : MainButton!
 	@IBOutlet weak var collectionView : UICollectionView!
 	
-	struct ViewState {
+	struct ViewState : _ViewState {
+		
+		var sections : [Section]
 		
 		enum State {
 			case loading
@@ -33,7 +51,7 @@ class NewMainVC : BaseVC {
 			
 		}
 		
-		static let initial = ViewState()
+		static let initial = ViewState(sections: [])
 	}
 	
 	public var viewState : ViewState.State = .loading {
@@ -44,35 +62,21 @@ class NewMainVC : BaseVC {
 		}
 	}
 	
-	override func viewWillAppear(_ animated: Bool) {
-		super.viewWillAppear(true)
-		setupNormalNavBar()
-	}
-	
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		let appDelegate = UIApplication.shared.delegate as? AppDelegate
-		appDelegate?.scheduleNotification()
-		guard let currentUser = Auth.auth().currentUser else { return }
-		user	= MUser(user: currentUser)
-		ref		= Database.database().reference(withPath: "users").child(String(user.uid))
-		collectionView.delegate		= self
-		collectionView.dataSource	= self
-//		setupSections		()
-	}
-	
-	deinit {
-		NotificationCenter.default.removeObserver(self)
+	override func awakeFromNib() {
+//		self.collectionView.delegate   = self
+//		self.collectionView.dataSource = self
+//		self.collectionView.register(LoadingCell.nib, forCellWithReuseIdentifier: LoadingCell.reuseId)
+//		self.collectionView.register(ProjectCell.self, 	forCellWithReuseIdentifier: ProjectCell.reuseId)
 	}
 }
 
 // MARK: - Delegate
-extension NewMainVC : UICollectionViewDelegate {
+extension NewMainView : UICollectionViewDelegate {
 	
 }
 
 // MARK: - DelegateFlowLayout
-extension NewMainVC : UICollectionViewDelegateFlowLayout {
+extension NewMainView : UICollectionViewDelegateFlowLayout {
 	
 	// TODO: Определиться с высотой ячейки
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -82,12 +86,11 @@ extension NewMainVC : UICollectionViewDelegateFlowLayout {
 		default:
 			return CGSize(width: UIScreen.main.bounds.width - 40, height: 300)
 		}
-		
 	}
 }
 
 // MARK: - DataSource
-extension NewMainVC : UICollectionViewDataSource {
+extension NewMainView : UICollectionViewDataSource {
 	
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		switch self.viewState {
@@ -100,7 +103,9 @@ extension NewMainVC : UICollectionViewDataSource {
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		switch self.viewState {
-		
+		case .loading :
+			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LoadingCell.reuseId, for: indexPath) as! LoadingCell
+			return cell
 		default:
 			return UICollectionViewCell()
 		}

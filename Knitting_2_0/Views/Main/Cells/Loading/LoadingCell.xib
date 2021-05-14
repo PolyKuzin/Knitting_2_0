@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,15 +12,43 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="LoadingCell" customModule="Knitting_2_0" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="368" height="81"/>
+            <rect key="frame" x="0.0" y="0.0" width="368" height="300"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="368" height="81"/>
+                <rect key="frame" x="0.0" y="0.0" width="368" height="300"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K2M-ER-3WW">
+                        <rect key="frame" x="20" y="187" width="328" height="25.5"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="21"/>
+                        <color key="textColor" name="GrayLabel"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="66e-Rm-jbF">
+                        <rect key="frame" x="165.5" y="100" width="37" height="37"/>
+                        <color key="color" name="GrayLabel"/>
+                    </activityIndicatorView>
+                </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <size key="customSize" width="368" height="81"/>
-            <point key="canvasLocation" x="368.11594202898556" y="144.30803571428569"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="K2M-ER-3WW" secondAttribute="trailing" constant="20" id="CFR-hU-Sqf"/>
+                <constraint firstItem="66e-Rm-jbF" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="E1i-5H-Zzv"/>
+                <constraint firstItem="66e-Rm-jbF" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="100" id="VAn-H0-e7q"/>
+                <constraint firstItem="K2M-ER-3WW" firstAttribute="top" secondItem="66e-Rm-jbF" secondAttribute="bottom" constant="50" id="fPn-Xo-K5o"/>
+                <constraint firstItem="K2M-ER-3WW" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="ogi-Np-rwA"/>
+            </constraints>
+            <size key="customSize" width="368" height="300"/>
+            <connections>
+                <outlet property="activity" destination="66e-Rm-jbF" id="SGI-A6-WzR"/>
+                <outlet property="title" destination="K2M-ER-3WW" id="xCo-zs-BXm"/>
+            </connections>
+            <point key="canvasLocation" x="368.11594202898556" y="216.96428571428569"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <namedColor name="GrayLabel">
+            <color red="0.54900002479553223" green="0.54900002479553223" blue="0.54900002479553223" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

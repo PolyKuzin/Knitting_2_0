@@ -10,8 +10,6 @@ import UIKit
 
 class CounterCell								: SwipeableCollectionViewCell {
 	
-	static var reuseId 							= "counterCell"
-	
 	let counterName								: UILabel = {
 		let label 								= UILabel()
 		label.font								= UIFont.semibold_17

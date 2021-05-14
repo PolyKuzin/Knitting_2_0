@@ -27,7 +27,7 @@ class PanelNavigation : UINavigationController, PanModalPresentable {
 		return (topViewController as? PanModalPresentable)?.panScrollable
 	}
 
-	override init(rootViewController: UIViewController) {
+	init(_ rootViewController: UIViewController) {
 		super.init(nibName: nil, bundle: nil)
 		viewControllers = [rootViewController]
 	}

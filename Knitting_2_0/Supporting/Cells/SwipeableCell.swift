@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SwipeableCollectionViewCell: UICollectionViewCell {
+class SwipeableCollectionViewCell : UICollectionViewCell {
     
 	let visibleContainerView	= UIView()
 	let deleteContainerView		= UIView()

@@ -10,8 +10,6 @@ import UIKit
 
 class ImageCollectionViewCell : UICollectionViewCell {
 	
-	static let reuseId = "ImageCollectionViewCell"
-	
 	@IBOutlet weak var lockerImage : UIImageView!
 	@IBOutlet weak var imageView   : UIImageView!
 

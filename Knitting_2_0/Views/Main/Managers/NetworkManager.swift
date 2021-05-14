@@ -13,24 +13,38 @@ import FirebaseDatabase
 class NetworkManager : NSObject {
 	
 	static let shared     = NetworkManager()
+	private var userDTO   : MUser!
 	private let dataBase  = Database.database()
-	private var dto_user  : MUser!
 	private var reference : DatabaseReference!
 	
 	private var counters  = [MCounter]()
-	private var projects  = [MProject]()
+	private var projects  = [Project]()
 	
 	private override init() {
-		guard let currentUser = Auth.auth().currentUser else { return }
-		dto_user  = MUser(user: currentUser)
-		reference = dataBase.reference(withPath: "users").child(String(dto_user.uid))
+		guard let user = Auth.auth().currentUser else { return }
+		userDTO  = MUser(user: user)
+		reference = dataBase.reference(withPath: "users").child(String(userDTO.uid))
 	}
 	
-	private func getProjects() {
-		
-	}
-	
-	private func getCounters() {
-		
+	public func getProjects() {
+		guard self.reference != nil else { return }
+		let ref = reference.child("projects")
+		ref.observe(.value) { (snapshot) in
+			self.projects.removeAll()
+			for item in snapshot.children {
+				let project = Project(snapshot: item as! DataSnapshot)
+//				if project.image == defaultImage {
+//					project.image = "_0"
+//					if let referenceForProject = project.ref {
+//						referenceForProject.setValue(project.projectToDictionary())
+//					}
+//				}
+//				self.projectsDTOs.append(project)
+//				self.projects.sort(by: {
+//					return
+//							($0.date) > ($1.date)
+//				})
+			}
+		}
 	}
 }

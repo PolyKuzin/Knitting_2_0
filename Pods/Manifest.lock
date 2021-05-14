@@ -53,6 +53,7 @@ PODS:
   - OpenSSL-XM (1.0.210.1)
   - PanModal (1.2.7)
   - PromisesObjC (1.2.12)
+  - SwiftyJSON (5.0.1)
   - YandexMobileMetrica (3.15.1):
     - YandexMobileMetrica/Static (= 3.15.1)
   - YandexMobileMetrica/Static (3.15.1):
@@ -71,6 +72,7 @@ DEPENDENCIES:
   - Firebase/Database
   - OpenSSL-XM
   - PanModal
+  - SwiftyJSON
   - YandexMobileMetrica
   - YandexMobileMetricaPush
 
@@ -89,6 +91,7 @@ SPEC REPOS:
     - OpenSSL-XM
     - PanModal
     - PromisesObjC
+    - SwiftyJSON
     - YandexMobileMetrica
     - YandexMobileMetricaPush
 
@@ -106,9 +109,10 @@ SPEC CHECKSUMS:
   OpenSSL-XM: f2d7697be2a4b01a2c62239fd577e4137cab4f3a
   PanModal: 3e16ead1a907fb06f4df3f13492fd00149fa4974
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
+  SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
   YandexMobileMetrica: fb4b3c20a0c0237b03b34cc07b6d575332f43097
   YandexMobileMetricaPush: ff5d6fc46d3987f44e9fac8b9cb2f776b638cd04
 
-PODFILE CHECKSUM: a36d70cd73fc4f1e45a7394af8f4769c232b2ddf
+PODFILE CHECKSUM: d300c06fa6c039743030063792a42b7873948e90
 
 COCOAPODS: 1.10.1
