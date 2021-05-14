@@ -42,19 +42,29 @@ class NewMainView : UIView {
 		var sections : [Section]
 		
 		enum State {
-			case loading
-			case error
-			case loaded([ProjectItem])
+			case loading (Loading)
+			case error   (Error)
+			case loaded  ([ProjectItem])
 		}
 		
-		struct ProjectItem {
-			
+		struct Loading   : _Loading {
+			var title   : String
+		}
+		
+		struct Error      : _Error  {
+			var title    : String
+			var image    : UIImage?
+			var onSelect : (() -> ())
+		}
+		
+		struct ProjectItem : _ProjectCell {
+			var views: [SelectableView]
 		}
 		
 		static let initial = ViewState(sections: [])
 	}
 	
-	public var viewState : ViewState.State = .loading {
+	public var viewState : ViewState.State = .loading(getRandomLoading()) {
 		didSet {
 			DispatchQueue.main.async {
 				self.collectionView.reloadData()
@@ -62,11 +72,17 @@ class NewMainView : UIView {
 		}
 	}
 	
+	static private func getRandomLoading() -> ViewState.Loading {
+		let resp = ViewState.Loading(title: "Loading...")
+		return resp
+	}
+	
 	override func awakeFromNib() {
-//		self.collectionView.delegate   = self
-//		self.collectionView.dataSource = self
-//		self.collectionView.register(LoadingCell.nib, forCellWithReuseIdentifier: LoadingCell.reuseId)
-//		self.collectionView.register(ProjectCell.self, 	forCellWithReuseIdentifier: ProjectCell.reuseId)
+		self.collectionView.delegate   = self
+		self.collectionView.dataSource = self
+		self.collectionView.register(ErrorCell.nib, forCellWithReuseIdentifier: ErrorCell.reuseId)
+		self.collectionView.register(LoadingCell.nib, forCellWithReuseIdentifier: LoadingCell.reuseId)
+		self.collectionView.register(ProjectCell.self, 	forCellWithReuseIdentifier: ProjectCell.reuseId)
 	}
 }
 
@@ -103,11 +119,23 @@ extension NewMainView : UICollectionViewDataSource {
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		switch self.viewState {
-		case .loading :
+		case .loading          :
 			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LoadingCell.reuseId, for: indexPath) as! LoadingCell
 			return cell
-		default:
-			return UICollectionViewCell()
+		case .error(let err)   :
+			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ErrorCell.reuseId, for: indexPath) as! ErrorCell
+			cell.configure(with: err)
+			return cell
+		case .loaded(let rows) :
+			switch rows[indexPath.row] {
+			case is ViewState.ProjectItem:
+				let row = rows[indexPath.row]
+				let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProjectCollectionCell.reuseId, for: indexPath) as! ProjectCollectionCell
+				cell.configure(with: row)
+				return cell
+			default:
+				return UICollectionViewCell()
+			}
 		}
 	}
 }

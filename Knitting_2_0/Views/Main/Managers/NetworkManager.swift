@@ -10,6 +10,11 @@ import Foundation
 import FirebaseAuth
 import FirebaseDatabase
 
+enum KnitError : String, Error {
+	case error  = "Error getting data"
+	case noData = "No data available"
+}
+
 class NetworkManager : NSObject {
 	
 	static let shared     = NetworkManager()
@@ -26,25 +31,27 @@ class NetworkManager : NSObject {
 		reference = dataBase.reference(withPath: "users").child(String(userDTO.uid))
 	}
 	
-	public func getProjects() {
+	public func getProjects(callBack: @escaping (Result<[Project], KnitError>) -> Void) {
 		guard self.reference != nil else { return }
 		let ref = reference.child("projects")
-		ref.observe(.value) { (snapshot) in
-			self.projects.removeAll()
-			for item in snapshot.children {
-				let project = Project(snapshot: item as! DataSnapshot)
-//				if project.image == defaultImage {
-//					project.image = "_0"
-//					if let referenceForProject = project.ref {
-//						referenceForProject.setValue(project.projectToDictionary())
-//					}
-//				}
-//				self.projectsDTOs.append(project)
-//				self.projects.sort(by: {
-//					return
-//							($0.date) > ($1.date)
-//				})
+		ref.getData { (error, snapshot) in
+			if let error = error {
+				print("Error getting data \(error)")
+				callBack(.failure(.error))
 			}
+			else if snapshot.exists() {
+				for item in snapshot.children {
+					let project = Project(snapshot: item as! DataSnapshot)
+					self.projects.append(project)
+				}
+				print("Got data \(snapshot.value!)")
+			}
+			else {
+				print("No data available")
+				callBack(.failure(.noData))
+			}
+			self.projects.sort { $0 < $1 }
+			callBack(.success(self.projects))
 		}
 	}
 }

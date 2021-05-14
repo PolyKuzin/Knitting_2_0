@@ -8,20 +8,25 @@
 
 import UIKit
 
-//protocol _Project {
-//	 
-//}
-//
-//class ProjectCollectionCell : SwipeableCollectionViewCell {
-//	
-//	
-//
-//    override func awakeFromNib() {
-//        super.awakeFromNib()
-//        
-//    }
-//	
-//	public func configure(with data : _Project) {
-//		
-//	}
-//}
+protocol SelectableView {
+	var view     : UIView          { get set }
+	var onSelect : ((Project)->()) { get set }
+}
+
+protocol _ProjectCell : _Project {
+	var views : [SelectableView] { get set }
+}
+
+class ProjectCollectionCell : SwipeableCollectionViewCell {
+	
+	
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+    }
+	
+	public func configure(with data : _ProjectCell) {
+		
+	}
+}

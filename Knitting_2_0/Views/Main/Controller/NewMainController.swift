@@ -26,7 +26,28 @@ class NewMainController : BaseVC {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		networkManager.getProjects()
+		self.dowloadAllData()
+	}
+	
+	private func dowloadAllData() {
+		self.networkManager.getProjects { [weak self] result in
+			guard let self = self else { return }
+			switch result {
+			case .failure(let err)      :
+				self.makeErrorState(with: err)
+			case .success(let projects) :
+				self.makeErrorState(with: .error)
+			}
+		}
+	}
+	
+	private func makeErrorState(with data: KnitError) {
+		let errState = NewMainView.ViewState.Error(title: "БЛЯ ОШИБКА", image: UIImage(named: "_0"), onSelect: {})
+		newMainView.viewState = .error(errState)
+	}
+	
+	private func makeState(with data: [Project]) {
+		
 	}
 	
 	deinit {
