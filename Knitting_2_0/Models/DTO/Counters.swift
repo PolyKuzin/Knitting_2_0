@@ -28,19 +28,20 @@ struct Counter : Hashable {
 	}
 	
 	init(snapshot				: DataSnapshot){
-		let snapshotValue		= snapshot.value						as! [String	: AnyObject]
-		name					= snapshotValue["name"]					as! String
-		rows					= snapshotValue["rows"]					as! Int
-		rowsMax					= snapshotValue["rowsMax"]				as! Int
-		date					= snapshotValue["date"]					as! String
-		ref						= snapshot.ref
+		print(JSON(snapshot.value as Any))
+		let data = JSON(snapshot.value as Any)
+		self.ref     = snapshot.ref
+		self.name    = data["name"]    .stringValue
+		self.date    = data["date"]    .stringValue
+		self.rows    = data["rows"]    .intValue
+		self.rowsMax = data["rowsMax"] .intValue
 	}
 	
 	func counterToDictionary () -> Any {
-		return ["name"               : name,
-				"rows"               : rows,
-				"rowsMax"            : rowsMax,
-				"date"				 : date]
+		return ["name"    : name    as Any,
+				"rows"    : rows    as Any,
+				"rowsMax" : rowsMax as Any,
+				"date"    : date    as Any]
 	}
 }
 

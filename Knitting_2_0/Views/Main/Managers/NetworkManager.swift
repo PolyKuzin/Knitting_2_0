@@ -22,7 +22,6 @@ class NetworkManager : NSObject {
 	private let dataBase  = Database.database()
 	private var reference : DatabaseReference!
 	
-	private var counters  = [MCounter]()
 	private var projects  = [Project]()
 	
 	private override init() {
@@ -45,13 +44,45 @@ class NetworkManager : NSObject {
 					self.projects.append(project)
 				}
 				print("Got data \(snapshot.value!)")
-			}
-			else {
+				self.projects.sort { $0 < $1 }
+				callBack(.success(self.projects))
+			} else {
 				print("No data available")
 				callBack(.failure(.noData))
 			}
-			self.projects.sort { $0 < $1 }
-			callBack(.success(self.projects))
 		}
+	}
+	
+	public func getLinkedCounters(for project: Project, callBack: @escaping (Result<[Counter], KnitError>) -> Void) {
+		guard let ref = project.ref?.child("counters") else { return }
+		ref.getData { (error, snapshot) in
+			var counters : [Counter] = []
+			if let error = error {
+				print("Error getting data \(error)")
+				callBack(.failure(.error))
+			}
+			else if snapshot.exists() {
+				for item in snapshot.children {
+					let counter = Counter(snapshot: item as! DataSnapshot)
+					counters.append(counter)
+				}
+				print("Got data \(snapshot.value!)")
+				counters.sort { $0 < $1 }
+				var ptoject = self.projects.filter { $0.ref == ref}.first
+				ptoject?.linkedCounters = counters
+				callBack(.success(counters))
+			} else {
+				print("No data available")
+				callBack(.failure(.noData))
+			}
+		}
+	}
+	
+	public func deleteProject(project: Project) {
+		
+	}
+	
+	public func deleteCounter(counter: Counter) {
+		
 	}
 }

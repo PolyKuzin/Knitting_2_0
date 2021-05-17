@@ -16,9 +16,10 @@ struct Project : Hashable {
 	var userID : String?
 	
 	var name   : String?
+	var info   : String? = "some info" // TODO: ДОБАВИТЬ ПОЛЕ
 	var image  : UIImage?
 	var date   : String?
-	var linkedCounters : [Counter?]?
+	var linkedCounters : [Counter]?
 	
 	init(userID: String, name: String, image: String, date: String) {
 		self.userID				= userID
@@ -29,7 +30,7 @@ struct Project : Hashable {
 	}
 	
 	init(snapshot: DataSnapshot) {
-		print(JSON(snapshot.value as Any))
+//		print(JSON(snapshot.value as Any))
 		let data = JSON(snapshot.value as Any)
 		self.ref    = snapshot.ref
 		self.userID = data["userID"] .stringValue
@@ -37,15 +38,6 @@ struct Project : Hashable {
 		self.name   = data["name"]   .stringValue
 		self.date   = data["date"]   .stringValue
 		checkForDefaultValues()
-	}
-	
-	private func getCounters() {
-		guard let ref = self.ref else { return }
-		ref.observe(.value) { (snapshot) in
-			for item in snapshot.children {
-				let counter = MCounter(snapshot: item as! DataSnapshot)
-			}
-		}
 	}
 }
 

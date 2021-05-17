@@ -36,7 +36,7 @@ class NewMainController : BaseVC {
 			case .failure(let err)      :
 				self.makeErrorState(with: err)
 			case .success(let projects) :
-				self.makeErrorState(with: .error)
+				self.makeLoadedState(with: projects)
 			}
 		}
 	}
@@ -46,7 +46,35 @@ class NewMainController : BaseVC {
 		newMainView.viewState = .error(errState)
 	}
 	
-	private func makeState(with data: [Project]) {
+	private func makeLoadedState(with data: [Project]) {
+		let loadState : [NewMainView.ViewState.ProjectItem] = data.map {
+			
+			return NewMainView.ViewState.ProjectItem(project          : $0,
+													 onVisibleProject : self.doStuf(data:),
+													 onEditProject    : self.doStuf(data:),
+													 onDeleteProject  : self.doStuf(data:),
+													 onDoubleProject  : self.doStuf(data:))
+		}
+		newMainView.viewState = .loaded(loadState)
+	}
+	
+	private func deleteProject(project: Project) {
+//		project.ref?.removeValue()
+//		var snap = dataSourse?.snapshot()
+//		snap?.deleteItems([projects[indexPath.row]])
+//		projects.remove(at: indexPath.row)
+//		dataSourse?.apply(snap!, animatingDifferences: true)
+//		self.collectionView.reloadData()
+//		
+//		let leftOffset = CGPoint(x: 0, y: 0)
+//		cell.scrollView.setContentOffset(leftOffset, animated: true)
+//		DispatchQueue.main.asyncAfter(deadline: .now() + animationDuration) {
+//			self.view.isUserInteractionEnabled = true
+//		}
+//		AnalyticsService.reportEvent(with: "Delete project")
+	}
+	
+	private func doStuf(data: Project) {
 		
 	}
 	

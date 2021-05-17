@@ -51,8 +51,6 @@
 		9965A1D7264D0C56003C8B75 /* UICollectionView+Extension .swift in Sources */ = {isa = PBXBuildFile; fileRef = 9965A1D6264D0C56003C8B75 /* UICollectionView+Extension .swift */; };
 		9965A1DE264D0CED003C8B75 /* ErrorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9965A1DC264D0CED003C8B75 /* ErrorCell.swift */; };
 		9965A1DF264D0CED003C8B75 /* ErrorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9965A1DD264D0CED003C8B75 /* ErrorCell.xib */; };
-		9965A1E4264D11EF003C8B75 /* ProjectCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9965A1E2264D11EF003C8B75 /* ProjectCollectionCell.swift */; };
-		9965A1E5264D11EF003C8B75 /* ProjectCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9965A1E3264D11EF003C8B75 /* ProjectCollectionCell.xib */; };
 		9965A1E9264D12CD003C8B75 /* CollectionCellWithSwipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9965A1E8264D12CD003C8B75 /* CollectionCellWithSwipe.swift */; };
 		996FAF2C2508245D00209228 /* EntryVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996FAF2B2508245D00209228 /* EntryVM.swift */; };
 		9974DF5025A206540036C971 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9974DF4F25A206540036C971 /* Analytics.swift */; };
@@ -115,6 +113,16 @@
 		99EF88BB25191EC400C77181 /* MCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EF88BA25191EC400C77181 /* MCounter.swift */; };
 		99EF88BD25193F7000C77181 /* UIImage+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EF88BC25193F7000C77181 /* UIImage+String.swift */; };
 		99EF88BF251D3A9F00C77181 /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EF88BE251D3A9D00C77181 /* UIDevice.swift */; };
+		99F5EF82265111BD00A7217F /* SwipeableProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F5EF81265111BD00A7217F /* SwipeableProject.swift */; };
+		99F5EF882651288B00A7217F /* LabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F5EF872651288B00A7217F /* LabelView.swift */; };
+		99F5EF8F2651289E00A7217F /* LabelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99F5EF8E2651289E00A7217F /* LabelView.xib */; };
+		99F5EF9A2651804100A7217F /* ProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F5EF992651804100A7217F /* ProjectView.swift */; };
+		99F5EF9E2651804C00A7217F /* ProjectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99F5EF9D2651804C00A7217F /* ProjectView.xib */; };
+		99F5EFA326518C6B00A7217F /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F5EFA226518C6B00A7217F /* CounterView.swift */; };
+		99F5EFA726518CD900A7217F /* CounterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99F5EFA626518CD900A7217F /* CounterView.xib */; };
+		99F5EFB12651987200A7217F /* SwipeableProject.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99F5EFB02651987200A7217F /* SwipeableProject.xib */; };
+		99F5EFB6265198EF00A7217F /* SwipeableCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F5EFB5265198EF00A7217F /* SwipeableCounter.swift */; };
+		99F5EFBA2651994300A7217F /* SwipeableCounter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99F5EFB92651994300A7217F /* SwipeableCounter.xib */; };
 		99FC0416263DB31F00ADEEEC /* IAP_PricingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FC0414263DB31F00ADEEEC /* IAP_PricingCell.swift */; };
 		99FC0417263DB31F00ADEEEC /* IAP_PricingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99FC0415263DB31F00ADEEEC /* IAP_PricingCell.xib */; };
 		99FC041D263DCB8E00ADEEEC /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99FC041C263DCB8E00ADEEEC /* StoreKit.framework */; };
@@ -210,8 +218,6 @@
 		9965A1D6264D0C56003C8B75 /* UICollectionView+Extension .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension .swift"; sourceTree = "<group>"; };
 		9965A1DC264D0CED003C8B75 /* ErrorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorCell.swift; sourceTree = "<group>"; };
 		9965A1DD264D0CED003C8B75 /* ErrorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ErrorCell.xib; sourceTree = "<group>"; };
-		9965A1E2264D11EF003C8B75 /* ProjectCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCollectionCell.swift; sourceTree = "<group>"; };
-		9965A1E3264D11EF003C8B75 /* ProjectCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectCollectionCell.xib; sourceTree = "<group>"; };
 		9965A1E8264D12CD003C8B75 /* CollectionCellWithSwipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCellWithSwipe.swift; sourceTree = "<group>"; };
 		996FAF2B2508245D00209228 /* EntryVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryVM.swift; sourceTree = "<group>"; };
 		9974DF4F25A206540036C971 /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
@@ -295,6 +301,16 @@
 		99F052FD25ABB03400CFFD88 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		99F052FE25ABB04400CFFD88 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		99F052FF25ABB04400CFFD88 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
+		99F5EF81265111BD00A7217F /* SwipeableProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableProject.swift; sourceTree = "<group>"; };
+		99F5EF872651288B00A7217F /* LabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelView.swift; sourceTree = "<group>"; };
+		99F5EF8E2651289E00A7217F /* LabelView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LabelView.xib; sourceTree = "<group>"; };
+		99F5EF992651804100A7217F /* ProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectView.swift; sourceTree = "<group>"; };
+		99F5EF9D2651804C00A7217F /* ProjectView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectView.xib; sourceTree = "<group>"; };
+		99F5EFA226518C6B00A7217F /* CounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
+		99F5EFA626518CD900A7217F /* CounterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CounterView.xib; sourceTree = "<group>"; };
+		99F5EFB02651987200A7217F /* SwipeableProject.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwipeableProject.xib; sourceTree = "<group>"; };
+		99F5EFB5265198EF00A7217F /* SwipeableCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableCounter.swift; sourceTree = "<group>"; };
+		99F5EFB92651994300A7217F /* SwipeableCounter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwipeableCounter.xib; sourceTree = "<group>"; };
 		99FC0414263DB31F00ADEEEC /* IAP_PricingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAP_PricingCell.swift; sourceTree = "<group>"; };
 		99FC0415263DB31F00ADEEEC /* IAP_PricingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IAP_PricingCell.xib; sourceTree = "<group>"; };
 		99FC041C263DCB8E00ADEEEC /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -518,7 +534,7 @@
 		99A7C562264B035300FDDAEB /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				99A7C57E264B0AFC00FDDAEB /* Project */,
+				99F5EF7E265111A400A7217F /* SwipeAble */,
 				99A7C57D264B0AEE00FDDAEB /* Error */,
 				99A7C57C264B0AE300FDDAEB /* Loading */,
 			);
@@ -566,8 +582,8 @@
 		99A7C57E264B0AFC00FDDAEB /* Project */ = {
 			isa = PBXGroup;
 			children = (
-				9965A1E2264D11EF003C8B75 /* ProjectCollectionCell.swift */,
-				9965A1E3264D11EF003C8B75 /* ProjectCollectionCell.xib */,
+				99F5EF81265111BD00A7217F /* SwipeableProject.swift */,
+				99F5EFB02651987200A7217F /* SwipeableProject.xib */,
 			);
 			path = Project;
 			sourceTree = "<group>";
@@ -807,6 +823,62 @@
 			path = PanPanels;
 			sourceTree = "<group>";
 		};
+		99F5EF7E265111A400A7217F /* SwipeAble */ = {
+			isa = PBXGroup;
+			children = (
+				99F5EF852651286B00A7217F /* Views */,
+				99A7C57E264B0AFC00FDDAEB /* Project */,
+				99F5EFB4265198CD00A7217F /* Counter */,
+			);
+			path = SwipeAble;
+			sourceTree = "<group>";
+		};
+		99F5EF852651286B00A7217F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				99F5EFA126518C5300A7217F /* CounerView */,
+				99F5EF9826517F4C00A7217F /* ProjectView */,
+				99F5EF862651287100A7217F /* LabelView */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		99F5EF862651287100A7217F /* LabelView */ = {
+			isa = PBXGroup;
+			children = (
+				99F5EF872651288B00A7217F /* LabelView.swift */,
+				99F5EF8E2651289E00A7217F /* LabelView.xib */,
+			);
+			path = LabelView;
+			sourceTree = "<group>";
+		};
+		99F5EF9826517F4C00A7217F /* ProjectView */ = {
+			isa = PBXGroup;
+			children = (
+				99F5EF992651804100A7217F /* ProjectView.swift */,
+				99F5EF9D2651804C00A7217F /* ProjectView.xib */,
+			);
+			path = ProjectView;
+			sourceTree = "<group>";
+		};
+		99F5EFA126518C5300A7217F /* CounerView */ = {
+			isa = PBXGroup;
+			children = (
+				99F5EFA226518C6B00A7217F /* CounterView.swift */,
+				99F5EFA626518CD900A7217F /* CounterView.xib */,
+			);
+			path = CounerView;
+			sourceTree = "<group>";
+		};
+		99F5EFB4265198CD00A7217F /* Counter */ = {
+			isa = PBXGroup;
+			children = (
+				99F5EFB5265198EF00A7217F /* SwipeableCounter.swift */,
+				99F5EFB92651994300A7217F /* SwipeableCounter.xib */,
+			);
+			path = Counter;
+			sourceTree = "<group>";
+		};
 		99FC0413263DB2D000ADEEEC /* IAP_pricing */ = {
 			isa = PBXGroup;
 			children = (
@@ -971,6 +1043,7 @@
 				99AFBA5324F80DA000E71FD6 /* LaunchScreen.storyboard in Resources */,
 				9939AA6F260BAF2F0094AFC3 /* CreateCounterCell.xib in Resources */,
 				99B2239D2648029900FB9775 /* SelectCell.xib in Resources */,
+				99F5EF8F2651289E00A7217F /* LabelView.xib in Resources */,
 				99B223AD2648268C00FB9775 /* CheckCell.xib in Resources */,
 				99B2234B264153E600FB9775 /* SelectRowsCell.xib in Resources */,
 				99207D3425E067C00013DBF3 /* SelectImageCell.xib in Resources */,
@@ -982,15 +1055,18 @@
 				99FC0417263DB31F00ADEEEC /* IAP_PricingCell.xib in Resources */,
 				998AED4F255C4D8600507F02 /* Localizable.strings in Resources */,
 				9936B99725BC9617008F4443 /* InformationCell.xib in Resources */,
+				99F5EFBA2651994300A7217F /* SwipeableCounter.xib in Resources */,
 				99207D2725E024290013DBF3 /* PanProject.xib in Resources */,
+				99F5EF9E2651804C00A7217F /* ProjectView.xib in Resources */,
 				99B223A62648089700FB9775 /* ImageCollectionCell.xib in Resources */,
 				9939AA62260ABFCE0094AFC3 /* SelectNameCell.xib in Resources */,
-				9965A1E5264D11EF003C8B75 /* ProjectCollectionCell.xib in Resources */,
 				99FC0421263DCF0400ADEEEC /* AppleIncRootCertificate.cer in Resources */,
 				99B223962647159500FB9775 /* SectionTitleCell.xib in Resources */,
 				99454022260AB1C300F0EC3E /* ImageCollectionViewCell.xib in Resources */,
+				99F5EFB12651987200A7217F /* SwipeableProject.xib in Resources */,
 				9936B98B25BC9324008F4443 /* PanProfileVC.xib in Resources */,
 				99A7C566264B038900FDDAEB /* LoadingCell.xib in Resources */,
+				99F5EFA726518CD900A7217F /* CounterView.xib in Resources */,
 				9965A1DF264D0CED003C8B75 /* ErrorCell.xib in Resources */,
 				99E4A1C625091FBE003CA7C9 /* GoogleService-Info.plist in Resources */,
 				990C188B263A029B00D56949 /* PayWallVC.xib in Resources */,
@@ -1085,7 +1161,7 @@
 				994300B1252A27FF0065EF5C /* UIViewController.swift in Sources */,
 				99594720250AD91F00D0E273 /* MainVC.swift in Sources */,
 				99A0708F26123B7100366972 /* RecieptValidator.swift in Sources */,
-				9965A1E4264D11EF003C8B75 /* ProjectCollectionCell.swift in Sources */,
+				99F5EF82265111BD00A7217F /* SwipeableProject.swift in Sources */,
 				99A070C826130E1100366972 /* Loader.swift in Sources */,
 				99A7C55E264AF30D00FDDAEB /* NewMainView.swift in Sources */,
 				990C188A263A029B00D56949 /* PayWallVC.swift in Sources */,
@@ -1095,6 +1171,7 @@
 				99B2234A264153E600FB9775 /* SelectRowsCell.swift in Sources */,
 				9962BDDC263B416C00DD8B22 /* FullScreenNavigation.swift in Sources */,
 				99B509BC24FDB1D60046A2B1 /* UIViewExt.swift in Sources */,
+				99F5EF9A2651804100A7217F /* ProjectView.swift in Sources */,
 				994EF7142514B424009AA35B /* MainSetionHeader.swift in Sources */,
 				99AFBA4B24F80D9E00E71FD6 /* SignUpVC.swift in Sources */,
 				9965A1D7264D0C56003C8B75 /* UICollectionView+Extension .swift in Sources */,
@@ -1116,6 +1193,7 @@
 				9936B99625BC9617008F4443 /* InformationCell.swift in Sources */,
 				99B223AC2648268B00FB9775 /* CheckCell.swift in Sources */,
 				9922D123260BDB6A00960A08 /* MainButtonCell.swift in Sources */,
+				99F5EFB6265198EF00A7217F /* SwipeableCounter.swift in Sources */,
 				99EF88BB25191EC400C77181 /* MCounter.swift in Sources */,
 				99B206722504DD8B00FA6C50 /* LogInVC.swift in Sources */,
 				99B206742504DDF700FA6C50 /* LogInVM.swift in Sources */,
@@ -1145,7 +1223,9 @@
 				99B223952647159500FB9775 /* SectionTitleCell.swift in Sources */,
 				99A7C56D264B03A600FDDAEB /* NetworkManager.swift in Sources */,
 				99A0709C26123C8B00366972 /* pkcs7_union_accessors.m in Sources */,
+				99F5EFA326518C6B00A7217F /* CounterView.swift in Sources */,
 				998B9F8D250C2FBB00C0C52F /* ForgotPassVM.swift in Sources */,
+				99F5EF882651288B00A7217F /* LabelView.swift in Sources */,
 				9965A1E9264D12CD003C8B75 /* CollectionCellWithSwipe.swift in Sources */,
 				9939AA6E260BAF2F0094AFC3 /* SwitcherCell.swift in Sources */,
 				99B957062524A0C900AC5438 /* CounterCell.swift in Sources */,

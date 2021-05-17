@@ -47,18 +47,22 @@ class NewMainView : UIView {
 			case loaded  ([ProjectItem])
 		}
 		
-		struct Loading   : _Loading {
-			var title   : String
+		struct Loading            : _Loading          {
+			var title            : String
 		}
 		
-		struct Error      : _Error  {
-			var title    : String
-			var image    : UIImage?
-			var onSelect : (() -> ())
+		struct Error              : _Error            {
+			var title            : String
+			var image            : UIImage?
+			var onSelect         : (() -> ())
 		}
 		
-		struct ProjectItem : _ProjectCell {
-			var views: [SelectableView]
+		struct ProjectItem        : _SwipeableProject {
+			var project          : Project
+			var onVisibleProject : ((Project)->())
+			var onEditProject    : ((Project)->())
+			var onDeleteProject  : ((Project)->())
+			var onDoubleProject  : ((Project)->())
 		}
 		
 		static let initial = ViewState(sections: [])
@@ -82,7 +86,7 @@ class NewMainView : UIView {
 		self.collectionView.dataSource = self
 		self.collectionView.register(ErrorCell.nib, forCellWithReuseIdentifier: ErrorCell.reuseId)
 		self.collectionView.register(LoadingCell.nib, forCellWithReuseIdentifier: LoadingCell.reuseId)
-		self.collectionView.register(ProjectCell.self, 	forCellWithReuseIdentifier: ProjectCell.reuseId)
+		self.collectionView.register(SwipeableProject.nib, forCellWithReuseIdentifier: SwipeableProject.reuseId)
 	}
 }
 
@@ -98,7 +102,7 @@ extension NewMainView : UICollectionViewDelegateFlowLayout {
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 		switch self.viewState {
 		case .loaded(_):
-			return CGSize(width: UIScreen.main.bounds.width - 40, height: UIScreen.main.bounds.height / 5.5)
+			return CGSize(width: UIScreen.main.bounds.width - 40, height: 130)
 		default:
 			return CGSize(width: UIScreen.main.bounds.width - 40, height: 300)
 		}
@@ -130,7 +134,7 @@ extension NewMainView : UICollectionViewDataSource {
 			switch rows[indexPath.row] {
 			case is ViewState.ProjectItem:
 				let row = rows[indexPath.row]
-				let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProjectCollectionCell.reuseId, for: indexPath) as! ProjectCollectionCell
+				let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SwipeableProject.reuseId, for: indexPath) as! SwipeableProject
 				cell.configure(with: row)
 				return cell
 			default:
