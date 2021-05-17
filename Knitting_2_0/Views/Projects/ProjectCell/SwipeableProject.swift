@@ -22,6 +22,7 @@ class SwipeableProject   : UICollectionViewCell {
 		let scrollView = UIScrollView(frame: .zero)
 		scrollView.isPagingEnabled = true
 		scrollView.layer.cornerRadius = 20
+		scrollView.alwaysBounceVertical = false
 		scrollView.alwaysBounceHorizontal = false
 		scrollView.isUserInteractionEnabled = true
 		scrollView.showsVerticalScrollIndicator = false
@@ -42,6 +43,7 @@ class SwipeableProject   : UICollectionViewCell {
 	
 	public func configure(with data: _SwipeableProject) {
 		self.project          = data.project
+		self.onVisibleProject = data.onVisibleProject
 		self.onDeleteProject  = data.onDeleteProject
 		self.onEditProject    = data.onEditProject
 		self.onDoubleProject  = data.onDoubleProject
@@ -81,12 +83,9 @@ class SwipeableProject   : UICollectionViewCell {
 
 		addSubview(scrollView)
 		scrollView.addSubview(stackView)
-		stackView.isUserInteractionEnabled = true
 		scrollView.translatesAutoresizingMaskIntoConstraints  = false
 		stackView.translatesAutoresizingMaskIntoConstraints  = false
 		NSLayoutConstraint.activate([
-//			scrollView.widthAnchor  .constraint(equalTo: self.widthAnchor),
-//			scrollView.heightAnchor .constraint(equalTo: self.heightAnchor),
 			scrollView.topAnchor    .constraint(equalTo: self.topAnchor),
 			scrollView.leftAnchor   .constraint(equalTo: self.leftAnchor),
 			scrollView.bottomAnchor .constraint(equalTo: self.bottomAnchor),

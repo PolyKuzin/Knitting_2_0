@@ -9,9 +9,9 @@
 import UIKit
 import PanModal
 
-class NewMainController : BaseVC {
+class ProjectsController : BaseVC {
 	
-	private var newMainView    = NewMainView.loadFromNib()
+	private var newMainView    = ProjectsView.loadFromNib()
 	private var networkManager = NetworkManager.shared
 
 	override func loadView() {
@@ -42,17 +42,17 @@ class NewMainController : BaseVC {
 	}
 	
 	private func makeErrorState(with data: KnitError) {
-		let errState = NewMainView.ViewState.Error(title: "БЛЯ ОШИБКА", image: UIImage(named: "_0"), onSelect: {})
+		let errState = ProjectsView.ViewState.Error(title: "БЛЯ ОШИБКА", image: UIImage(named: "_0"), onSelect: {})
 		newMainView.viewState = .error(errState)
 	}
 	
 	private func makeLoadedState(with data: [Project]) {
-		let loadState : [NewMainView.ViewState.ProjectItem] = data.map {
+		let loadState : [ProjectsView.ViewState.ProjectItem] = data.map {
 			
-			return NewMainView.ViewState.ProjectItem(project          : $0,
+			return ProjectsView.ViewState.ProjectItem(project          : $0,
 													 onVisibleProject : self.doStuf(data:),
 													 onEditProject    : self.doStuf(data:),
-													 onDeleteProject  : self.doStuf(data:),
+													 onDeleteProject  : self.deleteProject(project:),
 													 onDoubleProject  : self.doStuf(data:))
 		}
 		newMainView.viewState = .loaded(loadState)
@@ -65,7 +65,7 @@ class NewMainController : BaseVC {
 //		projects.remove(at: indexPath.row)
 //		dataSourse?.apply(snap!, animatingDifferences: true)
 //		self.collectionView.reloadData()
-//		
+//
 //		let leftOffset = CGPoint(x: 0, y: 0)
 //		cell.scrollView.setContentOffset(leftOffset, animated: true)
 //		DispatchQueue.main.asyncAfter(deadline: .now() + animationDuration) {
@@ -75,15 +75,10 @@ class NewMainController : BaseVC {
 	}
 	
 	private func doStuf(data: Project) {
-		
+		print(data.name)
 	}
 	
 	deinit {
 		NotificationCenter.default.removeObserver(self)
 	}
-}
-
-// MARK: -
-extension NewMainController {
-	
 }

@@ -211,7 +211,7 @@ extension SignUpVC {
 	}
 	
 	func pushMainVC() {
-		let vc = NewMainController()
+		let vc = ProjectsController()
 		guard let navigationController = navigationController else { return }
 		navigationController.pushViewController(vc, animated: true)
 	}

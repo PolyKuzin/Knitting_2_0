@@ -26,7 +26,7 @@ protocol _ViewState {
 	var sections : [Section] { get set }
 }
 
-class NewMainView : UIView {
+class ProjectsView : UIView {
 	
 	public var onAddButtonTap         : (()->())?
 	public var onProjectTap           : (()->())?
@@ -91,12 +91,12 @@ class NewMainView : UIView {
 }
 
 // MARK: - Delegate
-extension NewMainView : UICollectionViewDelegate {
+extension ProjectsView : UICollectionViewDelegate {
 	
 }
 
 // MARK: - DelegateFlowLayout
-extension NewMainView : UICollectionViewDelegateFlowLayout {
+extension ProjectsView : UICollectionViewDelegateFlowLayout {
 	
 	// TODO: Определиться с высотой ячейки
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -110,7 +110,7 @@ extension NewMainView : UICollectionViewDelegateFlowLayout {
 }
 
 // MARK: - DataSource
-extension NewMainView : UICollectionViewDataSource {
+extension ProjectsView : UICollectionViewDataSource {
 	
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		switch self.viewState {

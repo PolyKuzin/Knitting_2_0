@@ -26,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		let logInView			= LogInVC(nibName: nil, bundle: nil)
 		nav2.viewControllers	= [logInView]
 		let nav3				= UINavigationController()
-		let mainView			= NewMainController()
+		let mainView			= ProjectsController()
 		nav3.viewControllers	= [mainView]
 		self.window!.rootViewController = nav1
 		self.window?.makeKeyAndVisible()
