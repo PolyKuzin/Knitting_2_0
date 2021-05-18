@@ -2,11 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="437704ce-c3c0-4e09-8fb0-96df05d6f516" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/Main/Cells/Project/ProjectCollectionCell.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Main/Cells/Project/ProjectCollectionCell.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/Main/Cells/Project/ProjectCollectionCell.xib" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Main/Cells/Project/ProjectCollectionCell.xib" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/Main/Controller/NewMainController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Main/Controller/NewMainController.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/Main/View/NewMainView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Main/View/NewMainView.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/Counters/CounerView/CounterView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Counters/CounerView/CounterView.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/Counters/CounterCell/SwipeableCounter.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Counters/CounterCell/SwipeableCounter.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/Counters/View/CountersView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Counters/View/CountersView.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/Counters/View/CountersView.xib" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Counters/View/CountersView.xib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/Projects/View/NewMainView.xib" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Projects/View/ProjectsView.xib" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

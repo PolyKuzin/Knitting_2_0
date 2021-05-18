@@ -31,7 +31,7 @@ class SwipeableProject   : UICollectionViewCell {
 	}()
 	
 	private var project     : Project?
-	private var projectView = ProjectView.loadFromNib()
+	private var projectView = ProjectCellView.loadFromNib()
 	private var deleteView  = LabelView.loadFromNib()
 	private var editView    = LabelView.loadFromNib()
 	private var dubleView   = LabelView.loadFromNib()
@@ -78,9 +78,8 @@ class SwipeableProject   : UICollectionViewCell {
 		dubleView.backgroundColor = UIColor.mainColor
 		stackView.isUserInteractionEnabled = true
 		
-		projectView.roundCorners([.topLeft, .bottomLeft], radius: 20)
 		dubleView.roundCorners([.topRight, .bottomRight], radius: 20)
-
+		
 		addSubview(scrollView)
 		scrollView.addSubview(stackView)
 		scrollView.translatesAutoresizingMaskIntoConstraints  = false
@@ -131,26 +130,36 @@ class SwipeableProject   : UICollectionViewCell {
 	
 	@objc
 	private func editContainerViewTapped() {
+		defer { self.scrollToInit() }
 		guard let project = self.project else { return }
 		self.onEditProject?(project)
 	}
 	
 	@objc
 	private func deleteContainerViewTapped() {
+		defer { self.scrollToInit() }
 		guard let project = self.project else { return }
 		self.onDeleteProject?(project)
 	}
 	
 	@objc
 	private func visibleContainerViewTapped() {
+		defer { self.scrollToInit() }
 		guard let project = self.project else { return }
 		self.onVisibleProject?(project)
 	}
 	
 	@objc
 	private func duplicateContainerViewTapped() {
+		defer { self.scrollToInit() }
 		guard let project = self.project else { return }
 		self.onDoubleProject?(project)
+	}
+	
+	private func scrollToInit() {
+		self.isSelected = false
+		let leftOffset = CGPoint(x: 0, y: 0)
+		scrollView.setContentOffset(leftOffset, animated: false)
 	}
 
 	override func layoutSubviews() {

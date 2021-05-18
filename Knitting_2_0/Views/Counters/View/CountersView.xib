@@ -14,9 +14,31 @@
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CountersView" customModule="Knitting_2_0" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="wOz-0B-M11">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="TaX-PC-EJe">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+            </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-            <point key="canvasLocation" x="7" y="112"/>
+            <constraints>
+                <constraint firstItem="wOz-0B-M11" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="7JF-5N-PAa"/>
+                <constraint firstItem="wOz-0B-M11" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="G0U-1A-506"/>
+                <constraint firstAttribute="bottom" secondItem="wOz-0B-M11" secondAttribute="bottom" id="mKj-nW-QL9"/>
+                <constraint firstAttribute="trailing" secondItem="wOz-0B-M11" secondAttribute="trailing" id="nnx-gQ-Mvf"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="collectionView" destination="wOz-0B-M11" id="s9E-4W-TId"/>
+            </connections>
+            <point key="canvasLocation" x="5.7971014492753632" y="111.83035714285714"/>
         </view>
     </objects>
     <resources>

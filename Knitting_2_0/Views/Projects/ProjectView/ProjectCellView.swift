@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProjectView : UIView {
+class ProjectCellView : UIView {
 	
 	@IBOutlet weak var image : UIImageView!
 	@IBOutlet weak var title : UILabel!
@@ -16,6 +16,7 @@ class ProjectView : UIView {
 
 	override func awakeFromNib() {
 		isUserInteractionEnabled = true
+		roundCorners([.topLeft, .bottomLeft], radius: 20)
 	}
 	
 	public func configure(with data: Project) {

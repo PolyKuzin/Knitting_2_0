@@ -14,6 +14,8 @@ class LabelView : UIView {
 
 	override func awakeFromNib() {
 		isUserInteractionEnabled = true
+		let width = (UIScreen.main.bounds.width - 40) / 4
+		self.frame = CGRect(x: 0, y: 0, width: width, height: 130)
 	}
 	
 	public func configure(with data: String) {

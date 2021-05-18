@@ -73,6 +73,8 @@ class NetworkManager : NSObject {
 				callBack(.success(counters))
 			} else {
 				print("No data available")
+				var ptoject = self.projects.filter { $0.ref == ref}.first
+				ptoject?.linkedCounters = counters
 				callBack(.failure(.noData))
 			}
 		}

@@ -11,12 +11,13 @@ import PanModal
 
 class ProjectsController : BaseVC {
 	
-	private var newMainView    = ProjectsView.loadFromNib()
+	private var projects       = [Project]()
+	private var projectsView   = ProjectsView.loadFromNib()
 	private var networkManager = NetworkManager.shared
 
 	override func loadView() {
 		super.loadView()
-		self.view = newMainView
+		self.view = projectsView
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -43,19 +44,25 @@ class ProjectsController : BaseVC {
 	
 	private func makeErrorState(with data: KnitError) {
 		let errState = ProjectsView.ViewState.Error(title: "БЛЯ ОШИБКА", image: UIImage(named: "_0"), onSelect: {})
-		newMainView.viewState = .error(errState)
+		projectsView.viewState = .error(errState)
 	}
 	
 	private func makeLoadedState(with data: [Project]) {
 		let loadState : [ProjectsView.ViewState.ProjectItem] = data.map {
 			
 			return ProjectsView.ViewState.ProjectItem(project          : $0,
-													 onVisibleProject : self.doStuf(data:),
+													 onVisibleProject : self.showCounters(for:),
 													 onEditProject    : self.doStuf(data:),
 													 onDeleteProject  : self.deleteProject(project:),
 													 onDoubleProject  : self.doStuf(data:))
 		}
-		newMainView.viewState = .loaded(loadState)
+		projectsView.viewState = .loaded(loadState)
+	}
+	
+	private func showCounters(for project: Project) {
+		let vc = CountersController(project: project)
+		guard let navigationController = navigationController else { return }
+		navigationController.pushViewController(vc, animated: true)
 	}
 	
 	private func deleteProject(project: Project) {

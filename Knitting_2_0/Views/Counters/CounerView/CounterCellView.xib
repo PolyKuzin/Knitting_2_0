@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Rounded-Medium.otf">
+            <string>SFProRounded-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CounterCellView" customModule="Knitting_2_0" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="142"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dbI-Jo-75Q">
+                    <rect key="frame" x="147" y="29" width="120.5" height="84"/>
+                    <fontDescription key="fontDescription" name="SFProRounded-Medium" family="SF Pro Rounded" pointSize="72"/>
+                    <color key="textColor" name="MainLabel"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yE5-EH-JF7">
+                    <rect key="frame" x="313" y="46.5" width="49" height="49"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="49" id="d3H-Is-Pha"/>
+                        <constraint firstAttribute="width" constant="49" id="l66-10-dCx"/>
+                    </constraints>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mld-9B-6Y0">
+                    <rect key="frame" x="52" y="46.5" width="49" height="49"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="49" id="2fc-qW-5aJ"/>
+                        <constraint firstAttribute="height" constant="49" id="VEb-hm-4ol"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cUx-OU-dXI">
+                    <rect key="frame" x="185.5" y="8" width="43.5" height="21"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                    <color key="textColor" name="GrayLabel"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="dbI-Jo-75Q" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="7Rd-n6-3RW"/>
+                <constraint firstItem="mld-9B-6Y0" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Epk-wO-Xl8"/>
+                <constraint firstItem="yE5-EH-JF7" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="HvG-iP-gJL"/>
+                <constraint firstItem="cUx-OU-dXI" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="PDg-g9-Tlw"/>
+                <constraint firstItem="dbI-Jo-75Q" firstAttribute="top" secondItem="cUx-OU-dXI" secondAttribute="bottom" id="RfK-du-E0b"/>
+                <constraint firstItem="dbI-Jo-75Q" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="YPu-Uf-5yb"/>
+                <constraint firstItem="mld-9B-6Y0" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="52" id="b4o-MO-BqK"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="yE5-EH-JF7" secondAttribute="trailing" constant="52" id="h3b-Od-aIz"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="counterName" destination="cUx-OU-dXI" id="faR-ew-T7H"/>
+                <outlet property="currentRows" destination="dbI-Jo-75Q" id="g9L-Mn-mzu"/>
+                <outlet property="minusButton" destination="mld-9B-6Y0" id="cOs-iq-oS7"/>
+                <outlet property="plusButton" destination="yE5-EH-JF7" id="ax1-h6-SHr"/>
+            </connections>
+            <point key="canvasLocation" x="34.782608695652179" y="332.14285714285711"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="GrayLabel">
+            <color red="0.54900002479553223" green="0.54900002479553223" blue="0.54900002479553223" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="MainLabel">
+            <color red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

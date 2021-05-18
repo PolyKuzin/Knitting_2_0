@@ -43,6 +43,7 @@
 		994300B1252A27FF0065EF5C /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994300B0252A27FF0065EF5C /* UIViewController.swift */; };
 		99454021260AB1C300F0EC3E /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9945401F260AB1C300F0EC3E /* ImageCollectionViewCell.swift */; };
 		99454022260AB1C300F0EC3E /* ImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99454020260AB1C300F0EC3E /* ImageCollectionViewCell.xib */; };
+		994BF116265454DB00E94A59 /* AnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994BF115265454DB00E94A59 /* AnimationManager.swift */; };
 		994EF7142514B424009AA35B /* MainSetionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994EF7132514B423009AA35B /* MainSetionHeader.swift */; };
 		9959471E250A582B00D0E273 /* MUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9959471D250A582B00D0E273 /* MUser.swift */; };
 		99594720250AD91F00D0E273 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9959471F250AD91F00D0E273 /* MainVC.swift */; };
@@ -108,7 +109,7 @@
 		99B957062524A0C900AC5438 /* CounterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B957052524A0C900AC5438 /* CounterCell.swift */; };
 		99C31FDE251F2DA200A1F75D /* CardViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C31FDC251F2DA200A1F75D /* CardViewControllerProtocol.swift */; };
 		99C31FDF251F2DA200A1F75D /* SwipeableCollectionViewCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C31FDD251F2DA200A1F75D /* SwipeableCollectionViewCellProtocol.swift */; };
-		99C9866B264C4F83005222C7 /* NewMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99C9866A264C4F83005222C7 /* NewMainView.xib */; };
+		99C9866B264C4F83005222C7 /* ProjectsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99C9866A264C4F83005222C7 /* ProjectsView.xib */; };
 		99E4A1C625091FBE003CA7C9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 99E4A1C525091FBE003CA7C9 /* GoogleService-Info.plist */; };
 		99EF88BB25191EC400C77181 /* MCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EF88BA25191EC400C77181 /* MCounter.swift */; };
 		99EF88BD25193F7000C77181 /* UIImage+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EF88BC25193F7000C77181 /* UIImage+String.swift */; };
@@ -116,10 +117,10 @@
 		99F5EF82265111BD00A7217F /* SwipeableProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F5EF81265111BD00A7217F /* SwipeableProject.swift */; };
 		99F5EF882651288B00A7217F /* LabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F5EF872651288B00A7217F /* LabelView.swift */; };
 		99F5EF8F2651289E00A7217F /* LabelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99F5EF8E2651289E00A7217F /* LabelView.xib */; };
-		99F5EF9A2651804100A7217F /* ProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F5EF992651804100A7217F /* ProjectView.swift */; };
-		99F5EF9E2651804C00A7217F /* ProjectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99F5EF9D2651804C00A7217F /* ProjectView.xib */; };
-		99F5EFA326518C6B00A7217F /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F5EFA226518C6B00A7217F /* CounterView.swift */; };
-		99F5EFA726518CD900A7217F /* CounterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99F5EFA626518CD900A7217F /* CounterView.xib */; };
+		99F5EF9A2651804100A7217F /* ProjectCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F5EF992651804100A7217F /* ProjectCellView.swift */; };
+		99F5EF9E2651804C00A7217F /* ProjectCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99F5EF9D2651804C00A7217F /* ProjectCellView.xib */; };
+		99F5EFA326518C6B00A7217F /* CounterCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F5EFA226518C6B00A7217F /* CounterCellView.swift */; };
+		99F5EFA726518CD900A7217F /* CounterCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99F5EFA626518CD900A7217F /* CounterCellView.xib */; };
 		99F5EFB12651987200A7217F /* SwipeableProject.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99F5EFB02651987200A7217F /* SwipeableProject.xib */; };
 		99F5EFB6265198EF00A7217F /* SwipeableCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F5EFB5265198EF00A7217F /* SwipeableCounter.swift */; };
 		99F5EFBA2651994300A7217F /* SwipeableCounter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99F5EFB92651994300A7217F /* SwipeableCounter.xib */; };
@@ -213,6 +214,7 @@
 		994300B0252A27FF0065EF5C /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		9945401F260AB1C300F0EC3E /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		99454020260AB1C300F0EC3E /* ImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCollectionViewCell.xib; sourceTree = "<group>"; };
+		994BF115265454DB00E94A59 /* AnimationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationManager.swift; sourceTree = "<group>"; };
 		994EF7132514B423009AA35B /* MainSetionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSetionHeader.swift; sourceTree = "<group>"; };
 		9959471D250A582B00D0E273 /* MUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MUser.swift; sourceTree = "<group>"; };
 		9959471F250AD91F00D0E273 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
@@ -293,7 +295,7 @@
 		99B957052524A0C900AC5438 /* CounterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterCell.swift; sourceTree = "<group>"; };
 		99C31FDC251F2DA200A1F75D /* CardViewControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardViewControllerProtocol.swift; sourceTree = "<group>"; };
 		99C31FDD251F2DA200A1F75D /* SwipeableCollectionViewCellProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeableCollectionViewCellProtocol.swift; sourceTree = "<group>"; };
-		99C9866A264C4F83005222C7 /* NewMainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewMainView.xib; sourceTree = "<group>"; };
+		99C9866A264C4F83005222C7 /* ProjectsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectsView.xib; sourceTree = "<group>"; };
 		99E4A1C525091FBE003CA7C9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		99EF88BA25191EC400C77181 /* MCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCounter.swift; sourceTree = "<group>"; };
 		99EF88BC25193F7000C77181 /* UIImage+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+String.swift"; sourceTree = "<group>"; };
@@ -307,10 +309,10 @@
 		99F5EF81265111BD00A7217F /* SwipeableProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableProject.swift; sourceTree = "<group>"; };
 		99F5EF872651288B00A7217F /* LabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelView.swift; sourceTree = "<group>"; };
 		99F5EF8E2651289E00A7217F /* LabelView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LabelView.xib; sourceTree = "<group>"; };
-		99F5EF992651804100A7217F /* ProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectView.swift; sourceTree = "<group>"; };
-		99F5EF9D2651804C00A7217F /* ProjectView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectView.xib; sourceTree = "<group>"; };
-		99F5EFA226518C6B00A7217F /* CounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
-		99F5EFA626518CD900A7217F /* CounterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CounterView.xib; sourceTree = "<group>"; };
+		99F5EF992651804100A7217F /* ProjectCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCellView.swift; sourceTree = "<group>"; };
+		99F5EF9D2651804C00A7217F /* ProjectCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectCellView.xib; sourceTree = "<group>"; };
+		99F5EFA226518C6B00A7217F /* CounterCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterCellView.swift; sourceTree = "<group>"; };
+		99F5EFA626518CD900A7217F /* CounterCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CounterCellView.xib; sourceTree = "<group>"; };
 		99F5EFB02651987200A7217F /* SwipeableProject.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwipeableProject.xib; sourceTree = "<group>"; };
 		99F5EFB5265198EF00A7217F /* SwipeableCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableCounter.swift; sourceTree = "<group>"; };
 		99F5EFB92651994300A7217F /* SwipeableCounter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwipeableCounter.xib; sourceTree = "<group>"; };
@@ -539,6 +541,7 @@
 			isa = PBXGroup;
 			children = (
 				99A7C56C264B03A600FDDAEB /* NetworkManager.swift */,
+				994BF115265454DB00E94A59 /* AnimationManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -594,7 +597,7 @@
 			isa = PBXGroup;
 			children = (
 				99A7C55C264AF30D00FDDAEB /* ProjectsView.swift */,
-				99C9866A264C4F83005222C7 /* NewMainView.xib */,
+				99C9866A264C4F83005222C7 /* ProjectsView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -832,8 +835,8 @@
 		99F5EF9826517F4C00A7217F /* ProjectView */ = {
 			isa = PBXGroup;
 			children = (
-				99F5EF992651804100A7217F /* ProjectView.swift */,
-				99F5EF9D2651804C00A7217F /* ProjectView.xib */,
+				99F5EF992651804100A7217F /* ProjectCellView.swift */,
+				99F5EF9D2651804C00A7217F /* ProjectCellView.xib */,
 			);
 			path = ProjectView;
 			sourceTree = "<group>";
@@ -841,8 +844,8 @@
 		99F5EFA126518C5300A7217F /* CounerView */ = {
 			isa = PBXGroup;
 			children = (
-				99F5EFA226518C6B00A7217F /* CounterView.swift */,
-				99F5EFA626518CD900A7217F /* CounterView.xib */,
+				99F5EFA226518C6B00A7217F /* CounterCellView.swift */,
+				99F5EFA626518CD900A7217F /* CounterCellView.xib */,
 			);
 			path = CounerView;
 			sourceTree = "<group>";
@@ -1074,7 +1077,7 @@
 				99207D3425E067C00013DBF3 /* SelectImageCell.xib in Resources */,
 				99AFBA5024F80DA000E71FD6 /* Assets.xcassets in Resources */,
 				99FC0435263F085900ADEEEC /* PanCounter.xib in Resources */,
-				99C9866B264C4F83005222C7 /* NewMainView.xib in Resources */,
+				99C9866B264C4F83005222C7 /* ProjectsView.xib in Resources */,
 				991AD5682529268D008A6E8D /* SF-Pro-Rounded-Medium.otf in Resources */,
 				99F698742652E2AB00096CB2 /* CountersView.xib in Resources */,
 				9922D124260BDB6A00960A08 /* MainButtonCell.xib in Resources */,
@@ -1083,7 +1086,7 @@
 				9936B99725BC9617008F4443 /* InformationCell.xib in Resources */,
 				99F5EFBA2651994300A7217F /* SwipeableCounter.xib in Resources */,
 				99207D2725E024290013DBF3 /* PanProject.xib in Resources */,
-				99F5EF9E2651804C00A7217F /* ProjectView.xib in Resources */,
+				99F5EF9E2651804C00A7217F /* ProjectCellView.xib in Resources */,
 				99B223A62648089700FB9775 /* ImageCollectionCell.xib in Resources */,
 				9939AA62260ABFCE0094AFC3 /* SelectNameCell.xib in Resources */,
 				99FC0421263DCF0400ADEEEC /* AppleIncRootCertificate.cer in Resources */,
@@ -1092,7 +1095,7 @@
 				99F5EFB12651987200A7217F /* SwipeableProject.xib in Resources */,
 				9936B98B25BC9324008F4443 /* PanProfileVC.xib in Resources */,
 				99A7C566264B038900FDDAEB /* LoadingCell.xib in Resources */,
-				99F5EFA726518CD900A7217F /* CounterView.xib in Resources */,
+				99F5EFA726518CD900A7217F /* CounterCellView.xib in Resources */,
 				9965A1DF264D0CED003C8B75 /* ErrorCell.xib in Resources */,
 				99E4A1C625091FBE003CA7C9 /* GoogleService-Info.plist in Resources */,
 				990C188B263A029B00D56949 /* PayWallVC.xib in Resources */,
@@ -1199,7 +1202,8 @@
 				99B2234A264153E600FB9775 /* SelectRowsCell.swift in Sources */,
 				9962BDDC263B416C00DD8B22 /* FullScreenNavigation.swift in Sources */,
 				99B509BC24FDB1D60046A2B1 /* UIViewExt.swift in Sources */,
-				99F5EF9A2651804100A7217F /* ProjectView.swift in Sources */,
+				994BF116265454DB00E94A59 /* AnimationManager.swift in Sources */,
+				99F5EF9A2651804100A7217F /* ProjectCellView.swift in Sources */,
 				994EF7142514B424009AA35B /* MainSetionHeader.swift in Sources */,
 				99AFBA4B24F80D9E00E71FD6 /* SignUpVC.swift in Sources */,
 				9965A1D7264D0C56003C8B75 /* UICollectionView+Extension .swift in Sources */,
@@ -1251,7 +1255,7 @@
 				99B223952647159500FB9775 /* SectionTitleCell.swift in Sources */,
 				99A7C56D264B03A600FDDAEB /* NetworkManager.swift in Sources */,
 				99A0709C26123C8B00366972 /* pkcs7_union_accessors.m in Sources */,
-				99F5EFA326518C6B00A7217F /* CounterView.swift in Sources */,
+				99F5EFA326518C6B00A7217F /* CounterCellView.swift in Sources */,
 				998B9F8D250C2FBB00C0C52F /* ForgotPassVM.swift in Sources */,
 				99F5EF882651288B00A7217F /* LabelView.swift in Sources */,
 				9965A1E9264D12CD003C8B75 /* CollectionCellWithSwipe.swift in Sources */,
