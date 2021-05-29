@@ -12,6 +12,7 @@ target 'Knitting_2_0' do
   pod 'Firebase/Database'
   pod 'YandexMobileMetrica'
   pod 'YandexMobileMetricaPush'
+  pod 'appstore-card-transition'
   
 end
 

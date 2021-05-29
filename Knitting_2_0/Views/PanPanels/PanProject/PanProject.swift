@@ -31,14 +31,20 @@ class PanProject : BasePanVC, PanModalPresentable {
 		return .maxHeight
 	}
 	
-	public var currentProject  : MProject? {
+	public var currentProject  : Project? {
 		didSet {
-			guard let curr = currentProject else { return }
-			self.currentName = curr.name
-			self.currentImage = self.getImage(curr.image)
+			guard let curr = currentProject  else { return }
+			guard let name  = curr.name      else { return }
+			guard let image = curr.image     else { return }
+
+			self.currentName = name
+			self.currentImage = self.getImage(String(describing: image))
 		}
 	}
 	
+	public var onSave : ((Project)->())?
+	public var onEdit : ((Project)->())?
+
 	private var currentName    = ""   { didSet { print(currentName)   } }
 	private var currentImage   = 0    { didSet { print(currentImage)  } }
 	private var currentSwitch  = true { didSet { print(currentSwitch) } }
@@ -232,25 +238,30 @@ extension PanProject {
 		if currentName == "" {
 			currentName = "Unnamed"
 		}
-		let project = MProject(userID: user.uid, name: currentName, image: imgStr, date: "\(projectUniqueID)")
+		let project = Project(userID: user.uid, name: currentName, image: imgStr, date: "\(projectUniqueID)")
 		let referenceForProject = self.ref.child("projects").child("\(projectUniqueID)")
 		referenceForProject.setValue(project.projectToDictionary())
 		if currentSwitch {
-			let counter = MCounter(name: currentName, rows: 0, rowsMax: -1, date: "999999999")
+			let counter = Counter(name: currentName, rows: 0, rowsMax: -1, date: "999999999")
 			let referenceForCounter = self.ref.child("projects").child("\(projectUniqueID)").child("counters").child("\(currentName)")
 			referenceForCounter.setValue(counter.counterToDictionary())
 		}
-		AnalyticsService.reportEvent(with: "New project", parameters: ["name" : project.name])
+		self.onSave?(project)
+		AnalyticsService.reportEvent(with: "New project", parameters: ["name" : project.name as Any])
 		self.dismiss(animated: true, completion: nil)
 	}
 	
 	func editProject() {
 		let imgStr = "_" + String(currentImage)
 		if currentName == "" { currentName = "Unnamed" }
-		guard let project = self.currentProject, let ref = self.currentProject?.ref else { return }
+		guard let project = self.currentProject,
+			  let ref = self.currentProject?.ref else { return }
 		ref.updateChildValues(["name"  : self.currentName,
 							   "image" : imgStr,
-							   "date"  : project.date])
+							   "date"  : "\(Int(Date().timeIntervalSince1970))"])
+		currentProject?.name = currentName
+		currentProject?.date = "\(Int(Date().timeIntervalSince1970))"
+		self.onEdit?(currentProject!)
 		AnalyticsService.reportEvent(with: "Edit project", parameters: ["name" : currentName])
 		self.dismiss(animated: true, completion: nil)
 	}

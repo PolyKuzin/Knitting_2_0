@@ -16,7 +16,7 @@ struct Project : Hashable {
 	var userID : String?
 	
 	var name   : String?
-	var info   : String? = "some info" // TODO: ДОБАВИТЬ ПОЛЕ
+	var info   : String? = "" // TODO: ДОБАВИТЬ ПОЛЕ
 	var image  : UIImage?
 	var date   : String?
 	var linkedCounters : [Counter]?
@@ -62,7 +62,7 @@ extension Project {
 		}
 	}
 	
-	private func projectToDictionary() -> Any {
+	public func projectToDictionary() -> Any {
 		return ["image"  : image?.toString(),
 				"name"   : name,
 				"date"	 : date,

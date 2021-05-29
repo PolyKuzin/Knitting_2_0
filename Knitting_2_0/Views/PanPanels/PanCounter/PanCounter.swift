@@ -24,18 +24,25 @@ class PanCounter : BasePanVC, PanModalPresentable {
 		return .maxHeight
 	}
 	
-	public var currentProject : MProject?
-	public var currentCounter : MCounter? {
+	public var currentProject : Project?
+	public var currentCounter : Counter? {
 		didSet {
-			guard let curr = currentCounter else { return }
-			self.currentName = curr.name
+			guard let curr = currentCounter  else { return }
+			guard let name = curr.name       else { return }
+			guard let rowsMax = curr.rowsMax else { return }
+			
+			self.currentName = name
 			if curr.rowsMax == -1 {
 				self.currentSwitch = false
 			} else {
-				self.currentRowsMax = curr.rowsMax
+				self.currentRowsMax = rowsMax
 			}
 		}
 	}
+	
+	public var onSave : ((Counter)->())?
+	public var onEdit : ((Counter)->())?
+	
 	private var reloaded = false
 	private var currentName    = ""   { didSet { print(currentName)    } }
 	private var currentImage   = 0    { didSet { print(currentImage)   } }
@@ -108,11 +115,11 @@ class PanCounter : BasePanVC, PanModalPresentable {
 		self.tableView.delegate = self
 		self.tableView.dataSource = self
 		self.tableView.separatorStyle = .none
-		self.tableView.register(UINib(nibName: "BecomeProCell",     bundle: nil), forCellReuseIdentifier: "BecomeProCell")
-		self.tableView.register(UINib(nibName: "SelectRowsCell",     bundle: nil), forCellReuseIdentifier: "SelectRowsCell")
-		self.tableView.register(UINib(nibName: "MainButtonCell",    bundle: nil), forCellReuseIdentifier: "MainButtonCell")
-		self.tableView.register(UINib(nibName: "SelectNameCell",    bundle: nil), forCellReuseIdentifier: "SelectNameCell")
-		self.tableView.register(UINib(nibName: "CreateCounterCell", bundle: nil), forCellReuseIdentifier: "CreateCounterCell")
+		self.tableView.register(SwitcherCell.nib, forCellReuseIdentifier: SwitcherCell.reuseId)
+		self.tableView.register(BecomeProCell.nib, forCellReuseIdentifier: BecomeProCell.reuseId)
+		self.tableView.register(SelectRowsCell.nib, forCellReuseIdentifier: SelectRowsCell.reuseId)
+		self.tableView.register(MainButtonCell.nib, forCellReuseIdentifier: MainButtonCell.reuseId)
+		self.tableView.register(SelectNameCell.nib, forCellReuseIdentifier: SelectNameCell.reuseId)
 		self.makeState()
 		if currentCounter != nil {
 			self.title = "Edit counter".localized()
@@ -170,32 +177,32 @@ extension PanCounter : UITableViewDataSource {
 		switch self.viewState.rows[indexPath.row] {
 		case is ViewState.SelectName      :
 			let data = self.viewState.rows[indexPath.row] as! ViewState.SelectName
-			let cell = tableView.dequeueReusableCell(withIdentifier: "SelectNameCell",    for: indexPath) as! SelectNameCell
+			let cell = tableView.dequeueReusableCell(withIdentifier: SelectNameCell.reuseId,    for: indexPath) as! SelectNameCell
 			cell.configure(with: data)
 			return cell
 		case is ViewState.SelectImages    :
 			let data = self.viewState.rows[indexPath.row] as! ViewState.SelectImages
-			let cell = tableView.dequeueReusableCell(withIdentifier: "SelectImageCell",   for: indexPath) as! SelectImageCell
+			let cell = tableView.dequeueReusableCell(withIdentifier: SelectImageCell.reuseId,   for: indexPath) as! SelectImageCell
 			cell.configure(with: data)
 			return cell
 		case is ViewState.SelectCounter   :
 			let data = self.viewState.rows[indexPath.row] as! ViewState.SelectCounter
-			let cell = tableView.dequeueReusableCell(withIdentifier: "CreateCounterCell", for: indexPath) as! SwitcherCell
+			let cell = tableView.dequeueReusableCell(withIdentifier: SwitcherCell.reuseId,      for: indexPath) as! SwitcherCell
 			cell.configure(with: data)
 			return cell
 		case is ViewState.SelectRows      :
 			let data = self.viewState.rows[indexPath.row] as! ViewState.SelectRows
-			let cell = tableView.dequeueReusableCell(withIdentifier: "SelectRowsCell",    for: indexPath) as! SelectRowsCell
+			let cell = tableView.dequeueReusableCell(withIdentifier: SelectRowsCell.reuseId,    for: indexPath) as! SelectRowsCell
 			cell.configure(with: data)
 			return cell
 		case is ViewState.MainButton      :
 			let data = self.viewState.rows[indexPath.row] as! ViewState.MainButton
-			let cell = tableView.dequeueReusableCell(withIdentifier: "MainButtonCell",    for: indexPath) as! MainButtonCell
+			let cell = tableView.dequeueReusableCell(withIdentifier: MainButtonCell.reuseId,    for: indexPath) as! MainButtonCell
 			cell.configure(with: data)
 			return cell
 		case is ViewState.BecomePro       :
 			let data = self.viewState.rows[indexPath.row] as! ViewState.BecomePro
-			let cell = tableView.dequeueReusableCell(withIdentifier: "BecomeProCell",     for: indexPath) as! BecomeProCell
+			let cell = tableView.dequeueReusableCell(withIdentifier: BecomeProCell.reuseId,     for: indexPath) as! BecomeProCell
 			cell.configure(with: data)
 			return cell
 		default:
@@ -209,18 +216,25 @@ extension PanCounter {
 	func saveCounter() {
 		if currentName == "" { currentName = "Unnamed" }
 		let date = Int(Date().timeIntervalSince1970)
-		let counter = MCounter(name: currentName, rows: 0, rowsMax: currentRowsMax, date: "\(date)")
+		let counter = Counter(name: currentName, rows: 0, rowsMax: currentRowsMax, date: "\(date)")
 		ref.child("\(date)").setValue(counter.counterToDictionary())
-		AnalyticsService.reportEvent(with: "New counter", parameters: ["name" : counter.name])
+		self.onSave?(counter)
+		AnalyticsService.reportEvent(with: "New counter", parameters: ["name" : counter.name as Any])
 		self.dismiss(animated: true, completion: nil)
 	}
 	
 	func editCounter() {
 		if currentName == "" { currentName = "Unnamed" }
-		guard let counter = self.currentCounter, let referenceForCounter = self.currentCounter?.ref else { return }
+		guard let counter = self.currentCounter,
+			  let referenceForCounter = self.currentCounter?.ref else { return }
 		referenceForCounter.updateChildValues(["name"     : currentName,
 												"rowsMax" : currentRowsMax,
-												"date"    : counter.date])
+												"date"    : "\(Int(Date().timeIntervalSince1970))"])
+		self.currentCounter?.name    = currentName
+		self.currentCounter?.rowsMax = currentRowsMax
+		self.currentCounter?.date    = "\(Int(Date().timeIntervalSince1970))"
+
+		self.onEdit?(currentCounter!)
 		AnalyticsService.reportEvent(with: "Edit counter", parameters: ["name" : currentName])
 		self.dismiss(animated: true, completion: nil)
 	}

@@ -18,9 +18,9 @@ enum KnitError : String, Error {
 class NetworkManager : NSObject {
 	
 	static let shared     = NetworkManager()
-	private var userDTO   : MUser!
-	private let dataBase  = Database.database()
-	private var reference : DatabaseReference!
+	public var userDTO   : MUser!
+	public let dataBase  = Database.database()
+	public var reference : DatabaseReference!
 	
 	private var projects  = [Project]()
 	
@@ -78,6 +78,16 @@ class NetworkManager : NSObject {
 				callBack(.failure(.noData))
 			}
 		}
+	}
+	
+	public func saveProject(project: Project) {
+		let ref = self.reference.child("projects").child("\(Int(Date().timeIntervalSince1970))")
+		ref.setValue(project.projectToDictionary())
+	}
+	
+	public func saveCounter(project: Project, counter: Counter) {
+		guard let ref = project.ref else { return }
+		ref.child("counters").child("\(Int(Date().timeIntervalSince1970))").setValue(counter.counterToDictionary())
 	}
 	
 	public func deleteProject(project: Project) {

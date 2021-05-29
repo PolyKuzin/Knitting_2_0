@@ -166,7 +166,7 @@
 //	func newProjectTaped() {
 ////		let vc = PanProject(nibName: "PanProject", bundle: nil)
 ////		let vc : PanModalPresentable.LayoutType = PanelNavigation(edit)
-////		self.presentPanModal(vc)
+//		self.presentPanModal(vc)
 ////		self.presentPanModal(Project().VC)
 //    }
 //	

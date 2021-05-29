@@ -10,8 +10,6 @@ import UIKit
 
 class MainSectionHeader: UICollectionReusableView {
 	
-	static let reusedId = "SectionHeader"
-	
 	let title			: UILabel = {
 		let label		= UILabel()
 		label.textColor = .black

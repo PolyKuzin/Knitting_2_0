@@ -10,15 +10,18 @@ import UIKit
 
 class CountersView : UIView {
 	
-	public var project : Project?
+	public var project      : Project?
+	public var onDismiss    : (()->())?
+	public var onAddCounter : (()->())?
 
 	@IBOutlet weak var collectionView : UICollectionView!
 	
-	struct ViewState : _ViewState {
+	struct ViewState : _ViewState                     {
 		
+		var header   : ProjectsView
 		var sections : [Section]
 		
-		enum State {
+		enum State                                    {
 			case loading (Loading)
 			case error   (Error)
 			case loaded  ([CounterItem])
@@ -36,18 +39,26 @@ class CountersView : UIView {
 		
 		struct CounterItem        : _SwipeableCounter {
 			var counter          : Counter
-			var onPlusRow        : ((Counter)->())
-			var onMinusRow       : ((Counter)->())
-			var onVisibleCounter : ((Counter)->())
-			var onEditCounter    : ((Counter)->())
-			var onDeleteCounter  : ((Counter)->())
-			var onDoubleCounter  : ((Counter)->())
+			var onPlusRow        : ((SwipeableCounter)->())
+			var onMinusRow       : ((SwipeableCounter)->())
+			var onVisibleCounter : ((SwipeableCounter)->())
+			var onEditCounter    : ((SwipeableCounter)->())
+			var onDeleteCounter  : ((SwipeableCounter)->())
+			var onDoubleCounter  : ((SwipeableCounter)->())
 		}
 		
-		static let initial = ViewState(sections: [])
+		static let initial = ViewState(header: ProjectsView.loadFromNib(), sections: [])
 	}
 	
-	public var viewState : ViewState.State = .loading(getRandomLoading()) {
+	public var viewState : ViewState = .initial {
+		didSet {
+			DispatchQueue.main.async {
+				self.collectionView.reloadData()
+			}
+		}
+	}
+	
+	public var state : ViewState.State = .loading(getRandomLoading()) {
 		didSet {
 			DispatchQueue.main.async {
 				self.collectionView.reloadData()
@@ -63,23 +74,37 @@ class CountersView : UIView {
 	override func awakeFromNib() {
 		self.collectionView.delegate   = self
 		self.collectionView.dataSource = self
-		self.collectionView.register(ErrorCell.nib, forCellWithReuseIdentifier: ErrorCell.reuseId)
-		self.collectionView.register(LoadingCell.nib, forCellWithReuseIdentifier: LoadingCell.reuseId)
+		self.collectionView.register(ErrorCell.nib,        forCellWithReuseIdentifier: ErrorCell.reuseId)
+		self.collectionView.register(LoadingCell.nib,      forCellWithReuseIdentifier: LoadingCell.reuseId)
 		self.collectionView.register(SwipeableCounter.nib, forCellWithReuseIdentifier: SwipeableCounter.reuseId)
+		self.collectionView.register(CountersHeader.nib,   forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CountersHeader.reuseId)
 	}
 }
 
 // MARK: - Delegate
 extension CountersView : UICollectionViewDelegate {
 	
+	private func back() {
+		self.onDismiss?()
+	}
+	
+	private func addCounter() {
+		self.onAddCounter?()
+	}
+	
+	func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+		guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CountersHeader.reuseId, for: indexPath) as? CountersHeader
+		else { return UICollectionReusableView() }
+		header.configure(with: (self.project!, self.back, self.addCounter))
+		return header
+	}
 }
 
 // MARK: - DelegateFlowLayout
 extension CountersView : UICollectionViewDelegateFlowLayout {
 	
-	// TODO: Определиться с высотой ячейки
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-		switch self.viewState {
+		switch self.state {
 		case .loaded(_):
 			return CGSize(width: UIScreen.main.bounds.width - 40, height: 130)
 		default:
@@ -92,7 +117,7 @@ extension CountersView : UICollectionViewDelegateFlowLayout {
 extension CountersView : UICollectionViewDataSource {
 	
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		switch self.viewState {
+		switch self.state {
 		case .loaded(let items):
 			return items.count
 		default:
@@ -101,7 +126,7 @@ extension CountersView : UICollectionViewDataSource {
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		switch self.viewState {
+		switch self.state {
 		case .loading          :
 			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LoadingCell.reuseId, for: indexPath) as! LoadingCell
 			return cell
@@ -112,7 +137,7 @@ extension CountersView : UICollectionViewDataSource {
 		case .loaded(let rows) :
 			switch rows[indexPath.row] {
 			case is ViewState.CounterItem:
-				let row = rows[indexPath.row]
+				let row = rows[indexPath.row] as! ViewState.CounterItem
 				let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SwipeableCounter.reuseId, for: indexPath) as! SwipeableCounter
 				cell.configure(with: row)
 				return cell

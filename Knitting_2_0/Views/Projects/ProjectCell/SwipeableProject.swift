@@ -7,16 +7,42 @@
 //
 
 import UIKit
+import AppstoreTransition
 
 protocol _SwipeableProject {
-	var project          : Project         { get set }
-	var onVisibleProject : ((Project)->()) { get set }
-	var onEditProject    : ((Project)->()) { get set }
-	var onDeleteProject  : ((Project)->()) { get set }
-	var onDoubleProject  : ((Project)->()) { get set }
+	var project          : Project                  { get set }
+	var onVisibleProject : ((SwipeableProject)->()) { get set }
+	var onEditProject    : ((SwipeableProject)->()) { get set }
+	var onDeleteProject  : ((SwipeableProject)->()) { get set }
+	var onDoubleProject  : ((SwipeableProject)->()) { get set }
+}
+
+extension SwipeableProject : CardCollectionViewCell {
+	
+	var cardContentView: UIView {
+		get {
+			guard let view = self.projectView else { return UIView() }
+			return view
+		}
+	}
 }
 
 class SwipeableProject   : UICollectionViewCell {
+	
+	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+		super.touchesBegan(touches, with: event)
+		animate(isHighlighted: true)
+	}
+
+	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+		super.touchesEnded(touches, with: event)
+		animate(isHighlighted: false)
+	}
+
+	override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+		super.touchesCancelled(touches, with: event)
+		animate(isHighlighted: false)
+	}
 	
 	let scrollView  : UIScrollView = {
 		let scrollView = UIScrollView(frame: .zero)
@@ -30,16 +56,16 @@ class SwipeableProject   : UICollectionViewCell {
 		return scrollView
 	}()
 	
-	private var project     : Project?
-	private var projectView = ProjectCellView.loadFromNib()
+	public var project     : Project?
+	public var projectView  : ProjectCellView? = ProjectCellView.loadFromNib()
 	private var deleteView  = LabelView.loadFromNib()
 	private var editView    = LabelView.loadFromNib()
 	private var dubleView   = LabelView.loadFromNib()
 	
-	private var onVisibleProject : ((Project)->())?
-	private var onDeleteProject  : ((Project)->())?
-	private var onEditProject    : ((Project)->())?
-	private var onDoubleProject  : ((Project)->())?
+	private var onVisibleProject : ((SwipeableProject)->())?
+	private var onDeleteProject  : ((SwipeableProject)->())?
+	private var onEditProject    : ((SwipeableProject)->())?
+	private var onDoubleProject  : ((SwipeableProject)->())?
 	
 	public func configure(with data: _SwipeableProject) {
 		self.project          = data.project
@@ -47,7 +73,7 @@ class SwipeableProject   : UICollectionViewCell {
 		self.onDeleteProject  = data.onDeleteProject
 		self.onEditProject    = data.onEditProject
 		self.onDoubleProject  = data.onDoubleProject
-		self.projectView.configure(with: data.project)
+		self.projectView?.configure(with: data.project)
 	}
 		
 	override func awakeFromNib() {
@@ -66,7 +92,7 @@ class SwipeableProject   : UICollectionViewCell {
 		let stackView			= UIStackView()
 		stackView.axis			= .horizontal
 		stackView.distribution 	= .fill
-		stackView.addArrangedSubview(projectView)
+		stackView.addArrangedSubview(projectView!)
 		stackView.addArrangedSubview(deleteView)
 		deleteView.configure(with: "Delete".localized())
 		deleteView.backgroundColor = UIColor.third
@@ -98,17 +124,17 @@ class SwipeableProject   : UICollectionViewCell {
 			stackView.rightAnchor  .constraint(equalTo: scrollView.rightAnchor)
 		])
 		
-		projectView .translatesAutoresizingMaskIntoConstraints = false
+		projectView? .translatesAutoresizingMaskIntoConstraints = false
 		editView    .translatesAutoresizingMaskIntoConstraints = false
 		deleteView  .translatesAutoresizingMaskIntoConstraints = false
 		dubleView   .translatesAutoresizingMaskIntoConstraints = false
 		
-		projectView .heightAnchor.constraint(equalTo: stackView.heightAnchor).isActive = true
+		projectView?.heightAnchor.constraint(equalTo: stackView.heightAnchor).isActive = true
 		editView    .heightAnchor.constraint(equalTo: stackView.heightAnchor).isActive = true
 		deleteView  .heightAnchor.constraint(equalTo: stackView.heightAnchor).isActive = true
 		dubleView   .heightAnchor.constraint(equalTo: stackView.heightAnchor).isActive = true
 		
-		projectView .widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1)   .isActive = true
+		projectView?.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1)   .isActive = true
 		editView    .widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.25).isActive = true
 		deleteView  .widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.25).isActive = true
 		dubleView   .widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.25).isActive = true
@@ -116,7 +142,7 @@ class SwipeableProject   : UICollectionViewCell {
 	
 	private func setupGestureRecognizer() {
 		let visibleContainerTapGestureRecognizer   = UITapGestureRecognizer(target: self, action: #selector(visibleContainerViewTapped))
-		projectView.addGestureRecognizer (visibleContainerTapGestureRecognizer)
+		projectView?.addGestureRecognizer (visibleContainerTapGestureRecognizer)
 		
 		let deleteContainerTapGestureRecognizer    = UITapGestureRecognizer(target: self, action: #selector(deleteContainerViewTapped))
 		deleteView.addGestureRecognizer  (deleteContainerTapGestureRecognizer)
@@ -131,35 +157,31 @@ class SwipeableProject   : UICollectionViewCell {
 	@objc
 	private func editContainerViewTapped() {
 		defer { self.scrollToInit() }
-		guard let project = self.project else { return }
-		self.onEditProject?(project)
+		self.onEditProject?(self)
 	}
 	
 	@objc
 	private func deleteContainerViewTapped() {
 		defer { self.scrollToInit() }
-		guard let project = self.project else { return }
-		self.onDeleteProject?(project)
+		self.onDeleteProject?(self)
 	}
 	
 	@objc
 	private func visibleContainerViewTapped() {
 		defer { self.scrollToInit() }
-		guard let project = self.project else { return }
-		self.onVisibleProject?(project)
+		self.onVisibleProject?(self)
 	}
 	
 	@objc
 	private func duplicateContainerViewTapped() {
 		defer { self.scrollToInit() }
-		guard let project = self.project else { return }
-		self.onDoubleProject?(project)
+		self.onDoubleProject?(self)
 	}
 	
 	private func scrollToInit() {
 		self.isSelected = false
 		let leftOffset = CGPoint(x: 0, y: 0)
-		scrollView.setContentOffset(leftOffset, animated: false)
+		scrollView.setContentOffset(leftOffset, animated: true)
 	}
 
 	override func layoutSubviews() {

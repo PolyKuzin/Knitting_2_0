@@ -8,16 +8,20 @@
 
 import UIKit
 
-import UIKit
+protocol _CountersView {
+	var counter          : Counter  { get set }
+	var onPlusRow        : (()->()) { get set }
+	var onMinusRow       : (()->()) { get set }
+}
 
 protocol _SwipeableCounter {
-	var counter          : Counter         { get set }
-	var onPlusRow        : ((Counter)->()) { get set }
-	var onMinusRow       : ((Counter)->()) { get set }
-	var onVisibleCounter : ((Counter)->()) { get set }
-	var onEditCounter    : ((Counter)->()) { get set }
-	var onDeleteCounter  : ((Counter)->()) { get set }
-	var onDoubleCounter  : ((Counter)->()) { get set }
+	var counter          : Counter                  { get set }
+	var onPlusRow        : ((SwipeableCounter)->()) { get set }
+	var onMinusRow       : ((SwipeableCounter)->()) { get set }
+	var onVisibleCounter : ((SwipeableCounter)->()) { get set }
+	var onEditCounter    : ((SwipeableCounter)->()) { get set }
+	var onDeleteCounter  : ((SwipeableCounter)->()) { get set }
+	var onDoubleCounter  : ((SwipeableCounter)->()) { get set }
 }
 
 class SwipeableCounter   : UICollectionViewCell {
@@ -34,24 +38,38 @@ class SwipeableCounter   : UICollectionViewCell {
 		return scrollView
 	}()
 	
-	private var counter     : Counter?
+	public var counter     : Counter?
 	private var counterView = CounterCellView.loadFromNib()
 	private var deleteView  = LabelView.loadFromNib()
 	private var editView    = LabelView.loadFromNib()
 	private var dubleView   = LabelView.loadFromNib()
 	
-	private var onVisibleCounter : ((Counter)->())?
-	private var onDeleteCounter  : ((Counter)->())?
-	private var onEditCounter    : ((Counter)->())?
-	private var onDoubleCounter  : ((Counter)->())?
+	private var onVisibleCounter : ((SwipeableCounter)->())?
+	private var onDeleteCounter  : ((SwipeableCounter)->())?
+	private var onEditCounter    : ((SwipeableCounter)->())?
+	private var onDoubleCounter  : ((SwipeableCounter)->())?
 	
 	public func configure(with data: _SwipeableCounter) {
+		struct CounterView : _CountersView {
+			var counter          : Counter
+			var onPlusRow        : (()->())
+			var onMinusRow       : (()->())
+		}
+		let plusClosure = { [weak self] in
+			guard let self = self else { return }
+			data.onPlusRow(self)
+		}
+		let minusClosure = { [weak self] in
+			guard let self = self else { return }
+			data.onMinusRow(self)
+		}
+		let viewStruct = CounterView(counter: data.counter, onPlusRow: plusClosure, onMinusRow: minusClosure)
 		self.counter          = data.counter
 		self.onVisibleCounter = data.onVisibleCounter
 		self.onDeleteCounter  = data.onDeleteCounter
 		self.onEditCounter    = data.onEditCounter
 		self.onDoubleCounter  = data.onDoubleCounter
-		self.counterView.configure(with: data.counter)
+		self.counterView.configure(with: viewStruct)
 	}
 		
 	override func awakeFromNib() {
@@ -135,35 +153,31 @@ class SwipeableCounter   : UICollectionViewCell {
 	@objc
 	private func visibleContainerViewTapped() {
 		defer { self.scrollToInit() }
-		guard let counter = self.counter else { return }
-		self.onVisibleCounter?(counter)
+		self.onVisibleCounter?(self)
 	}
 	
 	@objc
 	private func deleteContainerViewTapped() {
 		defer { self.scrollToInit() }
-		guard let counter = self.counter else { return }
-		self.onDeleteCounter?(counter)
+		self.onDeleteCounter?(self)
 	}
 	
 	@objc
 	private func editContainerViewTapped() {
 		defer { self.scrollToInit() }
-		guard let counter = self.counter else { return }
-		self.onEditCounter?(counter)
+		self.onEditCounter?(self)
 	}
 	
 	@objc
 	private func duplicateContainerViewTapped() {
 		defer { self.scrollToInit() }
-		guard let counter = self.counter else { return }
-		self.onDoubleCounter?(counter)
+		self.onDoubleCounter?(self)
 	}
 	
 	private func scrollToInit() {
 		self.isSelected = false
 		let leftOffset = CGPoint(x: 0, y: 0)
-		scrollView.setContentOffset(leftOffset, animated: false)
+		scrollView.setContentOffset(leftOffset, animated: true)
 	}
 
 	override func layoutSubviews() {

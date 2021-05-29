@@ -1,4 +1,5 @@
 PODS:
+  - appstore-card-transition (1.0.4)
   - Firebase/Auth (7.11.0):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 7.11.0)
@@ -68,6 +69,7 @@ PODS:
     - YandexMobileMetrica/Static/Core (~> 3.4)
 
 DEPENDENCIES:
+  - appstore-card-transition
   - Firebase/Auth
   - Firebase/Database
   - OpenSSL-XM
@@ -78,6 +80,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - appstore-card-transition
     - Firebase
     - FirebaseAuth
     - FirebaseCore
@@ -96,6 +99,7 @@ SPEC REPOS:
     - YandexMobileMetricaPush
 
 SPEC CHECKSUMS:
+  appstore-card-transition: 660c136cb8a0f0004b2e99e99f1305bfa041f05c
   Firebase: c121feb35e4126c0b355e3313fa9b487d47319fd
   FirebaseAuth: 5fe4585c2ed847319f0ea68bd1d82c77e49ff9a0
   FirebaseCore: 907447d8917a4d3eb0cce2829c5a0ad21d90b432
@@ -113,6 +117,6 @@ SPEC CHECKSUMS:
   YandexMobileMetrica: fb4b3c20a0c0237b03b34cc07b6d575332f43097
   YandexMobileMetricaPush: ff5d6fc46d3987f44e9fac8b9cb2f776b638cd04
 
-PODFILE CHECKSUM: d300c06fa6c039743030063792a42b7873948e90
+PODFILE CHECKSUM: dbaa1fcfbbbc83df8ad11cdf8af7196c165bd2c8
 
 COCOAPODS: 1.10.1

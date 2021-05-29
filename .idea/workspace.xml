@@ -2,12 +2,55 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="437704ce-c3c0-4e09-8fb0-96df05d6f516" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Knitting_2_0/Assets.xcassets/Icons/arrow.imageset/Frame 44.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Counters/Header/CountersHeader.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Counters/Header/CountersHeader.xib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Projects/Header/ProjectsHeaderView.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Projects/Header/ProjectsHeaderView.xib" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Knitting_2_0.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/Counters/CounerView/CounterView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Counters/CounerView/CounterView.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0.xcodeproj/xcuserdata/pavelkuzin.xcuserdatad/xcschemes/xcschememanagement.plist" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0.xcodeproj/xcuserdata/pavelkuzin.xcuserdatad/xcschemes/xcschememanagement.plist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0.xcworkspace/xcuserdata/pavelkuzin.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0.xcworkspace/xcuserdata/pavelkuzin.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Assets.xcassets/Icons/arrow.imageset/Arrow 16-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Assets.xcassets/Icons/arrow.imageset/Arrow 16-2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Assets.xcassets/Icons/arrow.imageset/Arrow 16.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Assets.xcassets/Icons/arrow.imageset/Contents.json" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Assets.xcassets/Icons/arrow.imageset/Contents.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Models/DTO/Project.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Models/DTO/Project.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Supporting/Cells/UICollectionView+Extension .swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Supporting/Cells/UICollectionView+Extension .swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/Counters/Controller/CountersController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Counters/Controller/CountersController.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/Counters/CounerView/CounterCellView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Counters/CounerView/CounterCellView.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/Counters/CounerView/CounterCellView.xib" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Counters/CounerView/CounterCellView.xib" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/Counters/CounterCell/SwipeableCounter.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Counters/CounterCell/SwipeableCounter.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/Counters/View/CountersView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Counters/View/CountersView.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/Counters/View/CountersView.xib" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Counters/View/CountersView.xib" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/Projects/View/NewMainView.xib" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Projects/View/ProjectsView.xib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/Managers/AnimationManager.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/Managers/NetworkManager.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Managers/NetworkManager.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/OldCounters/CounterCell.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Counters/OldCounters/CounterCell.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/OldCounters/CounterSectionHeader.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Counters/OldCounters/CounterSectionHeader.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/OldCounters/CounterVC.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Counters/OldCounters/CounterVC.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/Cells/CreateCounter/CreateCounterCell.xib" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/Cells/CreateCounter/SwitcherCell.xib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PanCounter/PanCounter.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PanCounter/PanCounter.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PanProject/PanProject.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PanProject/PanProject.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/Projects/Controller/ProjectsController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Projects/Controller/ProjectsController.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/Projects/OldProjects/MainSetionHeader.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Projects/OldProjects/MainSetionHeader.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/Projects/OldProjects/MainVC.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Projects/OldProjects/MainVC.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/Projects/ProjectCell/SwipeableProject.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Projects/ProjectCell/SwipeableProject.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/Projects/ProjectView/ProjectCellView.xib" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Projects/ProjectView/ProjectCellView.xib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/Projects/View/ProjectsView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Projects/View/ProjectsView.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/Projects/View/ProjectsView.xib" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Projects/View/ProjectsView.xib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Podfile" beforeDir="false" afterPath="$PROJECT_DIR$/Podfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Podfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Podfile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Manifest.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Manifest.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/pavelkuzin.xcuserdatad/xcschemes/xcschememanagement.plist" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/pavelkuzin.xcuserdatad/xcschemes/xcschememanagement.plist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-Knitting_2_0/Pods-Knitting_2_0-acknowledgements.markdown" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods-Knitting_2_0/Pods-Knitting_2_0-acknowledgements.markdown" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-Knitting_2_0/Pods-Knitting_2_0-acknowledgements.plist" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods-Knitting_2_0/Pods-Knitting_2_0-acknowledgements.plist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-Knitting_2_0/Pods-Knitting_2_0-frameworks-Debug-input-files.xcfilelist" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods-Knitting_2_0/Pods-Knitting_2_0-frameworks-Debug-input-files.xcfilelist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-Knitting_2_0/Pods-Knitting_2_0-frameworks-Debug-output-files.xcfilelist" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods-Knitting_2_0/Pods-Knitting_2_0-frameworks-Debug-output-files.xcfilelist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-Knitting_2_0/Pods-Knitting_2_0-frameworks-Release-input-files.xcfilelist" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods-Knitting_2_0/Pods-Knitting_2_0-frameworks-Release-input-files.xcfilelist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-Knitting_2_0/Pods-Knitting_2_0-frameworks-Release-output-files.xcfilelist" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods-Knitting_2_0/Pods-Knitting_2_0-frameworks-Release-output-files.xcfilelist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-Knitting_2_0/Pods-Knitting_2_0-frameworks.sh" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods-Knitting_2_0/Pods-Knitting_2_0-frameworks.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-Knitting_2_0/Pods-Knitting_2_0.debug.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods-Knitting_2_0/Pods-Knitting_2_0.debug.xcconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-Knitting_2_0/Pods-Knitting_2_0.release.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods-Knitting_2_0/Pods-Knitting_2_0.release.xcconfig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

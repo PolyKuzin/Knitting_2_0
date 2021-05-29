@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import PanModal
+import AppstoreTransition
 
 enum SectionType {
 	case counters
@@ -28,20 +30,17 @@ protocol _ViewState {
 
 class ProjectsView : UIView {
 	
-	public var onAddButtonTap         : (()->())?
-	public var onProjectTap           : (()->())?
-	public var onDeleteProjectTap     : (()->())?
-	public var onEditProjectTap       : (()->())?
-	public var onDuplicateProjectTap  : (()->())?
+	public var onProfile    : (()->())?
+	public var onNewProject : (()->())?
 	
 	@IBOutlet weak var addButton      : MainButton!
 	@IBOutlet weak var collectionView : UICollectionView!
 	
-	struct ViewState : _ViewState {
+	struct ViewState             : _ViewState         {
 		
-		var sections : [Section]
+		var sections             : [Section]
 		
-		enum State {
+		enum State                                    {
 			case loading (Loading)
 			case error   (Error)
 			case loaded  ([ProjectItem])
@@ -59,10 +58,10 @@ class ProjectsView : UIView {
 		
 		struct ProjectItem        : _SwipeableProject {
 			var project          : Project
-			var onVisibleProject : ((Project)->())
-			var onEditProject    : ((Project)->())
-			var onDeleteProject  : ((Project)->())
-			var onDoubleProject  : ((Project)->())
+			var onVisibleProject : ((SwipeableProject)->())
+			var onEditProject    : ((SwipeableProject)->())
+			var onDeleteProject  : ((SwipeableProject)->())
+			var onDoubleProject  : ((SwipeableProject)->())
 		}
 		
 		static let initial = ViewState(sections: [])
@@ -82,17 +81,31 @@ class ProjectsView : UIView {
 	}
 	
 	override func awakeFromNib() {
+		self.addButton.setTitle("+ Create project".localized())
+		self.addButton.addTarget(self, action: #selector(self.newProjectTaped), for: .touchUpInside)
 		self.collectionView.delegate   = self
 		self.collectionView.dataSource = self
-		self.collectionView.register(ErrorCell.nib, forCellWithReuseIdentifier: ErrorCell.reuseId)
-		self.collectionView.register(LoadingCell.nib, forCellWithReuseIdentifier: LoadingCell.reuseId)
-		self.collectionView.register(SwipeableProject.nib, forCellWithReuseIdentifier: SwipeableProject.reuseId)
+		self.collectionView.register(ErrorCell.nib,          forCellWithReuseIdentifier: ErrorCell.reuseId)
+		self.collectionView.register(LoadingCell.nib,        forCellWithReuseIdentifier: LoadingCell.reuseId)
+		self.collectionView.register(SwipeableProject.nib,   forCellWithReuseIdentifier: SwipeableProject.reuseId)
+		self.collectionView.register(ProjectsHeaderView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ProjectsHeaderView.reuseId)
+	}
+	
+	@objc
+	func newProjectTaped() {
+		self.onNewProject?()
 	}
 }
 
 // MARK: - Delegate
 extension ProjectsView : UICollectionViewDelegate {
 	
+	func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+		guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ProjectsHeaderView.reuseId, for: indexPath) as? ProjectsHeaderView
+		else { return UICollectionReusableView() }
+		header.configure(title: "Working on this?".localized(), action: onProfile!)
+		return header
+	}
 }
 
 // MARK: - DelegateFlowLayout

@@ -8,15 +8,29 @@
 
 import UIKit
 import PanModal
+import AppstoreTransition
 
-class ProjectsController : BaseVC {
+class ProjectsController : BaseVC, CardsViewController {
 	
-	private var projects       = [Project]()
+	private var projects       = [Project]() {
+		didSet {
+			(projects.isEmpty) ? (self.makeErrorState(with: .noData)) : (self.makeLoadedState(with: projects))
+		}
+	}
 	private var projectsView   = ProjectsView.loadFromNib()
 	private var networkManager = NetworkManager.shared
+	private var transition     : CardTransition?
 
 	override func loadView() {
 		super.loadView()
+		projectsView.onProfile    = { [weak self] in
+			guard let self = self else { return }
+			self.openProfile()
+		}
+		projectsView.onNewProject = { [weak self] in
+			guard let self = self else { return }
+			self.openNewProject()
+		}
 		self.view = projectsView
 	}
 	
@@ -37,7 +51,7 @@ class ProjectsController : BaseVC {
 			case .failure(let err)      :
 				self.makeErrorState(with: err)
 			case .success(let projects) :
-				self.makeLoadedState(with: projects)
+				self.projects = projects
 			}
 		}
 	}
@@ -51,38 +65,73 @@ class ProjectsController : BaseVC {
 		let loadState : [ProjectsView.ViewState.ProjectItem] = data.map {
 			
 			return ProjectsView.ViewState.ProjectItem(project          : $0,
-													 onVisibleProject : self.showCounters(for:),
-													 onEditProject    : self.doStuf(data:),
-													 onDeleteProject  : self.deleteProject(project:),
-													 onDoubleProject  : self.doStuf(data:))
+													 onVisibleProject : self.openProject(from:),
+													 onEditProject    : self.openEditProject(from:),
+													 onDeleteProject  : self.deleteProject(from:),
+													 onDoubleProject  : self.doubleProject(from:))
 		}
 		projectsView.viewState = .loaded(loadState)
 	}
 	
-	private func showCounters(for project: Project) {
-		let vc = CountersController(project: project)
-		guard let navigationController = navigationController else { return }
-		navigationController.pushViewController(vc, animated: true)
+	private func openProfile() {
+		let vc = PanProfileVC(nibName: "PanProfileVC", bundle: nil)
+		let vcModal : PanModalPresentable.LayoutType = PanelNavigation(vc)
+		self.presentPanModal(vcModal)
 	}
 	
-	private func deleteProject(project: Project) {
-//		project.ref?.removeValue()
-//		var snap = dataSourse?.snapshot()
-//		snap?.deleteItems([projects[indexPath.row]])
-//		projects.remove(at: indexPath.row)
-//		dataSourse?.apply(snap!, animatingDifferences: true)
-//		self.collectionView.reloadData()
-//
-//		let leftOffset = CGPoint(x: 0, y: 0)
-//		cell.scrollView.setContentOffset(leftOffset, animated: true)
-//		DispatchQueue.main.asyncAfter(deadline: .now() + animationDuration) {
-//			self.view.isUserInteractionEnabled = true
-//		}
-//		AnalyticsService.reportEvent(with: "Delete project")
+	private func openNewProject() {
+		let vc = PanProject(nibName: "PanProject", bundle: nil)
+		vc.onSave = { [weak self] project in
+			guard let self = self else { return }
+			self.projects.insert(project, at: 0)
+		}
+		let vcModal : PanModalPresentable.LayoutType = PanelNavigation(vc)
+		self.presentPanModal(vcModal)
 	}
 	
-	private func doStuf(data: Project) {
-		print(data.name)
+	private func openProject(from cell: SwipeableProject) {
+		cell.settings.cardContainerInsets = UIEdgeInsets(top: -75, left: 0, bottom: 0, right: 0)
+		transition = CardTransition(cell: cell, settings: cell.settings)
+		let detailController = CountersController(project: cell.project!)
+		detailController.settings = cell.settings
+		detailController.transitioningDelegate = transition
+		detailController.modalPresentationStyle = .custom
+		detailController.setLinkedCounters = { [weak self] counters in
+			guard let self = self else { return }
+			let i = self.projects.firstIndex(of: cell.project!)!
+			self.projects[i].linkedCounters = counters
+		}
+		presentExpansion(detailController, cell: cell, animated: true)
+	}
+	
+	private func openEditProject(from cell: SwipeableProject) {
+		let vc = PanProject(nibName: "PanProject", bundle: nil)
+		vc.currentProject = cell.project
+		vc.onEdit = { [weak self] project in
+			guard let self = self else { return }
+			self.projects = self.projects.filter { $0 != cell.project}
+			self.projects.insert(project, at: 0)
+		}
+		let vcModal : PanModalPresentable.LayoutType = PanelNavigation(vc)
+		self.presentPanModal(vcModal)
+		AnalyticsService.reportEvent(with: "Edit project")
+	}
+	
+	private func deleteProject(from cell: SwipeableProject) {
+		cell.project?.ref?.removeValue()
+		self.projects = self.projects.filter { $0 != cell.project}
+		AnalyticsService.reportEvent(with: "Delete project")
+	}
+	
+	// TODO: Добавить дублирование счётчиков
+	private func doubleProject(from cell: SwipeableProject) {
+		guard let project = cell.project else { return }
+		var projectCopy = project
+		projectCopy.date = "\(Int(Date().timeIntervalSince1970))"
+		projectCopy.name = project.name! + "-Copy".localized()
+		self.networkManager.saveProject(project: projectCopy)
+		self.projects.insert(projectCopy, at: 0)
+		AnalyticsService.reportEvent(with: "Duplicate project")
 	}
 	
 	deinit {
