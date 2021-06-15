@@ -145,7 +145,7 @@ extension SignUpVC {
 					guard let userRef = self?.dbReference.child((user?.user.uid)!) else { return }
 					userRef.setValue(["email"	: user!.user.email,
 									  "nickname": nickname])
-					let project = MProject(userID: "123", name: "knitting-f824f", image: (Icons.emptyProject?.toString())!, date: "0")
+					let project = MProject(userID: "123", name: "knitting-f824f", image: "_0", date: "0")
 					guard let referenceForProject = self?.dbReference.child((user?.user.uid)!).child("projects").child("123") else { return }
 					referenceForProject.setValue(project.projectToDictionary())
 					self?.dismissKeyBoard	()
@@ -211,7 +211,7 @@ extension SignUpVC {
 	}
 	
 	func pushMainVC() {
-		let vc = MainVC()
+		let vc = ProjectsController()
 		guard let navigationController = navigationController else { return }
 		navigationController.pushViewController(vc, animated: true)
 	}

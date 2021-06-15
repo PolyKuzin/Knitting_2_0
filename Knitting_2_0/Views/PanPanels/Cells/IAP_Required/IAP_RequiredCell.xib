@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="IAP_RequiredCell" customModule="Knitting_2_0" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="i2b-YK-gvE">
+                        <rect key="frame" x="16" y="0.0" width="288" height="20"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R9m-18-fQl">
+                                <rect key="frame" x="0.0" y="0.0" width="88" height="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="Privacy policy">
+                                    <color key="titleColor" name="GrayLabel"/>
+                                </state>
+                                <connections>
+                                    <action selector="onPrivacyTap" destination="KGk-i7-Jjw" eventType="touchUpInside" id="6KI-EY-Qs1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cd1-wo-Cbb">
+                                <rect key="frame" x="88" y="0.0" width="118" height="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="Restore purchases">
+                                    <color key="titleColor" name="GrayLabel"/>
+                                </state>
+                                <connections>
+                                    <action selector="onRestoreTap" destination="KGk-i7-Jjw" eventType="touchUpInside" id="CQI-On-7DE"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D6J-lC-aTQ">
+                                <rect key="frame" x="206" y="0.0" width="82" height="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="Terms of use">
+                                    <color key="titleColor" name="GrayLabel"/>
+                                </state>
+                                <connections>
+                                    <action selector="onTermsTap" destination="KGk-i7-Jjw" eventType="touchUpInside" id="MyT-mT-bWg"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="GGt-Zu-giW"/>
+                        </constraints>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="i2b-YK-gvE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="6lm-oJ-V40"/>
+                    <constraint firstItem="i2b-YK-gvE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="CH5-AN-vJu"/>
+                    <constraint firstAttribute="bottom" secondItem="i2b-YK-gvE" secondAttribute="bottom" id="VW9-df-c4V"/>
+                    <constraint firstAttribute="trailing" secondItem="i2b-YK-gvE" secondAttribute="trailing" constant="16" id="eOW-SN-oXv"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="privacyBtn" destination="R9m-18-fQl" id="qJz-h3-gAx"/>
+                <outlet property="restoreBtn" destination="Cd1-wo-Cbb" id="kjV-Vi-Xp2"/>
+                <outlet property="termsBtn" destination="D6J-lC-aTQ" id="ifA-e1-YaS"/>
+            </connections>
+            <point key="canvasLocation" x="139" y="98"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="GrayLabel">
+            <color red="0.54900002479553223" green="0.54900002479553223" blue="0.54900002479553223" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

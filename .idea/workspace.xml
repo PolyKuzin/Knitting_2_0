@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="437704ce-c3c0-4e09-8fb0-96df05d6f516" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Knitting_2_0/Assets.xcassets/Icons/arrow.imageset/Frame 44.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Counters/Header/CountersHeader.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Counters/Header/CountersHeader.xib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Projects/Header/ProjectsHeaderView.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Projects/Header/ProjectsHeaderView.xib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0.xcodeproj/xcuserdata/pavelkuzin.xcuserdatad/xcschemes/xcschememanagement.plist" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0.xcodeproj/xcuserdata/pavelkuzin.xcuserdatad/xcschemes/xcschememanagement.plist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0.xcworkspace/xcuserdata/pavelkuzin.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0.xcworkspace/xcuserdata/pavelkuzin.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Assets.xcassets/Icons/arrow.imageset/Arrow 16-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Assets.xcassets/Icons/arrow.imageset/Arrow 16-2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Assets.xcassets/Icons/arrow.imageset/Arrow 16.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Assets.xcassets/Icons/arrow.imageset/Contents.json" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Assets.xcassets/Icons/arrow.imageset/Contents.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Models/DTO/Project.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Models/DTO/Project.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Supporting/Cells/UICollectionView+Extension .swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Supporting/Cells/UICollectionView+Extension .swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/Counters/Controller/CountersController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Counters/Controller/CountersController.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/Counters/CounerView/CounterCellView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Counters/CounerView/CounterCellView.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/Counters/CounerView/CounterCellView.xib" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Counters/CounerView/CounterCellView.xib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/Counters/CounterCell/SwipeableCounter.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Counters/CounterCell/SwipeableCounter.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/Counters/View/CountersView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Counters/View/CountersView.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/Counters/View/CountersView.xib" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Counters/View/CountersView.xib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/Managers/AnimationManager.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/Managers/NetworkManager.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Managers/NetworkManager.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/OldCounters/CounterCell.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Counters/OldCounters/CounterCell.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/OldCounters/CounterSectionHeader.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Counters/OldCounters/CounterSectionHeader.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/OldCounters/CounterVC.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Counters/OldCounters/CounterVC.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/Cells/CreateCounter/CreateCounterCell.xib" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/Cells/CreateCounter/SwitcherCell.xib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PanCounter/PanCounter.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PanCounter/PanCounter.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PanProject/PanProject.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/PanPanels/PanProject/PanProject.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/Projects/Controller/ProjectsController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Projects/Controller/ProjectsController.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/Projects/OldProjects/MainSetionHeader.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Projects/OldProjects/MainSetionHeader.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/Projects/OldProjects/MainVC.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Projects/OldProjects/MainVC.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/Projects/ProjectCell/SwipeableProject.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Projects/ProjectCell/SwipeableProject.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/Projects/ProjectView/ProjectCellView.xib" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Projects/ProjectView/ProjectCellView.xib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/Projects/View/ProjectsView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Projects/View/ProjectsView.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knitting_2_0/Views/Projects/View/ProjectsView.xib" beforeDir="false" afterPath="$PROJECT_DIR$/Knitting_2_0/Views/Projects/View/ProjectsView.xib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Podfile" beforeDir="false" afterPath="$PROJECT_DIR$/Podfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Podfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Podfile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Manifest.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Manifest.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/pavelkuzin.xcuserdatad/xcschemes/xcschememanagement.plist" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/pavelkuzin.xcuserdatad/xcschemes/xcschememanagement.plist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-Knitting_2_0/Pods-Knitting_2_0-acknowledgements.markdown" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods-Knitting_2_0/Pods-Knitting_2_0-acknowledgements.markdown" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-Knitting_2_0/Pods-Knitting_2_0-acknowledgements.plist" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods-Knitting_2_0/Pods-Knitting_2_0-acknowledgements.plist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-Knitting_2_0/Pods-Knitting_2_0-frameworks-Debug-input-files.xcfilelist" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods-Knitting_2_0/Pods-Knitting_2_0-frameworks-Debug-input-files.xcfilelist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-Knitting_2_0/Pods-Knitting_2_0-frameworks-Debug-output-files.xcfilelist" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods-Knitting_2_0/Pods-Knitting_2_0-frameworks-Debug-output-files.xcfilelist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-Knitting_2_0/Pods-Knitting_2_0-frameworks-Release-input-files.xcfilelist" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods-Knitting_2_0/Pods-Knitting_2_0-frameworks-Release-input-files.xcfilelist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-Knitting_2_0/Pods-Knitting_2_0-frameworks-Release-output-files.xcfilelist" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods-Knitting_2_0/Pods-Knitting_2_0-frameworks-Release-output-files.xcfilelist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-Knitting_2_0/Pods-Knitting_2_0-frameworks.sh" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods-Knitting_2_0/Pods-Knitting_2_0-frameworks.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-Knitting_2_0/Pods-Knitting_2_0.debug.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods-Knitting_2_0/Pods-Knitting_2_0.debug.xcconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-Knitting_2_0/Pods-Knitting_2_0.release.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods-Knitting_2_0/Pods-Knitting_2_0.release.xcconfig" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="$PROJECT_DIR$/.idea" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectId" id="1oeJkp8os4XwXaS85TulAZrJlZA" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="437704ce-c3c0-4e09-8fb0-96df05d6f516" name="Default Changelist" comment="" />
+      <created>1613641268034</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1613641268034</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Resolved conflicts">
+      <created>1613641535553</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1613641535553</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Merge branch 'dex-2-7'&#10;&#10;Conflicts:&#10;&#9;Knitting_2_0.xcodeproj/project.pbxproj">
+      <created>1613641818215</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1613641818215</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Merge branch 'dex-2-7'&#10;&#10;Conflicts:&#10;&#9;Knitting_2_0.xcodeproj/project.pbxproj&#10;&#9;&#10;Новые ячейки и многое другое">
+      <created>1616631444962</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1616631444962</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Merge branch 'dex-2-7'&#10;&#10;Conflicts:&#10;&#9;Knitting_2_0.xcodeproj/project.pbxproj&#10;&#9;&#10;AppDelegate little refactoring">
+      <created>1619952138330</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1619952138330</updated>
+    </task>
+    <task id="LOCAL-00005" summary="IAPs рааботают">
+      <created>1619967365810</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1619967365810</updated>
+    </task>
+    <task id="LOCAL-00006" summary="BasePanVC.swift рефакторинг">
+      <created>1619969021553</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1619969021553</updated>
+    </task>
+    <task id="LOCAL-00007" summary="deleting old files">
+      <created>1619971682716</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1619971682716</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Pan CounterVC.swift">
+      <created>1619997869801</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1619997869801</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Pan CounterVC.swift">
+      <created>1620166081691</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1620166081693</updated>
+    </task>
+    <task id="LOCAL-00010" summary="переводы">
+      <created>1620208473677</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1620208473677</updated>
+    </task>
+    <task id="LOCAL-00011" summary="больше переводов">
+      <created>1620208498496</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1620208498496</updated>
+    </task>
+    <task id="LOCAL-00012" summary="всё подряд">
+      <created>1620251721941</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1620251721941</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Кнопка обновлённого цвета">
+      <created>1620498146085</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1620498146086</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Приготовления к платной версии">
+      <created>1620579853769</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1620579853769</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Preparing for re-writing Main Screens">
+      <created>1620760793333</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1620760793333</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Preparing for re-writing DataBaseLayer">
+      <created>1621005774849</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1621005774849</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Error State + DownLoading Projects">
+      <created>1621017765568</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1621017765568</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="2-8-2" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="2-8-2" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="master" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="аааааа" />
+    <MESSAGE value="Resolved conflicts" />
+    <MESSAGE value="Merge branch 'dex-2-7'&#10;&#10;Conflicts:&#10;&#9;Knitting_2_0.xcodeproj/project.pbxproj" />
+    <MESSAGE value="Merge branch 'dex-2-7'&#10;&#10;Conflicts:&#10;&#9;Knitting_2_0.xcodeproj/project.pbxproj&#10;&#9;&#10;Новые ячейки и многое другое" />
+    <MESSAGE value="Merge branch 'dex-2-7'&#10;&#10;Conflicts:&#10;&#9;Knitting_2_0.xcodeproj/project.pbxproj&#10;&#9;&#10;AppDelegate little refactoring" />
+    <MESSAGE value="IAPs рааботают" />
+    <MESSAGE value="BasePanVC.swift рефакторинг" />
+    <MESSAGE value="deleting old files" />
+    <MESSAGE value="Pan CounterVC.swift" />
+    <MESSAGE value="переводы" />
+    <MESSAGE value="больше переводов" />
+    <MESSAGE value="всё подряд" />
+    <MESSAGE value="Кнопка обновлённого цвета" />
+    <MESSAGE value="Приготовления к платной версии" />
+    <MESSAGE value="Preparing for re-writing Main Screens" />
+    <MESSAGE value="Preparing for re-writing DataBaseLayer" />
+    <MESSAGE value="Error State + DownLoading Projects" />
+    <option name="LAST_COMMIT_MESSAGE" value="Error State + DownLoading Projects" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="94" y="92" key="CommitChangelistDialog2" timestamp="1621017765239">
+      <screen x="0" y="25" width="1680" height="972" />
+    </state>
+    <state x="94" y="92" key="CommitChangelistDialog2/0.25.1680.972@0.25.1680.972" timestamp="1621017765239" />
+    <state x="428" y="258" key="IDE.errors.dialog" timestamp="1619968992097">
+      <screen x="0" y="25" width="1680" height="972" />
+    </state>
+    <state x="428" y="258" key="IDE.errors.dialog/0.25.1680.972@0.25.1680.972" timestamp="1619968992097" />
+    <state x="173" y="89" key="MergeDialog" timestamp="1613641803572">
+      <screen x="0" y="25" width="1680" height="972" />
+    </state>
+    <state x="173" y="89" key="MergeDialog/0.25.1680.972@0.25.1680.972" timestamp="1613641803572" />
+    <state x="555" y="211" key="MultipleFileMergeDialog" timestamp="1613641803625">
+      <screen x="0" y="25" width="1680" height="972" />
+    </state>
+    <state x="555" y="211" key="MultipleFileMergeDialog/0.25.1680.972@0.25.1680.972" timestamp="1613641803625" />
+    <state x="346" y="128" key="SettingsEditor" timestamp="1613641883937">
+      <screen x="0" y="25" width="1680" height="972" />
+    </state>
+    <state x="346" y="128" key="SettingsEditor/0.25.1680.972@0.25.1680.972" timestamp="1613641883937" />
+    <state x="444" y="228" key="Vcs.Push.Dialog.v2" timestamp="1620498155716">
+      <screen x="0" y="25" width="1680" height="972" />
+    </state>
+    <state x="444" y="228" key="Vcs.Push.Dialog.v2/0.25.1680.972@0.25.1680.972" timestamp="1620498155716" />
+    <state x="100" y="125" width="1480" height="772" key="com.intellij.dvcs.ui.CompareBranchesDialog" timestamp="1619965971382">
+      <screen x="0" y="25" width="1680" height="972" />
+    </state>
+    <state x="100" y="125" width="1480" height="772" key="com.intellij.dvcs.ui.CompareBranchesDialog/0.25.1680.972@0.25.1680.972" timestamp="1619965971382" />
+  </component>
+</project>

@@ -183,7 +183,7 @@ extension LogInVC {
 	}
 	
 	func pushMainVC() {
-		let vc = MainVC()
+		let vc = ProjectsController()
 		guard let navigationController = navigationController else { return }
 		navigationController.pushViewController(vc, animated: true)
 	}

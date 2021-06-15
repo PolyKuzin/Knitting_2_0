@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="116" id="KGk-i7-Jjw" customClass="InformationCell" customModule="Knitting_2_0" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="116"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="116"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="inB-HS-oYV">
+                        <rect key="frame" x="16" y="20" width="80" height="80"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="80" id="4P2-Fd-05q"/>
+                            <constraint firstAttribute="height" constant="80" id="FU7-iJ-GIS"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="40"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PeF-IC-ivr">
+                        <rect key="frame" x="116" y="30" width="5" height="26"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                        <color key="textColor" name="MainLabel"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bov-Xq-qmA">
+                        <rect key="frame" x="116" y="62" width="5" height="20"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" name="GrayLabel"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="PeF-IC-ivr" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="30" id="AiA-2O-9zV"/>
+                    <constraint firstItem="bov-Xq-qmA" firstAttribute="leading" secondItem="PeF-IC-ivr" secondAttribute="leading" id="Bvb-D9-2wd"/>
+                    <constraint firstItem="PeF-IC-ivr" firstAttribute="leading" secondItem="inB-HS-oYV" secondAttribute="trailing" constant="20" id="In7-zX-Z5S"/>
+                    <constraint firstItem="bov-Xq-qmA" firstAttribute="top" secondItem="PeF-IC-ivr" secondAttribute="bottom" constant="6" id="bD5-lU-zKv"/>
+                    <constraint firstAttribute="bottom" secondItem="inB-HS-oYV" secondAttribute="bottom" constant="10" id="mmD-zu-2nj"/>
+                    <constraint firstItem="inB-HS-oYV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="npd-S3-L0E"/>
+                    <constraint firstItem="inB-HS-oYV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="y4Y-ch-8LL"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="emailLabel" destination="bov-Xq-qmA" id="cih-gs-6BP"/>
+                <outlet property="nicknameLabel" destination="PeF-IC-ivr" id="1Q3-jt-3Hi"/>
+                <outlet property="profileImage" destination="inB-HS-oYV" id="loZ-8M-9mK"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="121.875"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="GrayLabel">
+            <color red="0.54900002479553223" green="0.54900002479553223" blue="0.54900002479553223" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="MainLabel">
+            <color red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

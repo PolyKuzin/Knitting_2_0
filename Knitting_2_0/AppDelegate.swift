@@ -19,7 +19,7 @@ var currentCount = UserDefaults.standard.integer(forKey: "launchCount")
 class AppDelegate: UIResponder, UIApplicationDelegate {
 	
 	//MARK: - didFinishLaunching
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		let configuration = YMMYandexMetricaConfiguration.init(apiKey: "710ec4a5-8503-4371-a935-2825ec321888")
 		YMMYandexMetrica.activate(with: configuration!)
 		YMPYandexMetricaPush.setExtensionAppGroup("group.ru.polykuzin.Knitting-2-0")
@@ -30,26 +30,75 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		YMPYandexMetricaPush.handleApplicationDidFinishLaunching(options: launchOptions)
 		self.registerForPushNotificationsWithApplication(application)
 		
-		
 		FirebaseApp.configure()
 		UIApplication.shared.applicationIconBadgeNumber = 0
 		UserDefaults.standard.set(currentCount+1, forKey:"launchCount")
 		AnalyticsService.reportEvent(with: "Launch KnitIt")
 		requestNotification()
+		IAPManager.shared.setupPurchases { (success) in
+			if success { IAPManager.shared.getProducts() }
+		}
+		self.checkForRenew()
+		self.setTheme()
 		return true
     }
+	
+	private func setTheme() {
+		if let theme = UserDefaults.standard.object(forKey: "AppApereance") as? String {
+			if #available(iOS 13.0, *) {
+				guard let window = UIApplication.shared.keyWindow else { return }
+				if theme == "dark" {
+					window.overrideUserInterfaceStyle = .dark
+				} else if theme == "light" {
+					window.overrideUserInterfaceStyle = .light
+				} else {
+					window.overrideUserInterfaceStyle = .unspecified
+				}
+			}
+		} else {
+			var theme = "light"
+			if #available(iOS 12.0, *) {
+				switch UIScreen.main.traitCollection.userInterfaceStyle {
+				case .dark:
+					theme = "dark"
+				case .light:
+					theme = "light"
+				case .unspecified:
+					theme = "light"
+				@unknown default:
+					fatalError()
+				}
+			}
+			UserDefaults.standard.setValue(theme, forKey: "AppApereance")
+		}
+	}
+	
+	private func checkForRenew() {
+		let reciptValidator = ReceiptValidator()
+		let result = reciptValidator.validateReceipt()
+		switch result {
+		case let .success(reciept):
+			guard let purchase = reciept.inAppPurchaseReceipts?.filter({$0.productIdentifier == IAPProducts.autoRenew.rawValue}).first else { return }
+			if purchase.subscriptionExpirationDate?.compare(Date()) == .some(.orderedDescending) {
+				AnalyticsService.reportEvent(with: "Purchase", parameters: ["data" : purchase.purchaseDate ?? "0000000"])
+				UserDefaults.standard.setValue(true, forKey: "setPro")
+			} else {
+				UserDefaults.standard.setValue(false, forKey: "setPro")
+			}
+		case let .error(error):
+			print(error.localizedDescription)
+		}
+	}
 	
 	func applicationDidBecomeActive(_ application: UIApplication) {
 		UIApplication.shared.applicationIconBadgeNumber = 0
 	}
 	
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-		
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
 	
-	func registerForPushNotificationsWithApplication(_ application: UIApplication)
-	{
+	func registerForPushNotificationsWithApplication(_ application: UIApplication) {
 		// Register for push notifications
 		if #available(iOS 8.0, *) {
 			if #available(iOS 10.0, *) {
@@ -76,10 +125,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		}
 	}
 
-	func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data)
-	{
-		// Send device token and APNs environment(based on default build configuration) to AppMetrica Push server.
-		// Method YMMYandexMetrica.activate has to be called before using this method.
+	func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
 #if DEBUG
 		let pushEnvironment = YMPYandexMetricaPushEnvironment.development
 #else
@@ -88,26 +134,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		YMPYandexMetricaPush.setDeviceTokenFrom(deviceToken, pushEnvironment: pushEnvironment)
 	}
 
-	func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any])
-	{
+	func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
 		self.handlePushNotification(userInfo)
 	}
 
-	func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void)
-	{
+	func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
 		self.handlePushNotification(userInfo)
 		completionHandler(.newData)
 	}
 
-	func handlePushNotification(_ userInfo: [AnyHashable : Any])
-	{
-		// Track received remote notification.
-		// Method YMMYandexMetrica.activate should be called before using this method.
+	func handlePushNotification(_ userInfo: [AnyHashable : Any]) {
 		YMPYandexMetricaPush.handleRemoteNotification(userInfo)
-
-		// Check if notification is related to AppMetrica (optionally)
 		if YMPYandexMetricaPush.isNotificationRelated(toSDK: userInfo) {
-			// Get user data from remote notification.
 			let userData = YMPYandexMetricaPush.userData(forNotification: userInfo)
 			print("User Data: %@", userData?.description ?? "[no data]")
 		} else {

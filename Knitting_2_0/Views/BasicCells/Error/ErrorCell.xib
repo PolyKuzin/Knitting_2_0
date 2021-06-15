@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ErrorCell" customModule="Knitting_2_0" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="273" height="300"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="273" height="300"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WMs-v8-Fxw">
+                        <rect key="frame" x="61.5" y="25" width="150" height="150"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="150" id="52B-lB-UBc"/>
+                            <constraint firstAttribute="height" constant="150" id="DNW-fE-Ck8"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4O1-eh-t7s">
+                        <rect key="frame" x="20" y="200" width="233" height="25.5"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="21"/>
+                        <color key="textColor" name="GrayLabel"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hnr-1Y-w33" customClass="MainButton" customModule="Knitting_2_0" customModuleProvider="target">
+                        <rect key="frame" x="20" y="250.5" width="233" height="30"/>
+                        <state key="normal" title="Button"/>
+                    </button>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="4O1-eh-t7s" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="6nA-oA-FAN"/>
+                <constraint firstAttribute="trailing" secondItem="4O1-eh-t7s" secondAttribute="trailing" constant="20" id="Dc3-sK-nEW"/>
+                <constraint firstItem="Hnr-1Y-w33" firstAttribute="top" secondItem="4O1-eh-t7s" secondAttribute="bottom" constant="25" id="Hvb-0S-zAt"/>
+                <constraint firstItem="WMs-v8-Fxw" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="IIZ-F7-zq5"/>
+                <constraint firstItem="WMs-v8-Fxw" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="25" id="VtN-ak-Vfy"/>
+                <constraint firstItem="Hnr-1Y-w33" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="esT-sQ-q0M"/>
+                <constraint firstItem="4O1-eh-t7s" firstAttribute="top" secondItem="WMs-v8-Fxw" secondAttribute="bottom" constant="25" id="vEZ-Aq-O32"/>
+                <constraint firstAttribute="trailing" secondItem="Hnr-1Y-w33" secondAttribute="trailing" constant="20" id="yCj-yy-Bli"/>
+            </constraints>
+            <size key="customSize" width="273" height="300"/>
+            <connections>
+                <outlet property="button" destination="Hnr-1Y-w33" id="tR1-z1-ZiF"/>
+                <outlet property="imageView" destination="WMs-v8-Fxw" id="JfZ-kw-dLw"/>
+                <outlet property="title" destination="4O1-eh-t7s" id="uQN-QR-S3s"/>
+            </connections>
+            <point key="canvasLocation" x="299.27536231884062" y="217.63392857142856"/>
+        </collectionViewCell>
+    </objects>
+    <designables>
+        <designable name="Hnr-1Y-w33">
+            <size key="intrinsicContentSize" width="46" height="30"/>
+        </designable>
+    </designables>
+    <resources>
+        <namedColor name="GrayLabel">
+            <color red="0.54900002479553223" green="0.54900002479553223" blue="0.54900002479553223" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
